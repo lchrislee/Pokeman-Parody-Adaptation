@@ -78,7 +78,7 @@ public class ChatGUI extends JPanel {
 				if (selected.equals(chatSelected))
 					return;
 				else{
-					txeaAllMessages.setText("You are now only talking to " + selected);
+					txeaAllMessages.setText("Only " + selected + " can see your messages.");
 				}
 			}
 		});
