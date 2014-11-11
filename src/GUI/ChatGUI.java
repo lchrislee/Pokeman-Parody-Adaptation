@@ -111,7 +111,7 @@ public class ChatGUI extends JPanel {
 		String content = txFdCurrentText.getText();
 		if (content.length() == 0)
 			return;
-		String text = "You sent: " + content;
+		String text = groups.getSelectedItem().toString() + "_You sent: " + content;
 		txFdCurrentText.setText("");
 		System.out.println("sent message: " + text + " to " + groups.getSelectedItem().toString());
 		readMessage(text);
