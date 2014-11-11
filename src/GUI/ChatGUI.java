@@ -1,7 +1,11 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -9,44 +13,73 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 
-public class ChatGUI extends JFrame {
+public class ChatGUI extends JPanel {
 	private static final long serialVersionUID = 8239335834925382510L;
-	private JTextArea allMessages;
-	private JTextField currentType;
+	private JTextArea txeaAllMessages;
+	private JTextField txFdCurrentText;
 	private JComboBox<String> groups;
-	private JButton send;
+	private JButton btnSend;
 	
 	public ChatGUI(){
-		setSize(400, 500);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setLocation(100,200);
+		setLayout(new BorderLayout());
 		
 		createGUI();
-		setVisible(true);
+		setListeners();
 	}
 	
 	private void createGUI(){
-		allMessages = new JTextArea();
-		allMessages.setEditable(false);
-		JScrollPane sp = new JScrollPane(allMessages);
+		txeaAllMessages = new JTextArea();
+		txeaAllMessages.setEditable(false);
+		txeaAllMessages.setText("TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nhi");
+		txeaAllMessages.setLineWrap(true);
+		JScrollPane sp = new JScrollPane(txeaAllMessages);
 		add(sp);
-		allMessages.setText("TESTTESTTEST\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nhi");
 		
-		currentType = new JTextField(70);
-		String[] groupNames = {"Player 1", "Player 2", "Player 3", "Player 4", "P1 & P2", "P1 & P3", "P1 & P4", "P2 & P3", "P2 & P4", "P3 & P4"};
+		txFdCurrentText = new JTextField(70);
+		String[] groupNames = {"ALL", "P1 Only", "P2 Only", "P3 Only", "P4 Only", "P1 & P2", "P1 & P3", "P1 & P4", "P2 & P3", "P2 & P4", "P3 & P4"};
 		groups = new JComboBox<String>(groupNames);
-		send = new JButton("Send");
+		btnSend = new JButton("Send");
 		
 		JPanel holder = new JPanel(new BorderLayout());
 		holder.add(groups, BorderLayout.WEST);
-		holder.add(currentType);
-		holder.add(send, BorderLayout.EAST);
+		holder.add(txFdCurrentText);
+		holder.add(btnSend, BorderLayout.EAST);
 		add(holder, BorderLayout.SOUTH);
 	}
 
+	private void setListeners(){
+		btnSend.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent source) {
+				sendMessage();
+			}
+		});
+		
+		@SuppressWarnings("serial")
+		Action enterPressed = new AbstractAction(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				sendMessage();
+			}
+		};
+		KeyStroke enter = KeyStroke.getKeyStroke("ENTER");
+		txFdCurrentText.getInputMap().put(enter, "ENTER");
+		txFdCurrentText.getActionMap().put("ENTER", enterPressed);
+	}
+	
 	public static void main(String[] args) {
-		new ChatGUI();
+		JFrame f = new JFrame();
+		f.add(new ChatGUI());
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setSize(300, 175);
+		f.setVisible(true);
 	}
 
+	private void sendMessage(){
+		String text = txFdCurrentText.getText();
+		txFdCurrentText.setText("");
+		System.out.println("sent message: " + text + " to " + groups.getSelectedItem().toString());
+	}
 }
