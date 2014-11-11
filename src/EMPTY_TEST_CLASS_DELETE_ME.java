@@ -7,6 +7,8 @@ public class EMPTY_TEST_CLASS_DELETE_ME {
 			System.out.println(" is amazing!");
 		}
 		System.out.println("POOP");
+		
+		System.out.println("Hello");
 	}
 
 }
