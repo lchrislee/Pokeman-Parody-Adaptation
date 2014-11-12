@@ -15,19 +15,56 @@ import javax.swing.JTextArea;
 
 public class PokemonStatusGUI extends JPanel {
 	private static final long serialVersionUID = -2739616213660293286L;
-	
 	private JLabel lblImage;
 	private JTextArea txeaInformation;
 	private JTextArea txeaStats;
 	private JTextArea txeaMovesList;
 	private JButton btnRelease;
+	private JButton btnBack;
 	private String imageName = "";
+	private String name;
+	private int level;
+	private int currentHP;
+	private int maxHP;
+	private int attack;
+	private int defense;
+	private int speed;
+	private String[] attacks;
+	private boolean canRelease;
 	private GridBagConstraints gbc;
 
 	public PokemonStatusGUI(){
 		setLayout(new BorderLayout());
+		name = "Magikuna";
 		imageName = "res/Pokemon_sprites/Magikuna_left_tr.png";
+		level = 20;
+		currentHP = 43;
+		maxHP = 50;
+		attack = 23;
+		defense = 12;
+		speed = 50;
+		attacks = new String[4];
+		attacks[0] = "Pound";
+		attacks[1] = "Splash";
+		attacks[2] = "Harden";
+		attacks[3] = "Tackle";
+		canRelease = true;
 		createGUI();
+	}
+	
+	public PokemonStatusGUI(String n, String im, int l, int c, int m, int a, int d, int s, String[] moves, boolean r){
+		name = n;
+		imageName = im;
+		level = l;
+		currentHP = c;
+		maxHP = m;
+		attack = a;
+		defense = d;
+		speed = s;
+		attacks = new String[moves.length];
+		for (int i = 0; i < moves.length; ++i)
+			attacks[i] = moves[i];
+		canRelease =r;
 	}
 	
 	private void createGUI(){
@@ -46,7 +83,7 @@ public class PokemonStatusGUI extends JPanel {
 		txeaInformation.setEditable(false);
 		txeaInformation.setBackground(Color.green);
 		txeaInformation.setFont(new Font("Arial", Font.PLAIN, 20));
-		txeaInformation.setText("Name: Magikuna\nLevel: 20\nHP: 50/50");
+		txeaInformation.setText("Name: " + name + "\nLevel: " + level + "\nHP: " + currentHP + "/" + maxHP);
 		gbc.gridx = 1;
 		gbc.anchor = GridBagConstraints.CENTER;
 		mainView.add(txeaInformation, gbc);
@@ -55,7 +92,7 @@ public class PokemonStatusGUI extends JPanel {
 		txeaStats.setEditable(false);
 		txeaStats.setBackground(Color.RED);;
 		txeaStats.setFont(new Font("Arial", Font.PLAIN, 24));
-		txeaStats.setText("Attack: 38\nDefense: 20\nSpeed: 50");
+		txeaStats.setText("Attack: " + attack + "\nDefense: " + defense + "\nSpeed: " + speed);
 		gbc.gridx = 0;
 		gbc.gridy = 1;
 		gbc.fill = 2;
@@ -65,13 +102,27 @@ public class PokemonStatusGUI extends JPanel {
 		txeaMovesList = new JTextArea();
 		txeaMovesList.setFont(new Font("Arial", Font.PLAIN, 20));
 		txeaMovesList.setEditable(false);
-		txeaMovesList.setText("Splash\nTackle\nHarden\nPound");
+		String movesList = "";
+		for (int index = 0; index < attacks.length; ++index){
+			movesList += attacks[index];
+			if (index != attacks.length - 1)
+				movesList += "\n";
+		}
+		txeaMovesList.setText(movesList);
 		gbc.gridy = 2;
 		mainView.add(txeaMovesList, gbc);
 
-		btnRelease = new JButton("Release");
-		add(btnRelease, BorderLayout.SOUTH);
+		JPanel bottom = new JPanel();
+		btnBack = new JButton("Back");
+		bottom.add(btnBack);
+		
+		if (canRelease){
+			btnRelease = new JButton("Release");
+			bottom.add(btnRelease);
+		}
+		
 		add(mainView);
+		add(bottom, BorderLayout.SOUTH);
 	}
 	
 	public static void main(String[] args) {
