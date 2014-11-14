@@ -1,6 +1,7 @@
 package Opening;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -16,13 +17,15 @@ public class OpeningPanel extends JPanel implements ActionListener {
 	Timer timer = new Timer(40, this);
 	
 	/* initial position and moving speed of each sprites */
-	int millerX = 0, millerXSpeed = 6;
-	int crowleyX = 590, crowleyXSpeed = -6;
+	int millerX = 0, millerXSpeed = 6, millerY = 170, millerYSpeed;
+	int crowleyX = 590, crowleyXSpeed = -6, crowleyY = 170, crowleyYSpeed;
 	
-	int dolanX = -200, dolanXSpeed = 0;
-	int jungIllX = -200, jungIllXSpeed = 0;
-	int goobyX = 800, goobyXSpeed = 0;
-	int mistyX = 800, mistyXSpeed = 0;
+	int gameLogoY = -300, gameLogoYSpeed = 0;
+	
+	int dolanX = -200, dolanXSpeed = 0, dolanY = 70, dolanYSpeed;
+	int jungIllX = -200, jungIllXSpeed = 0, jungIllY = 270, jungIllYSpeed;
+	int goobyX = 800, goobyXSpeed = 0, goobyY = 70, goobyYSpeed;
+	int mistyX = 800, mistyXSpeed = 0, mistyY = 270, mistyYSpeed;
 	
 	int aerodonX = 800, aerodonXSpeed = 0;
 	int beetwoX = 920, beetwoXSpeed = 0;
@@ -54,22 +57,22 @@ public class OpeningPanel extends JPanel implements ActionListener {
 		
 		/* get the image files and place them on their default position */
 		Image millerImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/Miller_hot.jpg");
-		g.drawImage(millerImage, millerX, 250, this);
+		g.drawImage(millerImage, millerX, millerY, this);
 		
 		Image crowleyImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/Crowley_robot.jpg");
-		g.drawImage(crowleyImage, crowleyX, 250, this);
+		g.drawImage(crowleyImage, crowleyX, crowleyY, this);
 		
 		Image dolanImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/Dolan_normal.png");
-		g.drawImage(dolanImage, dolanX, 150, this);
+		g.drawImage(dolanImage, dolanX, dolanY, this);
 		
 		Image jungIllImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/JungIll_normal.png"); 
-		g.drawImage(jungIllImage, jungIllX, 350, this);
+		g.drawImage(jungIllImage, jungIllX, jungIllY, this);
 		
 		Image goobyImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/Gooby_normal.png");
-		g.drawImage(goobyImage, goobyX, 150, this);
+		g.drawImage(goobyImage, goobyX, goobyY, this);
 		
 		Image mistyImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/Misty_normal.png"); 
-		g.drawImage(mistyImage, mistyX, 350, this);
+		g.drawImage(mistyImage, mistyX, mistyY, this);
 		
 		Image aerodon_left = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Aerodon_left_tr.png"); 
 		Image beetwo_left = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Bee-two_left_tr.png"); 
@@ -81,16 +84,16 @@ public class OpeningPanel extends JPanel implements ActionListener {
 		Image golem_left = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Golem_left_tr.png"); 
 		Image jiwodude_left = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/jiwodude_left_tr.png"); 
 		Image lapradactyl_left = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Lapradactyl_left_tr.png"); 
-		g.drawImage(aerodon_left, aerodonX, 50, this);
-		g.drawImage(beetwo_left, beetwoX, 50, this);
-		g.drawImage(dadizard_left, dadizardX, 50, this);
-		g.drawImage(exegynx_left, exegynxX, 50, this);
-		g.drawImage(feelglet_left, feelgletX, 50, this);
-		g.drawImage(gengynx_left, gengynxX, 50, this);
-		g.drawImage(geonx_left, geonxX, 50, this);
-		g.drawImage(golem_left, golemX, 50, this);
-		g.drawImage(jiwodude_left, jiwodudeX, 50, this);
-		g.drawImage(lapradactyl_left, lapradactylX, 50, this);
+		g.drawImage(aerodon_left, aerodonX, 0, this);
+		g.drawImage(beetwo_left, beetwoX, 0, this);
+		g.drawImage(dadizard_left, dadizardX, 0, this);
+		g.drawImage(exegynx_left, exegynxX, 0, this);
+		g.drawImage(feelglet_left, feelgletX, 0, this);
+		g.drawImage(gengynx_left, gengynxX, 0, this);
+		g.drawImage(geonx_left, geonxX, 0, this);
+		g.drawImage(golem_left, golemX, 0, this);
+		g.drawImage(jiwodude_left, jiwodudeX, 0, this);
+		g.drawImage(lapradactyl_left, lapradactylX, 0, this);
 		
 		
 		Image lickister_right = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Lickister_right_tr.png"); 
@@ -103,16 +106,19 @@ public class OpeningPanel extends JPanel implements ActionListener {
 		Image seanasaur_right = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Seanasaur_right_tr.png"); 
 		Image sexypod_right = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/sexypod_right_tr.png"); 
 		Image weepintoise_right = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Weepintoise_right_tr.png"); 
-		g.drawImage(lickister_right, lickisterX, 550, this);
-		g.drawImage(magikuna_right, magikunaX, 550, this);
-		g.drawImage(marozard_right, marozardX, 550, this);
-		g.drawImage(meonx_right, meonxX, 550, this);
-		g.drawImage(pikayu_right, pikayuX, 550, this);
-		g.drawImage(rhyfetch_right, rhyfetchX, 550, this);
-		g.drawImage(scydra_right, scydraX, 550, this);
-		g.drawImage(seanasaur_right, seanasaurX, 550, this);
-		g.drawImage(sexypod_right, sexypodX, 550, this);
-		g.drawImage(weepintoise_right, weepintoiseX, 550, this);
+		g.drawImage(lickister_right, lickisterX, 450, this);
+		g.drawImage(magikuna_right, magikunaX, 450, this);
+		g.drawImage(marozard_right, marozardX, 450, this);
+		g.drawImage(meonx_right, meonxX, 450, this);
+		g.drawImage(pikayu_right, pikayuX, 450, this);
+		g.drawImage(rhyfetch_right, rhyfetchX, 450, this);
+		g.drawImage(scydra_right, scydraX, 450, this);
+		g.drawImage(seanasaur_right, seanasaurX, 450, this);
+		g.drawImage(sexypod_right, sexypodX, 450, this);
+		g.drawImage(weepintoise_right, weepintoiseX, 450, this);
+		
+		Image gameLogo = Toolkit.getDefaultToolkit().getImage("res/pokeman_opening_logo.png");
+		g.drawImage(gameLogo, 110, gameLogoY, this);
 		
 		/* start the timer */
 		timer.start();
@@ -121,12 +127,21 @@ public class OpeningPanel extends JPanel implements ActionListener {
 	public void actionPerformed (ActionEvent e) {
 		
 		/* simulate animation by changing position over time */
+		gameLogoY += gameLogoYSpeed;
+		
 		millerX += millerXSpeed;
 		crowleyX += crowleyXSpeed;
 		dolanX += dolanXSpeed;
 		jungIllX += jungIllXSpeed;
 		goobyX += goobyXSpeed;
 		mistyX += mistyXSpeed;
+		
+		millerY += millerYSpeed;
+		crowleyY += crowleyYSpeed;
+		dolanY += dolanYSpeed;
+		jungIllY += jungIllYSpeed;
+		goobyY += goobyYSpeed;
+		mistyY += mistyYSpeed;
 		
 		aerodonX += aerodonXSpeed;
 		beetwoX += beetwoXSpeed;
@@ -151,7 +166,7 @@ public class OpeningPanel extends JPanel implements ActionListener {
 		weepintoiseX +=  weepintoiseXSpeed;
 		
 		/* change the speed if needed */
-		int topRollingSpeed = -7;
+		int topRollingSpeed = -10;
 		if ( (millerX + 160 > crowleyX) ) {
 			millerXSpeed = 0;
 			crowleyXSpeed = 0;
@@ -190,6 +205,19 @@ public class OpeningPanel extends JPanel implements ActionListener {
 			mistyXSpeed = 0;
 		}
 		
+		if (weepintoiseX > 850) {
+			dolanYSpeed = 30;
+			jungIllYSpeed = 30;
+			goobyYSpeed = 30;
+			mistyYSpeed = 30;
+			millerYSpeed = 30;
+			crowleyYSpeed = 30;
+			gameLogoYSpeed = 60;
+		}
+		if (gameLogoY > 50) {
+			gameLogoYSpeed = 0;
+		}
+		/*
 		if (weepintoiseX > 0) {
 			lickisterXSpeed = -0;
 			magikunaXSpeed = -0;
@@ -215,14 +243,15 @@ public class OpeningPanel extends JPanel implements ActionListener {
 			jiwodudeXSpeed = 0;
 			lapradactylXSpeed = 0;
 		}
-		
+		*/
 		repaint();
 	}
 	public static void main (String args []) {
 		OpeningPanel op = new OpeningPanel();
 		JFrame testWindow = new JFrame();
 		testWindow.setTitle("Testing Opening");
-		testWindow.setSize(800,800);
+		testWindow.setSize(800,600);
+		testWindow.setResizable(false);
 		testWindow.setVisible(true);
 		testWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		testWindow.add(op);
