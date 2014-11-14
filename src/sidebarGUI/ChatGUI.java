@@ -9,6 +9,7 @@ import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -38,7 +39,11 @@ public class ChatGUI extends JPanel {
 		txeaAllMessages.setEditable(false);
 		//txeaAllMessages.setText("TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nhi");
 		JScrollPane sp = new JScrollPane(txeaAllMessages);
-		add(sp);
+		
+		JPanel container = new JPanel(new BorderLayout());
+		container.add(new JLabel("Chat: "), BorderLayout.NORTH);
+		container.add(sp);
+		add(container);
 		
 		txFdCurrentText = new JTextField(70);
 		groups = new JComboBox<String>(groupNames);
@@ -113,7 +118,8 @@ public class ChatGUI extends JPanel {
 		JFrame f = new JFrame();
 		f.add(new ChatGUI());
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setSize(300, 175);
-		f.setVisible(true);
+		f.setSize(300, 250);
+
+		
 	}
 }
