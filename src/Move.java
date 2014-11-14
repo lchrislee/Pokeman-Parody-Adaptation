@@ -12,7 +12,7 @@ public class Move {
 	//doing a move just 
 	
 	public int getId(){
-			return this.id;
+		return this.id;
 	}
 
 	public int getDamage(){

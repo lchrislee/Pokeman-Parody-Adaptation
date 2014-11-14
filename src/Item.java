@@ -1,4 +1,4 @@
 
 interface Item {
-	public void use();
+	public void use(Pokemon p);
 }

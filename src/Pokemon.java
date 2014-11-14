@@ -41,7 +41,7 @@ public class Pokemon {
 			
 			else if(this.getRarity() == p.getRarity()){
 				int x = rand.nextInt(1);
-				if(x == 1)
+				if(x == 1)//if we get one, we go first, otherwise good luck bruh
 					return true;
 				
 				return false;
