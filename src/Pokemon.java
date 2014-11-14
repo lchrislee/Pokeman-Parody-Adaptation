@@ -59,6 +59,14 @@ public class Pokemon {
 	}
 	
 	public void Attack(Pokemon p, Move m){//- this method takes in another pokemon. When attack is called, it will adjust the other pokemon¡¯s health through an algorithm that takes in this pokemon¡¯s attack and the other pokemon¡¯s defense
+		int newHealth = p.getHealth()-m.getDamage();
+		
+		if(newHealth <= 0){//ur pokemon died X(
+			p.setHealth(0);
+			p.faint();
+		}
+	
+		p.faint();//other pokemon faints >:D
 	}
 	
 	public void setHealth(int h){// ¨C this method will be used when a pokemon¡¯s health must be adjusted (potion is used the pokemon is attacked)
