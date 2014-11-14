@@ -18,6 +18,8 @@ import javax.swing.KeyStroke;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
 
+import chatSystem.NetworkThread;
+
 public class ChatGUI extends JPanel {
 	private static final long serialVersionUID = 8239335834925382510L;
 	private final String[] groupNames = {"ALL", "P1 Only", "P2 Only", "P3 Only", "P4 Only", "P1 & P2", "P1 & P3", "P1 & P4", "P2 & P3", "P2 & P4", "P3 & P4"};
@@ -26,6 +28,7 @@ public class ChatGUI extends JPanel {
 	private JComboBox<String> groups;
 	private JButton btnSend;
 	private String chatSelected = groupNames[0];
+	private NetworkThread myNT;
 	
 	public ChatGUI(){
 		setLayout(new BorderLayout());
@@ -54,6 +57,9 @@ public class ChatGUI extends JPanel {
 		holder.add(txFdCurrentText);
 		holder.add(btnSend, BorderLayout.EAST);
 		add(holder, BorderLayout.SOUTH);
+		
+		myNT = new NetworkThread(this);
+		myNT.start();
 	}
 
 	private void setListeners(){
@@ -120,6 +126,6 @@ public class ChatGUI extends JPanel {
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setSize(300, 250);
 
-		
+		f.setVisible(true);
 	}
 }
