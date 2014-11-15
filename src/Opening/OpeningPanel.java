@@ -20,7 +20,7 @@ public class OpeningPanel extends JPanel implements ActionListener {
 	int millerX = 0, millerXSpeed = 6, millerY = 170, millerYSpeed;
 	int crowleyX = 590, crowleyXSpeed = -6, crowleyY = 170, crowleyYSpeed;
 	
-	int gameLogoY = -300, gameLogoYSpeed = 0;
+	int gameLogoY = -800, gameLogoYSpeed = 0;
 	
 	int dolanX = -200, dolanXSpeed = 0, dolanY = 70, dolanYSpeed;
 	int jungIllX = -200, jungIllXSpeed = 0, jungIllY = 270, jungIllYSpeed;
@@ -117,8 +117,8 @@ public class OpeningPanel extends JPanel implements ActionListener {
 		g.drawImage(sexypod_right, sexypodX, 450, this);
 		g.drawImage(weepintoise_right, weepintoiseX, 450, this);
 		
-		Image gameLogo = Toolkit.getDefaultToolkit().getImage("res/pokeman_opening_logo.png");
-		g.drawImage(gameLogo, 110, gameLogoY, this);
+		Image gameScreen = Toolkit.getDefaultToolkit().getImage("res/screen_opening.png");
+		g.drawImage(gameScreen, 0, gameLogoY, this);
 		
 		/* start the timer */
 		timer.start();
@@ -212,9 +212,9 @@ public class OpeningPanel extends JPanel implements ActionListener {
 			mistyYSpeed = 30;
 			millerYSpeed = 30;
 			crowleyYSpeed = 30;
-			gameLogoYSpeed = 60;
+			gameLogoYSpeed = 80;
 		}
-		if (gameLogoY > 50) {
+		if (gameLogoY >= 00) {
 			gameLogoYSpeed = 0;
 		}
 		/*
@@ -252,8 +252,8 @@ public class OpeningPanel extends JPanel implements ActionListener {
 		testWindow.setTitle("Testing Opening");
 		testWindow.setSize(800,600);
 		testWindow.setResizable(false);
-		testWindow.setVisible(true);
 		testWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		testWindow.add(op);
+		testWindow.setVisible(true);
 	}
 }
