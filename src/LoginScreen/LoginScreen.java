@@ -3,6 +3,7 @@ package LoginScreen;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -44,13 +46,14 @@ public class LoginScreen extends JPanel {
 		characterSpriteListPanel = new JPanel();
 		characterSpriteListPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		characterSpriteList = new ArrayList<JButton>();
-		try {
-			Image img = ImageIO.read(getClass().getResource("/res/Character_sprites/miller_normal"));
-		} 
-		catch (IOException ioe) {
-			System.out.println("Exception during reading Image; LoginScreen class createLoginGUI");
-		}
 		
+		Image millerImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/miller_normal.png");
+		ImageIcon millerImageIcon = new ImageIcon(millerImage);
+		JButton button1 = new JButton(millerImageIcon);
+		
+		characterSpriteListPanel.add(button1);
+		
+		add(characterSpriteListPanel);
 		/* panel with default pokemans to choose from */
 		pokemonSpriteListPanel = new JPanel();
 		pokemonSpriteListPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -61,7 +64,7 @@ public class LoginScreen extends JPanel {
 		add(readyButton);
 	}
 	
-	public static void main() {
+	public static void main(String[] args) {
 		LoginScreen ls = new LoginScreen();
 		JFrame testWindow = new JFrame();
 		testWindow.setTitle("Testing Login");
