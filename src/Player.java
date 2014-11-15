@@ -16,6 +16,12 @@ public class Player {
 	private boolean isBattling = false;//players start off capturing
 	private boolean quit = false;
 	
+	private int numSteps = 500;
+	private static int NORTH = 1;
+	private static int EAST = 2;
+	private static int SOUTH = 3;
+	private static int WEST = 4;
+	public int direction = SOUTH;//set it to this first so we can see the players faces
 	
 		public Player(ArrayList<Pokemon>pList, ArrayList <ImageIcon> imageList, ArrayList<Item> itemList){
 			this.pokemonList = pList;
@@ -37,12 +43,26 @@ public class Player {
 		}
 		
 		public void setBattling(boolean isBattling){//switch from capture to battle
-		
-			
+			this.isBattling = true;			
 		}	
 		
-		public void walk(){ //changes the x and y position of the player
+		public void walk(int direction){ //changes the x and y position of the player and keep track of which direction i'm currently in
 			//change sprites and update x and y
+			//decrease steps until 0
+			switch(direction){//figure out how to display animations too -.- and also switch current displayed sprite
+				case 1:
+					this.y-=1;//go up one
+					break;
+				case 2:
+					this.x+=1;
+					break;
+				case 3:
+					this.y+=1;
+					break;
+				case 4:
+					this.x-=1;
+					break;
+			}
 		}
 		
 		public void setEnemyPokemon(Pokemon enemy){
@@ -54,16 +74,10 @@ public class Player {
 		}
 				
 		public void choosePokemon(Pokemon p){ //¨C the player will access his/her arraylist of pokemon and select one to battle (when the current pokemon faints)
-			this.currentPokemon = p;
+			if(this.pokemonList.contains(p))
+				this.currentPokemon = p;
 		}	
 			
-		public void chooseItem(){
-			
-		}
-		
-		public void throwRocks(){
-			
-		}
 		
 		public void flee(){//set quit to true
 			this.quit = true;
