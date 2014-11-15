@@ -83,13 +83,13 @@ public class ItemListUI extends JPanel{
 		return p;
 	}
 	
-	public static void main(String [] args){
-		JFrame temp = new JFrame();
-		temp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		temp.setSize(300, 350);
-		temp.add(new ItemListUI());
-		temp.setVisible(true);
-	}
+//	public static void main(String [] args){
+//		JFrame temp = new JFrame();
+//		temp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		temp.setSize(300, 350);
+//		temp.add(new ItemListUI());
+//		temp.setVisible(true);
+//	}
 	
 	private class ItemPanel extends JPanel{ //add listener
 		private static final long serialVersionUID = -5599471922315413657L;

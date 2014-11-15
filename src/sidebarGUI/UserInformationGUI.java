@@ -1,5 +1,6 @@
 package sidebarGUI;
 
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,7 +16,7 @@ public class UserInformationGUI extends JPanel {
 	private JButton btnBack;
 
 	public UserInformationGUI(){
-		
+		createGUI();
 	}
 	
 	public UserInformationGUI(CardLayout c, SideBarMenuAdapter p){
@@ -26,7 +27,9 @@ public class UserInformationGUI extends JPanel {
 	}
 	
 	private void createGUI(){
+		setLayout(new BorderLayout());
 		btnBack = new JButton("Back");
+		add(btnBack, BorderLayout.SOUTH);
 	}
 	
 	private void addListeners(){

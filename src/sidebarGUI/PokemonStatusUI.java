@@ -161,13 +161,13 @@ public class PokemonStatusUI extends JPanel {
 		});
 	}
 	
-	public static void main(String[] args) {
-		JFrame j = new JFrame();
-		j.add(new PokemonStatusUI());
-		j.setSize(300, 350);
-		j.setLocation(100, 200);
-		j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		j.setVisible(true);
-	}
+//	public static void main(String[] args) {
+//		JFrame j = new JFrame();
+//		j.add(new PokemonStatusUI());
+//		j.setSize(300, 350);
+//		j.setLocation(100, 200);
+//		j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		j.setVisible(true);
+//	}
 
 }

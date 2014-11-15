@@ -34,5 +34,4 @@ public class SideBarMenuAdapter extends JPanel {
 		temp.add(new SideBarMenuAdapter());
 		temp.setVisible(true);
 	}
-
 }

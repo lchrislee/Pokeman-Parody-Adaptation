@@ -90,7 +90,7 @@ public class MenuUI extends JPanel {
 					if (p.getMouseLeftOff() != p.getY()){
 						int index = listPokemon.indexOf(p);
 						int newY = p.getMouseLeftOff();
-						int oldY = p.getY();
+						int oldY = p.getY() + MenuUI.this.getY();
 						
 						if (newY <= (oldY - 80) && index == (listPokemon.size() - 1)){ //only the bottom one can go up 2
 							System.out.println(oldY + " vs " + newY);
@@ -100,11 +100,11 @@ public class MenuUI extends JPanel {
 							System.out.println(oldY + " vs " + newY);
 							System.out.println("Swapped up 1");
 							swap(index, -1);
-						}else if (newY >= (oldY + 230) && index == 0){ //only the top one can go down 2
+						}else if (newY >= (oldY + 380) && index == 0){ //only the top one can go down 2
 							swap(index, 2);
 							System.out.println("Swapped down 2");
 							System.out.println(oldY + " vs " + newY);
-						}else if(newY >= (oldY + 150) && index != (listPokemon.size() - 1)){ //index check prevents index out of bounds
+						}else if(newY >= (oldY + 130) && index != (listPokemon.size() - 1)){ //index check prevents index out of bounds
 							System.out.println(oldY + " vs " + newY);
 							System.out.println("Swapped down 1");
 							swap(index, 1);
