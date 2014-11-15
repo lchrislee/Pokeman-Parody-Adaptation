@@ -1,4 +1,8 @@
+package map;
 import java.util.ArrayList;
+
+import dataStore.Player;
+import map.tiles.Terrain;
 
 
 public class Screen {

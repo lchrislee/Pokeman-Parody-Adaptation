@@ -1,3 +1,4 @@
+package map.tiles;
 
 public class Wall extends Terrain{
 	protected boolean canWalk = false;

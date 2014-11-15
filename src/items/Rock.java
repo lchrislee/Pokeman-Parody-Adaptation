@@ -1,3 +1,6 @@
+package items;
+import dataStore.Pokemon;
+
 
 public class Rock implements Item{
 

@@ -1,3 +1,4 @@
+package map.tiles;
 
 public class Grass extends Terrain{
 	protected boolean canWalk = true;

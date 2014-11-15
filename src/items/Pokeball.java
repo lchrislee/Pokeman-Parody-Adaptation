@@ -1,5 +1,8 @@
+package items;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+
+import dataStore.Pokemon;
 
 
 public class Pokeball implements Item{

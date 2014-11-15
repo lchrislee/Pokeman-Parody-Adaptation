@@ -1,3 +1,6 @@
+package items;
+
+import dataStore.Pokemon;
 
 public class Honey implements Item{
 
