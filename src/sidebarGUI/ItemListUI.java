@@ -36,7 +36,7 @@ public class ItemListUI extends JPanel{
 		numItem = new int[]{1,2,5, 5, 6, 7};
 	}
 	
-	public void createGUI(){
+	private void createGUI(){
 		JPanel holder = new JPanel(new GridLayout(6, 3));
 		holder.setBackground(Color.white);
 		for (int i = 0; i < 6; ++i){
