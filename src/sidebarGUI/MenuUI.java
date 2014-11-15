@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 public class MenuUI extends JPanel {
 	private static final long serialVersionUID = 7397593496707020802L;
@@ -30,14 +31,14 @@ public class MenuUI extends JPanel {
 	
 	private PokemonDisplay createPokemonDisplay(){
 		PokemonDisplay p = new PokemonDisplay();
-		add(p);
+		listPokemon.add(p);
 		return p;
 	}
 	
 	public static void main(String[] args) {
 		JFrame j = new JFrame();
 		MenuUI m = new MenuUI();
-		j.add(m);
+		j.add(new JScrollPane(m));
 		j.setSize(300, 350);
 		j.setLocation(100, 200);
 		j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
