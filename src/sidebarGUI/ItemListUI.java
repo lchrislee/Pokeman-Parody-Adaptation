@@ -3,6 +3,7 @@ package sidebarGUI;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,6 +23,7 @@ public class ItemListUI extends JPanel{
 											"res/ItemSprites/honey_jar_enlarged.png",
 											"res/ItemSprites/potion_enlarged.png",
 											"res/ItemSprites/rock_enlarged.png"};
+	private ArrayList<JPanel> panels;
 	
 	public ItemListUI(){
 		setLayout(new BorderLayout());
@@ -55,6 +57,7 @@ public class ItemListUI extends JPanel{
 			framePanel.setBackground(Color.white);
 			//add action listener to the jpanel
 			holder.add(framePanel);
+			panels.add(framePanel);
 		}
 		JScrollPane sp = new JScrollPane(holder);
 		add(sp);
