@@ -12,5 +12,4 @@ public class EMPTY_TEST_CLASS_DELETE_ME {
 		
 		System.out.println("HEY THERE! BILLY MAYS HERE-BRINGING YOU THE WONDERS OF OXY-CLEAN!");
 	}
-
 }
