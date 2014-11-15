@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-public class PokemonStatusGUI extends JPanel {
+public class PokemonStatusUI extends JPanel {
 	private static final long serialVersionUID = -2739616213660293286L;
 	private JLabel lblImage;
 	private JTextArea txeaInformation;
@@ -33,7 +33,7 @@ public class PokemonStatusGUI extends JPanel {
 	private boolean canRelease;
 	private GridBagConstraints gbc;
 
-	public PokemonStatusGUI(){
+	public PokemonStatusUI(){
 		setLayout(new BorderLayout());
 		name = "Magikuna";
 		imageName = "res/Pokemon_sprites/Magikuna_left_tr.png";
@@ -52,7 +52,7 @@ public class PokemonStatusGUI extends JPanel {
 		createGUI();
 	}
 	
-	public PokemonStatusGUI(String n, String im, int l, int c, int m, int a, int d, int s, String[] moves, boolean r){
+	public PokemonStatusUI(String n, String im, int l, int c, int m, int a, int d, int s, String[] moves, boolean r){
 		name = n;
 		imageName = im;
 		level = l;
@@ -127,7 +127,7 @@ public class PokemonStatusGUI extends JPanel {
 	
 	public static void main(String[] args) {
 		JFrame j = new JFrame();
-		j.add(new PokemonStatusGUI());
+		j.add(new PokemonStatusUI());
 		j.setSize(300, 350);
 		j.setLocation(100, 200);
 		j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
