@@ -1,8 +1,11 @@
 package sidebarGUI;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -24,6 +27,9 @@ public class ItemListUI extends JPanel{
 											"res/ItemSprites/potion_enlarged.png",
 											"res/ItemSprites/rock_enlarged.png"};
 	private ArrayList<ItemPanel> panels;
+	private CardLayout switcher;
+	private SideBarMenuAdapter parent;
+	private JButton btnBack;
 	
 	public ItemListUI(){
 		panels = new ArrayList<ItemPanel>();
@@ -31,6 +37,17 @@ public class ItemListUI extends JPanel{
 		setBackground(Color.white);
 		initializeItems();
 		createGUI();
+	}
+	
+	public ItemListUI(CardLayout c, SideBarMenuAdapter p){
+		switcher = c;
+		parent = p;
+		panels = new ArrayList<ItemPanel>();
+		setLayout(new BorderLayout());
+		setBackground(Color.white);
+		initializeItems();
+		createGUI();
+		addListeners();
 	}
 	
 	public void initializeItems(){
@@ -47,7 +64,17 @@ public class ItemListUI extends JPanel{
 		}
 		JScrollPane sp = new JScrollPane(holder);
 		add(sp);
-		add(new JButton("Back"), BorderLayout.SOUTH);
+		btnBack = new JButton("Back");
+		add(btnBack, BorderLayout.SOUTH);
+	}
+	
+	private void addListeners(){
+		btnBack.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				switcher.show(parent, parent.MENUNAME);
+			}
+		});
 	}
 	
 	private ItemPanel getItemPanel(int i){
