@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 
 public class Pokemon {
 	private boolean conscious = true; //default
@@ -12,11 +15,12 @@ public class Pokemon {
 	private double rarity; /*the level of rarity (the higher level of rarity, the stronger the pokemon will be and less likely it will be to appear, more difficult to catch)*/
 	private int level;
 	private ArrayList<Move> moveList;
+	private JLabel sprite;
 	
 	private static Random rand = new Random();//to generate either 0 or 1 for determining order and stuff
 	//this should work but we need to make sure pokemon can't attack each other at the same time (in the same battle at least)
 
-	public Pokemon (int a, int d, int sp, int mh, double rarity, int lvl, ArrayList<Move> moves){//just assign the parameters to private vars
+	public Pokemon (int a, int d, int sp, int mh, double rarity, int lvl, ArrayList<Move> moves,ImageIcon image){//just assign the parameters to private vars
 		this.attack = a;
 		this.defense = d;
 		this.speed = sp;
@@ -24,6 +28,7 @@ public class Pokemon {
 		this.rarity = rarity;
 		this.level = lvl;
 		this.moveList = moves;
+		this.sprite = new JLabel(image);
 	}
 	
 	public boolean isConscious(){

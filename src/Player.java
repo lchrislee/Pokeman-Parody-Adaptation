@@ -78,7 +78,7 @@ public class Player {
 				this.currentPokemon = p;
 		}	
 			
-				
+		
 		public void flee(){//set quit to true
 			this.quit = true;
 		}
