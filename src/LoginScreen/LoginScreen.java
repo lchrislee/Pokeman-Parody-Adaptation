@@ -19,10 +19,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
-import chatSystem.NetworkThread;
-import Opening.OpeningPanel;
-
-
 /* to be edited */
 public class LoginScreen extends JPanel {
 	private JTextField inputNameTextField;
@@ -55,7 +51,6 @@ public class LoginScreen extends JPanel {
 			System.out.println("Exception during reading Image; LoginScreen class createLoginGUI");
 		}
 		
-		
 		/* panel with default pokemans to choose from */
 		pokemonSpriteListPanel = new JPanel();
 		pokemonSpriteListPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -63,6 +58,7 @@ public class LoginScreen extends JPanel {
 		
 		/* ready Button */
 		readyButton = new JButton("READY");
+		add(readyButton);
 	}
 	
 	public static void main() {
