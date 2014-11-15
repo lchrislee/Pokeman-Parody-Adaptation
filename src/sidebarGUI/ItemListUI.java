@@ -64,6 +64,8 @@ public class ItemListUI extends JPanel{
 	}
 	
 	private class ItemPanel extends JPanel{ //add listener
+		private static final long serialVersionUID = -5599471922315413657L;
+
 		public ItemPanel(int index){
 			setLayout(new BorderLayout());
 			createGUI(index);
