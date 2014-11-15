@@ -1,6 +1,7 @@
 package sidebarGUI;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -28,16 +29,16 @@ public class ChatGUI extends JPanel {
 	private JComboBox<String> groups;
 	private JButton btnSend;
 	private String chatSelected = groupNames[0];
-	private NetworkThread myNT;
+	//private NetworkThread myNT;
 	
-	public ChatGUI(){
-		setLayout(new BorderLayout());
-		
+	public ChatGUI(){		
 		createGUI();
 		setListeners();
 	}
 	
 	private void createGUI(){
+		setLayout(new BorderLayout());
+		setPreferredSize(new Dimension(300, 250));
 		txeaAllMessages = new JTextPane();
 		txeaAllMessages.setEditable(false);
 		//txeaAllMessages.setText("TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nhi");
@@ -58,8 +59,8 @@ public class ChatGUI extends JPanel {
 		holder.add(btnSend, BorderLayout.EAST);
 		add(holder, BorderLayout.SOUTH);
 		
-		myNT = new NetworkThread(this);
-		myNT.start();
+		//myNT = new NetworkThread(this);
+		//myNT.start();
 	}
 
 	private void setListeners(){

@@ -1,6 +1,7 @@
 package sidebarGUI;
 
 import java.awt.CardLayout;
+import java.awt.Dimension;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,6 +18,7 @@ public class SideBarMenuAdapter extends JPanel {
 	}
 
 	private void createGUI(){
+		setPreferredSize(new Dimension(300, 350));
 		CardLayout switcher = new CardLayout();
 		setLayout(switcher);
 		add(new MenuUI(switcher, this), MENUNAME);
