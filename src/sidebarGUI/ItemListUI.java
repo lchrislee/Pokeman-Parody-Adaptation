@@ -2,21 +2,11 @@
 package sidebarGUI;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.SwingConstants;
-
-
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -38,6 +28,9 @@ public class ItemListUI extends JPanel{
 											"res/ItemSprites/potion_enlarged.png",
 											"res/ItemSprites/rock_enlarged.png"};
 	private ArrayList<ItemPanel> panels;
+	private CardLayout switcher;
+	private SideBarMenuAdapter parent;
+	private JButton btnBack;
 	
 	public ItemListUI(){
 		panels = new ArrayList<ItemPanel>();
@@ -47,6 +40,17 @@ public class ItemListUI extends JPanel{
 		createGUI();
 	}
 	
+	public ItemListUI(CardLayout c, SideBarMenuAdapter p){
+		switcher = c;
+		parent = p;
+		panels = new ArrayList<ItemPanel>();
+		setLayout(new BorderLayout());
+		setBackground(Color.white);
+		initializeItems();
+		createGUI();
+		addListeners();
+	}
+	
 	public void initializeItems(){
 		numItem = new int[]{1,2,5, 5, 6, 7};
 	}
@@ -54,6 +58,7 @@ public class ItemListUI extends JPanel{
 	private void createGUI(){
 		JPanel holder = new JPanel(new GridLayout(6, 3));
 		holder.setBackground(Color.white);
+		add(new JLabel("Click an item to use!"), BorderLayout.NORTH);
 		for (int i = 0; i < 6; ++i){
 			ItemPanel p = getItemPanel(i);
 			panels.add(p);
@@ -61,7 +66,17 @@ public class ItemListUI extends JPanel{
 		}
 		JScrollPane sp = new JScrollPane(holder);
 		add(sp);
-		add(new JButton("Back"), BorderLayout.SOUTH);
+		btnBack = new JButton("Back");
+		add(btnBack, BorderLayout.SOUTH);
+	}
+	
+	private void addListeners(){
+		btnBack.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				switcher.show(parent, parent.MENUNAME);
+			}
+		});
 	}
 	
 	private ItemPanel getItemPanel(int i){
@@ -69,13 +84,13 @@ public class ItemListUI extends JPanel{
 		return p;
 	}
 	
-	public static void main(String [] args){
-		JFrame temp = new JFrame();
-		temp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		temp.setSize(300, 350);
-		temp.add(new ItemListUI());
-		temp.setVisible(true);
-	}
+//	public static void main(String [] args){
+//		JFrame temp = new JFrame();
+//		temp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		temp.setSize(300, 350);
+//		temp.add(new ItemListUI());
+//		temp.setVisible(true);
+//	}
 	
 	private class ItemPanel extends JPanel{ //add listener
 		private static final long serialVersionUID = -5599471922315413657L;
@@ -103,5 +118,5 @@ public class ItemListUI extends JPanel{
 			setBackground(Color.white);
 		}
 	}
-
 }
+

@@ -1,10 +1,13 @@
 package sidebarGUI;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -32,6 +35,8 @@ public class PokemonStatusUI extends JPanel {
 	private String[] attacks;
 	private boolean canRelease;
 	private GridBagConstraints gbc;
+	private CardLayout switcher;
+	private SideBarMenuAdapter parent;
 
 	public PokemonStatusUI(){
 		setLayout(new BorderLayout());
@@ -52,6 +57,28 @@ public class PokemonStatusUI extends JPanel {
 		createGUI();
 	}
 	
+	public PokemonStatusUI(CardLayout c, SideBarMenuAdapter p){
+		switcher = c;
+		parent = p;
+		setLayout(new BorderLayout());
+		name = "Magikuna";
+		imageName = "res/Pokemon_sprites/Magikuna_left_tr.png";
+		level = 20;
+		currentHP = 43;
+		maxHP = 50;
+		attack = 23;
+		defense = 12;
+		speed = 50;
+		attacks = new String[4];
+		attacks[0] = "Pound";
+		attacks[1] = "Splash";
+		attacks[2] = "Harden";
+		attacks[3] = "Tackle";
+		canRelease = true;
+		createGUI();
+		addListeners();
+	}
+	//the constructor be low is an example of what would happen when a pokemon is passed in
 	public PokemonStatusUI(String n, String im, int l, int c, int m, int a, int d, int s, String[] moves, boolean r){
 		name = n;
 		imageName = im;
@@ -125,13 +152,22 @@ public class PokemonStatusUI extends JPanel {
 		add(bottom, BorderLayout.SOUTH);
 	}
 	
-	public static void main(String[] args) {
-		JFrame j = new JFrame();
-		j.add(new PokemonStatusUI());
-		j.setSize(300, 350);
-		j.setLocation(100, 200);
-		j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		j.setVisible(true);
+	private void addListeners(){
+		btnBack.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				switcher.show(parent, parent.MENUNAME);
+			}
+		});
 	}
+	
+//	public static void main(String[] args) {
+//		JFrame j = new JFrame();
+//		j.add(new PokemonStatusUI());
+//		j.setSize(300, 350);
+//		j.setLocation(100, 200);
+//		j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		j.setVisible(true);
+//	}
 
 }
