@@ -11,10 +11,10 @@ public class Pokemon {
 	private int maxHealth;
 	private double rarity; /*the level of rarity (the higher level of rarity, the stronger the pokemon will be and less likely it will be to appear, more difficult to catch)*/
 	private int level;
-	private ArrayList<Move>moveList;
+	private ArrayList<Move> moveList;
 	
 	private static Random rand = new Random();//to generate either 0 or 1 for determining order and stuff
-	
+	//this should work but we need to make sure pokemon can't attack each other at the same time (in the same battle at least)
 
 	public Pokemon (int a, int d, int sp, int mh, double rarity, int lvl, ArrayList<Move> moves){//just assign the parameters to private vars
 		this.attack = a;
@@ -58,7 +58,7 @@ public class Pokemon {
 		this.conscious = false;
 	}
 	
-	public void Attack(Pokemon p, Move m){//- this method takes in another pokemon. When attack is called, it will adjust the other pokemon¡¯s health through an algorithm that takes in this pokemon¡¯s attack and the other pokemon¡¯s defense
+	public void attack(Pokemon p, Move m){//- this method takes in another pokemon. When attack is called, it will adjust the other pokemon¡¯s health through an algorithm that takes in this pokemon¡¯s attack and the other pokemon¡¯s defense
 		int newHealth = p.getHealth()-m.getDamage();
 		
 		if(newHealth <= 0){//ur pokemon died X(
@@ -66,14 +66,14 @@ public class Pokemon {
 			p.faint();
 		}
 	
-		p.faint();//other pokemon faints >:D
+		p.setHealth(newHealth);
 	}
 	
 	public void setHealth(int h){// ¨C this method will be used when a pokemon¡¯s health must be adjusted (potion is used the pokemon is attacked)
 		this.health = h;
 	}
 
-	public int getAttack(){
+	public int getattack(){
 		return this.attack;
 	}
 	
