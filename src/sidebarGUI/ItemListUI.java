@@ -57,6 +57,7 @@ public class ItemListUI extends JPanel{
 	private void createGUI(){
 		JPanel holder = new JPanel(new GridLayout(6, 3));
 		holder.setBackground(Color.white);
+		add(new JLabel("Click an item to use!"), BorderLayout.NORTH);
 		for (int i = 0; i < 6; ++i){
 			ItemPanel p = getItemPanel(i);
 			panels.add(p);
