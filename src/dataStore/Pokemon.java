@@ -17,11 +17,13 @@ public class Pokemon {
 	private int level;
 	private ArrayList<Move> moveList;
 	private JLabel sprite;
+	private String name;
+	private String filename;
 	
 	private static Random rand = new Random();//to generate either 0 or 1 for determining order and stuff
 	//this should work but we need to make sure pokemon can't attack each other at the same time (in the same battle at least)
 
-	public Pokemon (int a, int d, int sp, int mh, double rarity, int lvl, ArrayList<Move> moves,ImageIcon image){//just assign the parameters to private vars
+	public Pokemon (String name,String filename,int a, int d, int sp, int mh, double rarity, int lvl, ArrayList<Move> moves,ImageIcon image){//just assign the parameters to private vars
 		this.attack = a;
 		this.defense = d;
 		this.speed = sp;
@@ -30,12 +32,15 @@ public class Pokemon {
 		this.level = lvl;
 		this.moveList = moves;
 		this.sprite = new JLabel(image);
+		this.name = name;
+		this.filename = filename;
 	}
 	
 	public boolean isConscious(){
 		return this.conscious;
 	}
-		
+	
+	/*
 	public boolean goFirst(Pokemon p){//-comparing this with another pokemon¡¯s speed, rarity, and if the first two are equal a random number to see who attacks first
 		if(this.getSpeed() > p.getSpeed())
 			return true;
@@ -58,12 +63,13 @@ public class Pokemon {
 		}
 		
 		return false;
-	}
+	}*/
 
 	public void faint(){//set conscious to false 	
 		this.conscious = false;
 	}
 	
+	/*
 	public void attack(Pokemon p, Move m){//- this method takes in another pokemon. When attack is called, it will adjust the other pokemon¡¯s health through an algorithm that takes in this pokemon¡¯s attack and the other pokemon¡¯s defense
 		int newHealth = p.getHealth()-m.getDamage();
 		
@@ -73,7 +79,7 @@ public class Pokemon {
 		}
 	
 		p.setHealth(newHealth);
-	}
+	}*/
 	
 	public void setHealth(int h){// ¨C this method will be used when a pokemon¡¯s health must be adjusted (potion is used the pokemon is attacked)
 		this.health = h;
