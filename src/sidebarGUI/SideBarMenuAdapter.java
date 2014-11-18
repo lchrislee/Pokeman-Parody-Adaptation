@@ -3,7 +3,6 @@ package sidebarGUI;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class SideBarMenuAdapter extends JPanel {
@@ -25,13 +24,5 @@ public class SideBarMenuAdapter extends JPanel {
 		add(new ItemListUI(switcher, this), ITEMNAME);
 		add(new PokemonStatusUI(switcher, this), STATUSNAME);
 		add(new UserInformationGUI(switcher, this), USERINFO);
-	}
-	
-	public static void main(String[] args) {
-		JFrame temp = new JFrame();
-		temp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		temp.setSize(300, 350);
-		temp.add(new SideBarMenuAdapter());
-		temp.setVisible(true);
 	}
 }

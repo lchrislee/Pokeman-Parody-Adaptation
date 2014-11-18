@@ -9,7 +9,6 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -119,14 +118,5 @@ public class ChatGUI extends JPanel {
 		txFdCurrentText.setText("");
 		System.out.println("sent message: " + text + " to " + groups.getSelectedItem().toString());
 		readMessage(text);
-	}
-	
-	public static void main(String[] args) {
-		JFrame f = new JFrame();
-		f.add(new ChatGUI());
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setSize(300, 250);
-
-		f.setVisible(true);
 	}
 }
