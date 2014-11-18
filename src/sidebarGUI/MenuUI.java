@@ -161,16 +161,6 @@ public class MenuUI extends JPanel {
 		moved.setPokemon(stationary.getPokemon());
 		stationary.setPokemon(old);
 	}
-	
-//	public static void main(String[] args) {
-//		JFrame j = new JFrame();
-//		MenuUI m = new MenuUI();
-//		j.add(new JScrollPane(m));
-//		j.setSize(300, 350);
-//		j.setLocation(100, 200);
-//		j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		j.setVisible(true);
-//	}
 
 	public class PokemonDisplay extends JPanel{
 		private static final long serialVersionUID = 1009609997809971667L;
