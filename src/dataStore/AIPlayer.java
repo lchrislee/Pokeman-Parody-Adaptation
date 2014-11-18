@@ -6,6 +6,10 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+enum Result{
+	zero, low, mediumLow, medium, mediumHigh, high;
+}
+
 public class AIPlayer extends Player {
 
 	Pokemon enemyPoke;
@@ -16,7 +20,7 @@ public class AIPlayer extends Player {
 	
 	private int damageAttacks[];
 	private int percentageHealthAfterItem[];
-	private int pickedItem;
+	private Item pickedItem;
 	
 	public AIPlayer(ArrayList<Pokemon> pList, ArrayList<ImageIcon> imageList,
 			ArrayList<Item> itemList) {
@@ -24,18 +28,31 @@ public class AIPlayer extends Player {
 	}
 	
 	public void makeMove(){
+		Result d = checkDamage(), s = checkSurvival(), u = checkItemUsage();
+		
+		boolean temp = (s.compareTo(Result.low) == 0 && d.compareTo(Result.medium) >= 0);
+
+		if (d == Result.high)
+			attack();//equiv
+		else if (d.compareTo(Result.medium) >= 0 && s.compareTo(Result.medium) >= 0)
+			attack();//equiv
+		else if (/*pokemon list size*/ temp && u.compareTo(Result.low) <= 0)
+			switchPoke(/*method to pick pokemon*/generateOtherPokemon());
+		else if (s.compareTo(Result.low) <= 0 && u.compareTo(Result.high) == 0)
+			useItem(pickedItem);
+		else
+			attack();
+	}
+	
+	private Result checkDamage(){
+		Pokemon p = getCurrentPokemon();
+	}
+	
+	private Result checkSurvival(){
 		
 	}
 	
-	private int checkDamage(){
-		
-	}
-	
-	private int checkSurvival(){
-		
-	}
-	
-	private int checkItemUsage(){
+	private Result checkItemUsage(){
 		
 	}
 	
@@ -44,6 +61,10 @@ public class AIPlayer extends Player {
 	}
 	
 	private void attack(){
+		
+	}
+	
+	private void switchPoke(int r){
 		
 	}
 	
@@ -59,4 +80,7 @@ public class AIPlayer extends Player {
 		
 	}
 	
+	private int generateOtherPokemon(){
+		
+	}
 }
