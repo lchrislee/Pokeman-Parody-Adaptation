@@ -13,7 +13,7 @@ public class Player {
 	private ArrayList <ImageIcon> spriteList;
 	private ArrayList <Item> itemList;// ¨Cstores all the items the player owns
 	private ImageIcon currentSprite;
-	protected HashMap<String,Integer> statsMap; //([Capture]how many times player¡¯s died, num pokemon caught, num pokemon released, avg pokemon level & rarity) ([Battle]wins, losses, avg pokemon used per battle)
+	private HashMap<String,Integer> statsMap; //([Capture]how many times player¡¯s died, num pokemon caught, num pokemon released, avg pokemon level & rarity) ([Battle]wins, losses, avg pokemon used per battle)
 	private Pokemon enemyPokemon;
 	private Pokemon currentPokemon;//in battle at the moment
 	private boolean isBattling = false;//players start off capturing
@@ -45,7 +45,7 @@ public class Player {
 			return this.isBattling;
 		}
 		
-		public void setBattling(boolean isBattling){//switch from capture to battle
+		public void setBattling(boolean isBattling){//switch from capture to battle, maybe change access modifier later
 			this.isBattling = true;			
 		}	
 		
@@ -55,24 +55,31 @@ public class Player {
 			switch(direction){//figure out how to display animations too -.- and also switch current displayed sprite
 				case 1:
 					this.y-=1;//go up one
+					//this.currentSprite = this.spriteList.get(0);
 					break;
 				case 2:
 					this.x+=1;
+					//this.currentSprite = this.spriteList.get(1);
 					break;
 				case 3:
 					this.y+=1;
+					//this.currentSprite = this.spriteList.get(2);
 					break;
 				case 4:
 					this.x-=1;
+					//this.currentSprite = this.spriteList.get(3);
 					break;
 			}
 		}
 		
 		public void setEnemyPokemon(Pokemon enemy){
+			if(enemy!=null){
 			this.enemyPokemon = enemy;
+			}
 		}
 		
-		public void choosePokemon(){//gets called only when we start fighting
+			
+		public void choosePokemon(){//gets called only when we start the battle
 			this.currentPokemon = this.pokemonList.get(0);		
 		}
 				
@@ -92,10 +99,33 @@ public class Player {
 		}
 		
 		public void useItem(Item i){
-			i.use(this.currentPokemon);
+			if(this.itemList.contains(i)){
+				i.use(this.currentPokemon);
+			}
 		}
 				
 		public Pokemon getCurrentPokemon(){
 			return this.currentPokemon;
 		}
+		
+		public Pokemon getEnemyPokemon(){
+			return this.enemyPokemon;
+		}
+		
+		public ArrayList<Pokemon> getPokemonList(){
+			return this.pokemonList;
+		}
+		
+		public ArrayList<Item> getItemList(){
+			return this.itemList;
+		}
+		
+		public ArrayList<ImageIcon>getSpriteList(){
+			return this.spriteList;
+		}
+		
+		public HashMap<String,Integer>getStats(){
+			return this.statsMap;
+		}
+		
 }
