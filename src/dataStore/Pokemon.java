@@ -1,5 +1,5 @@
 package dataStore;
-import java.util.ArrayList;
+import java.util.Vector;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
@@ -15,14 +15,14 @@ public class Pokemon {
 	private int maxHealth;
 	private double rarity; /*the level of rarity (the higher level of rarity, the stronger the pokemon will be and less likely it will be to appear, more difficult to catch)*/
 	private int level;
-	private ArrayList<Move> moveList;
+	private Vector<Move> moveList;
 	private ImageIcon sprite;
 	private String name;
 	private String filename;	
 	
 
 
-	public Pokemon (String name,String filename,int a, int d, int sp, int mh, double rarity, int lvl, ArrayList<Move> moves,ImageIcon image){//just assign the parameters to private vars
+	public Pokemon (String name,String filename,int a, int d, int sp, int mh, double rarity, int lvl, Vector<Move> moves,ImageIcon image){//just assign the parameters to private vars
 		this.attack = a;
 		this.defense = d;
 		this.speed = sp;
@@ -68,7 +68,7 @@ public class Pokemon {
 		return this.rarity;
 	}
 	
-	public ArrayList<Move> getMoves(){
+	public Vector<Move> getMoves(){
 		return this.moveList;
 	}
 

@@ -1,7 +1,7 @@
 package dataStore;
 
 import items.Item;
-import java.util.ArrayList;
+import java.util.Vector;
 import java.util.HashMap;
 
 import javax.swing.ImageIcon;
@@ -9,9 +9,9 @@ import javax.swing.ImageIcon;
 public class Player {
 	private int x; //position
 	private int y;//position
-	private ArrayList <Pokemon> pokemonList;// this will store the Pokemon the player has caught
-	private ArrayList <ImageIcon> spriteList;
-	private ArrayList <Item> itemList;// 每stores all the items the player owns
+	private Vector <Pokemon> pokemonList;// this will store the Pokemon the player has caught
+	private Vector <ImageIcon> spriteList;
+	private Vector <Item> itemList;// 每stores all the items the player owns
 	private ImageIcon currentSprite;
 	private HashMap<String,Integer> statsMap; //([Capture]how many times player＊s died, num pokemon caught, num pokemon released, avg pokemon level & rarity) ([Battle]wins, losses, avg pokemon used per battle)
 	private Pokemon enemyPokemon;
@@ -26,7 +26,7 @@ public class Player {
 	private static int WEST = 4;
 	public int direction = SOUTH;//set it to this first so we can see the players faces
 	
-		public Player(ArrayList<Pokemon>pList, ArrayList <ImageIcon> imageList, ArrayList<Item> itemList){
+		public Player(Vector<Pokemon>pList, Vector <ImageIcon> imageList, Vector<Item> itemList){
 			this.pokemonList = pList;
 			this.spriteList = imageList;
 			this.itemList = itemList;
@@ -83,7 +83,7 @@ public class Player {
 			this.currentPokemon = this.pokemonList.get(0);		
 		}
 				
-		public void choosePokemon(Pokemon p){ //每 the player will access his/her arraylist of pokemon and select one to battle (when the current pokemon faints)
+		public void choosePokemon(Pokemon p){ //每 the player will access his/her Vector of pokemon and select one to battle (when the current pokemon faints)
 			if(this.pokemonList.contains(p))
 				this.currentPokemon = p;
 		}	
@@ -112,15 +112,15 @@ public class Player {
 			return this.enemyPokemon;
 		}
 		
-		public ArrayList<Pokemon> getPokemonList(){
+		public Vector<Pokemon> getPokemonList(){
 			return this.pokemonList;
 		}
 		
-		public ArrayList<Item> getItemList(){
+		public Vector<Item> getItemList(){
 			return this.itemList;
 		}
 		
-		public ArrayList<ImageIcon>getSpriteList(){
+		public Vector<ImageIcon>getSpriteList(){
 			return this.spriteList;
 		}
 		
