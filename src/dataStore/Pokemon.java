@@ -4,7 +4,7 @@ import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
+//get current pokemon
 
 public class Pokemon {
 	private boolean conscious = true; //default
@@ -23,6 +23,8 @@ public class Pokemon {
 
 
 	public Pokemon (String name,String filename,int a, int d, int sp, int mh, double rarity, int lvl, Vector<Move> moves,ImageIcon image){//just assign the parameters to private vars
+		this.name = name;
+		this.filename = filename;
 		this.attack = a;
 		this.defense = d;
 		this.speed = sp;
@@ -31,15 +33,12 @@ public class Pokemon {
 		this.level = lvl;
 		this.moveList = moves;
 		this.sprite = image;
-		this.name = name;
-		this.filename = filename;
 	}
 	
 	public boolean isConscious(){
 		return this.conscious;
 	}
-	
-	
+		
 	public void faint(){//set conscious to false 	
 		this.conscious = false;
 	}
@@ -47,9 +46,13 @@ public class Pokemon {
 	public void setHealth(int h){// ¨C this method will be used when a pokemon¡¯s health must be adjusted (potion is used the pokemon is attacked)
 		this.health = h;
 	}
-
-	public int getattack(){
-		return this.attack;
+	
+	public int getLevel(){
+		return this.level;
+	}
+	
+	public int getAttack() {
+		return attack;
 	}
 	
 	public int getDefense(){
@@ -72,4 +75,27 @@ public class Pokemon {
 		return this.moveList;
 	}
 
+	public int getMaxHealth() {
+		return maxHealth;
+	}
+
+	
+	public Vector<Move> getMoveList() {
+		return moveList;
+	}
+
+	
+	public ImageIcon getSprite() {
+		return sprite;
+	}
+
+	
+	public String getName() {
+		return name;
+	}
+
+	public String getFilename() {
+		return filename;
+	}
+	
 }
