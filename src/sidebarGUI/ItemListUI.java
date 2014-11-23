@@ -1,3 +1,4 @@
+
 package sidebarGUI;
 
 import java.awt.BorderLayout;
@@ -109,3 +110,4 @@ public class ItemListUI extends JPanel{
 		}
 	}
 }
+

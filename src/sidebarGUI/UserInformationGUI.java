@@ -41,12 +41,5 @@ public class UserInformationGUI extends JPanel {
 		});
 	}
 	
-	public static void main(String[] args) {
-		JFrame temp = new JFrame();
-		temp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		temp.setSize(300, 350);
-		temp.add(new UserInformationGUI());
-		temp.setVisible(true);
-	}
 
 }

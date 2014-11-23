@@ -1,3 +1,4 @@
+
 package sidebarGUI;
 
 import java.awt.CardLayout;
@@ -25,4 +26,5 @@ public class SideBarMenuAdapter extends JPanel {
 		add(new PokemonStatusUI(switcher, this), STATUSNAME);
 		add(new UserInformationGUI(switcher, this), USERINFO);
 	}
+
 }
