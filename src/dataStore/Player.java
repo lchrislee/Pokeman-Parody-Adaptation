@@ -1,6 +1,10 @@
 package dataStore;
 
 import items.Item;
+
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.Vector;
 import java.util.HashMap;
 
@@ -8,9 +12,10 @@ import javax.swing.ImageIcon;
 
 //player needs to know the index of the current pokemon that's out
 
-public class Player {
+public class Player{//going to need its own socket...or extend socket
 	//private int x; //position
 	//private int y;//position
+	
 
 	private int currentPokemonIndex = 0;//which pokemon in the list is currently out
 	
@@ -24,6 +29,8 @@ public class Player {
 	//private boolean isBattling = false;//players start off capturing
 	private boolean quit = false;
 	
+	private Socket playerSocket;
+	
 	/*
 	private int numSteps = 500;
 	private static int NORTH = 1;
@@ -32,12 +39,20 @@ public class Player {
 	private static int WEST = 4;
 	public int direction = SOUTH;//set it to this first so we can see the players faces
 	*/
+		public Player(){
+			
+		}
+	
 		public Player(Vector<Pokemon>pList, Vector <ImageIcon> imageList, Vector<Item> itemList){
 			this.pokemonList = pList;
 			this.spriteList = imageList;
 			this.itemList = itemList;
+			
 		}	
 	
+		public Socket getSocket(){
+			return this.playerSocket;
+		}
 	
 		public boolean hasActivePokemon(){//return false if all pokemon are unconscious
 			for(int i=0;i<pokemonList.size();++i){
@@ -87,6 +102,19 @@ public class Player {
 					break;
 			}
 		}*/
+		
+		public void setItemList(Vector<Item> itemList){
+			this.itemList = itemList;
+		}
+		
+		public void setPokemonList(Vector<Pokemon>pList){
+			this.pokemonList = pList;
+		}
+		
+		public void setSpriteList(Vector<ImageIcon>spriteList){
+			this.spriteList = spriteList;
+		}
+		
 		
 		public void setEnemyPokemon(Pokemon enemy){
 			if(enemy!=null){
