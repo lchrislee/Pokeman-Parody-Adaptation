@@ -36,13 +36,17 @@ public class LoginScreen extends JPanel {
 	private JPanel pokemonSpriteListPanel;
 	private List<JButton> pokemonSpriteList;
 	private JButton readyButton;
+	private ImageIcon chosenCharacter = new ImageIcon();
+	private JButton millerButton, crowleyButton, goobyButton, dolanButton, mistyButton, jungIllButton;
+	private ImageIcon chosenPokemon = new ImageIcon();
 	public LoginScreen() {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		createLoginGUI();
 	}
 	
 	private void createLoginGUI() {
-		
+		chosenCharacter.setDescription("0");
+		chosenPokemon.setDescription("0");
 		/* name text input */
 		JPanel nameLabelPanel = new JPanel();
 		nameLabelPanel.setLayout(new GridBagLayout());
@@ -71,52 +75,241 @@ public class LoginScreen extends JPanel {
 		characterSpriteListPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		characterSpriteList = new ArrayList<JButton>();
 		
+		
 		Image millerImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/miller_small.png");
-		ImageIcon millerImageIcon = new ImageIcon(millerImage);
-		JButton millerButton = new JButton(millerImageIcon);
+		ImageIcon millerImageIcon = new ImageIcon(millerImage, "Miller");
+		millerButton = new JButton(millerImageIcon);
 		millerButton.setBackground(Color.WHITE);
-		millerButton.addMouseListener(new MouseListener() {            
+		millerButton.addMouseListener(new MouseListener() {
             @Override
             public void mouseReleased(MouseEvent arg0) {}           
             @Override
             public void mousePressed(MouseEvent arg0) {}            
             @Override
-            public void mouseExited(MouseEvent arg0) { 
-                millerButton.setBackground(Color.WHITE);
+            public void mouseExited(MouseEvent me) { 
+            	if (!chosenCharacter.getDescription().equals("0")) {
+	            	String chosenCharacterDesc = chosenCharacter.getDescription();
+	            	if (chosenCharacterDesc.equals(millerImageIcon.getDescription())) ((JButton)me.getSource()).setBackground(Color.RED);
+	            	else ((JButton)me.getSource()).setBackground(Color.WHITE);
+            	}
+            	else {
+            		((JButton)me.getSource()).setBackground(Color.WHITE);
+            	}
             }           
             @Override
-            public void mouseEntered(MouseEvent arg0) {
-                    millerButton.setBackground(Color.BLUE);
+            public void mouseEntered(MouseEvent me) {
+            	((JButton)me.getSource()).setBackground(Color.BLUE);
             }           
             @Override
-            public void mouseClicked(MouseEvent arg0) {}
+            public void mouseClicked(MouseEvent me) {
+            	chosenCharacter.setDescription("Miller");
+            	chosenCharacter.setImage(millerImage);
+            	((JButton)me.getSource()).setBackground(Color.RED);
+            	//millerButton.setBackground(Color.white);
+            	crowleyButton.setBackground(Color.white);
+            	dolanButton.setBackground(Color.white);
+            	goobyButton.setBackground(Color.white);
+            	mistyButton.setBackground(Color.white);
+            	jungIllButton.setBackground(Color.white);
+            	repaint();
+            }
         });
-		//millerButton.setMaximumSize(new Dimension(200,200));
 		
 		Image crowleyImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/Crowley_small.png");
-		ImageIcon crowleyImageIcon = new ImageIcon(crowleyImage);
-		JButton crowleyButton = new JButton(crowleyImageIcon);
+		ImageIcon crowleyImageIcon = new ImageIcon(crowleyImage, "Crowley");
+		crowleyButton = new JButton(crowleyImageIcon);
 		crowleyButton.setBackground(Color.WHITE);
+		crowleyButton.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseReleased(MouseEvent arg0) {}           
+            @Override
+            public void mousePressed(MouseEvent arg0) {}            
+            @Override
+            public void mouseExited(MouseEvent me) { 
+            	if (!chosenCharacter.getDescription().equals("0")) {
+	            	String chosenCharacterDesc = chosenCharacter.getDescription();
+	            	if (chosenCharacterDesc.equals(crowleyImageIcon.getDescription())) ((JButton)me.getSource()).setBackground(Color.RED);
+	            	else ((JButton)me.getSource()).setBackground(Color.WHITE);
+            	}
+            	else {
+            		((JButton)me.getSource()).setBackground(Color.WHITE);
+            	}
+            }           
+            @Override
+            public void mouseEntered(MouseEvent me) {
+            	((JButton)me.getSource()).setBackground(Color.BLUE);
+            }           
+            @Override
+            public void mouseClicked(MouseEvent me) {
+            	chosenCharacter.setDescription("Crowley");
+            	chosenCharacter.setImage(crowleyImage);
+            	((JButton)me.getSource()).setBackground(Color.RED);
+            	millerButton.setBackground(Color.white);
+            	//crowleyButton.setBackground(Color.white);
+            	dolanButton.setBackground(Color.white);
+            	goobyButton.setBackground(Color.white);
+            	mistyButton.setBackground(Color.white);
+            	jungIllButton.setBackground(Color.white);
+            	repaint();
+            }
+        });
+		
 		
 		Image dolanImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/dolan_small.png");
-		ImageIcon dolanImageIcon = new ImageIcon (dolanImage);
-		JButton dolanButton = new JButton(dolanImageIcon);
+		ImageIcon dolanImageIcon = new ImageIcon (dolanImage, "Dolan");
+		dolanButton = new JButton(dolanImageIcon);
 		dolanButton.setBackground(Color.WHITE);
+		dolanButton.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseReleased(MouseEvent arg0) {}           
+            @Override
+            public void mousePressed(MouseEvent arg0) {}            
+            @Override
+            public void mouseExited(MouseEvent me) { 
+            	if (!chosenCharacter.getDescription().equals("0")) {
+	            	String chosenCharacterDesc = chosenCharacter.getDescription();
+	            	if (chosenCharacterDesc.equals(dolanImageIcon.getDescription())) ((JButton)me.getSource()).setBackground(Color.RED);
+	            	else ((JButton)me.getSource()).setBackground(Color.WHITE);
+            	}
+            	else {
+            		((JButton)me.getSource()).setBackground(Color.WHITE);
+            	}
+            }           
+            @Override
+            public void mouseEntered(MouseEvent me) {
+            	((JButton)me.getSource()).setBackground(Color.BLUE);
+            }           
+            @Override
+            public void mouseClicked(MouseEvent me) {
+            	chosenCharacter.setDescription("Dolan");
+            	chosenCharacter.setImage(dolanImage);
+            	((JButton)me.getSource()).setBackground(Color.RED);
+            	millerButton.setBackground(Color.white);
+            	crowleyButton.setBackground(Color.white);
+            	//dolanButton.setBackground(Color.white);
+            	goobyButton.setBackground(Color.white);
+            	mistyButton.setBackground(Color.white);
+            	jungIllButton.setBackground(Color.white);
+            	repaint();
+            }
+        });
 		
 		Image goobyImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/gooby_small.png");
-		ImageIcon goobyImageIcon = new ImageIcon (goobyImage);
-		JButton goobyButton = new JButton(goobyImageIcon);
+		ImageIcon goobyImageIcon = new ImageIcon (goobyImage, "Gooby");
+		goobyButton = new JButton(goobyImageIcon);
 		goobyButton.setBackground(Color.WHITE);
+		goobyButton.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseReleased(MouseEvent arg0) {}           
+            @Override
+            public void mousePressed(MouseEvent arg0) {}            
+            @Override
+            public void mouseExited(MouseEvent me) { 
+            	if (!chosenCharacter.getDescription().equals("0")) {
+	            	String chosenCharacterDesc = chosenCharacter.getDescription();
+	            	if (chosenCharacterDesc.equals(goobyImageIcon.getDescription())) ((JButton)me.getSource()).setBackground(Color.RED);
+	            	else ((JButton)me.getSource()).setBackground(Color.WHITE);
+            	}
+            	else {
+            		((JButton)me.getSource()).setBackground(Color.WHITE);
+            	}
+            }           
+            @Override
+            public void mouseEntered(MouseEvent me) {
+            	((JButton)me.getSource()).setBackground(Color.BLUE);
+            }           
+            @Override
+            public void mouseClicked(MouseEvent me) {
+            	chosenCharacter.setDescription("Gooby");
+            	chosenCharacter.setImage(goobyImage);
+            	((JButton)me.getSource()).setBackground(Color.RED);
+            	millerButton.setBackground(Color.white);
+            	crowleyButton.setBackground(Color.white);
+            	dolanButton.setBackground(Color.white);
+            	//goobyButton.setBackground(Color.white);
+            	mistyButton.setBackground(Color.white);
+            	jungIllButton.setBackground(Color.white);
+            	repaint();
+            }
+        });
 		
 		Image mistyImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/misty_small.png");
-		ImageIcon mistyImageIcon = new ImageIcon (mistyImage);
-		JButton mistyButton = new JButton(mistyImageIcon);
+		ImageIcon mistyImageIcon = new ImageIcon (mistyImage, "Misty");
+		mistyButton = new JButton(mistyImageIcon);
 		mistyButton.setBackground(Color.WHITE);
+		mistyButton.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseReleased(MouseEvent arg0) {}           
+            @Override
+            public void mousePressed(MouseEvent arg0) {}            
+            @Override
+            public void mouseExited(MouseEvent me) { 
+            	if (!chosenCharacter.getDescription().equals("0")) {
+	            	String chosenCharacterDesc = chosenCharacter.getDescription();
+	            	if (chosenCharacterDesc.equals(mistyImageIcon.getDescription())) ((JButton)me.getSource()).setBackground(Color.RED);
+	            	else ((JButton)me.getSource()).setBackground(Color.WHITE);
+            	}
+            	else {
+            		((JButton)me.getSource()).setBackground(Color.WHITE);
+            	}
+            }           
+            @Override
+            public void mouseEntered(MouseEvent me) {
+            	((JButton)me.getSource()).setBackground(Color.BLUE);
+            }           
+            @Override
+            public void mouseClicked(MouseEvent me) {
+            	chosenCharacter.setDescription("Misty");
+            	chosenCharacter.setImage(mistyImage);
+            	((JButton)me.getSource()).setBackground(Color.RED);
+            	millerButton.setBackground(Color.white);
+            	crowleyButton.setBackground(Color.white);
+            	dolanButton.setBackground(Color.white);
+            	goobyButton.setBackground(Color.white);
+            	//mistyButton.setBackground(Color.white);
+            	jungIllButton.setBackground(Color.white);
+            	repaint();
+            }
+        });
 		
 		Image jungIllImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/jungIll_small.png");
-		ImageIcon jungIllImageIcon = new ImageIcon (jungIllImage);
-		JButton jungIllButton = new JButton(jungIllImageIcon);
+		ImageIcon jungIllImageIcon = new ImageIcon (jungIllImage, "JungIll");
+		jungIllButton = new JButton(jungIllImageIcon);
 		jungIllButton.setBackground(Color.WHITE);
+		jungIllButton.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseReleased(MouseEvent arg0) {}           
+            @Override
+            public void mousePressed(MouseEvent arg0) {}            
+            @Override
+            public void mouseExited(MouseEvent me) { 
+            	if (!chosenCharacter.getDescription().equals("0")) {
+	            	String chosenCharacterDesc = chosenCharacter.getDescription();
+	            	if (chosenCharacterDesc.equals(jungIllImageIcon.getDescription())) ((JButton)me.getSource()).setBackground(Color.RED);
+	            	else ((JButton)me.getSource()).setBackground(Color.WHITE);
+            	}
+            	else {
+            		((JButton)me.getSource()).setBackground(Color.WHITE);
+            	}
+            }           
+            @Override
+            public void mouseEntered(MouseEvent me) {
+            	((JButton)me.getSource()).setBackground(Color.BLUE);
+            }           
+            @Override
+            public void mouseClicked(MouseEvent me) {
+            	chosenCharacter.setDescription("JungIll");
+            	chosenCharacter.setImage(jungIllImage);
+            	((JButton)me.getSource()).setBackground(Color.RED);
+            	millerButton.setBackground(Color.white);
+            	crowleyButton.setBackground(Color.white);
+            	dolanButton.setBackground(Color.white);
+            	goobyButton.setBackground(Color.white);
+            	mistyButton.setBackground(Color.white);
+            	//jungIllButton.setBackground(Color.white);
+            	repaint();
+            }
+        });
 		
 		characterSpriteListPanel.add(millerButton);
 		characterSpriteListPanel.add(crowleyButton);
@@ -126,7 +319,11 @@ public class LoginScreen extends JPanel {
 		characterSpriteListPanel.add(jungIllButton);
 		
 		add(characterSpriteListPanel);
+		
+		
+		
 		/* panel with default pokemans to choose from */
+		JButton feelgletButton, magikunaButton, lickisterButton, pikayuButton;
 		JPanel pokemonSelectPanel = new JPanel();
 		pokemonSelectPanel.setLayout(new GridBagLayout());
 		pokemonSelectPanel.setMaximumSize(new Dimension(300,50));
@@ -141,19 +338,20 @@ public class LoginScreen extends JPanel {
 		
 		Image feelgletImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/feelglet_left_tr.png");
 		ImageIcon feelgletImageIcon = new ImageIcon(feelgletImage);
-		JButton feelgletButton = new JButton(feelgletImageIcon);
+		feelgletButton = new JButton(feelgletImageIcon);
 		
 		Image magikunaImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/magikuna_left_tr.png");
 		ImageIcon magikunaImageIcon = new ImageIcon(magikunaImage);
-		JButton magikunaButton = new JButton(magikunaImageIcon);
+		magikunaButton = new JButton(magikunaImageIcon);
 		
 		Image lickisterImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/lickister_left_tr.png");
 		ImageIcon lickisterImageIcon = new ImageIcon(lickisterImage);
-		JButton lickisterButton = new JButton(lickisterImageIcon);
+		lickisterButton = new JButton(lickisterImageIcon);
 		
 		Image pikayuImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/pikayu_left_tr.png");
 		ImageIcon pikayuImageIcon = new ImageIcon(pikayuImage);
-		JButton pikayuButton = new JButton(pikayuImageIcon);
+		pikayuButton = new JButton(pikayuImageIcon);
+		
 		
 		pokemonSpriteListPanel.add(feelgletButton);
 		pokemonSpriteListPanel.add(magikunaButton);
@@ -180,3 +378,4 @@ public class LoginScreen extends JPanel {
 		testWindow.setVisible(true);
 	}
 }
+
