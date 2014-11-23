@@ -50,6 +50,7 @@ public class ChatGUI extends JPanel {
 		setPreferredSize(new Dimension(300, 250));
 		txeaAllMessages = new JTextPane();
 		txeaAllMessages.setEditable(false);
+		txeaAllMessages.setAutoscrolls(true);
 		//txeaAllMessages.setText("TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nhi");
 		JScrollPane sp = new JScrollPane(txeaAllMessages);
 		
