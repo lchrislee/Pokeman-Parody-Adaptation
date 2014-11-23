@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -50,13 +52,24 @@ public class LoginScreen extends JPanel {
 		/* name text input */
 		JPanel nameLabelPanel = new JPanel();
 		nameLabelPanel.setLayout(new GridBagLayout());
-		nameLabelPanel.setMaximumSize(new Dimension(200,200));
+		nameLabelPanel.setMaximumSize(new Dimension(800,100));
 		add(nameLabelPanel);
 		JLabel nameLabel = new JLabel("Enter your name");
 		nameLabel.setFont(new Font("Arial",Font.PLAIN, 25));
 		nameLabelPanel.add(nameLabel);
-		inputNameTextField = new JTextField();
+		inputNameTextField = new JTextField("");
 		inputNameTextField.setMaximumSize(new Dimension(500,50));
+		inputNameTextField.addActionListener(new ActionListener(){
+
+            public void actionPerformed(ActionEvent e){
+            	if ( (inputNameTextField.getText()).length() == 0 ) {
+            		System.out.println("Enter your name");
+            	}
+            	else {
+            		System.out.println("Selected Name: " + inputNameTextField.getText());
+            	}
+            }
+        });
 		
 		add(inputNameTextField);
 		
@@ -73,6 +86,7 @@ public class LoginScreen extends JPanel {
 		
 		characterSpriteListPanel = new JPanel();
 		characterSpriteListPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+		characterSpriteListPanel.setPreferredSize(new Dimension(800,200));
 		characterSpriteList = new ArrayList<JButton>();
 		
 		
@@ -103,6 +117,7 @@ public class LoginScreen extends JPanel {
             @Override
             public void mouseClicked(MouseEvent me) {
             	chosenCharacter.setDescription("Miller");
+            	System.out.println("Selected Character: Miller");
             	chosenCharacter.setImage(millerImage);
             	((JButton)me.getSource()).setBackground(Color.RED);
             	//millerButton.setBackground(Color.white);
@@ -142,6 +157,7 @@ public class LoginScreen extends JPanel {
             @Override
             public void mouseClicked(MouseEvent me) {
             	chosenCharacter.setDescription("Crowley");
+            	System.out.println("Selected Character: Crowley");
             	chosenCharacter.setImage(crowleyImage);
             	((JButton)me.getSource()).setBackground(Color.RED);
             	millerButton.setBackground(Color.white);
@@ -182,6 +198,7 @@ public class LoginScreen extends JPanel {
             @Override
             public void mouseClicked(MouseEvent me) {
             	chosenCharacter.setDescription("Dolan");
+            	System.out.println("Selected Character: Dolan");
             	chosenCharacter.setImage(dolanImage);
             	((JButton)me.getSource()).setBackground(Color.RED);
             	millerButton.setBackground(Color.white);
@@ -221,6 +238,7 @@ public class LoginScreen extends JPanel {
             @Override
             public void mouseClicked(MouseEvent me) {
             	chosenCharacter.setDescription("Gooby");
+            	System.out.println("Selected Character: Gooby");
             	chosenCharacter.setImage(goobyImage);
             	((JButton)me.getSource()).setBackground(Color.RED);
             	millerButton.setBackground(Color.white);
@@ -260,6 +278,7 @@ public class LoginScreen extends JPanel {
             @Override
             public void mouseClicked(MouseEvent me) {
             	chosenCharacter.setDescription("Misty");
+            	System.out.println("Selected Character: Misty");
             	chosenCharacter.setImage(mistyImage);
             	((JButton)me.getSource()).setBackground(Color.RED);
             	millerButton.setBackground(Color.white);
@@ -299,6 +318,7 @@ public class LoginScreen extends JPanel {
             @Override
             public void mouseClicked(MouseEvent me) {
             	chosenCharacter.setDescription("JungIll");
+            	System.out.println("Selected Character: JungIll");
             	chosenCharacter.setImage(jungIllImage);
             	((JButton)me.getSource()).setBackground(Color.RED);
             	millerButton.setBackground(Color.white);
@@ -363,6 +383,7 @@ public class LoginScreen extends JPanel {
 		readyPanel.setLayout(new GridBagLayout());
 		readyPanel.setMaximumSize(new Dimension(300,50));
 		readyButton = new JButton("READY");
+		readyButton.setFont(new Font("Arial",Font.BOLD, 45));
 		readyPanel.add(readyButton);
 		add(readyPanel);
 	}
