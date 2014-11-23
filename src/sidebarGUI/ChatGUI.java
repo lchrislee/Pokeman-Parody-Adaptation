@@ -25,7 +25,7 @@ import javax.swing.text.StyledDocument;
 import chatSystem.ChatClient;
 import chatSystem.ChatServer;
 import chatSystem.MiniServer;
-import chatSystem.NetworkThread;
+//import chatSystem.NetworkThread;
 
 public class ChatGUI extends JPanel {
 	private static final long serialVersionUID = 8239335834925382510L;
@@ -35,7 +35,6 @@ public class ChatGUI extends JPanel {
 	private JComboBox<String> groups;
 	private JButton btnSend;
 	private String chatSelected = groupNames[0];
-	private NetworkThread myNT;
 	private static ChatClient chatClient;
 	private static Socket socket;
 	private static PrintWriter output;
@@ -50,6 +49,7 @@ public class ChatGUI extends JPanel {
 		setPreferredSize(new Dimension(300, 250));
 		txeaAllMessages = new JTextPane();
 		txeaAllMessages.setEditable(false);
+		txeaAllMessages.setAutoscrolls(true);
 		//txeaAllMessages.setText("TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nhi");
 		JScrollPane sp = new JScrollPane(txeaAllMessages);
 		
@@ -126,8 +126,10 @@ public class ChatGUI extends JPanel {
 		String text = groups.getSelectedItem().toString() + "_You sent: " + content;
 		txFdCurrentText.setText("");
 		System.out.println("sent message: " + text + " to " + groups.getSelectedItem().toString());
-		//readMessage(text);
+		// readMessage(text);
 		output.println(text);
+		// if (box.text != 'all')
+		// pretext = "#FROM: tony #TO: " + box.text
 		output.flush();
 	}
 	public static void Connect(){
