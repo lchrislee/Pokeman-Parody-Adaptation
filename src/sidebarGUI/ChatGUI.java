@@ -4,6 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -18,17 +22,23 @@ import javax.swing.KeyStroke;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
 
+import chatSystem.ChatClient;
+import chatSystem.ChatServer;
+import chatSystem.MiniServer;
 import chatSystem.NetworkThread;
 
 public class ChatGUI extends JPanel {
 	private static final long serialVersionUID = 8239335834925382510L;
 	private final String[] groupNames = {"ALL", "P1 Only", "P2 Only", "P3 Only", "P4 Only", "P1 & P2", "P1 & P3", "P1 & P4", "P2 & P3", "P2 & P4", "P3 & P4"};
-	private JTextPane txeaAllMessages;
+	public static JTextPane txeaAllMessages;
 	private JTextField txFdCurrentText;
 	private JComboBox<String> groups;
 	private JButton btnSend;
 	private String chatSelected = groupNames[0];
-	//private NetworkThread myNT;
+	private NetworkThread myNT;
+	private static ChatClient chatClient;
+	private static Socket socket;
+	private static PrintWriter output;
 	
 	public ChatGUI(){		
 		createGUI();
@@ -58,8 +68,7 @@ public class ChatGUI extends JPanel {
 		holder.add(btnSend, BorderLayout.EAST);
 		add(holder, BorderLayout.SOUTH);
 		
-		//myNT = new NetworkThread(this);
-		//myNT.start();
+		Connect();
 	}
 
 	private void setListeners(){
@@ -117,6 +126,30 @@ public class ChatGUI extends JPanel {
 		String text = groups.getSelectedItem().toString() + "_You sent: " + content;
 		txFdCurrentText.setText("");
 		System.out.println("sent message: " + text + " to " + groups.getSelectedItem().toString());
-		readMessage(text);
+		//readMessage(text);
+		output.println(text);
+		output.flush();
 	}
+	public static void Connect(){
+		final int PORT = 4444;
+		try {
+			socket = new Socket("127.0.0.1", PORT);
+			System.out.println("You connected to: " + "USC");
+			
+			chatClient = new ChatClient(socket);
+			
+			//sends the users name
+			output = new PrintWriter(socket.getOutputStream());
+			output.println("poopernames");
+			output.flush();
+			
+			Thread x = new Thread(chatClient);
+			x.start();
+			
+			//send name to add to "online" list;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}	
 }
