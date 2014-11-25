@@ -10,57 +10,28 @@ import javax.swing.JLabel;
 import sidebarGUI.ChatGUI;
 
 public class ChatClient implements Runnable {
-	Socket sock;
 	Scanner input;
-	Scanner send = new Scanner(System.in);
 	public static PrintWriter output;
-	
-	public ChatClient(Socket sock){
-		
-		this.sock = sock;
+	String message = "";
+
+	public ChatClient(Socket sock) throws IOException {
+		input = new Scanner(sock.getInputStream());
+		output = new PrintWriter(sock.getOutputStream());
 	}
-	
+
 	@Override
 	public void run() {
-		
-		try {
-			input = new Scanner(sock.getInputStream());
-			output = new PrintWriter(sock.getOutputStream());
-			output.flush();
-			//maybe dont need output here?
-			while(true){
-				receive();  
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		while (true) {
+			receive();
 		}
-		finally{
-			try {
-				sock.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+	}
+
+	public void receive() {
+		if (input.hasNext()) {
+			message = input.nextLine();
+			ChatGUI.txeaAllMessages.setText(ChatGUI.txeaAllMessages.getText()
+					+ "\n" + message);
 		}
-		
-		// TODO Auto-generated method stub
-		
 	}
-	
-	public void receive(){
-		if(input.hasNext()){
-			String message = input.nextLine();
-			
-		ChatGUI.txeaAllMessages.setText(ChatGUI.txeaAllMessages.getText() + "\n" + message);
-			
-		}
-		
-	}
-	public void send(String X){
-		//output.println();
-	}
-	public void checkStream(){
-		
-	}
+
 }

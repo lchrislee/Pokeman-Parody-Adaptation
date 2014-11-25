@@ -38,7 +38,7 @@ public class ChatServer {
 				System.out.println("client connected from: " + socket.getLocalAddress().getHostName());
 				AddUserName(socket); //?
 				//new thread for connection
-				MiniServer chat = new MiniServer(this, socket);
+				ChatThread chat = new ChatThread(this, socket);
 				Thread x = new Thread(chat);
 				x.start();
 				System.out.println("Started Thread");
@@ -99,6 +99,11 @@ public class ChatServer {
 			}
 				
 		}*/
+		/*
+		 * for (int i = 0; i < ChatServer.connectionArray.size(); i++) { if
+		 * (ChatServer.connectionArray.get(i) == socket) {
+		 * ChatServer.connectionArray.remove(i); } }
+		 */
 		for (int i = 0; i < ChatServer.connectionArray.size(); i++) {
 			Socket tempSock = (Socket) ChatServer.connectionArray
 					.get(i);

@@ -6,26 +6,22 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class MiniServer implements Runnable {
+public class ChatThread implements Runnable {
 	private Socket socket;
 	private ChatServer server;
 	private Scanner input;
 	String message = "";
 
-	public MiniServer(ChatServer server, Socket socket) {
+	public ChatThread(ChatServer server, Socket socket) {
 		this.server = server;
 		this.socket = socket;
 	}
 
-	public void CheckConnection() throws IOException {
+	/*public void CheckConnection() throws IOException {
 
 		if (!socket.isConnected()) {
 			System.out.println("NO LONGER CONNECTED");
-			/*
-			 * for (int i = 0; i < ChatServer.connectionArray.size(); i++) { if
-			 * (ChatServer.connectionArray.get(i) == socket) {
-			 * ChatServer.connectionArray.remove(i); } }
-			 */
+			
 			for (Socket tempSock : ChatServer.connectionArray) {
 				System.out.println("NO LONGER CONNECTED");
 				if (tempSock == socket) {
@@ -46,7 +42,7 @@ public class MiniServer implements Runnable {
 						+ "disconnected");
 			}
 		}
-	}
+	}*/
 
 	public void run() {
 		try {
@@ -63,7 +59,6 @@ public class MiniServer implements Runnable {
 				 continue;
 				 }
 				// read next message
-				
 				message = input.nextLine();
 
 				// System.out.println(ChatServer.currentUsers);
@@ -90,9 +85,6 @@ public class MiniServer implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			// } catch (IOException e) {
-			// TODO Auto-generated catch block
-			// e.printStackTrace();
 		}
 	}
 
