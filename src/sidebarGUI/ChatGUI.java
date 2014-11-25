@@ -24,7 +24,7 @@ import javax.swing.text.StyledDocument;
 
 import chatSystem.ChatClient;
 import chatSystem.ChatServer;
-import chatSystem.MiniServer;
+import chatSystem.ChatThread;
 //import chatSystem.NetworkThread;
 
 public class ChatGUI extends JPanel {
@@ -35,13 +35,15 @@ public class ChatGUI extends JPanel {
 	private JComboBox<String> groups;
 	private JButton btnSend;
 	private String chatSelected = groupNames[0];
-	private static ChatClient chatClient;
-	private static Socket socket;
-	private static PrintWriter output;
+	private ChatClient chatClient;
+	private Socket socket;
+	private PrintWriter output;
 	
 	public ChatGUI(){		
 		createGUI();
 		setListeners();
+		//connect to server
+		Connect();
 	}
 	
 	private void createGUI(){
@@ -68,7 +70,6 @@ public class ChatGUI extends JPanel {
 		holder.add(btnSend, BorderLayout.EAST);
 		add(holder, BorderLayout.SOUTH);
 		
-		Connect();
 	}
 
 	private void setListeners(){
@@ -77,6 +78,8 @@ public class ChatGUI extends JPanel {
 			public void actionPerformed(ActionEvent source) {
 				sendMessage();
 			}
+
+			
 		});
 		
 		@SuppressWarnings("serial")
@@ -126,21 +129,25 @@ public class ChatGUI extends JPanel {
 		String text = groups.getSelectedItem().toString() + "_You sent: " + content;
 		txFdCurrentText.setText("");
 		System.out.println("sent message: " + text + " to " + groups.getSelectedItem().toString());
-		// readMessage(text);
+		//outputs to all clients, received from server
 		output.println(text);
+		output.flush();
+		
+		//TODO: processMessage( text);
 		// if (box.text != 'all')
 		// pretext = "#FROM: tony #TO: " + box.text
-		output.flush();
+		
 	}
-	public static void Connect(){
+	public void Connect(){
 		final int PORT = 4444;
 		try {
+			
 			socket = new Socket("127.0.0.1", PORT);
-			System.out.println("You connected to: " + "USC");
+			System.out.println("You connected to: " + socket);
 			
 			chatClient = new ChatClient(socket);
 			
-			//sends the users name
+			//TODO: sends the users name
 			output = new PrintWriter(socket.getOutputStream());
 			output.println("poopernames");
 			output.flush();
@@ -148,10 +155,17 @@ public class ChatGUI extends JPanel {
 			Thread x = new Thread(chatClient);
 			x.start();
 			
-			//send name to add to "online" list;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}	
+	private void processMessage(String message) {
+		
+		// readMessage(text);
+	//			output.println(message);
+				// if (box.text != 'all')
+				// pretext = "#FROM: tony #TO: " + box.text
+		//		output.flush();
+		
+	}
 }
