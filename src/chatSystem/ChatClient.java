@@ -13,7 +13,7 @@ public class ChatClient implements Runnable {
 	Socket sock;
 	Scanner input;
 	Scanner send = new Scanner(System.in);
-	PrintWriter output;
+	public static PrintWriter output;
 	
 	public ChatClient(Socket sock){
 		
@@ -27,6 +27,7 @@ public class ChatClient implements Runnable {
 			input = new Scanner(sock.getInputStream());
 			output = new PrintWriter(sock.getOutputStream());
 			output.flush();
+			//maybe dont need output here?
 			while(true){
 				receive();  
 			}

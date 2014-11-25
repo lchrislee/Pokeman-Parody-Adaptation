@@ -1,28 +1,38 @@
 package chatSystem;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
 public class MiniServer implements Runnable {
-	Socket socket = null;
+	private Socket socket;
+	private ChatServer server;
 	private Scanner input;
-	private PrintWriter output;
 	String message = "";
 
-	public MiniServer(Socket socket) {
+	public MiniServer(ChatServer server, Socket socket) {
+		this.server = server;
 		this.socket = socket;
-
 	}
 
 	public void CheckConnection() throws IOException {
+
 		if (!socket.isConnected()) {
 			System.out.println("NO LONGER CONNECTED");
-			for (int i = 0; i < ChatServer.connectionArray.size(); i++) {
-				if (ChatServer.connectionArray.get(i) == socket) {
-					ChatServer.connectionArray.remove(i);
+			/*
+			 * for (int i = 0; i < ChatServer.connectionArray.size(); i++) { if
+			 * (ChatServer.connectionArray.get(i) == socket) {
+			 * ChatServer.connectionArray.remove(i); } }
+			 */
+			for (Socket tempSock : ChatServer.connectionArray) {
+				System.out.println("NO LONGER CONNECTED");
+				if (tempSock == socket) {
+					ChatServer.connectionArray.remove(tempSock);
+					// remove socket?
 				}
+
 			}
 
 			for (int i = 0; i < ChatServer.connectionArray.size(); i++) {
@@ -41,51 +51,49 @@ public class MiniServer implements Runnable {
 	public void run() {
 		try {
 			input = new Scanner(socket.getInputStream());
-			output = new PrintWriter(socket.getOutputStream());
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+			// output = new PrintWriter(socket.getOutputStream());
+			// } catch (IOException e1) {
+			// e1.printStackTrace();
+			// }
 
-		while (true) {
-			try {
-
-				CheckConnection();
+			while (true) {
+				// CheckConnection();
 
 				if (!input.hasNext()) {
-					continue;
-				}
-
+				 continue;
+				 }
+				// read next message
+				
 				message = input.nextLine();
 
-				System.out.println(ChatServer.currentUsers);
+				// System.out.println(ChatServer.currentUsers);
 
 				// if (message.contains("#FROM: ") && message.contains("#TO: ")
 
 				System.out.println("Client message: " + message);
-				System.out.println("ConnectionList size:");
-				System.out.println(ChatServer.connectionArray.size());
+			//	 System.out.println("ConnectionList size:");
+				// System.out.println(ChatServer.connectionArray.size());
+				// send to all here
+				server.sendToAll(message);
 
-				for (Socket tempSock : ChatServer.connectionArray) {
-					PrintWriter output = new PrintWriter(
-							tempSock.getOutputStream());
-					output.println(message);
-					output.flush();
-					System.out.println("Sent to: "
-							+ tempSock.getLocalAddress().getHostName());
-				}
-			} catch (Exception e) {
+			}
+		} catch (EOFException ie) {
+			//
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			// try {
+			try {
+				server.removeConnection(socket);
+			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} finally {
-				try {
-					socket.close();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 			}
-
+			// } catch (IOException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
 		}
-
 	}
+
 }
