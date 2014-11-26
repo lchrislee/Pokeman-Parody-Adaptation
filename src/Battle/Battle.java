@@ -166,7 +166,9 @@ public class Battle extends RecursiveTask<Boolean> {
 	}
 	
 	private synchronized void swap(String input){//string will be number-pokemonname... eg: 1-Lickister  or 2-Beetwo
-			if(!(player1Quit || player2Quit)){//will run only if nobody's quit yet
+		
+		
+			//will run only if nobody's quit yet
 				int digitIndex = input.indexOf("_")+1;
 				int playerIndex = Integer.parseInt(input.substring(digitIndex,digitIndex+1));
 				
@@ -176,12 +178,15 @@ public class Battle extends RecursiveTask<Boolean> {
 					player1Switch = true;
 					player2Switch = false;
 					firstPlayerToSwitch = PLAYERONE;
+					player1Selected = true;
+					player2Selected = false;
 				}
 				
 				else{
 					player2Switch = true;
 					player1Switch = false;
-					
+					player2Selected = true;
+					player1Selected = false;
 					firstPlayerToSwitch = PLAYERTWO;
 				}
 				
@@ -189,12 +194,4 @@ public class Battle extends RecursiveTask<Boolean> {
 				//can reset turn order later
 			}
 			
-			else{
-				System.out.println("NO SWTICHING! WE QUIT ");
-			}
-		
-	}
-	
-	
-	
 }
