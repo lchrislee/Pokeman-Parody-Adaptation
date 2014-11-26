@@ -75,28 +75,7 @@ public class BattleServer {
 		
 	}
 	
-	public boolean p1goFirst(Pokemon p1Poke, Pokemon p2Poke){
-		if(p1Poke.getSpeed() > p2Poke.getSpeed())
-			return true;
 	
-		else if(p1Poke.getSpeed() == p2Poke.getSpeed()){
-			
-			if(p1Poke.getRarity() > p2Poke.getRarity())
-				return true;
-			
-			else if(p1Poke.getRarity() == p2Poke.getRarity()){
-				int num = (int)Math.random()%2;
-				if(num == 0)
-					return false;
-				
-				return true;
-			}
-			
-			return false;
-		}
-				
-		return false;
-	}
 	
 	public static void main(String[]args){
 		new BattleServer();
