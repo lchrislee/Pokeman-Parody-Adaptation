@@ -1,4 +1,4 @@
-package sidebarGUI;
+package client.sidebarGUI;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -22,10 +21,7 @@ import javax.swing.KeyStroke;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
 
-import chatSystem.ChatClient;
-import chatSystem.ChatServer;
-import chatSystem.ChatThread;
-//import chatSystem.NetworkThread;
+import client.chatSystem.ChatClient;
 
 public class ChatGUI extends JPanel {
 	private static final long serialVersionUID = 8239335834925382510L;

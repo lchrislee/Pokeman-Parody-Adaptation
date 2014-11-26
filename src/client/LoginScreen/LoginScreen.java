@@ -1,4 +1,4 @@
-package LoginScreen;
+package client.LoginScreen;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

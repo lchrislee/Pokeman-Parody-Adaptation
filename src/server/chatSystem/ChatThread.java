@@ -1,4 +1,4 @@
-package chatSystem;
+package server.chatSystem;
 
 import java.io.EOFException;
 import java.io.IOException;
