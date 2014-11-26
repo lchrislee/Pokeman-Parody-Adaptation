@@ -28,6 +28,11 @@ public class BattleThread implements Runnable {//needs a lot of work but i'll co
 	private DataOutputStream P1Out;
 	private DataInputStream P2In;
 	private DataOutputStream P2Out;
+	//@Override
+	/*public void run() {
+		// TODO Auto-generated method stub
+		
+	}*/
 	
 	
 	
@@ -65,13 +70,16 @@ public class BattleThread implements Runnable {//needs a lot of work but i'll co
 	
 	public void run(){
 		//make both players select their pokemon
-		Pokemon P1poke = p1.getCurrentPokemon();
+		/*Pokemon P1poke = p1.getCurrentPokemon();
 		Pokemon P2poke = p2.getCurrentPokemon();
 		
 		while(p1.hasActivePokemon() && p2.hasActivePokemon() && !p1.hasQuit() && !p2.hasQuit()){
 			//damage calculations...who goes first is all done by the server
+			if(bs.p1goFirst(P1poke, P2poke)){
+				
+			}
 		}
 	}
-	
+	*/
 	
 }
