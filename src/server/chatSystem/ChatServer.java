@@ -52,11 +52,11 @@ public class ChatServer {
 	}
 
 	// Start server first and take connections
-	public static void main(String[] args) throws Exception {
-		final int port = 4444;
-		new ChatServer(port);
-
-	}
+//	public static void main(String[] args) throws Exception {
+//		final int port = 4444;
+//		new ChatServer(port);
+//
+//	}
 
 	// Server echos to all clients users who has joined-- adds username to list
 	// that are online
