@@ -29,7 +29,7 @@ public class ChatGUI extends JPanel {
 	private final String[] groupNames = {"ALL", "P1 Only", "P2 Only", "P3 Only", "P4 Only", "P1 & P2", "P1 & P3", "P1 & P4", "P2 & P3", "P2 & P4", "P3 & P4"};
 	public static JTextPane txeaAllMessages;
 	private JTextField txFdCurrentText;
-	private JComboBox<String> groups;
+	private JComboBox groups;
 	private JButton btnSend;
 	private String chatSelected = groupNames[0];
 	private ChatClient chatClient;
@@ -60,7 +60,7 @@ public class ChatGUI extends JPanel {
 		add(container);
 		
 		txFdCurrentText = new JTextField(70);
-		groups = new JComboBox<String>(groupNames);
+		groups = new JComboBox(groupNames);
 		btnSend = new JButton("Send");
 		
 		JPanel holder = new JPanel(new BorderLayout());
@@ -96,7 +96,7 @@ public class ChatGUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent source) {
 				@SuppressWarnings("unchecked")
-				String selected = ((JComboBox<String>)source.getSource()).getSelectedItem().toString();
+				String selected = ((JComboBox)source.getSource()).getSelectedItem().toString();
 				if (selected.equals(chatSelected))
 					return;
 				else{
