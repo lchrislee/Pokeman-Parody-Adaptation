@@ -1,5 +1,6 @@
 package BattleGUI;
 
+import java.awt.CardLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -12,9 +13,13 @@ import javax.swing.JPanel;
 public class ActionSelection extends JPanel {
 	private static final long serialVersionUID = -1569591653741925028L;
 	final String ACTIONS[] = {"Attack", "Switch", "Surrender"};
+	private CardLayout selecter;
+	private CommandCenterGUI central;
 	
-	public ActionSelection(){
+	public ActionSelection(CardLayout s, CommandCenterGUI c){
 		createGUI();
+		selecter = s;
+		central = c;
 	}
 	
 	private void createGUI(){
@@ -29,13 +34,13 @@ public class ActionSelection extends JPanel {
 		}
 	}
 
-	public static void main(String[] args) {
-		JFrame j = new JFrame();
-		j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		j.setSize(500, 150);
-		j.add(new ActionSelection());
-		j.setVisible(true);
-	}
+//	public static void main(String[] args) {
+//		JFrame j = new JFrame();
+//		j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		j.setSize(500, 150);
+//		j.add(new ActionSelection());
+//		j.setVisible(true);
+//	}
 	
 	private class ActionButtonListener implements ActionListener{
 		@Override
@@ -43,12 +48,22 @@ public class ActionSelection extends JPanel {
 			switch(((JButton)e.getSource()).getText()){
 				case "Attack":
 					System.out.println("ATTACKED");
+					ActionSelection.this.selecter.show(central, central.ATTACKSELECT);
 					break;
 				case "Switch":
 					System.out.println("SWITCHED");
+					ActionSelection.this.selecter.show(central, central.SWITCH);
 					break;
 				case "Surrender":
 					System.out.println("SURRENDERED");
+					ActionSelection.this.selecter.show(central, central.TEXT);
+					ActionSelection.this.central.text.setText("You tried to run away!");
+					try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e1) {
+						e1.printStackTrace();
+					}
+					ActionSelection.this.selecter.show(central, central.ACTION);
 					break;
 			}
 		}
