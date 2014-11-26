@@ -14,9 +14,6 @@ import dataStore.Move;
 import dataStore.Player;
 import dataStore.Pokemon;
 
-
-
-
 public class BattleThread implements Runnable {//needs a lot of work but i'll commit for now
 	private BattleSocket battleSocket;
 	private BattleSocket battleSocketTwo;
@@ -82,4 +79,5 @@ public class BattleThread implements Runnable {//needs a lot of work but i'll co
 	}
 	*/
 	
+	}
 }

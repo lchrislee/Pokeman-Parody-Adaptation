@@ -3,7 +3,6 @@ package Battle;
 //socket has player
 //server class has a server socket for chat and another server socket for battle
 
-import items.Item;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -34,13 +33,11 @@ public class BattleServer {
 			BattleSocket[]socketArray = {null,null,null,null};//we'll end up with four sockets anyway
 			Vector<Pokemon>pList = null;
 			Vector<ImageIcon>spriteList = null;
-			Vector<Item>itemList = null;
 			//too lazy to make dummy data
 					
 			
 			for(int i=0;i<4;++i){
 			 socketArray[i] = (BattleSocket)ss.accept();//hopefully downcasting this doesn't give us problems
-			 socketArray[i].getPlayer().setItemList(itemList);
 			 socketArray[i].getPlayer().setPokemonList(pList);
 			 socketArray[i].getPlayer().setSpriteList(spriteList);
 			 new DataOutputStream(socketArray[i].getOutputStream()).writeInt((i%2)+1);//inform the players what player they are in the battle

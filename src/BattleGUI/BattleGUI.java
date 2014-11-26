@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import sidebarGUI.SideBar;
+import client.sidebarGUI.SideBar;
 
 public class BattleGUI extends JFrame{
 	public BattleGUI(){

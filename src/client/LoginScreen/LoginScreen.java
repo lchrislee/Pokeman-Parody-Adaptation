@@ -1,4 +1,4 @@
-package LoginScreen;
+package client.LoginScreen;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -50,13 +52,24 @@ public class LoginScreen extends JPanel {
 		/* name text input */
 		JPanel nameLabelPanel = new JPanel();
 		nameLabelPanel.setLayout(new GridBagLayout());
-		nameLabelPanel.setMaximumSize(new Dimension(200,200));
+		nameLabelPanel.setMaximumSize(new Dimension(800,100));
 		add(nameLabelPanel);
 		JLabel nameLabel = new JLabel("Enter your name");
 		nameLabel.setFont(new Font("Arial",Font.PLAIN, 25));
 		nameLabelPanel.add(nameLabel);
-		inputNameTextField = new JTextField();
+		inputNameTextField = new JTextField("");
 		inputNameTextField.setMaximumSize(new Dimension(500,50));
+		inputNameTextField.addActionListener(new ActionListener(){
+
+            public void actionPerformed(ActionEvent e){
+            	if ( (inputNameTextField.getText()).length() == 0 ) {
+            		System.out.println("Enter your name");
+            	}
+            	else {
+            		System.out.println("Selected Name: " + inputNameTextField.getText());
+            	}
+            }
+        });
 		
 		add(inputNameTextField);
 		
@@ -73,11 +86,12 @@ public class LoginScreen extends JPanel {
 		
 		characterSpriteListPanel = new JPanel();
 		characterSpriteListPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+		characterSpriteListPanel.setPreferredSize(new Dimension(800,200));
 		characterSpriteList = new ArrayList<JButton>();
 		
 		
-		Image millerImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/miller_small.png");
-		ImageIcon millerImageIcon = new ImageIcon(millerImage, "Miller");
+		final Image millerImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/miller_small.png");
+		final ImageIcon millerImageIcon = new ImageIcon(millerImage, "Miller");
 		millerButton = new JButton(millerImageIcon);
 		millerButton.setBackground(Color.WHITE);
 		millerButton.addMouseListener(new MouseListener() {
@@ -103,6 +117,7 @@ public class LoginScreen extends JPanel {
             @Override
             public void mouseClicked(MouseEvent me) {
             	chosenCharacter.setDescription("Miller");
+            	System.out.println("Selected Character: Miller");
             	chosenCharacter.setImage(millerImage);
             	((JButton)me.getSource()).setBackground(Color.RED);
             	//millerButton.setBackground(Color.white);
@@ -115,8 +130,8 @@ public class LoginScreen extends JPanel {
             }
         });
 		
-		Image crowleyImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/Crowley_small.png");
-		ImageIcon crowleyImageIcon = new ImageIcon(crowleyImage, "Crowley");
+		final Image crowleyImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/Crowley_small.png");
+		final ImageIcon crowleyImageIcon = new ImageIcon(crowleyImage, "Crowley");
 		crowleyButton = new JButton(crowleyImageIcon);
 		crowleyButton.setBackground(Color.WHITE);
 		crowleyButton.addMouseListener(new MouseListener() {
@@ -142,6 +157,7 @@ public class LoginScreen extends JPanel {
             @Override
             public void mouseClicked(MouseEvent me) {
             	chosenCharacter.setDescription("Crowley");
+            	System.out.println("Selected Character: Crowley");
             	chosenCharacter.setImage(crowleyImage);
             	((JButton)me.getSource()).setBackground(Color.RED);
             	millerButton.setBackground(Color.white);
@@ -155,8 +171,8 @@ public class LoginScreen extends JPanel {
         });
 		
 		
-		Image dolanImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/dolan_small.png");
-		ImageIcon dolanImageIcon = new ImageIcon (dolanImage, "Dolan");
+		final Image dolanImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/dolan_small.png");
+		final ImageIcon dolanImageIcon = new ImageIcon (dolanImage, "Dolan");
 		dolanButton = new JButton(dolanImageIcon);
 		dolanButton.setBackground(Color.WHITE);
 		dolanButton.addMouseListener(new MouseListener() {
@@ -182,6 +198,7 @@ public class LoginScreen extends JPanel {
             @Override
             public void mouseClicked(MouseEvent me) {
             	chosenCharacter.setDescription("Dolan");
+            	System.out.println("Selected Character: Dolan");
             	chosenCharacter.setImage(dolanImage);
             	((JButton)me.getSource()).setBackground(Color.RED);
             	millerButton.setBackground(Color.white);
@@ -194,8 +211,8 @@ public class LoginScreen extends JPanel {
             }
         });
 		
-		Image goobyImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/gooby_small.png");
-		ImageIcon goobyImageIcon = new ImageIcon (goobyImage, "Gooby");
+		final Image goobyImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/gooby_small.png");
+		final ImageIcon goobyImageIcon = new ImageIcon (goobyImage, "Gooby");
 		goobyButton = new JButton(goobyImageIcon);
 		goobyButton.setBackground(Color.WHITE);
 		goobyButton.addMouseListener(new MouseListener() {
@@ -221,6 +238,7 @@ public class LoginScreen extends JPanel {
             @Override
             public void mouseClicked(MouseEvent me) {
             	chosenCharacter.setDescription("Gooby");
+            	System.out.println("Selected Character: Gooby");
             	chosenCharacter.setImage(goobyImage);
             	((JButton)me.getSource()).setBackground(Color.RED);
             	millerButton.setBackground(Color.white);
@@ -233,8 +251,8 @@ public class LoginScreen extends JPanel {
             }
         });
 		
-		Image mistyImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/misty_small.png");
-		ImageIcon mistyImageIcon = new ImageIcon (mistyImage, "Misty");
+		final Image mistyImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/misty_small.png");
+		final ImageIcon mistyImageIcon = new ImageIcon (mistyImage, "Misty");
 		mistyButton = new JButton(mistyImageIcon);
 		mistyButton.setBackground(Color.WHITE);
 		mistyButton.addMouseListener(new MouseListener() {
@@ -260,6 +278,7 @@ public class LoginScreen extends JPanel {
             @Override
             public void mouseClicked(MouseEvent me) {
             	chosenCharacter.setDescription("Misty");
+            	System.out.println("Selected Character: Misty");
             	chosenCharacter.setImage(mistyImage);
             	((JButton)me.getSource()).setBackground(Color.RED);
             	millerButton.setBackground(Color.white);
@@ -272,8 +291,8 @@ public class LoginScreen extends JPanel {
             }
         });
 		
-		Image jungIllImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/jungIll_small.png");
-		ImageIcon jungIllImageIcon = new ImageIcon (jungIllImage, "JungIll");
+		final Image jungIllImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/jungIll_small.png");
+		final ImageIcon jungIllImageIcon = new ImageIcon (jungIllImage, "JungIll");
 		jungIllButton = new JButton(jungIllImageIcon);
 		jungIllButton.setBackground(Color.WHITE);
 		jungIllButton.addMouseListener(new MouseListener() {
@@ -299,6 +318,7 @@ public class LoginScreen extends JPanel {
             @Override
             public void mouseClicked(MouseEvent me) {
             	chosenCharacter.setDescription("JungIll");
+            	System.out.println("Selected Character: JungIll");
             	chosenCharacter.setImage(jungIllImage);
             	((JButton)me.getSource()).setBackground(Color.RED);
             	millerButton.setBackground(Color.white);
@@ -363,6 +383,7 @@ public class LoginScreen extends JPanel {
 		readyPanel.setLayout(new GridBagLayout());
 		readyPanel.setMaximumSize(new Dimension(300,50));
 		readyButton = new JButton("READY");
+		readyButton.setFont(new Font("Arial",Font.BOLD, 45));
 		readyPanel.add(readyButton);
 		add(readyPanel);
 	}

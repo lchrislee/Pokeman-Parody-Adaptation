@@ -25,8 +25,8 @@ public class BattleTest {//test cases for the battle system
 		int level = 5;
 		
 		Vector<Move>moveList = new Vector<Move>();
-		moveList.add(new Move(50,1));//does 50 damage, dunno what move it is yet
-		moveList.add(new Move(-1,1));
+		moveList.add(new Move(50,1, "Tackle"));//does 50 damage, dunno what move it is yet
+		moveList.add(new Move(-1,1, "Fail"));
 		
 		String[]imageNames = {"res/Pokemon_sprites/Lickister_left_tr.png","res/Pokemon_sprites/Lickister_right_tr.png"};
 		String[]imageNamesTwo = {"res/Pokemon_sprites/Magikuna_left_tr.png","res/Pokemon_sprites/Magikuna_right_tr.png"};
