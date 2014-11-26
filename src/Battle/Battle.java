@@ -34,8 +34,10 @@ public class Battle extends RecursiveTask<Boolean> {
 	}
 	
 	public static void main(String[] args) {
-		Player p1;
-		Player p2;
+		Player p1 = new Player();
+		Player p2 = new Player();
+		//make a dummy player and pokemon
+		
 		
 		
 		Battle b = new Battle();

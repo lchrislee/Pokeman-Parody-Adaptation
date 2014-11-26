@@ -1,5 +1,6 @@
 package dataStore;
 
+import java.io.Serializable;
 import java.util.Vector;
 import java.util.HashMap;
 
@@ -7,7 +8,7 @@ import javax.swing.ImageIcon;
 
 //player needs to know the index of the current pokemon that's out
 
-public class Player{
+public class Player implements Serializable{
 	private int currentPokemonIndex = 0;//which pokemon in the list is currently out
 	
 	private Vector <Pokemon> pokemonList;// this will store the Pokemon the player has caught

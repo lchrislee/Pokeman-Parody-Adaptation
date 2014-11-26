@@ -1,4 +1,5 @@
 package dataStore;
+import java.io.Serializable;
 import java.util.Vector;
 import java.util.Random;
 
@@ -6,7 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 
-public class Pokemon {
+public class Pokemon implements Serializable{
 	private boolean conscious = true; //default
 	private int attack;
 	private int defense;

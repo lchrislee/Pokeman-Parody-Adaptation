@@ -1,6 +1,8 @@
 package dataStore;
 
-public class Move {
+import java.io.Serializable;
+
+public class Move implements Serializable {
 	
 	private int id;//so we can take name and damage value from database
 	private int damage;//maybe store this..dunno yet
