@@ -37,6 +37,7 @@ public class Server implements Runnable{
 			
 			for (int i = 0; i < 4; ++i) {
 				Socket socket = ss.accept();
+				System.out.println(socket.toString() + " TO STRING ");
 				chatServer.listen(socket);
 			}
 		} catch (IOException e) {

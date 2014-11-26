@@ -11,6 +11,7 @@ public class SideBar extends JPanel {
 
 	public SideBar(){
 		String address = JOptionPane.showInputDialog(this, "Enter the server's IP address", "Get IP Address", JOptionPane.DEFAULT_OPTION);
+		System.out.println(address + " ADDRESS ");
 		createGUI(address);
 	}
 	
