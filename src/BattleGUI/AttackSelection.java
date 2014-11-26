@@ -1,5 +1,6 @@
 package BattleGUI;
 
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -39,6 +40,9 @@ public class AttackSelection extends JPanel {
 		public AttackButton(Move m){
 			super();
 			move = m;
+			setFont(new Font("Arial", Font.BOLD, 22));
+			setFocusPainted(false);
+			setFocusable(false);
 			setText(move.getName());
 			addActionListener(new ActionListener(){
 				@Override
