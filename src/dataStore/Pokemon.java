@@ -4,7 +4,7 @@ import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-//get current pokemon
+
 
 public class Pokemon {
 	private boolean conscious = true; //default
@@ -15,24 +15,38 @@ public class Pokemon {
 	private int maxHealth;
 	private double rarity; /*the level of rarity (the higher level of rarity, the stronger the pokemon will be and less likely it will be to appear, more difficult to catch)*/
 	private int level;
-	private Vector<Move> moveList;
-	private ImageIcon sprite;
-	private String name;
-	private String filename;	
 	
+	private Vector<Move> moveList;
+	//private Vector<ImageIcon> spriteList = new Vector<ImageIcon>();
+	private ImageIcon leftSprite;
+	private ImageIcon rightSprite;
+	private String name;
+	private String[] FileNameArray;	
 
-
-	public Pokemon (String name,String filename,int a, int d, int sp, int mh, double rarity, int lvl, Vector<Move> moves,ImageIcon image){//just assign the parameters to private vars
+	public Pokemon (String name,String[] FileNameArray,int a, int d, int sp, int mh, double rarity, int lvl, Vector<Move> moves){//just assign the parameters to private vars
 		this.name = name;
-		this.filename = filename;
+		this.FileNameArray = FileNameArray;
 		this.attack = a;
 		this.defense = d;
 		this.speed = sp;
 		this.maxHealth = mh;
+		this.health = this.maxHealth;//only at the start
 		this.rarity = rarity;
 		this.level = lvl;
 		this.moveList = moves;
-		this.sprite = image;
+		createSprites();//store left and right cuz we dunno which player we'll be.
+	}
+	
+	private void createSprites(){
+		for(int i=0;i<FileNameArray.length;++i){
+			ImageIcon icon = new ImageIcon(FileNameArray[i]);
+		//	spriteList.add(icon);
+			if(FileNameArray[i].contains("left"))
+				leftSprite = icon;
+			
+			if(FileNameArray[i].contains("right"))
+				rightSprite = icon;
+		}
 	}
 	
 	public boolean isConscious(){
@@ -44,7 +58,13 @@ public class Pokemon {
 	}
 	
 	public void setHealth(int h){// ¨C this method will be used when a pokemon¡¯s health must be adjusted (potion is used the pokemon is attacked)
-		this.health = h;
+		if(health <= 0)
+			this.health = 0;
+		else
+			this.health = h;
+		
+		if(this.health == 0)
+			this.faint();
 	}
 	
 	public int getLevel(){
@@ -71,9 +91,7 @@ public class Pokemon {
 		return this.rarity;
 	}
 	
-	public Vector<Move> getMoves(){
-		return this.moveList;
-	}
+	
 
 	public int getMaxHealth() {
 		return maxHealth;
@@ -85,17 +103,21 @@ public class Pokemon {
 	}
 
 	
-	public ImageIcon getSprite() {
-		return sprite;
+	public ImageIcon getLeftSprite() {
+		return leftSprite;
+	}
+	
+	public ImageIcon getRightSprite(){
+		return rightSprite;
 	}
 
 	
-	public String getName() {
+	public String getName(){
 		return name;
 	}
 
-	public String getFilename() {
-		return filename;
+	public String[] getFileNameArray() {
+		return this.FileNameArray;
 	}
 	
 }

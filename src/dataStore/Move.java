@@ -7,7 +7,11 @@ public class Move {
 
 	
 	public Move(int damage,int id){	//4 moves x 20 pokemon = 80 moves -.-
-		this.damage = damage;
+		if(damage < 0)
+			this.damage = 0;
+		else
+			this.damage = damage;
+		
 		this.id = id;
 	}
 	//doing a move just 
