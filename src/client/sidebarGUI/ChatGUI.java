@@ -21,6 +21,7 @@ import javax.swing.KeyStroke;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
 
+import server.Server;
 import client.chatSystem.ChatClient;
 
 public class ChatGUI extends JPanel {
@@ -34,12 +35,14 @@ public class ChatGUI extends JPanel {
 	private ChatClient chatClient;
 	private Socket socket;
 	private PrintWriter output;
+	private String serverAddress;
 	
-	public ChatGUI(){		
+	public ChatGUI(String address){		
 		createGUI();
 		setListeners();
 		//connect to server
-		Connect();
+		serverAddress = address;
+		Connect(address);
 	}
 	
 	private void createGUI(){
@@ -134,11 +137,10 @@ public class ChatGUI extends JPanel {
 		// pretext = "#FROM: tony #TO: " + box.text
 		
 	}
-	public void Connect(){
-		final int PORT = 4444;
+	public void Connect(String address){
 		try {
 			
-			socket = new Socket("127.0.0.1", PORT);
+			socket = new Socket(address, Server.PORT);
 			System.out.println("You connected to: " + socket);
 			
 			chatClient = new ChatClient(socket);

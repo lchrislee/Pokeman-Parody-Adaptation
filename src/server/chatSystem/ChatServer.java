@@ -22,27 +22,27 @@ public class ChatServer {
 	private ServerSocket serverSocket = null;
 
 	// Constructor and while-accept loop
-	public ChatServer(int port) throws IOException {
-		listen(port);
+	public ChatServer(int port) /*throws IOException*/ {
+//		listen(port);
 	}
 
-	private void listen(int port) throws IOException{
+	public/*private*/ void listen(/*int port*/ Socket s) /*throws IOException*/{
 		try {
 			//create the server socket
-			ServerSocket ss = new ServerSocket(port);
-			System.out.println("Waiting for clients...");
-			while (true) {
+//			ServerSocket ss = new ServerSocket(port);
+//			System.out.println("Waiting for clients...");
+//			while (true) {
 				
-				Socket socket = ss.accept();
-				connectionArray.add(socket); //?
-				System.out.println("client connected from: " + socket.getLocalAddress().getHostName());
-				AddUserName(socket); //?
+//				Socket socket = ss.accept();
+				connectionArray.add(/*socket*/s); //?
+				System.out.println("client connected from: " + /*socket*/s.getLocalAddress().getHostName());
+				AddUserName(/*socket*/s); //?
 				//new thread for connection
-				ChatThread chat = new ChatThread(this, socket);
+				ChatThread chat = new ChatThread(this, /*socket*/s);
 				Thread x = new Thread(chat);
 				x.start();
 				System.out.println("Started Thread");
-			}
+//			}
 		} catch (IOException ioe) {
 			System.out.println("IOException in server constructor:"
 					+ ioe.getMessage());
