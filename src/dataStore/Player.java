@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
 
 //player needs to know the index of the current pokemon that's out
 
-public class Player{//going to need its own socket...or extend socket
+public class Player{
 	private int currentPokemonIndex = 0;//which pokemon in the list is currently out
 	
 	private Vector <Pokemon> pokemonList;// this will store the Pokemon the player has caught
@@ -24,13 +24,13 @@ public class Player{//going to need its own socket...or extend socket
 	private Pokemon enemyPokemon;
 	private Pokemon currentPokemon;//in battle at the moment
 	private boolean quit = false;
-	private Set<String> playerMoves;
+	//private Set<String> playerMoves;
 		
-		public Player(){
+		public Player(){/*
 			playerMoves = new HashSet<String>();
 			playerMoves.add("Fight");
 			playerMoves.add("Switch");
-			playerMoves.add("Quit");
+			playerMoves.add("Quit");*/
 		}
 	
 		public Player(Vector<Pokemon>pList, Vector <ImageIcon> imageList){
@@ -59,10 +59,16 @@ public class Player{//going to need its own socket...or extend socket
 		
 		public void setPokemonList(Vector<Pokemon>pList){
 			this.pokemonList = pList;
+			/*if(this.pokemonList!=null && !this.pokemonList.isEmpty()){
+				this.currentPokemon = pokemonList.get(0);
+				
+			}*/
 		}
 		
 		public void setSpriteList(Vector<ImageIcon>spriteList){
 			this.spriteList = spriteList;
+			if(spriteList!=null && !spriteList.isEmpty())
+				currentSprite = spriteList.get(0);
 		}
 				
 		public void setEnemyPokemon(Pokemon enemy){
@@ -76,20 +82,21 @@ public class Player{//going to need its own socket...or extend socket
 			this.currentPokemon = this.pokemonList.get(0);
 			
 		}
-				
+		
+		//doubles up as switching
 		public void choosePokemon(Pokemon p){ //¨C the player will access his/her Vector of pokemon and select one to battle (when the current pokemon faints)
-			if(this.currentPokemon!=p){//no switching with yourself
+			//if(this.currentPokemon!=p){//no switching with yourself
 				if(this.pokemonList.contains(p)){
 					this.currentPokemon = p;
 					currentPokemonIndex = this.pokemonList.indexOf(p);				
 					
 				}
-			}
+			//}
 				
 		}	
 			
 		
-		public void flee(){//set quit to true
+		public void quit(){//set quit to true
 			this.quit = true;
 		}
 		
