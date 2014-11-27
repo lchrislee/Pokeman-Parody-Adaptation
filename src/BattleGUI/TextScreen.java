@@ -38,7 +38,7 @@ public class TextScreen extends JPanel {
 			public void mouseClicked(MouseEvent arg0) {
 				// TODO Auto-generated method stub
 				System.out.println("LET's go back");
-				ActionSelection.lock.lock();
+				ActionSelection.lock.unlock();
 				switcher.show(central, central.ACTION);
 				
 			}
