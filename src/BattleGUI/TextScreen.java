@@ -2,6 +2,11 @@
 package BattleGUI;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -11,9 +16,14 @@ public class TextScreen extends JPanel {
 	private final int MAXLINES = 7;
 	private final int MAXCHARACTERSPERLINE = 91;
 	private JTextArea message;
+
+	private CommandCenterGUI central;
+	private CardLayout switcher;
 	
-	public TextScreen(){
+	public TextScreen(CommandCenterGUI central,CardLayout switcher){
 		createGUI();
+		this.central = central;
+		this.switcher = switcher;
 	}
 	
 	private void createGUI(){
@@ -22,6 +32,42 @@ public class TextScreen extends JPanel {
 		message.setEditable(false);
 		message.setLineWrap(true);
 		add(message);
+		message.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				System.out.println("LET's go back");
+				ActionSelection.lock.lock();
+				switcher.show(central, central.ACTION);
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 	}
 	
 	public void setText(String s){
@@ -34,6 +80,9 @@ public class TextScreen extends JPanel {
 		else
 			message.append("\n" + s);
 	}
+	
+
+	
 	
 //	public static void main(String[] args) {
 //		JFrame j = new JFrame();

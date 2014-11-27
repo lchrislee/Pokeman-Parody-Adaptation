@@ -54,15 +54,16 @@ public class AttackSelection extends JPanel {
 			addActionListener(new ActionListener(){
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					System.out.println(move);
+					System.out.println(move.getName());
 					AttackSelection.this.central.text.setText("You used " + move.getName() + "!");
 					AttackSelection.this.selecter.show(central, central.TEXT);
-					try {
+					
+					/*try {
 						Thread.sleep(1500);
 					} catch (InterruptedException e1) {
 						e1.printStackTrace();
 					}
-					AttackSelection.this.selecter.show(central, central.ACTION);
+					AttackSelection.this.selecter.show(central, central.ACTION);*/
 				}
 			});
 		}

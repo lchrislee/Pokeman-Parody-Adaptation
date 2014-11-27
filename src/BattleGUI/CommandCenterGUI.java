@@ -29,7 +29,7 @@ public class CommandCenterGUI extends JPanel {
 		Move[] m = {new Move(50, 1, "Tackle"), new Move(100, 2, "HYPER BEAM"), new Move(60, 3, "Wing Attack"), new Move(0, 4, "Splash")};
 		attacks = new AttackSelection(m, switcher, this);
 		add(attacks, ATTACKSELECT);
-		text = new TextScreen();
+		text = new TextScreen(this,switcher);
 		add(text, TEXT);
 		selection = new ActionSelection(switcher, this);
 		add(selection, ACTION);

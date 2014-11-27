@@ -1,7 +1,9 @@
 package Battle;
 
+import java.util.Vector;
 import java.util.concurrent.RecursiveTask;
 
+import dataStore.Move;
 import dataStore.Player;
 import dataStore.Pokemon;
 
@@ -36,9 +38,15 @@ public class Battle extends RecursiveTask<Boolean> {
 	public static void main(String[] args) {
 		Player p1 = new Player();
 		Player p2 = new Player();
+		
+	
+		
 		//make a dummy player and pokemon
+		//Pokemon metapod = new Pokemon("Met")
+		//public Pokemon (String name,String[] FileNameArray,int a, int d, int sp, int mh, double rarity, int lvl, Vector<Move> moves)
 		
-		
+		//Pokemon p = new Pokemon("Lickister",null,attack,defense,speed,mh,rarity, level,moveList);
+		//Pokemon poke = new Pokemon("Magikuna",imageNamesTwo,attack,defense,speed,mh,rarity, level,moveList);
 		
 		Battle b = new Battle();
 		b.input = "Attack_Tackle|50~P1 P2";
