@@ -32,6 +32,8 @@ public class Server implements Runnable{
 	
 	public Server(){
 		chatServer = new ChatServer(CHATPORT);
+		chatSockets = new ArrayList<Socket>();
+		battleSockets = new ArrayList<Socket>();
 		System.out.println("Getting input from other players");
 //		try {
 //			Thread.sleep(2000);//TODO replace this with actual server stuff
@@ -43,11 +45,11 @@ public class Server implements Runnable{
 			ssChat = new ServerSocket(CHATPORT);
 			ssBattle = new ServerSocket(BATTLEPORT);
 			
-			for (int i = 0; i < 4; ++i){
-				Socket socket = ssBattle.accept();
-				System.out.println(socket.toString() + " TO STRING ");
-				battleSockets.add(socket);
-			}
+//			for (int i = 0; i < 4; ++i){
+//				Socket socket = ssBattle.accept();
+//				System.out.println(socket.toString() + " TO STRING ");
+//				battleSockets.add(socket);
+//			}
 			for (int i = 0; i < 4; ++i) {
 				Socket socket = ssChat.accept();
 				System.out.println(socket.toString() + " TO STRING ");
