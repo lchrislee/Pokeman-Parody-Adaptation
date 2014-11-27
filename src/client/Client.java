@@ -22,9 +22,9 @@ public class Client{
 	
 	public Client(String ipAddress){
 		clientGUI = new GUI();
+		System.out.println("GUI CREATED");
 		hostAddress = ipAddress;
 		try {
-			
 			clientSocket = new Socket(hostAddress,Server.BATTLEPORT);
 			br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 			pw = new PrintWriter(clientSocket.getOutputStream());
@@ -35,12 +35,11 @@ public class Client{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 	}
 	
 	public void run(){
-		//
+		System.out.println("CLIENT MAKING GUI");
+		clientGUI.createGUI(hostAddress, pw, br);
 	}
 	
 	public void createGUI(String ip){

@@ -45,16 +45,15 @@ public class Server implements Runnable{
 			ssChat = new ServerSocket(CHATPORT);
 			ssBattle = new ServerSocket(BATTLEPORT);
 			
-//			for (int i = 0; i < 4; ++i){
-//				Socket socket = ssBattle.accept();
-//				System.out.println(socket.toString() + " TO STRING ");
-//				battleSockets.add(socket);
-//			}
-			for (int i = 0; i < 4; ++i) {
-				Socket socket = ssChat.accept();
-				System.out.println(socket.toString() + " TO STRING ");
-				chatServer.listen(socket);
-				chatSockets.add(socket);
+			for (int i = 0; i < 4; ++i){
+				Socket battleSocketInput = ssBattle.accept();
+				System.out.println(battleSocketInput.toString() + " CONNECTED TO BATTLE");
+				battleSockets.add(battleSocketInput);
+
+				Socket chatSocketInput = ssChat.accept();
+				System.out.println(chatSocketInput.toString() + " CONNECTED TO CHAT");
+				chatServer.listen(chatSocketInput);
+				chatSockets.add(chatSocketInput);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

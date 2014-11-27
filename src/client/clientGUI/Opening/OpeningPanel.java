@@ -222,10 +222,12 @@ public class OpeningPanel extends JPanel implements ActionListener {
 			gameLogoYSpeed = 0;
 		}
 		
-		if (timerCount == 300) {
+		if (timerCount >= 300) {
+			System.out.println("opening done!");
 			done = true;
+			timer.stop();
 		}
-		if (done) System.out.println("DONE and ALAN LIKES DETERGENTS");
+//		if (done) System.out.println("DONE and ALAN LIKES DETERGENTS");
 		
 		/*
 		if (weepintoiseX > 0) {
