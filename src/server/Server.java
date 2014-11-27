@@ -5,6 +5,7 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -32,14 +33,41 @@ public class Server implements Runnable{
 //			e.printStackTrace();
 //		}
 		System.out.println("Waiting for clients...");
+		ArrayList<Socket> connectedSockets = new ArrayList<Socket>();
+		ArrayList<Socket> incomingSockets = new ArrayList<Socket>();
+		
 		try {
 			ss = new ServerSocket(PORT);
-			
-			for (int i = 0; i < 4; ++i) {
+			for (int i = 0; i < 8; ++i) {
 				Socket socket = ss.accept();
+				System.out.println("Local Address: " + socket.getLocalAddress());
 				System.out.println(socket.toString() + " TO STRING ");
-				chatServer.listen(socket);
+				if (connectedSockets.size() == 0)
+					connectedSockets.add(socket);
+				else{
+					boolean putIn = false;
+					for (Socket s : connectedSockets){
+						if (s.getLocalAddress().equals(socket.getLocalAddress())){
+							connectedSockets.add(socket);
+							putIn = true;
+						}
+					}
+					if (!putIn){
+						for (Socket s : incomingSockets){
+							if (s.getLocalAddress().equals(socket)){
+								connectedSockets.add(0, socket);
+								connectedSockets.add(0, s);
+								incomingSockets.remove(s);
+							}
+						}
+						putIn = true;
+					}
+					if (!putIn)
+						incomingSockets.add(socket);
+				}
 			}
+			for (int i = 0; i < connectedSockets.size(); i+= 2)
+				chatServer.listen(connectedSockets.get(i));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
