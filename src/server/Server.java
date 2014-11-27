@@ -5,6 +5,7 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -12,17 +13,22 @@ import server.chatSystem.ChatServer;
 import Battle.Battle;
 
 public class Server implements Runnable{
-	
-	private ChatServer chatServer;
-	private ServerSocket ss;
 	public static final int BATTLEPORT = 5555;
 	public static final int CHATPORT = 4444;
+	
+	private ChatServer chatServer;
+	private Battle first;
+	private Battle second;
+	
+	private ServerSocket ssChat;
+	private ServerSocket ssBattle;
+	private ArrayList<Socket> chatSockets;
+	private ArrayList<Socket> battleSockets;
 	int battleOneP1 = 1;
 	int battleOneP2 = -1;
 	int battleTwoP1 = -1;
 	int battleTwoP2 = -1;
-	private Battle first;
-	private Battle second;
+	
 	
 	public Server(){
 		chatServer = new ChatServer(CHATPORT);
@@ -34,12 +40,19 @@ public class Server implements Runnable{
 //		}
 		System.out.println("Waiting for clients...");
 		try {
-			ss = new ServerSocket(CHATPORT);
+			ssChat = new ServerSocket(CHATPORT);
+			ssBattle = new ServerSocket(BATTLEPORT);
 			
+			for (int i = 0; i < 4; ++i){
+				Socket socket = ssBattle.accept();
+				System.out.println(socket.toString() + " TO STRING ");
+				battleSockets.add(socket);
+			}
 			for (int i = 0; i < 4; ++i) {
-				Socket socket = ss.accept();
+				Socket socket = ssChat.accept();
 				System.out.println(socket.toString() + " TO STRING ");
 				chatServer.listen(socket);
+				chatSockets.add(socket);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
