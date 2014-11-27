@@ -15,7 +15,8 @@ public class Server implements Runnable{
 	
 	private ChatServer chatServer;
 	private ServerSocket ss;
-	public static final int PORT = 4444;
+	public static final int BATTLEPORT = 5555;
+	public static final int CHATPORT = 4444;
 	int battleOneP1 = 1;
 	int battleOneP2 = -1;
 	int battleTwoP1 = -1;
@@ -24,7 +25,7 @@ public class Server implements Runnable{
 	private Battle second;
 	
 	public Server(){
-		chatServer = new ChatServer(PORT);
+		chatServer = new ChatServer(CHATPORT);
 		System.out.println("Getting input from other players");
 //		try {
 //			Thread.sleep(2000);//TODO replace this with actual server stuff
@@ -33,7 +34,7 @@ public class Server implements Runnable{
 //		}
 		System.out.println("Waiting for clients...");
 		try {
-			ss = new ServerSocket(PORT);
+			ss = new ServerSocket(CHATPORT);
 			
 			for (int i = 0; i < 4; ++i) {
 				Socket socket = ss.accept();
