@@ -256,7 +256,7 @@ public class OpeningPanel extends JPanel implements ActionListener {
 		*/
 		repaint();
 	}
-	public static void main (String args []) {
+/*	public static void main (String args []) {
 		OpeningPanel op = new OpeningPanel();
 		JFrame testWindow = new JFrame();
 		testWindow.setTitle("Testing Opening");
@@ -265,5 +265,6 @@ public class OpeningPanel extends JPanel implements ActionListener {
 		testWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		testWindow.add(op);
 		testWindow.setVisible(true);
-	}
+	}*/
+	
 }
