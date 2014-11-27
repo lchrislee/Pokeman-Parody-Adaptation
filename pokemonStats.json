@@ -1,0 +1,1750 @@
+[
+  {
+    "datamonStats": {
+        "Level": 16,
+      
+        "HP": 72,
+      
+        "Attack": 37,
+      
+        "Defense": 43,
+      
+        "Speed": 26,
+      
+        "Rarity": 2
+      
+    },
+    "Name": "Lickister",
+
+    "moves": [
+	{
+	    "name": Lick,
+	    "damage":  15
+	},
+	{
+	    "name": Crush,
+	    "damage":  20
+	},
+	{
+	    "name": Blizzard,
+	    "damage":  50
+	},
+	{
+	    "name": Aqua?Jet,
+	    "damage":  40
+	}
+     ]              
+
+  },
+  {
+    "datamonStats": {
+        "Level": 17,
+      
+      
+        "HP": 76,
+      
+      
+        "Attack": 39,
+      
+      
+        "Defense": 46,
+      
+      
+        "Speed": 30,
+      
+      
+        "Rarity": 2      
+    },
+    "Name": "Lickister",
+    "moves":[
+	{
+	    "name": Lick,
+	    "damage":  15
+	},
+	{
+	    "name": Crush,
+	    "damage":  20
+	},
+	{
+	    "name": Blizzard,
+	    "damage":  50
+	},
+	{
+	    "name": Aqua?Jet,
+	    "damage":  40
+	}
+	]
+  },
+   {
+    "datamonStats": {
+        "Level": 18,
+      
+      
+        "HP": 80,
+      
+      
+        "Attack": 41,
+      
+      
+        "Defense": 50,
+      
+      
+        "Speed": 34,
+      
+      
+        "Rarity": 3
+      },
+    "Name": "Lickister",
+    "moves":[
+	{
+	    "name": Lick,
+	    "damage":  15
+	},
+	{
+	    "name": Crush,
+	    “damage":  20
+	},
+	{
+	    "name": Blizzard,
+	    "damage":  50
+	},
+	{
+	    "name": Aqua?Jet,
+	    "damage":  40
+	}
+	]
+  },
+   {
+    "datamonStats":{
+        "Level": 19,
+      
+        "HP": 84,
+      
+      
+        "Attack": 43,
+      
+      
+        "Defense": 54,
+      
+      
+        "Speed": 39,
+      
+      
+        "Rarity": 1
+      
+    },
+    "Name": "Lickister",
+    "moves":[
+	{
+	    "name": Lick,
+	    "damage":  15
+	},
+	{
+	    "name": Crush,
+	    "damage":  20
+	},
+	{
+	    "name": Blizzard,
+	    "damage":  50
+	},
+	{
+	    "name": Aqua?Jet,
+	    "damage":  40
+	}
+	]
+  },
+   {
+    "datamonStats":{
+        "Level": 20,
+      
+      
+        "HP": 88,
+      
+      
+        "Attack": 45,
+      
+      
+        "Defense": 58,
+      
+      
+        "Speed": 44,
+      
+      
+        "Rarity": 1
+      
+    },
+    "Name": "Lickister",
+
+    "moves":[
+	{
+	    "name": Lick,
+	    "damage":  15
+	},
+	{
+	    "name": Crush,
+	    "damage":  20
+	},
+	{
+	    "name": Blizzard,
+	    "damage":  50
+	},
+	{
+	    "name": Aqua?Jet,
+	    "damage":  40
+	}
+	]
+  },
+   {
+    "datamonStats": {
+        "Level": 17,
+      
+      
+        "HP": 78,
+      
+      
+        "Attack": 56,
+      
+      
+        "Defense": 36,
+      
+      
+        "Speed": 41,
+      
+      
+        "Rarity": 2
+      },
+    
+    "Name": "Aerodon",
+    "moves":[
+	{
+	    "name": HyperBeam,
+	    "damage":  60
+	},
+	{
+	    "name": TailSwipe,
+	    "damage":  20
+	},
+	{
+	    "name": Earthquake,
+	    "damage":  45
+	},
+	{
+	    "name": Horn?Drill,
+	    "damage":  20
+	}
+	]
+  },
+   {
+    "datamonStats": {
+        "Level": 18,
+      
+      
+        "HP": 82,
+      
+      
+        "Attack": 57,
+      
+      
+        "Defense": 38,
+      
+      
+        "Speed": 42,
+      
+      
+        "Rarity": 3
+      
+    },
+    "Name": "Aerodon",
+    "moves":[
+	{
+	    "name": Hyper?Beam,
+	    "damage":  60
+	},
+	{
+	    "name": Tail?Swipe,
+	    "damage":  20
+	},
+	{
+	    "name": Earthquake,
+	    "damage":  45
+	},
+	{
+	    "name": Horn?Drill,
+	    "damage":  20
+	}
+	]
+  },
+   {
+    "datamonStats":{
+        "Level": 19,
+      
+        "HP": 86,
+      
+      
+        "Attack": 60,
+      
+      
+        "Defense": 40,
+      
+      
+        "Speed": 44,
+      
+      
+        "Rarity": 2
+      
+   },
+    "Name": "Aerodon",
+    "moves":[
+	{
+	    "name": Hyper?Beam,
+	    "damage":  60
+	},
+	{
+	    "name": Tail?Swipe,
+	    "damage":  20
+	},
+	{
+	    "name": Earthquake,
+	    "damage":  45
+	},
+	{
+	    "name": Horn?Drill,
+	    "damage":  20
+	}
+	]
+  },
+   {
+    "datamonStats": {
+        "Level": 20,
+      
+      
+        "HP": 90,
+      
+      
+        "Attack": 62,
+      
+      
+        "Defense": 42,
+      
+      
+        "Speed": 48,
+      
+      
+        "Rarity": 1
+     
+    },
+    "Name": "Aerodon",
+    "moves":[
+	{
+	    "name": Hyper?Beam,
+	    "damage":  60
+	},
+	{
+	    "name": Tail?Swipe,
+	    "damage":  20
+	},
+	{
+	    "name": Earthquake,
+	    "damage":  45
+	},
+	{
+	    "name": Horn?Drill,
+	    "damage":  20
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 16,
+      
+      
+        "HP": 48,
+      
+      
+        "Attack": 39,
+      
+      
+        "Defense": 32,
+      
+      
+        "Speed": 54,
+      
+      
+        "Rarity": 1
+    },
+    
+    "Name": "Pikayu",
+    "moves":[
+	{
+	    "name": Water?Gun,
+	    "damage":  20
+	},
+	{
+	    "name": Bubble,
+	    "damage":  15
+	},
+	{
+	    "name": Romantic?Kiss,
+	    "damage":  40
+	},
+	{
+	    "name": Thundershock,
+	    "damage":  25
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 17,
+      
+      
+        "HP": 51,
+      
+      
+        "Attack": 42,
+      
+      
+        "Defense": 36,
+      
+      
+        "Speed": 58,
+      
+      
+        "Rarity": 1
+    },
+    
+    "Name": "Pikayu",
+    "moves":[
+	{
+	    "name": Water?Gun,
+	    "damage":  20
+	},
+	{
+	    "name": Bubble,
+	    "damage":  15
+	},
+	{
+	    "name": Romantic?Kiss,
+	    "damage":  40
+	},
+	{
+	    "name": Thundershock,
+	    "damage":  25
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 18,
+      
+      
+        "HP": 54,
+      
+      
+        "Attack": 45,
+      
+      
+        "Defense": 41,
+      
+      
+        "Speed": 62,
+      
+      
+        "Rarity": 2
+    },
+    
+    "Name": "Pikayu",
+    "moves":[
+	{
+	    "name": Water?Gun,
+	    "damage":  20
+	},
+	{
+	    "name": Bubble,
+	    "damage":  15
+	},
+	{
+	    "name": Romantic?Kiss,
+	    "damage":  40
+	},
+	{
+	    "name": Thundershock,
+	    "damage":  25
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 19,
+      
+      
+        "HP": 57,
+      
+      
+        "Attack": 48,
+      
+      
+        "Defense": 46,
+      
+      
+        "Speed": 66,
+      
+      
+        "Rarity": 2
+    },
+    
+    "Name": "Pikayu",
+    "moves":[
+	{
+	    "name": Water?Gun,
+	    "damage":  20
+	},
+	{
+	    "name": Bubble,
+	    "damage":  15
+	},
+	{
+	    "name": Romantic?Kiss,
+	    "damage":  40
+	},
+	{
+	    "name": Thundershock,
+	    "damage":  25
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 20,
+      
+      
+        "HP": 60,
+      
+      
+        "Attack": 51,
+      
+      
+        "Defense": 52,
+      
+      
+        "Speed": 70,
+      
+      
+        "Rarity": 3
+    },
+    
+    "Name": "Pikayu",
+    "moves":[
+	{
+	    "name": Water?Gun,
+	    "damage":  20
+	},
+	{
+	    "name": Bubble,
+	    "damage":  15
+	},
+	{
+	    "name": Romantic?Kiss,
+	    "damage":  40
+	},
+	{
+	    "name": Thundershock,
+	    "damage":  25
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 17,
+      
+      
+        "HP": 90,
+      
+      
+        "Attack": 37,
+      
+      
+        "Defense": 51,
+      
+      
+        "Speed": 36,
+      
+      
+        "Rarity": 3
+    },
+    
+    "Name": "Weepintoise",
+    "moves":[
+	{
+	    "name": Vine?Whip,
+	    "damage":  30
+	},
+	{
+	    "name": Body?Slam,
+	    "damage":  30
+	},
+	{
+	    "name": Bite,
+	    "damage":  15
+	},
+	{
+	    "name": Hydro?Pump,
+	    "damage":  45
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 18,
+      
+      
+        "HP": 95,
+      
+      
+        "Attack": 42,
+      
+      
+        "Defense": 54,
+      
+      
+        "Speed": 42,
+      
+      
+        "Rarity": 3
+    },
+    
+    "Name": "Weepintoise",
+    "moves":[
+	{
+	    "name": Vine?Whip,
+	    "damage":  30
+	},
+	{
+	    "name": Body?Slam,
+	    "damage":  30
+	},
+	{
+	    "name": Bite,
+	    "damage":  15
+	},
+	{
+	    "name": Hydro?Pump,
+	    "damage":  45
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 19,
+      
+      
+        "HP": 100,
+      
+      
+        "Attack": 48,
+      
+      
+        "Defense": 57,
+      
+      
+        "Speed": 49,
+      
+      
+        "Rarity": 3
+      
+    },
+    "Name": "Weepintoise",
+    "moves":[
+	{
+	    "name": Vine?Whip,
+	    "damage":  30
+	},
+	{
+	    "name": Body?Slam,
+	    "damage":  30
+	},
+	{
+	    "name": Bite,
+	    "damage":  15
+	},
+	{
+	    "name": Hydro?Pump,
+	    "damage":  45
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 20,
+      
+      
+        "HP": 105,
+      
+      
+        "Attack": 55,
+      
+      
+        "Defense": 60,
+      
+      
+        "Speed": 58,
+      
+      
+        "Rarity": 2
+      
+    },
+    "Name": "Weepintoise",
+    "moves":[
+	{
+	    "name": Vine?Whip,
+	    "damage":  30
+	},
+	{
+	    "name": Body?Slam,
+	    "damage":  30
+	},
+	{
+	    "name": Bite,
+	    "damage":  15
+	},
+	{
+	    "name": Hydro?Pump,
+	    "damage":  45
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 17,
+      
+      
+        "HP": 59,
+      
+      
+        "Attack": 43,
+      
+      
+        "Defense": 22,
+      
+      
+        "Speed": 51,
+      
+      
+        "Rarity": 1
+    },
+    
+    "Name": "Meonx",
+    "moves":[
+	{
+	    "name": Lovely?Kiss,
+	    "damage":  10
+	},
+	{
+	    "name": Fake?Tears,
+	    "damage":  5
+	},
+	{
+	    "name": Twerk,
+	    "damage":  15
+	},
+	{
+	    "name": Double?Slap,
+	    "damage":  30
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 18,
+     
+     
+        "HP": 61,
+      
+      
+        "Attack": 46,
+      
+      
+        "Defense": 23,
+      
+      
+        "Speed": 54,
+      
+      
+        "Rarity": 2
+      
+    },
+    "Name": "Meonx",
+    "moves":[
+	{
+	    "name": Lovely?Kiss,
+	    "damage":  10
+	},
+	{
+	    "name": Fake?Tears,
+	    "damage":  5
+	},
+	{
+	    "name": Twerk,
+	    "damage":  15
+	},
+	{
+	    "name": Double?Slap,
+	    "damage":  30
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 19,
+      
+      
+        "HP": 63,
+      
+      
+        "Attack": 49,
+      
+      
+        "Defense": 24,
+      
+      
+        "Speed": 57,
+      
+      
+        "Rarity": 3
+      
+    },
+    "Name": "Meonx",
+    "moves":[
+	{
+	    "name": Lovely?Kiss,
+	    "damage":  10
+	},
+	{
+	    "name": Fake?Tears,
+	    "damage":  5
+	},
+	{
+	    "name": Twerk,
+	    "damage":  15
+	},
+	{
+	    "name": Double?Slap,
+	    "damage":  30
+	}
+	]
+  },
+  {
+    "datamonStats": 
+      {
+        "Level": 20,
+      
+      
+        "HP": 65,
+      
+      
+        "Attack": 52,
+      
+      
+        "Defense": 25,
+      
+     
+        "Speed": 60,
+      
+     
+        "Rarity": 2
+      
+    },
+    "Name": "Meonx",
+    "moves":[
+	{
+	    "name": Lovely?Kiss,
+	    "damage":  10
+	},
+	{
+	    "name": Fake?Tears,
+	    "damage":  5
+	},
+	{
+	    "name": Twerk,
+	    "damage":  15
+	},
+	{
+	    "name": Double?Slap,
+	    "damage":  30
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 16,
+      
+      
+        "HP": 57,
+      
+      
+        "Attack": 21,
+      
+      
+        "Defense": 48,
+      
+      
+        "Speed": 40,
+      
+      
+        "Rarity": 1
+      
+    },
+    "Name": "Geonx",
+    "moves":[
+	{
+	    "name": Selfie,
+	    "damage":  0
+	},
+	{
+	    "name": Kanye?West,
+	    "damage":  15
+	},
+	{
+	    "name": Mean?Look,
+	    "damage":  15
+	},
+	{
+	    "name": Powder?Snow,
+	    "damage":  25
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 17,
+      
+      
+        "HP": 59,
+      
+      
+        "Attack": 22,
+      
+      
+        "Defense": 51,
+      
+      
+        "Speed": 43,
+      
+      
+        "Rarity": 2
+      
+    },
+    "Name": "Geonx",
+    "moves":[
+	{
+	    "name": Selfie,
+	    "damage":  0
+	},
+	{
+	    "name": Kanye?West,
+	    "damage":  15
+	},
+	{
+	    "name": Mean?Look,
+	    "damage":  15
+	},
+	{
+	    "name": Powder?Snow,
+	    "damage":  25
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 18,
+      
+      
+        "HP": 61,
+      
+      
+        "Attack": 23,
+      
+      
+        "Defense": 54,
+      
+      
+        "Speed": 46,
+      
+      
+        "Rarity": 4
+    },
+    
+    "Name": "Geonx",
+    "moves":[
+	{
+	    "name": Selfie,
+	    "damage":  0
+	},
+	{
+	    "name": Kanye?West,
+	    "damage":  15
+	},
+	{
+	    "name": Mean?Look,
+	    "damage":  15
+	},
+	{
+	    "name": Powder?Snow,
+	    "damage":  25
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 19,
+      
+      
+        "HP": 63,
+      
+      
+        "Attack": 24,
+      
+      
+        "Defense": 57,
+      
+      
+        "Speed": 49,
+     
+     
+        "Rarity": 3
+      
+    },
+    "Name": "Geonx",
+    "moves":[
+	{
+	    "name": Selfie,
+	    "damage":  0
+	},
+	{
+	    "name": Kanye?West,
+	    "damage":  15
+	},
+	{
+	    "name": Mean?Look,
+	    "damage":  15
+	},
+	{
+	    "name": Powder?Snow,
+	    "damage":  25
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 20,
+      
+      
+        "HP": 65,
+      
+      
+        "Attack": 25,
+      
+      
+        "Defense": 60,
+      
+      
+        "Speed": 52,
+      
+      
+        "Rarity": 2
+      
+    },
+    "Name": "Geonx",
+    "moves":[
+	{
+	    "name": Selfie,
+	    "damage":  0
+	},
+	{
+	    "name": Kanye?West,
+	    "damage":  15
+	},
+	{
+	    "name": Mean?Look,
+	    "damage":  15
+	},
+	{
+	    "name": Powder?Snow,
+	    "damage":  25
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 17,
+      
+      
+        "HP": 50,
+      
+      
+        "Attack": 53,
+      
+      
+        "Defense": 32,
+      
+      
+        "Speed": 46,
+      
+      
+        "Rarity": 2
+      
+    },
+    "Name": "Bee-Two",
+    "moves":[
+	{
+	    "name": Psychic,
+	    "damage":  45
+	},
+	{
+	    "name": Thunder,
+	    "damage":  40
+	},
+	{
+	    "name": High?Kick,
+	    "damage":  25
+	},
+	{
+	    "name": Avalanche,
+	    "damage":  60
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 18,
+      
+      
+        "HP": 51,
+      
+      
+        "Attack": 57,
+      
+      
+        "Defense": 34,
+      
+      
+        "Speed": 49,
+      
+      
+        "Rarity": 1
+      
+    },
+    "Name": "Bee-Two",
+    "moves":[
+	{
+	    "name": Psychic,
+	    "damage":  45
+	},
+	{
+	    "name": Thunder,
+	    "damage":  40
+	},
+	{
+	    "name": High?Kick,
+	    "damage":  25
+	},
+	{
+	    "name": Avalanche,
+	    "damage":  60
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 19,
+      
+      
+        "HP": 52,
+      
+      
+        "Attack": 61,
+      
+      
+        "Defense": 36,
+      
+      
+        "Speed": 52,
+      
+      
+        "Rarity": 1
+      
+    },
+    "Name": "Bee-Two",
+    "moves":[
+	{
+	    "name": Psychic,
+	    "damage":  45
+	},
+	{
+	    "name": Thunder,
+	    "damage":  40
+	},
+	{
+	    "name": High?Kick,
+	    "damage":  25
+	},
+	{
+	    "name": Avalanche,
+	    "damage":  60
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 20,
+      
+      
+        "HP": 53,
+      
+      
+        "Attack": 65,
+      
+      
+        "Defense": 38,
+      
+      
+        "Speed": 55,
+      
+      
+        "Rarity": 1
+      
+    },
+    "Name": "Bee-Two",
+    "moves":[
+	{
+	    "name": Psychic,
+	    "damage":  45
+	},
+	{
+	    "name": Thunder,
+	    "damage":  40
+	},
+	{
+	    "name": High?Kick,
+	    "damage":  25
+	},
+	{
+	    "name": Avalanche,
+	    "damage":  60
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 17,
+      
+      
+        "HP": 51,
+      
+      
+        "Attack": 48,
+      
+      
+        "Defense": 29,
+      
+      
+        "Speed": 39,
+      
+      
+        "Rarity": 4
+      
+    },
+    "Name": "Marozard",
+    "moves":[
+	{
+	    "name": Rock?Slide,
+	    "damage":  30
+	},
+	{
+	    "name": Flamethrower,
+	    "damage":  35
+	},
+	{
+	    "name": Comet?Punch,
+	    "damage":  35
+	},
+	{
+	    "name": Fire?Blast,
+	    "damage":  45
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 18,
+      
+      
+        "HP": 53,
+      
+      
+        "Attack": 50,
+      
+      
+        "Defense": 31,
+      
+     
+        "Speed": 42,
+      
+      
+        "Rarity": 3
+      
+    },
+    "Name": "Marozard",
+    "moves":[
+	{
+	    "name": Rock?Slide,
+	    "damage":  30
+	},
+	{
+	    "name": Flamethrower,
+	    "damage":  35
+	},
+	{
+	    "name": Comet?Punch,
+	    "damage":  35
+	},
+	{
+	    "name": Fire?Blast,
+	    "damage":  45
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 19,
+      
+      
+        "HP": 55,
+      
+      
+        "Attack": 52,
+      
+      
+        "Defense": 33,
+      
+      
+        "Speed": 45,
+      
+      
+        "Rarity": 3
+      
+    },
+    "Name": "Marozard",
+    "moves":[
+	{
+	    "name": Rock?Slide,
+	    "damage":  30
+	},
+	{
+	    "name": Flamethrower,
+	    "damage":  35
+	},
+	{
+	    "name": Comet?Punch,
+	    "damage":  35
+	},
+	{
+	    "name": Fire?Blast,
+	    "damage":  45
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 20,
+      
+      
+        "HP": 57,
+      
+      
+        "Attack": 54,
+      
+      
+        "Defense": 35,
+      
+      
+        "Speed": 48,
+      
+      
+        "Rarity": 2
+      
+    },
+    "Name": "Marozard",
+    "moves":[
+	{
+	    "name": Rock?Slide,
+	    "damage":  30
+	},
+	{
+	    "name": Flamethrower,
+	    "damage":  35
+	},
+	{
+	    "name": Comet?Punch,
+	    "damage":  35
+	},
+	{
+	    "name": Fire?Blast,
+	    "damage":  45
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 16,
+      
+      
+        "HP": 42,
+      
+      
+        "Attack": 30,
+      
+      
+        "Defense": 40,
+      
+      
+        "Speed": 52,
+      
+      
+        "Rarity": 1
+      
+    },
+    "Name": "Derplett",
+    "moves":[
+	{
+	    "name": Dig,
+	    "damage":  0
+	},
+	{
+	    "name": Stare,
+	    "damage":  0
+	},
+	{
+	    "name": Slap,
+	    "damage":  20
+	},
+	{
+	    "name": Ember,
+	    "damage":  10
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 17,
+      
+      
+        "HP": 44,
+      
+      
+        "Attack": 32,
+      
+      
+        "Defense": 44,
+      
+      
+        "Speed": 54,
+      
+      
+        "Rarity": 2
+      
+    },
+    "Name": "Derplett",
+    "moves":[
+	{
+	    "name": Dig,
+	    "damage":  0
+	},
+	{
+	    "name": Stare,
+	    "damage":  0
+	},
+	{
+	    "name": Slap,
+	    "damage":  20
+	},
+	{
+	    "name": Ember,
+	    "damage":  10
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 18,
+      
+      
+        "HP": 46,
+      
+      
+        "Attack": 34,
+      
+      
+        "Defense": 46,
+      
+      
+        "Speed": 57,
+      
+      
+        "Rarity": 3
+     },
+    
+    "Name": "Derplett",
+    "moves":[
+	{
+	    "name": Dig,
+	    "damage":  0
+	},
+	{
+	    "name": Stare,
+	    "damage":  0
+	},
+	{
+	    "name": Slap,
+	    "damage":  20
+	},
+	{
+	    "name": Ember,
+	    "damage":  10
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 19,
+      
+      
+        "HP": 48,
+      
+      
+        "Attack": 36,
+      
+      
+        "Defense": 48,
+      
+      
+        "Speed": 60,
+      
+      
+        "Rarity": 2
+      
+    },
+    "Name": "Derplett",
+    "moves":[
+	{
+	    "name": Dig,
+	    "damage":  0
+	},
+	{
+	    "name": Stare,
+	    "damage":  0
+	},
+	{
+	    "name": Slap,
+	    "damage":  20
+	},
+	{
+	    "name": Ember,
+	    "damage":  10
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 20,
+      
+      
+        "HP": 50,
+      
+      
+        "Attack": 38,
+      
+      
+        "Defense": 50,
+      
+      
+        "Speed": 63,
+      
+      
+        "Rarity": 1
+      
+    },
+    "Name": "Derplett",
+    "moves":[
+	{
+	    "name": Dig,
+	    "damage":  0
+	},
+	{
+	    "name": Stare,
+	    "damage":  0
+	},
+	{
+	    "name": Slap,
+	    "damage":  20
+	},
+	{
+	    "name": Ember,
+	    "damage":  10
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 18,
+      
+      
+        "HP": 47,
+      
+      
+        "Attack": 23,
+      
+      
+        "Defense": 40,
+      
+      
+        "Speed": 29,
+      
+      
+        "Rarity": 3
+      
+    },
+    "Name": "Sexy-apod",
+    "moves":[
+	{
+	    "name": Harden,
+	    "damage":  0
+	},
+	{
+	    "name": Harder,
+	    "damage":  0
+	},
+	{
+	    "name": Hardest,
+	    "damage":  0
+	},
+	{
+	    "name": Violate,
+	    "damage":  60
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 19,
+      
+      
+        "HP": 49,
+      
+      
+        "Attack": 24,
+      
+      
+        "Defense": 43,
+      
+      
+        "Speed": 37,
+      
+      
+        "Rarity": 5
+      
+    },
+    "Name": "Sexy-apod",
+    "moves":[
+	{
+	    "name": Harden,
+	    "damage":  0
+	},
+	{
+	    "name": Harder,
+	    "damage":  0
+	},
+	{
+	    "name": Hardest,
+	    "damage":  0
+	},
+	{
+	    "name": Violate,
+	    "damage":  60
+	}
+	]
+  },
+   {
+    "datamonStats": 
+      {
+        "Level": 20,
+      
+      
+        "HP": 51,
+      
+      
+        "Attack": 25,
+      
+      
+        "Defense": 46,
+      
+      
+        "Speed": 48,
+      
+      
+        "Rarity": 5
+      
+    },
+    "Name": "Sexy-apod",
+    "moves":[
+	{
+	    "name": Harden,
+	    "damage":  0
+	},
+	{
+	    "name": Harder,
+	    "damage":  0
+	},
+	{
+	    "name": Hardest,
+	    "damage":  0
+	},
+	{
+	    "name": Violate,
+	    "damage":  60
+	}
+	]
+  }
+]
