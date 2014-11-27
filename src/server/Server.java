@@ -13,10 +13,11 @@ import server.chatSystem.ChatServer;
 import Battle.Battle;
 
 public class Server implements Runnable{
-	
+	public static final int CHATPORT = 4444;
+	public static final int BATTLEPORT = 5555;
 	private ChatServer chatServer;
 	private ServerSocket ss;
-	public static final int PORT = 4444;
+	
 	int battleOneP1 = 1;
 	int battleOneP2 = -1;
 	int battleTwoP1 = -1;
@@ -25,7 +26,7 @@ public class Server implements Runnable{
 	private Battle second;
 	
 	public Server(){
-		chatServer = new ChatServer(PORT);
+		chatServer = new ChatServer(CHATPORT);
 		System.out.println("Getting input from other players");
 //		try {
 //			Thread.sleep(2000);//TODO replace this with actual server stuff
@@ -37,7 +38,7 @@ public class Server implements Runnable{
 		ArrayList<Socket> incomingSockets = new ArrayList<Socket>();
 		
 		try {
-			ss = new ServerSocket(PORT);
+			ss = new ServerSocket(CHATPORT);
 			for (int i = 0; i < 8; ++i) {
 				Socket socket = ss.accept();
 				System.out.println("Local Address: " + socket.getLocalAddress());
@@ -66,7 +67,7 @@ public class Server implements Runnable{
 						incomingSockets.add(socket);
 				}
 			}
-			for (int i = 0; i < connectedSockets.size(); i+= 2)
+			for (int i = 1; i < connectedSockets.size(); i+= 2)
 				chatServer.listen(connectedSockets.get(i));
 		} catch (IOException e) {
 			e.printStackTrace();
