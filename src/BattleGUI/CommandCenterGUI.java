@@ -1,6 +1,7 @@
 package BattleGUI;
 
 import java.awt.CardLayout;
+//did not finish switch
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
