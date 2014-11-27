@@ -44,10 +44,14 @@ public class OpeningPanel extends JPanel implements ActionListener {
 	int meonxX = marozardX-107, meonxXSpeed = 0;
 	int pikayuX = meonxX-68, pikayuXSpeed = 0;
 	int rhyfetchX = pikayuX-76, rhyfetchXSpeed = 0;
-	int scydraX = rhyfetchX-80, scydraXSpeed = 0;
-	int seanasaurX = scydraX-130, seanasaurXSpeed = 0;
+	int scydraX = rhyfetchX-60, scydraXSpeed = 0;
+	int seanasaurX = scydraX-60, seanasaurXSpeed = 0;
 	int sexypodX = seanasaurX-103, sexypodXSpeed = 0;
 	int weepintoiseX = sexypodX-115, weepintoiseXSpeed = 0;
+	
+	public boolean done = false;
+	int timerCount = 0;
+	int timerCountSpeed = 1;
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -101,7 +105,7 @@ public class OpeningPanel extends JPanel implements ActionListener {
 		Image marozard_right = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Marozard_right_tr.png"); 
 		Image meonx_right = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Meonx_right_tr.png"); 
 		Image pikayu_right = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Pikayu_right_tr.png");
-		Image rhyfetch_right = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Rhyfetch_right_tr.png"); 
+		Image rhyfetch_right = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/sexypod_left_tr.png"); 
 		Image scydra_right = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Scydra_right_tr.png"); 
 		Image seanasaur_right = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Seanasaur_right_tr.png"); 
 		Image sexypod_right = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/sexypod_right_tr.png"); 
@@ -125,7 +129,7 @@ public class OpeningPanel extends JPanel implements ActionListener {
 	}
 	
 	public void actionPerformed (ActionEvent e) {
-		
+		timerCount += timerCountSpeed;
 		/* simulate animation by changing position over time */
 		gameLogoY += gameLogoYSpeed;
 		
@@ -217,6 +221,12 @@ public class OpeningPanel extends JPanel implements ActionListener {
 		if (gameLogoY >= 00) {
 			gameLogoYSpeed = 0;
 		}
+		
+		if (timerCount == 300) {
+			done = true;
+		}
+		if (done) System.out.println("DONE and ALAN LIKES DETERGENTS");
+		
 		/*
 		if (weepintoiseX > 0) {
 			lickisterXSpeed = -0;
