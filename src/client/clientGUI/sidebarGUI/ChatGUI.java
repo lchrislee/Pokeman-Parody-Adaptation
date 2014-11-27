@@ -1,4 +1,4 @@
-package client.sidebarGUI;
+package client.clientGUI.sidebarGUI;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -22,13 +22,14 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
 
 import server.Server;
-import client.chatSystem.ChatClient;
+import client.helper.chatSystem.ChatClient;
 
 public class ChatGUI extends JPanel {
 	private static final long serialVersionUID = 8239335834925382510L;
 	private final String[] groupNames = {"ALL", "P1 Only", "P2 Only", "P3 Only", "P4 Only", "P1 & P2", "P1 & P3", "P1 & P4", "P2 & P3", "P2 & P4", "P3 & P4"};
 	public static JTextPane txeaAllMessages;
 	private JTextField txFdCurrentText;
+	@SuppressWarnings("rawtypes")
 	private JComboBox groups;
 	private JButton btnSend;
 	private String chatSelected = groupNames[0];
@@ -45,6 +46,7 @@ public class ChatGUI extends JPanel {
 		Connect(address);
 	}
 	
+	@SuppressWarnings({"rawtypes", "unchecked"})
 	private void createGUI(){
 		setLayout(new BorderLayout());
 		setPreferredSize(new Dimension(300, 250));
@@ -93,9 +95,9 @@ public class ChatGUI extends JPanel {
 		txFdCurrentText.getActionMap().put("ENTER", enterPressed);
 		
 		groups.addActionListener(new ActionListener(){
+			@SuppressWarnings("rawtypes")
 			@Override
 			public void actionPerformed(ActionEvent source) {
-				@SuppressWarnings("unchecked")
 				String selected = ((JComboBox)source.getSource()).getSelectedItem().toString();
 				if (selected.equals(chatSelected))
 					return;

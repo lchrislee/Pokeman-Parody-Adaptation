@@ -1,4 +1,4 @@
-package client.sidebarGUI;
+package client.clientGUI.sidebarGUI;
 
 import java.awt.BorderLayout;
 

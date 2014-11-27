@@ -1,4 +1,4 @@
-package client.chatSystem;
+package client.helper.chatSystem;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 import javax.swing.JLabel;
 
-import client.sidebarGUI.ChatGUI;
+import client.clientGUI.sidebarGUI.ChatGUI;
 
 public class ChatClient implements Runnable {
 	Scanner input;

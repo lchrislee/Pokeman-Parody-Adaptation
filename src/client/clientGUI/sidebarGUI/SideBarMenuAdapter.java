@@ -1,5 +1,5 @@
 
-package client.sidebarGUI;
+package client.clientGUI.sidebarGUI;
 
 import java.awt.CardLayout;
 import java.awt.Dimension;
