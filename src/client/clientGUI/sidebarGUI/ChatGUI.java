@@ -142,7 +142,7 @@ public class ChatGUI extends JPanel {
 	public void Connect(String address){
 		try {
 			
-			socket = new Socket(address, Server.PORT);
+			socket = new Socket(address, Server.CHATPORT);
 			System.out.println("You connected to: " + socket);
 			
 			chatClient = new ChatClient(socket);
