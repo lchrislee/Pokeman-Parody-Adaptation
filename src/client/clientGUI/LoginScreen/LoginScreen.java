@@ -16,7 +16,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
@@ -41,6 +43,8 @@ public class LoginScreen extends JPanel {
 	private ImageIcon chosenCharacter = new ImageIcon();
 	private JButton millerButton, crowleyButton, goobyButton, dolanButton, mistyButton, jungIllButton;
 	private ImageIcon chosenPokemon = new ImageIcon();
+	private Queue<ImageIcon> chosenPokemonQueue = new LinkedList<ImageIcon>();
+	private boolean hasSelectedPokeman = false;
 	public LoginScreen() {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		createLoginGUI();
@@ -86,7 +90,7 @@ public class LoginScreen extends JPanel {
 		
 		characterSpriteListPanel = new JPanel();
 		characterSpriteListPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-		characterSpriteListPanel.setPreferredSize(new Dimension(800,200));
+		characterSpriteListPanel.setPreferredSize(new Dimension(800,120));
 		characterSpriteList = new ArrayList<JButton>();
 		
 		
@@ -263,8 +267,8 @@ public class LoginScreen extends JPanel {
             @Override
             public void mouseExited(MouseEvent me) { 
             	if (!chosenCharacter.getDescription().equals("0")) {
-	            	String chosenCharacterDesc = chosenCharacter.getDescription();
-	            	if (chosenCharacterDesc.equals(mistyImageIcon.getDescription())) ((JButton)me.getSource()).setBackground(Color.RED);
+	            	String chosenPokemonDesc = chosenCharacter.getDescription();
+	            	if (chosenPokemonDesc.equals(mistyImageIcon.getDescription())) ((JButton)me.getSource()).setBackground(Color.RED);
 	            	else ((JButton)me.getSource()).setBackground(Color.WHITE);
             	}
             	else {
@@ -343,47 +347,364 @@ public class LoginScreen extends JPanel {
 		
 		
 		/* panel with default pokemans to choose from */
-		JButton feelgletButton, magikunaButton, lickisterButton, pikayuButton;
+		JButton aerodonButton, lickisterButton, beetwoButton, marozardButton, meonxButton,
+				geonxButton, weepintoiseButton, pikayuButton, sexypodButton, feelgletButton;
 		JPanel pokemonSelectPanel = new JPanel();
 		pokemonSelectPanel.setLayout(new GridBagLayout());
-		pokemonSelectPanel.setMaximumSize(new Dimension(300,50));
+		pokemonSelectPanel.setMaximumSize(new Dimension(800,50));
 		add(pokemonSelectPanel);
-		JLabel pokemonSelectLabel = new JLabel("Choose your pokeman/s");
+		JLabel pokemonSelectLabel = new JLabel("Select three Pokeman  ");
 		pokemonSelectLabel.setFont(new Font("Arial",Font.PLAIN, 25));
+		JButton pokemonSelectButton = new JButton("Select");
+		pokemonSelectButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent action) {
+				System.out.println("Current chosen pokemans: ");
+				for (int i = 0; i < chosenPokemonQueue.size(); i++) {
+					
+				}
+			}
+		});
 		pokemonSelectPanel.add(pokemonSelectLabel);
+		pokemonSelectPanel.add(pokemonSelectButton);
 		
 		pokemonSpriteListPanel = new JPanel();
 		pokemonSpriteListPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pokemonSpriteList = new ArrayList<JButton>();
 		
-		Image feelgletImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/feelglet_left_tr.png");
-		ImageIcon feelgletImageIcon = new ImageIcon(feelgletImage);
-		feelgletButton = new JButton(feelgletImageIcon);
+		Image aerodonImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Aerodon_left_tr_small.png");
+		ImageIcon aerodonImageIcon = new ImageIcon(aerodonImage,"Aerodon");
+		aerodonButton = new JButton(aerodonImageIcon);
+		aerodonButton.setBackground(Color.WHITE);
+		aerodonButton.setName("Aerodon");
+		aerodonButton.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseReleased(MouseEvent arg0) {}           
+            @Override
+            public void mousePressed(MouseEvent arg0) {}            
+            @Override
+            public void mouseExited(MouseEvent me) { 
+            	if (!chosenPokemon.getDescription().equals("0")) {
+	            	String chosenPokemonDesc = chosenPokemon.getDescription();
+	            	if (chosenPokemonDesc.equals(aerodonImageIcon.getDescription())) {
+	            		((JButton)me.getSource()).setBackground(Color.RED);
+	            	}
+	            	else ((JButton)me.getSource()).setBackground(Color.WHITE);
+	            	for (int i = 0; i < chosenPokemonQueue.size(); i++) {
+	            		if (chosenPokemonQueue.contains(aerodonImageIcon)) {
+	            			((JButton)me.getSource()).setBackground(Color.RED);
+	            		}
+	            	}
+            	}
+            	else if (chosenPokemonQueue.size() == 3) {
+            		System.out.println("chosenqueue size: " + chosenPokemonQueue.size());
+            		((JButton)me.getSource()).setBackground(Color.WHITE);
+            	}
+            	else {
+            		((JButton)me.getSource()).setBackground(Color.WHITE);
+            	}
+            }           
+            @Override
+            public void mouseEntered(MouseEvent me) {
+            	((JButton)me.getSource()).setBackground(Color.BLUE);
+            }           
+            @Override
+            public void mouseClicked(MouseEvent me) {
+            	chosenPokemon.setDescription("Aerodon");
+            	System.out.println("Selected Character: Aerodon");
+            	chosenPokemon.setImage(aerodonImage);
+            	((JButton)me.getSource()).setBackground(Color.RED);
+            	if (chosenPokemonQueue.size() == 0) chosenPokemonQueue.add(aerodonImageIcon);
+            	else {
+	            	for (int i = 0; i < chosenPokemonQueue.size(); i++) {
+	            		if (!chosenPokemonQueue.contains(aerodonImageIcon)) {
+	                    	chosenPokemonQueue.add(aerodonImageIcon);
+	            		}
+	            	}
+            	}
+            	if (chosenPokemonQueue.size() > 3) {
+            		ImageIcon toRemove = chosenPokemonQueue.remove();
+            		String toRemoveDesc = toRemove.getDescription();
+            		for (int i = 0; i < pokemonSpriteList.size(); i++) {
+            			String toCompareDesc = pokemonSpriteList.get(i).getName();
+            			if (toCompareDesc.equals(toRemoveDesc)) {
+            				pokemonSpriteList.get(i).setBackground(Color.WHITE);
+            			}
+            		}
+            	}
+            	System.out.println("Size of chosen queue: " + chosenPokemonQueue.size());
+            	repaint();
+            }
+        });
 		
-		Image magikunaImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/magikuna_left_tr.png");
-		ImageIcon magikunaImageIcon = new ImageIcon(magikunaImage);
-		magikunaButton = new JButton(magikunaImageIcon);
+		pokemonSpriteList.add(aerodonButton);
 		
-		Image lickisterImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/lickister_left_tr.png");
-		ImageIcon lickisterImageIcon = new ImageIcon(lickisterImage);
+		Image lickisterImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Lickister_left_tr_small.png");
+		ImageIcon lickisterImageIcon = new ImageIcon(lickisterImage,"Lickister");
 		lickisterButton = new JButton(lickisterImageIcon);
+		lickisterButton.setBackground(Color.WHITE);
+		lickisterButton.setName("Lickister");
+		lickisterButton.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseReleased(MouseEvent arg0) {}           
+            @Override
+            public void mousePressed(MouseEvent arg0) {}            
+            @Override
+            public void mouseExited(MouseEvent me) { 
+            	if (!chosenPokemon.getDescription().equals("0")) {
+            		String chosenPokemonDesc = chosenPokemon.getDescription();
+	            	if (chosenPokemonDesc.equals(lickisterImageIcon.getDescription())) {
+	            		((JButton)me.getSource()).setBackground(Color.RED);
+	            	}
+	            	else ((JButton)me.getSource()).setBackground(Color.WHITE);
+	            	for (int i = 0; i < chosenPokemonQueue.size(); i++) {
+	            		if (chosenPokemonQueue.contains(lickisterImageIcon)) {
+	            			((JButton)me.getSource()).setBackground(Color.RED);
+	            		}
+	            	}
+            	}
+            	else if (chosenPokemonQueue.size() == 3) {
+            		System.out.println("chosenqueue size: " + chosenPokemonQueue.size());
+            		((JButton)me.getSource()).setBackground(Color.WHITE);
+            	}
+            	else {
+            		((JButton)me.getSource()).setBackground(Color.WHITE);
+            	}
+            }           
+            @Override
+            public void mouseEntered(MouseEvent me) {
+            	((JButton)me.getSource()).setBackground(Color.BLUE);
+            }           
+            @Override
+            public void mouseClicked(MouseEvent me) {
+            	chosenPokemon.setDescription("Lickister");
+            	System.out.println("Selected Character: Lickister");
+            	chosenPokemon.setImage(lickisterImage);
+            	((JButton)me.getSource()).setBackground(Color.RED);
+            	if (chosenPokemonQueue.size() == 0) chosenPokemonQueue.add(lickisterImageIcon);
+            	else {
+	            	for (int i = 0; i < chosenPokemonQueue.size(); i++) {
+	            		if (!chosenPokemonQueue.contains(lickisterImageIcon)) {
+	                    	chosenPokemonQueue.add(lickisterImageIcon);
+	            		}
+	            	}
+            	}
+            	if (chosenPokemonQueue.size() > 3) {
+            		ImageIcon toRemove = chosenPokemonQueue.remove();
+            		String toRemoveDesc = toRemove.getDescription();
+            		for (int i = 0; i < pokemonSpriteList.size(); i++) {
+            			String toCompareDesc = pokemonSpriteList.get(i).getName();
+            			if (toCompareDesc.equals(toRemoveDesc)) {
+            				pokemonSpriteList.get(i).setBackground(Color.WHITE);
+            			}
+            		}
+            	}
+            	System.out.println("Size of chosen queue: " + chosenPokemonQueue.size());
+            	repaint();
+            }
+        });
 		
-		Image pikayuImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/pikayu_left_tr.png");
-		ImageIcon pikayuImageIcon = new ImageIcon(pikayuImage);
+		pokemonSpriteList.add(lickisterButton);
+		
+		Image beetwoImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Bee-two_left_tr_small.png");
+		ImageIcon beetwoImageIcon = new ImageIcon(beetwoImage,"Bee-Two");
+		beetwoButton = new JButton(beetwoImageIcon);
+		beetwoButton.setBackground(Color.WHITE);
+		beetwoButton.setName("Bee-Two");
+		beetwoButton.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseReleased(MouseEvent arg0) {}           
+            @Override
+            public void mousePressed(MouseEvent arg0) {}            
+            @Override
+            public void mouseExited(MouseEvent me) { 
+            	if (!chosenPokemon.getDescription().equals("0")) {
+            		String chosenPokemonDesc = chosenPokemon.getDescription();
+	            	if (chosenPokemonDesc.equals(beetwoImageIcon.getDescription())) {
+	            		((JButton)me.getSource()).setBackground(Color.RED);
+	            	}
+	            	else ((JButton)me.getSource()).setBackground(Color.WHITE);
+	            	for (int i = 0; i < chosenPokemonQueue.size(); i++) {
+	            		if (chosenPokemonQueue.contains(beetwoImageIcon)) {
+	            			((JButton)me.getSource()).setBackground(Color.RED);
+	            		}
+	            	}
+            	}
+            	else if (chosenPokemonQueue.size() == 3) {
+            		System.out.println("chosenqueue size: " + chosenPokemonQueue.size());
+            		((JButton)me.getSource()).setBackground(Color.WHITE);
+            	}
+            	else {
+            		((JButton)me.getSource()).setBackground(Color.WHITE);
+            	}
+            }           
+            @Override
+            public void mouseEntered(MouseEvent me) {
+            	((JButton)me.getSource()).setBackground(Color.BLUE);
+            }           
+            @Override
+            public void mouseClicked(MouseEvent me) {
+            	chosenPokemon.setDescription("Bee-Two");
+            	System.out.println("Selected Character: Bee-Two");
+            	chosenPokemon.setImage(beetwoImage);
+            	((JButton)me.getSource()).setBackground(Color.RED);
+            	if (chosenPokemonQueue.size() == 0) chosenPokemonQueue.add(beetwoImageIcon);
+            	else {
+	            	for (int i = 0; i < chosenPokemonQueue.size(); i++) {
+	            		if (!chosenPokemonQueue.contains(beetwoImageIcon)) {
+	                    	chosenPokemonQueue.add(beetwoImageIcon);
+	            		}
+	            	}
+            	}
+            	if (chosenPokemonQueue.size() > 3) {
+            		ImageIcon toRemove = chosenPokemonQueue.remove();
+            		String toRemoveDesc = toRemove.getDescription();
+            		for (int i = 0; i < pokemonSpriteList.size(); i++) {
+            			String toCompareDesc = pokemonSpriteList.get(i).getName();
+            			if (toCompareDesc.equals(toRemoveDesc)) {
+            				pokemonSpriteList.get(i).setBackground(Color.WHITE);
+            			}
+            		}
+            	}
+            	System.out.println("Size of chosen queue: " + chosenPokemonQueue.size());
+            	repaint();
+            }
+        });
+		
+		pokemonSpriteList.add(beetwoButton);
+		
+		Image marozardImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Marozard_left_tr_small.png");
+		ImageIcon marozardImageIcon = new ImageIcon(marozardImage,"Marozard");
+		marozardButton = new JButton(marozardImageIcon);
+		marozardButton.setBackground(Color.WHITE);
+		marozardButton.setName("Marozard");
+		marozardButton.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseReleased(MouseEvent arg0) {}           
+            @Override
+            public void mousePressed(MouseEvent arg0) {}            
+            @Override
+            public void mouseExited(MouseEvent me) { 
+            	if (!chosenPokemon.getDescription().equals("0")) {
+            		String chosenPokemonDesc = chosenPokemon.getDescription();
+	            	if (chosenPokemonDesc.equals(marozardImageIcon.getDescription())) {
+	            		((JButton)me.getSource()).setBackground(Color.RED);
+	            	}
+	            	else ((JButton)me.getSource()).setBackground(Color.WHITE);
+	            	for (int i = 0; i < chosenPokemonQueue.size(); i++) {
+	            		if (chosenPokemonQueue.contains(marozardImageIcon)) {
+	            			((JButton)me.getSource()).setBackground(Color.RED);
+	            		}
+	            	}
+            	}
+            	else if (chosenPokemonQueue.size() == 3) {
+            		System.out.println("chosenqueue size: " + chosenPokemonQueue.size());
+            		((JButton)me.getSource()).setBackground(Color.WHITE);
+            	}
+            	else {
+            		((JButton)me.getSource()).setBackground(Color.WHITE);
+            	}
+            }           
+            @Override
+            public void mouseEntered(MouseEvent me) {
+            	((JButton)me.getSource()).setBackground(Color.BLUE);
+            }           
+            @Override
+            public void mouseClicked(MouseEvent me) {
+            	chosenPokemon.setDescription("Marozard");
+            	System.out.println("Selected Character: Marozard");
+            	chosenPokemon.setImage(marozardImage);
+            	((JButton)me.getSource()).setBackground(Color.RED);
+            	if (chosenPokemonQueue.size() == 0) chosenPokemonQueue.add(marozardImageIcon);
+            	else {
+	            	for (int i = 0; i < chosenPokemonQueue.size(); i++) {
+	            		if (!chosenPokemonQueue.contains(marozardImageIcon)) {
+	                    	chosenPokemonQueue.add(marozardImageIcon);
+	            		}
+	            	}
+            	}
+            	if (chosenPokemonQueue.size() > 3) {
+            		ImageIcon toRemove = chosenPokemonQueue.remove();
+            		String toRemoveDesc = toRemove.getDescription();
+            		for (int i = 0; i < pokemonSpriteList.size(); i++) {
+            			String toCompareDesc = pokemonSpriteList.get(i).getName();
+            			if (toCompareDesc.equals(toRemoveDesc)) {
+            				pokemonSpriteList.get(i).setBackground(Color.WHITE);
+            			}
+            		}
+            	}
+            	System.out.println("Size of chosen queue: " + chosenPokemonQueue.size());
+            	repaint();
+            }
+        });
+		pokemonSpriteList.add(marozardButton);
+		
+		Image meonxImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Meonx_left_tr_small.png");
+		ImageIcon meonxImageIcon = new ImageIcon(meonxImage,"Meonx");
+		meonxButton = new JButton(meonxImageIcon);
+		meonxButton.setBackground(Color.WHITE);
+		meonxButton.setName("Meonx");
+		
+		pokemonSpriteList.add(meonxButton);
+		
+		Image geonxImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Geonx_left_tr_small.png");
+		ImageIcon geonxImageIcon = new ImageIcon(geonxImage,"Geonx");
+		geonxButton = new JButton(geonxImageIcon);
+		geonxButton.setBackground(Color.WHITE);
+		geonxButton.setName("Geonx");
+		
+		pokemonSpriteList.add(geonxButton);
+		
+		Image weepintoiseImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Weepintoise_left_tr_small.png");
+		ImageIcon weepintoiseImageIcon = new ImageIcon(weepintoiseImage,"Weepintoise");
+		weepintoiseButton = new JButton(weepintoiseImageIcon);
+		weepintoiseButton.setBackground(Color.WHITE);
+		weepintoiseButton.setName("Weepintoise");
+		
+		pokemonSpriteList.add(weepintoiseButton);
+		
+		Image pikayuImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Pikayu_left_tr_small.png");
+		ImageIcon pikayuImageIcon = new ImageIcon(pikayuImage,"Pikayu");
 		pikayuButton = new JButton(pikayuImageIcon);
+		pikayuButton.setBackground(Color.WHITE);
+		pikayuButton.setName("Pikayu");
 		
+		pokemonSpriteList.add(pikayuButton);
 		
-		pokemonSpriteListPanel.add(feelgletButton);
-		pokemonSpriteListPanel.add(magikunaButton);
+		Image sexypodImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/sexypod_left_tr_small.png");
+		ImageIcon sexypodImageIcon = new ImageIcon(sexypodImage,"Sexypod");
+		sexypodButton = new JButton(sexypodImageIcon);
+		sexypodButton.setBackground(Color.WHITE);
+		sexypodButton.setName("Sexypod");
+		
+		pokemonSpriteList.add(sexypodButton);
+		
+		Image feelgletImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/feelglet_left_tr_small.png");
+		ImageIcon feelgletImageIcon = new ImageIcon(feelgletImage,"Feelglet");
+		feelgletButton = new JButton(feelgletImageIcon);
+		feelgletButton.setBackground(Color.WHITE);
+		feelgletButton.setName("Feelglet");
+		
+		pokemonSpriteList.add(feelgletButton);
+		
+		System.out.println("Size of pokemanlist: " + pokemonSpriteList.size());
+		
+		pokemonSpriteListPanel.add(aerodonButton);
 		pokemonSpriteListPanel.add(lickisterButton);
+		pokemonSpriteListPanel.add(beetwoButton);
+		pokemonSpriteListPanel.add(marozardButton);
+		pokemonSpriteListPanel.add(meonxButton);
+		pokemonSpriteListPanel.add(geonxButton);
+		pokemonSpriteListPanel.add(weepintoiseButton);
 		pokemonSpriteListPanel.add(pikayuButton);
+		pokemonSpriteListPanel.add(sexypodButton);
+		pokemonSpriteListPanel.add(feelgletButton);
 		add(pokemonSpriteListPanel);
 		/* ready Button */
 		JPanel readyPanel = new JPanel();
 		readyPanel.setLayout(new GridBagLayout());
 		readyPanel.setMaximumSize(new Dimension(300,50));
 		readyButton = new JButton("READY");
-		readyButton.setFont(new Font("Arial",Font.BOLD, 45));
+		readyButton.setFont(new Font("Arial",Font.BOLD, 25));
 		readyPanel.add(readyButton);
 		add(readyPanel);
 	}
