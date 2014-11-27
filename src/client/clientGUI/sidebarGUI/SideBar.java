@@ -21,12 +21,4 @@ public class SideBar extends JPanel {
 		add(new ChatGUI(address), BorderLayout.SOUTH);
 	}
 	
-	public static void main(String[] args) {
-		JFrame j = new JFrame();
-		j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		j.setSize(300, 600);
-		j.add(new SideBar());
-		j.setVisible(true);
-	}
-
 }

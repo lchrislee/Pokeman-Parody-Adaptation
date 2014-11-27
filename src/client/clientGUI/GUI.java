@@ -3,27 +3,32 @@ package client.clientGUI;
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class GUI extends JFrame{
-	//800 x 600
+import BattleGUI.CommandCenterGUI;
+import client.clientGUI.sidebarGUI.ChatGUI;
+import client.clientGUI.sidebarGUI.SideBar;
+import client.clientGUI.sidebarGUI.SideBarMenuAdapter;
+
+public class GUI extends JPanel{
 	public GUI(){
 		createGUI();
-		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setSize(500,500);
-		setVisible(true);
+	
 	}
 	private void createGUI(){
 		setLayout(new BorderLayout());
-		JPanel sidebarPnl = new JPanel();
-		add(sidebarPnl, BorderLayout.EAST);
-		JPanel commandCenterPnl =new JPanel();
-		add(commandCenterPnl, BorderLayout.SOUTH);
-		JPanel gamePnl = new JPanel();
-		add(gamePnl, BorderLayout.NORTH);
-		
+		JPanel leftContainer = new JPanel(new BorderLayout());
+		add(new SideBar(), BorderLayout.EAST);
+		add(leftContainer, BorderLayout.CENTER);
+		leftContainer.add(new CommandCenterGUI(), BorderLayout.SOUTH);		
 	}
-	public static void main(String[] args){
-		GUI p = new GUI();
+
+	public static void main(String[] args) {
+		JFrame j = new JFrame();
+		j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		j.setSize(800, 600);
+		j.add(new GUI());
+		j.setVisible(true);
 	}
 }
