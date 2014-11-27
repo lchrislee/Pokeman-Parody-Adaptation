@@ -371,8 +371,8 @@ public class LoginScreen extends JPanel {
 		pokemonSpriteListPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pokemonSpriteList = new ArrayList<JButton>();
 		
-		Image aerodonImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Aerodon_left_tr_small.png");
-		ImageIcon aerodonImageIcon = new ImageIcon(aerodonImage,"Aerodon");
+		final Image aerodonImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Aerodon_left_tr_small.png");
+		final ImageIcon aerodonImageIcon = new ImageIcon(aerodonImage,"Aerodon");
 		aerodonButton = new JButton(aerodonImageIcon);
 		aerodonButton.setBackground(Color.WHITE);
 		aerodonButton.setName("Aerodon");
@@ -438,8 +438,8 @@ public class LoginScreen extends JPanel {
 		
 		pokemonSpriteList.add(aerodonButton);
 		
-		Image lickisterImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Lickister_left_tr_small.png");
-		ImageIcon lickisterImageIcon = new ImageIcon(lickisterImage,"Lickister");
+		final Image lickisterImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Lickister_left_tr_small.png");
+		final ImageIcon lickisterImageIcon = new ImageIcon(lickisterImage,"Lickister");
 		lickisterButton = new JButton(lickisterImageIcon);
 		lickisterButton.setBackground(Color.WHITE);
 		lickisterButton.setName("Lickister");
@@ -505,8 +505,8 @@ public class LoginScreen extends JPanel {
 		
 		pokemonSpriteList.add(lickisterButton);
 		
-		Image beetwoImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Bee-two_left_tr_small.png");
-		ImageIcon beetwoImageIcon = new ImageIcon(beetwoImage,"Bee-Two");
+		final Image beetwoImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Bee-two_left_tr_small.png");
+		final ImageIcon beetwoImageIcon = new ImageIcon(beetwoImage,"Bee-Two");
 		beetwoButton = new JButton(beetwoImageIcon);
 		beetwoButton.setBackground(Color.WHITE);
 		beetwoButton.setName("Bee-Two");
@@ -572,8 +572,8 @@ public class LoginScreen extends JPanel {
 		
 		pokemonSpriteList.add(beetwoButton);
 		
-		Image marozardImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Marozard_left_tr_small.png");
-		ImageIcon marozardImageIcon = new ImageIcon(marozardImage,"Marozard");
+		final Image marozardImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Marozard_left_tr_small.png");
+		final ImageIcon marozardImageIcon = new ImageIcon(marozardImage,"Marozard");
 		marozardButton = new JButton(marozardImageIcon);
 		marozardButton.setBackground(Color.WHITE);
 		marozardButton.setName("Marozard");

@@ -9,18 +9,23 @@ import java.net.UnknownHostException;
 
 import javax.swing.JOptionPane;
 
+import server.Server;
+import client.clientGUI.GUI;
+
 public class Client{
-	//private ClientGUI clientGUI;
+	private GUI clientGUI;
 	private Socket clientSocket;
 	private BufferedReader br;
 	private PrintWriter pw;
-	private String hostAddress = "something";
+	private String hostAddress;
 	
 	
-	public Client(){
-		//clientGUI.creatGUI();
+	public Client(String ipAddress){
+		clientGUI = new GUI();
+		hostAddress = ipAddress;
 		try {
-			clientSocket = new Socket(hostAddress,9001);
+			
+			clientSocket = new Socket(hostAddress,Server.BATTLEPORT);
 			br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 			pw = new PrintWriter(clientSocket.getOutputStream());
 		} catch (UnknownHostException e) {
@@ -30,19 +35,25 @@ public class Client{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 	}
 	
 	public void run(){
 		//
 	}
 	
+	public void createGUI(String ip){
+		
+	}
 	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Client client = new Client();
+	
 		String address = JOptionPane.showInputDialog(null, "Enter the server's IP address", "Get IP Address", JOptionPane.DEFAULT_OPTION);
 		System.out.println(address + " ADDRESS ");
+		Client client = new Client(address);
 		client.run();
 
 	}
