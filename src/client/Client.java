@@ -1,10 +1,18 @@
 package client;
 
-public class Client {
+public class Client implements Runnable{
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	public Client(){
+		
+	}
+	
+	@Override
+	public void run(){
+		
+	}
+	
+	public static void main(String[] args){
+		new Client().run();
 	}
 
 }
