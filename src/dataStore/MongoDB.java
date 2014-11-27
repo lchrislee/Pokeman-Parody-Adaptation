@@ -43,6 +43,7 @@ public class MongoDB {
 		//PokemanCollection.remove(new BasicDBObject());
 		
     	
+		
     }
 
 	private void addAllCards() throws FileNotFoundException {
