@@ -18,8 +18,8 @@ public class Battle extends RecursiveTask<Boolean> {
 	private boolean player1Switch;
 	private boolean player2Switch;
 	
-	private static int PLAYERONE = 1;
-	private static int PLAYERTWO = 2;
+	private int PLAYERONE = 1;
+	private int PLAYERTWO = 2;
 	
 	private Player p1;
 	private Player p2;
