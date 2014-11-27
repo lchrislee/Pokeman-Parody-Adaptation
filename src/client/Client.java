@@ -1,12 +1,11 @@
 package client;
 
-public class Client implements Runnable{
+public class Client{
 
 	public Client(){
 		
 	}
 	
-	@Override
 	public void run(){
 		
 	}
