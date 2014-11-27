@@ -1,4 +1,4 @@
-package client.sidebarGUI;
+package client.clientGUI.sidebarGUI;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -22,7 +22,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
 
 import server.Server;
-import client.chatSystem.ChatClient;
+import client.helper.chatSystem.ChatClient;
 
 public class ChatGUI extends JPanel {
 	private static final long serialVersionUID = 8239335834925382510L;

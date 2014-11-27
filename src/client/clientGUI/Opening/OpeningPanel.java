@@ -1,4 +1,4 @@
-package client.Opening;
+package client.clientGUI.Opening;
 
 import java.awt.Color;
 import java.awt.Dimension;
