@@ -42,8 +42,8 @@ public class GUI extends JPanel{
 		j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		j.setSize(800, 600);
 		GUI g = new GUI();
-		g.createGUI("localhost", pw, bf); //pass in printerwriter to everything in command cneter
 		j.add(g);
+		g.createGUI("192.168.0.106", pw, bf); //pass in printerwriter to everything in command cneter
 		j.setVisible(true);
 		//setvisible is before opening
 	}
