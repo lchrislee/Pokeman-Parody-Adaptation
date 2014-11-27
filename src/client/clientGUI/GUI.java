@@ -13,13 +13,16 @@ import client.clientGUI.sidebarGUI.SideBarMenuAdapter;
 
 public class GUI extends JPanel{
 	public GUI(){
-		createGUI();
+		//opening
+		//login
+		
+		//createGUI(); client calls this
 	
 	}
-	private void createGUI(){
+	public void createGUI(String address){
 		setLayout(new BorderLayout());
 		JPanel leftContainer = new JPanel(new BorderLayout());
-		add(new SideBar(), BorderLayout.EAST);
+		add(new SideBar(address), BorderLayout.EAST);
 		add(leftContainer, BorderLayout.CENTER);
 		leftContainer.add(new CommandCenterGUI(), BorderLayout.SOUTH);		
 	}
@@ -28,7 +31,9 @@ public class GUI extends JPanel{
 		JFrame j = new JFrame();
 		j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		j.setSize(800, 600);
-		j.add(new GUI());
+		GUI g = new GUI();
+		g.createGUI("localhost");
+		j.add(g);
 		j.setVisible(true);
 	}
 }
