@@ -22,19 +22,20 @@ public class MongoDB {
  	
     
     public MongoDB() throws UnknownHostException{
-        this("216.240.62.66", 27017);
+        this("YOUR IP HERE", 27017);
     }
     
     public MongoDB(String ip,int port) throws UnknownHostException{
-        m = new MongoClient();
+        m = new MongoClient(ip, port);
         PokemanDB = m.getDB(POKEMAN_DB_NAME);
         PokemanCollection = PokemanDB.getCollection(POKEMAN_DB_COLLECTION);
        
     }
 
     public static void main(String[] args) throws Exception{
-    	
+
 		MongoDB db = new MongoDB();
+		//PokemanCollection.remove(new BasicDBObject());
 		//db.addAllCards();
 		DBCursor curse = PokemanCollection.find();
 		while(curse.hasNext()){
