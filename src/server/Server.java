@@ -13,7 +13,7 @@ import server.chatSystem.ChatServer;
 import Battle.Battle;
 
 public class Server implements Runnable{
-	public static final int BATTLEPORT = 5555;
+	public static final int COMMUNICATIONPORT = 5555;
 	public static final int CHATPORT = 4444;
 	
 	private ChatServer chatServer;
@@ -21,9 +21,9 @@ public class Server implements Runnable{
 	private Battle second;
 	
 	private ServerSocket ssChat;
-	private ServerSocket ssBattle;
+	private ServerSocket ssComm;
 	private ArrayList<Socket> chatSockets;
-	private ArrayList<Socket> battleSockets;
+	private ArrayList<Socket> communicationSockets;
 	int battleOneP1 = 1;
 	int battleOneP2 = -1;
 	int battleTwoP1 = -1;
@@ -33,7 +33,7 @@ public class Server implements Runnable{
 	public Server(){
 		chatServer = new ChatServer(CHATPORT);
 		chatSockets = new ArrayList<Socket>();
-		battleSockets = new ArrayList<Socket>();
+		communicationSockets = new ArrayList<Socket>();
 		System.out.println("Getting input from other players");
 //		try {
 //			Thread.sleep(2000);//TODO replace this with actual server stuff
@@ -43,12 +43,12 @@ public class Server implements Runnable{
 		System.out.println("Waiting for clients...");
 		try {
 			ssChat = new ServerSocket(CHATPORT);
-			ssBattle = new ServerSocket(BATTLEPORT);
+			ssComm = new ServerSocket(COMMUNICATIONPORT);
 			
 			for (int i = 0; i < 4; ++i){
-				Socket battleSocketInput = ssBattle.accept();
-				System.out.println(battleSocketInput.toString() + " CONNECTED TO BATTLE");
-				battleSockets.add(battleSocketInput);
+				Socket communicationSocketInput = ssComm.accept();
+				System.out.println(communicationSocketInput.toString() + " CONNECTED TO SERVER");
+				communicationSockets.add(communicationSocketInput);
 
 				Socket chatSocketInput = ssChat.accept();
 				System.out.println(chatSocketInput.toString() + " CONNECTED TO CHAT");
@@ -60,9 +60,6 @@ public class Server implements Runnable{
 		}
 		
 		System.out.println("Done getting input from other players");
-		
-		generateBattlePairs();
-		createBattles();
 	}
 	
 	public static void main(String[] args) {
@@ -79,11 +76,13 @@ public class Server implements Runnable{
 	
 		Thread t = new Thread(new Server());
 		t.run();
+		
 	}
 	
 	@Override
 	public void run(){
-		
+		generateBattlePairs();
+		createBattles();
 	}
 	
 	private void createBattles(){
