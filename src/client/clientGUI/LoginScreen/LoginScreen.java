@@ -1104,6 +1104,16 @@ public class LoginScreen extends JPanel {
 		readyButton.setFont(new Font("Arial",Font.BOLD, 45));
 		readyButton.setBackground(Color.GREEN);
 
+		readyButton.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				System.out.println("DRINK BLEACH");
+			}
+			
+		});
+		
 		readyPanel.add(readyButton);
 		add(readyPanel);
 	}
