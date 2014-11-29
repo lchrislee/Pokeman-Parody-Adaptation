@@ -11,27 +11,29 @@ public class Battle extends RecursiveTask<Boolean> {
 	String input;
 	private boolean player1Quit;
 	private boolean player2Quit;
-	private int firstPlayerToQuit;
-	private int firstPlayerToSwitch;
 	private boolean player1Selected;
 	private boolean player2Selected;
 	private boolean player1Switch;
 	private boolean player2Switch;
-	
-	private int PLAYERONE = 1;
-	private int PLAYERTWO = 2;
+	private boolean winnerDetermined;
+	private int firstPlayerToQuit;
+	private int firstPlayerToSwitch;
+	private final int PLAYERONE = 1;
+	private final int PLAYERTWO = 2;
 	
 	private Player p1;
 	private Player p2;
 	
 	
 	public Battle(){
+		winnerDetermined = false;
 		setTurnVariables();
 	}
 	
 	public Battle(Player p1, Player p2){
 		this.p1 = p1;
 		this.p2 = p2;
+		winnerDetermined = false;
 		setTurnVariables();
 	}
 	
@@ -78,26 +80,32 @@ public class Battle extends RecursiveTask<Boolean> {
 	@Override
 	protected Boolean compute() {
 		Boolean output = null;
-		if (input.charAt(0) == 'A'){
-			attack(input);
-			output = true;
+		while (!winnerDetermined){
+			while (!player1Selected && !player2Selected)
+				Thread.yield();
+			
+			if (firstPlayerToQuit != 0)
+				return endBattle(firstPlayerToQuit);
+			
+			if (firstPlayerToSwitch == 1){
+				doSwitch(PLAYERONE);
+				if (player2Switch)
+					doSwitch(PLAYERTWO);
+				continue;
+			}else if (firstPlayerToSwitch == 2){
+				doSwitch(PLAYERTWO);
+				if (player1Switch)
+					doSwitch(PLAYERONE);
+				continue;
+			}
+			
+			System.out.println("Player 1 quit: " + player1Quit);
+			System.out.println("Player 2 quit: " + player2Quit);
+			System.out.println("Who Quit first: " + firstPlayerToQuit);
+			System.out.println("Player 1 selected: " + player1Selected);
+			System.out.println("Player 2 selected: " + player2Selected);
+			setTurnVariables();
 		}
-		
-		else if(input.indexOf("Sw") == 0){
-			swap(input);
-			output = true;
-		}
-		
-		else if (input.indexOf("Su") == 0){
-			surrender(input);
-			output = false;
-		}
-		System.out.println("Player 1 quit: " + player1Quit);
-		System.out.println("Player 2 quit: " + player2Quit);
-		System.out.println("Who Quit first: " + firstPlayerToQuit);
-		System.out.println("Player 1 selected: " + player1Selected);
-		System.out.println("Player 2 selected: " + player2Selected);
-		setTurnVariables();
 		return output;
 	}
 	
@@ -109,7 +117,18 @@ public class Battle extends RecursiveTask<Boolean> {
 		player2Selected = false;
 	}
 	
-	private void attack(String input){
+	private void doSwitch(int player){
+		
+	}
+	
+	private Boolean endBattle(int playerLoser){
+		if (playerLoser == 1)
+			return false;
+		else
+			return true;
+	}
+	
+	private void interpretAttack(String input){
 		System.out.println(input);
 		int moveNameStartIndex = input.indexOf("_") + 1;
 		int moveNameEndIndex = input.indexOf("|");
@@ -132,7 +151,7 @@ public class Battle extends RecursiveTask<Boolean> {
 		return (2 * 10 + 10)/150 * (39/28) * power + 2;
 	}
 	
-	private synchronized void surrender(String input){
+	private void interpretSurrender(String input){
 		System.out.println(input);
 		int playerIndex = input.indexOf("_P") + 2;
 		System.out.println("Player " + input.charAt(playerIndex) + " wants to quit");
@@ -175,7 +194,7 @@ public class Battle extends RecursiveTask<Boolean> {
 		return PLAYERTWO;
 	}
 	
-	private synchronized void swap(String input){//string will be number-pokemonname... eg: 1-Lickister  or 2-Beetwo
+	private synchronized void interpretSwap(String input){//string will be number-pokemonname... eg: 1-Lickister  or 2-Beetwo
 		
 		
 			//will run only if nobody's quit yet

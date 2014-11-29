@@ -6,9 +6,11 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import javax.swing.JOptionPane;
 
+import dataStore.NetworkPlayer;
 import server.chatSystem.ChatServer;
 import Battle.Battle;
 
@@ -22,8 +24,7 @@ public class Server implements Runnable{
 	
 	private ServerSocket ssChat;
 	private ServerSocket ssComm;
-	private ArrayList<Socket> chatSockets;
-	private ArrayList<Socket> communicationSockets;
+	private ArrayList<NetworkPlayer> players;
 	int battleOneP1 = 1;
 	int battleOneP2 = -1;
 	int battleTwoP1 = -1;
@@ -32,8 +33,9 @@ public class Server implements Runnable{
 	
 	public Server(){
 		chatServer = new ChatServer(CHATPORT);
-		chatSockets = new ArrayList<Socket>();
-		communicationSockets = new ArrayList<Socket>();
+		players = new ArrayList<NetworkPlayer>();
+		ArrayList<Socket> chatSockets = new ArrayList<Socket>();
+		ArrayList<Socket> communicationSockets = new ArrayList<Socket>();
 		System.out.println("Getting input from other players");
 //		try {
 //			Thread.sleep(2000);//TODO replace this with actual server stuff
@@ -54,6 +56,12 @@ public class Server implements Runnable{
 				System.out.println(chatSocketInput.toString() + " CONNECTED TO CHAT");
 				chatServer.listen(chatSocketInput);
 				chatSockets.add(chatSocketInput);
+				players.add(new NetworkPlayer());
+			}
+			chatSockets.sort(new SocketSort());
+			communicationSockets.sort(new SocketSort());
+			for (NetworkPlayer p : players){
+				
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -83,6 +91,8 @@ public class Server implements Runnable{
 	public void run(){
 		generateBattlePairs();
 		createBattles();
+		boolean result1 = first.join();
+		boolean result2 = second.join();
 	}
 	
 	private void createBattles(){
@@ -106,5 +116,12 @@ public class Server implements Runnable{
 				break;
 		}
 	}
-	
+	private class SocketSort implements Comparator<Socket>{
+
+		@Override
+		public int compare(Socket o1, Socket o2) {
+			return o1.getLocalAddress().toString().compareTo(o2.getLocalAddress().toString());
+		}
+		
+	}
 }
