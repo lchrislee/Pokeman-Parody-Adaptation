@@ -356,6 +356,11 @@ public class LoginScreen extends JPanel {
 		
 		
 		
+		
+		
+		
+		
+		
 		/* panel with default pokemans to choose from */
 		JButton aerodonButton, lickisterButton, beetwoButton, marozardButton, meonxButton,
 				geonxButton, weepintoiseButton, pikayuButton, sexypodButton, feelgletButton;
@@ -365,9 +370,11 @@ public class LoginScreen extends JPanel {
 		add(pokemonSelectPanel);
 		JLabel pokemonSelectLabel = new JLabel("Select three Pokeman  ");
 		pokemonSelectLabel.setFont(new Font("Arial",Font.PLAIN, 25));
-		JButton pokemonSelectButton = new JButton("Select");
+		final JButton pokemonSelectButton = new JButton("Select");
+		pokemonSelectButton.setFont(new Font("Arial",Font.PLAIN, 15));
 		pokemonSelectButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent action) {
+				pokemonSelectButton.setEnabled(false);
 				System.out.println("Current chosen pokemans: ");
 				int numInQueue = chosenPokemonQueue.size();
 				String [] descs = new String[3];
@@ -382,8 +389,10 @@ public class LoginScreen extends JPanel {
 				for (int k = 0; k < components.length; k++){
 					boolean DONOTREMOVE = false;
 					for (int j = 0; j < descs.length; ++j)
-						if (((JButton)components[k]).getName().equalsIgnoreCase(descs[j]))
+						if (((JButton)components[k]).getName().equalsIgnoreCase(descs[j])) {
 							DONOTREMOVE = true;
+							((JButton)components[k]).setBackground(Color.WHITE);
+						}
 					if (!DONOTREMOVE)
 						pokemonSpriteListPanel.remove(pokemonSpriteList.get(k));
 				}
@@ -1091,15 +1100,10 @@ public class LoginScreen extends JPanel {
 		readyPanel.setLayout(new GridBagLayout());
 		readyPanel.setMaximumSize(new Dimension(300,50));
 		readyButton = new JButton("READY");
-		readyButton.setFont(new Font("Arial",Font.BOLD, 25));
-		readyButton.addActionListener(new ActionListener(){
 
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				LoginScreen.this.done = true;
-				
-			}
-		});
+		readyButton.setFont(new Font("Arial",Font.BOLD, 45));
+		readyButton.setBackground(Color.GREEN);
+
 		readyPanel.add(readyButton);
 		add(readyPanel);
 	}
