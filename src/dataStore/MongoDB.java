@@ -22,7 +22,7 @@ public class MongoDB {
  	
     
     public MongoDB() throws UnknownHostException{
-        this("YOUR IP HERE", 27017);
+        this("10.120.122.16", 27017);
     }
     
     public MongoDB(String ip,int port) throws UnknownHostException{

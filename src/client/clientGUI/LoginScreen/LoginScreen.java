@@ -46,6 +46,7 @@ public class LoginScreen extends JPanel {
 	private ImageIcon chosenPokemon = new ImageIcon();
 	private Queue<ImageIcon> chosenPokemonQueue = new LinkedList<ImageIcon>();
 	private boolean hasSelectedPokeman = false;
+	public boolean done = false;
 	public LoginScreen() {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		createLoginGUI();
@@ -1091,6 +1092,14 @@ public class LoginScreen extends JPanel {
 		readyPanel.setMaximumSize(new Dimension(300,50));
 		readyButton = new JButton("READY");
 		readyButton.setFont(new Font("Arial",Font.BOLD, 25));
+		readyButton.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				LoginScreen.this.done = true;
+				
+			}
+		});
 		readyPanel.add(readyButton);
 		add(readyPanel);
 	}

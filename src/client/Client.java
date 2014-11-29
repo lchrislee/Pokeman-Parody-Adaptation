@@ -19,6 +19,9 @@ public class Client{
 	private PrintWriter pw;
 	private String hostAddress;
 	
+	//method to store players
+	
+	
 	
 	public Client(String ipAddress){
 		clientGUI = new GUI();
