@@ -37,6 +37,11 @@ public class Pokemon implements Serializable{
 		this.moveList = moves;
 		createSprites();//store left and right cuz we dunno which player we'll be.
 	}
+
+	public Pokemon(){
+		
+	}
+	
 	
 	private void createSprites(){
 		for(int i=0;i<FileNameArray.length;++i){
@@ -58,7 +63,7 @@ public class Pokemon implements Serializable{
 		this.conscious = false;
 	}
 	
-	public void setHealth(int h){// ¨C this method will be used when a pokemon¡¯s health must be adjusted (potion is used the pokemon is attacked)
+	public void setHealth(int h){// ï¿½C this method will be used when a pokemonï¿½ï¿½s health must be adjusted (potion is used the pokemon is attacked)
 		if(health <= 0)
 			this.health = 0;
 		else
