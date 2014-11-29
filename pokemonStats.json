@@ -1,19 +1,18 @@
 [
   {
-    "datamonStats": {
-        "Level": 16,
+     
+    "Level": 16,
       
-        "HP": 72,
+    "HP": 72,
       
-        "Attack": 37,
+    "Attack": 37,
       
-        "Defense": 43,
+    "Defense": 43,
       
-        "Speed": 26,
+    "Speed": 26,
       
-        "Rarity": 2
-      
-    },
+    "Rarity": 2,
+   
     "Name": "Lickister",
 
     "moves": [
@@ -37,7 +36,7 @@
 
   },
   {
-    "datamonStats": {
+     
         "Level": 17,
       
       
@@ -53,8 +52,8 @@
         "Speed": 30,
       
       
-        "Rarity": 2      
-    },
+        "Rarity": 2,    
+    
     "Name": "Lickister",
     "moves":[
 	{
@@ -76,24 +75,24 @@
 	]
   },
    {
-    "datamonStats": {
-        "Level": 18,
+     
+    "Level": 18,
       
       
-        "HP": 80,
+    "HP": 80,
       
       
-        "Attack": 41,
+    "Attack": 41,
       
       
-        "Defense": 50,
+    "Defense": 50,
       
       
-        "Speed": 34,
+    "Speed": 34,
       
       
-        "Rarity": 3
-      },
+    "Rarity": 3,
+     
     "Name": "Lickister",
     "moves":[
 	{
@@ -115,7 +114,7 @@
 	]
   },
    {
-    "datamonStats":{
+     
         "Level": 19,
       
         "HP": 84,
@@ -130,9 +129,9 @@
         "Speed": 39,
       
       
-        "Rarity": 1
+        "Rarity": 1,
       
-    },
+    
     "Name": "Lickister",
     "moves":[
 	{
@@ -154,7 +153,7 @@
 	]
   },
    {
-    "datamonStats":{
+     
         "Level": 20,
       
       
@@ -170,9 +169,9 @@
         "Speed": 44,
       
       
-        "Rarity": 1
+        "Rarity": 1,
       
-    },
+    
     "Name": "Lickister",
 
     "moves":[
@@ -195,8 +194,8 @@
 	]
   },
    {
-    "datamonStats": {
-        "Level": 17,
+     
+        "Level": "17",
       
       
         "HP": 78,
@@ -211,8 +210,8 @@
         "Speed": 41,
       
       
-        "Rarity": 2
-      },
+        "Rarity": 2,
+      
     
     "Name": "Aerodon",
     "moves":[
@@ -235,8 +234,8 @@
 	]
   },
    {
-    "datamonStats": {
-        "Level": 18,
+     
+        "Level": "18",
       
       
         "HP": 82,
@@ -251,9 +250,9 @@
         "Speed": 42,
       
       
-        "Rarity": 3
+        "Rarity": 3,
       
-    },
+    
     "Name": "Aerodon",
     "moves":[
 	{
@@ -275,8 +274,8 @@
 	]
   },
    {
-    "datamonStats":{
-        "Level": 19,
+     
+        "Level": "19",
       
         "HP": 86,
       
@@ -290,9 +289,9 @@
         "Speed": 44,
       
       
-        "Rarity": 2
+        "Rarity": 2,
       
-   },
+   
     "Name": "Aerodon",
     "moves":[
 	{
@@ -314,8 +313,8 @@
 	]
   },
    {
-    "datamonStats": {
-        "Level": 20,
+     
+        "Level": "20",
       
       
         "HP": 90,
@@ -330,9 +329,9 @@
         "Speed": 48,
       
       
-        "Rarity": 1
+        "Rarity": 1,
      
-    },
+    
     "Name": "Aerodon",
     "moves":[
 	{
@@ -354,8 +353,8 @@
 	]
   },
    {
-    "datamonStats": 
-      {
+      
+      
         "Level": 16,
       
       
@@ -371,8 +370,8 @@
         "Speed": 54,
       
       
-        "Rarity": 1
-    },
+        "Rarity": 1,
+    
     
     "Name": "Pikayu",
     "moves":[
@@ -395,8 +394,8 @@
 	]
   },
    {
-    "datamonStats": 
-      {
+      
+      
         "Level": 17,
       
       
@@ -412,8 +411,8 @@
         "Speed": 58,
       
       
-        "Rarity": 1
-    },
+        "Rarity": 1,
+    
     
     "Name": "Pikayu",
     "moves":[
@@ -436,8 +435,8 @@
 	]
   },
    {
-    "datamonStats": 
-      {
+      
+      
         "Level": 18,
       
       
@@ -453,8 +452,8 @@
         "Speed": 62,
       
       
-        "Rarity": 2
-    },
+        "Rarity": 2,
+    
     
     "Name": "Pikayu",
     "moves":[
@@ -477,8 +476,8 @@
 	]
   },
    {
-    "datamonStats": 
-      {
+      
+      
         "Level": 19,
       
       
@@ -494,8 +493,8 @@
         "Speed": 66,
       
       
-        "Rarity": 2
-    },
+        "Rarity": 2,
+    
     
     "Name": "Pikayu",
     "moves":[
@@ -518,8 +517,8 @@
 	]
   },
    {
-    "datamonStats": 
-      {
+      
+      
         "Level": 20,
       
       
@@ -535,8 +534,8 @@
         "Speed": 70,
       
       
-        "Rarity": 3
-    },
+        "Rarity": 3,
+    
     
     "Name": "Pikayu",
     "moves":[
@@ -559,8 +558,8 @@
 	]
   },
    {
-    "datamonStats": 
-      {
+      
+      
         "Level": 17,
       
       
@@ -576,8 +575,8 @@
         "Speed": 36,
       
       
-        "Rarity": 3
-    },
+        "Rarity": 3,
+    
     
     "Name": "Weepintoise",
     "moves":[
@@ -600,8 +599,8 @@
 	]
   },
    {
-    "datamonStats": 
-      {
+      
+      
         "Level": 18,
       
       
@@ -617,8 +616,8 @@
         "Speed": 42,
       
       
-        "Rarity": 3
-    },
+        "Rarity": 3,
+    
     
     "Name": "Weepintoise",
     "moves":[
@@ -641,8 +640,8 @@
 	]
   },
    {
-    "datamonStats": 
-      {
+      
+      
         "Level": 19,
       
       
@@ -658,9 +657,9 @@
         "Speed": 49,
       
       
-        "Rarity": 3
+        "Rarity": 3,
       
-    },
+    
     "Name": "Weepintoise",
     "moves":[
 	{
@@ -682,8 +681,8 @@
 	]
   },
    {
-    "datamonStats": 
-      {
+      
+      
         "Level": 20,
       
       
@@ -699,9 +698,9 @@
         "Speed": 58,
       
       
-        "Rarity": 2
+        "Rarity": 2,
       
-    },
+    
     "Name": "Weepintoise",
     "moves":[
 	{
@@ -723,8 +722,8 @@
 	]
   },
    {
-    "datamonStats": 
-      {
+      
+      
         "Level": 17,
       
       
@@ -740,8 +739,8 @@
         "Speed": 51,
       
       
-        "Rarity": 1
-    },
+        "Rarity": 1,
+    
     
     "Name": "Meonx",
     "moves":[
@@ -764,8 +763,8 @@
 	]
   },
    {
-    "datamonStats": 
-      {
+      
+      
         "Level": 18,
      
      
@@ -781,9 +780,9 @@
         "Speed": 54,
       
       
-        "Rarity": 2
+        "Rarity": 2,
       
-    },
+    
     "Name": "Meonx",
     "moves":[
 	{
@@ -805,8 +804,8 @@
 	]
   },
    {
-    "datamonStats": 
-      {
+      
+      
         "Level": 19,
       
       
@@ -822,9 +821,9 @@
         "Speed": 57,
       
       
-        "Rarity": 3
+        "Rarity": 3,
       
-    },
+    
     "Name": "Meonx",
     "moves":[
 	{
@@ -846,8 +845,8 @@
 	]
   },
   {
-    "datamonStats": 
-      {
+      
+      
         "Level": 20,
       
       
@@ -863,9 +862,9 @@
         "Speed": 60,
       
      
-        "Rarity": 2
+        "Rarity": 2,
       
-    },
+    
     "Name": "Meonx",
     "moves":[
 	{
@@ -887,8 +886,8 @@
 	]
   },
    {
-    "datamonStats": 
-      {
+      
+      
         "Level": 16,
       
       
@@ -904,9 +903,9 @@
         "Speed": 40,
       
       
-        "Rarity": 1
+        "Rarity": 1,
       
-    },
+    
     "Name": "Geonx",
     "moves":[
 	{
@@ -928,8 +927,8 @@
 	]
   },
    {
-    "datamonStats": 
-      {
+      
+      
         "Level": 17,
       
       
@@ -945,9 +944,9 @@
         "Speed": 43,
       
       
-        "Rarity": 2
+        "Rarity": 2,
       
-    },
+    
     "Name": "Geonx",
     "moves":[
 	{
@@ -969,8 +968,8 @@
 	]
   },
    {
-    "datamonStats": 
-      {
+      
+      
         "Level": 18,
       
       
@@ -986,8 +985,8 @@
         "Speed": 46,
       
       
-        "Rarity": 4
-    },
+        "Rarity": 4,
+    
     
     "Name": "Geonx",
     "moves":[
@@ -1010,8 +1009,8 @@
 	]
   },
    {
-    "datamonStats": 
-      {
+      
+      
         "Level": 19,
       
       
@@ -1027,9 +1026,9 @@
         "Speed": 49,
      
      
-        "Rarity": 3
+        "Rarity": 3,
       
-    },
+    
     "Name": "Geonx",
     "moves":[
 	{
@@ -1051,8 +1050,8 @@
 	]
   },
    {
-    "datamonStats": 
-      {
+      
+      
         "Level": 20,
       
       
@@ -1068,9 +1067,9 @@
         "Speed": 52,
       
       
-        "Rarity": 2
+        "Rarity": 2,
       
-    },
+    
     "Name": "Geonx",
     "moves":[
 	{
@@ -1092,8 +1091,8 @@
 	]
   },
    {
-    "datamonStats": 
-      {
+      
+      
         "Level": 17,
       
       
@@ -1109,9 +1108,9 @@
         "Speed": 46,
       
       
-        "Rarity": 2
+        "Rarity": 2,
       
-    },
+    
     "Name": "Bee-Two",
     "moves":[
 	{
@@ -1133,8 +1132,8 @@
 	]
   },
    {
-    "datamonStats": 
-      {
+      
+      
         "Level": 18,
       
       
@@ -1150,9 +1149,9 @@
         "Speed": 49,
       
       
-        "Rarity": 1
+        "Rarity": 1,
       
-    },
+    
     "Name": "Bee-Two",
     "moves":[
 	{
@@ -1174,8 +1173,8 @@
 	]
   },
    {
-    "datamonStats": 
-      {
+      
+      
         "Level": 19,
       
       
@@ -1191,9 +1190,9 @@
         "Speed": 52,
       
       
-        "Rarity": 1
+        "Rarity": 1,
       
-    },
+    
     "Name": "Bee-Two",
     "moves":[
 	{
@@ -1215,8 +1214,8 @@
 	]
   },
    {
-    "datamonStats": 
-      {
+      
+      
         "Level": 20,
       
       
@@ -1232,9 +1231,9 @@
         "Speed": 55,
       
       
-        "Rarity": 1
+        "Rarity": 1,
       
-    },
+    
     "Name": "Bee-Two",
     "moves":[
 	{
@@ -1256,8 +1255,8 @@
 	]
   },
    {
-    "datamonStats": 
-      {
+      
+      
         "Level": 17,
       
       
@@ -1273,9 +1272,9 @@
         "Speed": 39,
       
       
-        "Rarity": 4
+        "Rarity": 4,
       
-    },
+    
     "Name": "Marozard",
     "moves":[
 	{
@@ -1297,8 +1296,8 @@
 	]
   },
    {
-    "datamonStats": 
-      {
+      
+      
         "Level": 18,
       
       
@@ -1314,9 +1313,9 @@
         "Speed": 42,
       
       
-        "Rarity": 3
+        "Rarity": 3,
       
-    },
+    
     "Name": "Marozard",
     "moves":[
 	{
@@ -1338,8 +1337,8 @@
 	]
   },
    {
-    "datamonStats": 
-      {
+      
+      
         "Level": 19,
       
       
@@ -1355,9 +1354,9 @@
         "Speed": 45,
       
       
-        "Rarity": 3
+        "Rarity": 3,
       
-    },
+    
     "Name": "Marozard",
     "moves":[
 	{
@@ -1379,8 +1378,8 @@
 	]
   },
    {
-    "datamonStats": 
-      {
+      
+      
         "Level": 20,
       
       
@@ -1396,9 +1395,9 @@
         "Speed": 48,
       
       
-        "Rarity": 2
+        "Rarity": 2,
       
-    },
+    
     "Name": "Marozard",
     "moves":[
 	{
@@ -1420,8 +1419,8 @@
 	]
   },
    {
-    "datamonStats": 
-      {
+      
+      
         "Level": 16,
       
       
@@ -1437,90 +1436,8 @@
         "Speed": 52,
       
       
-        "Rarity": 1
+        "Rarity": 1,
       
-    },
-    "Name": "Derplett",
-    "moves":[
-	{
-	    "name": Dig,
-	    "damage":  0
-	},
-	{
-	    "name": Stare,
-	    "damage":  0
-	},
-	{
-	    "name": Slap,
-	    "damage":  20
-	},
-	{
-	    "name": Ember,
-	    "damage":  10
-	}
-	]
-  },
-   {
-    "datamonStats": 
-      {
-        "Level": 17,
-      
-      
-        "HP": 44,
-      
-      
-        "Attack": 32,
-      
-      
-        "Defense": 44,
-      
-      
-        "Speed": 54,
-      
-      
-        "Rarity": 2
-      
-    },
-    "Name": "Derplett",
-    "moves":[
-	{
-	    "name": Dig,
-	    "damage":  0
-	},
-	{
-	    "name": Stare,
-	    "damage":  0
-	},
-	{
-	    "name": Slap,
-	    "damage":  20
-	},
-	{
-	    "name": Ember,
-	    "damage":  10
-	}
-	]
-  },
-   {
-    "datamonStats": 
-      {
-        "Level": 18,
-      
-      
-        "HP": 46,
-      
-      
-        "Attack": 34,
-      
-      
-        "Defense": 46,
-      
-      
-        "Speed": 57,
-      
-      
-        "Rarity": 3
-     },
     
     "Name": "Derplett",
     "moves":[
@@ -1543,8 +1460,90 @@
 	]
   },
    {
-    "datamonStats": 
-      {
+      
+      
+        "Level": 17,
+      
+      
+        "HP": 44,
+      
+      
+        "Attack": 32,
+      
+      
+        "Defense": 44,
+      
+      
+        "Speed": 54,
+      
+      
+        "Rarity": 2,
+      
+    
+    "Name": "Derplett",
+    "moves":[
+	{
+	    "name": Dig,
+	    "damage":  0
+	},
+	{
+	    "name": Stare,
+	    "damage":  0
+	},
+	{
+	    "name": Slap,
+	    "damage":  20
+	},
+	{
+	    "name": Ember,
+	    "damage":  10
+	}
+	]
+  },
+   {
+      
+      
+        "Level": 18,
+      
+      
+        "HP": 46,
+      
+      
+        "Attack": 34,
+      
+      
+        "Defense": 46,
+      
+      
+        "Speed": 57,
+      
+      
+        "Rarity": 3,
+     
+    
+    "Name": "Derplett",
+    "moves":[
+	{
+	    "name": Dig,
+	    "damage":  0
+	},
+	{
+	    "name": Stare,
+	    "damage":  0
+	},
+	{
+	    "name": Slap,
+	    "damage":  20
+	},
+	{
+	    "name": Ember,
+	    "damage":  10
+	}
+	]
+  },
+   {
+      
+      
         "Level": 19,
       
       
@@ -1560,9 +1559,9 @@
         "Speed": 60,
       
       
-        "Rarity": 2
+        "Rarity": 2,
       
-    },
+    
     "Name": "Derplett",
     "moves":[
 	{
@@ -1584,8 +1583,8 @@
 	]
   },
    {
-    "datamonStats": 
-      {
+      
+      
         "Level": 20,
       
       
@@ -1601,9 +1600,9 @@
         "Speed": 63,
       
       
-        "Rarity": 1
+        "Rarity": 1,
       
-    },
+    
     "Name": "Derplett",
     "moves":[
 	{
@@ -1625,8 +1624,8 @@
 	]
   },
    {
-    "datamonStats": 
-      {
+      
+      
         "Level": 18,
       
       
@@ -1642,9 +1641,9 @@
         "Speed": 29,
       
       
-        "Rarity": 3
+        "Rarity": 3,
       
-    },
+    
     "Name": "Sexy-apod",
     "moves":[
 	{
@@ -1666,8 +1665,8 @@
 	]
   },
    {
-    "datamonStats": 
-      {
+      
+      
         "Level": 19,
       
       
@@ -1683,9 +1682,9 @@
         "Speed": 37,
       
       
-        "Rarity": 5
+        "Rarity": 5,
       
-    },
+    
     "Name": "Sexy-apod",
     "moves":[
 	{
@@ -1707,8 +1706,8 @@
 	]
   },
    {
-    "datamonStats": 
-      {
+      
+      
         "Level": 20,
       
       
@@ -1724,9 +1723,9 @@
         "Speed": 48,
       
       
-        "Rarity": 5
+        "Rarity": 5,
       
-    },
+    
     "Name": "Sexy-apod",
     "moves":[
 	{

@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Vector;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.mongodb.*;
@@ -22,7 +24,7 @@ public class MongoDB {
  	
     
     public MongoDB() throws UnknownHostException{
-        this("YOUR IP HERE", 27017);
+        this("10.120.122.16", 27017);
     }
     
     public MongoDB(String ip,int port) throws UnknownHostException{
@@ -42,10 +44,50 @@ public class MongoDB {
 			System.out.println(curse.next());
 		}
 		//PokemanCollection.remove(new BasicDBObject());
-		
+		db.getPokemon();
     	
 		
     }
+    
+    public Vector<Pokemon> getPokemon(){
+    	
+    	DBCursor c = PokemanCollection.find();
+    	Vector<DBObject> results = new Vector<DBObject>();
+    	
+    	while(c.hasNext()){
+    		results.add(c.next());
+    	}
+    	
+    	return convertData(results);
+    	
+    }
+
+	public Vector<Pokemon> convertData(Vector<DBObject> results) {
+		Vector<Pokemon> pokemon = new Vector<Pokemon>();
+		
+		for(int i = 0; i < results.size(); i++){
+			BasicDBObject obj = (BasicDBObject) results.get(i);
+			String n = obj.getString("Name");
+			//System.out.println(n);
+			int d = Integer.parseInt(obj.getString("Level"));
+			int a = obj.getInt("Attack");
+			int s = obj.getInt("Speed");
+			int mh = obj.getInt("HP");
+			int r = obj.getInt("Rarity");
+			int l = obj.getInt("Level");
+			System.out.println(n + a + s + mh + r + l);
+			
+			//DatamonStats ds = (DatamonStats) obj.get("datamonStats");
+			//int d = ds.getDefense();
+			//System.out.println(n + d+a);
+			
+			
+			
+			
+		}
+		
+		return null;
+	}
 
 	private void addAllCards() throws FileNotFoundException {
 		Gson gson = new Gson();
