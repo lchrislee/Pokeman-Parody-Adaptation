@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Vector;
 
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
@@ -32,6 +33,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+
+import dataStore.Player;
+import dataStore.Pokemon;
 
 /* to be edited */
 public class LoginScreen extends JPanel {
@@ -1118,6 +1122,21 @@ public class LoginScreen extends JPanel {
 		System.out.println(chosenCharacter.getDescription() + " CHAR DESCRIP ");
 	  if(inputNameTextField.getText().length() != 0 && hasSelectedPokeman && !chosenCharacter.getDescription().equals("0")){
 		  done = true;
+		  //create a player using default constructor and then set name
+		  //Player player = new Player();
+		  Vector<Pokemon>pokemonList = new Vector<Pokemon>();
+		  for(int i=0;i<3;++i{
+		  Pokemon poke = new Pokemon();
+		  poke.setName("");
+		  }
+		  
+		  /*
+		  public Player(Vector<Pokemon>pList, Vector <ImageIcon> imageList){
+				this.pokemonList = pList;
+				this.spriteList = imageList;
+				//this.itemList = itemList;
+							
+			}	*/
 	  }
 	}
 	
