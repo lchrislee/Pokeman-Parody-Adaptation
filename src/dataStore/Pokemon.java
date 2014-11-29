@@ -43,6 +43,38 @@ public class Pokemon implements Serializable{
 	}
 	
 	
+	public void setRarity(double rarity) {
+		this.rarity = rarity;
+	}
+
+	public void setAttack(int attack) {
+		this.attack = attack;
+	}
+
+	public void setDefense(int defense) {
+		this.defense = defense;
+	}
+
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
+
+	public void setMaxHealth(int maxHealth) {
+		this.maxHealth = maxHealth;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
+	public void setMoveList(Vector<Move> moveList) {
+		this.moveList = moveList;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	private void createSprites(){
 		for(int i=0;i<FileNameArray.length;++i){
 			ImageIcon icon = new ImageIcon(FileNameArray[i]);

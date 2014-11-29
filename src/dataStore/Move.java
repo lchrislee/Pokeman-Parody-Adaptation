@@ -19,9 +19,22 @@ public class Move implements Serializable {
 	}
 	//doing a move just 
 	
+	public Move(){
+		
+	}
+	
+	public void setDamage(int i){
+		damage = i;
+	}
+	
+	public void setName(String n){
+		name = n;
+	}
+	
 	public int getId(){
 		return this.id;
 	}
+	
 
 	public int getDamage(){
 		return this.damage;

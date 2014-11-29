@@ -52,31 +52,98 @@ public class MongoDB {
     public Vector<Pokemon> getPokemon(){
     	
     	DBCursor c = PokemanCollection.find();
-    	Vector<DBObject> results = new Vector<DBObject>();
-    	
+    	//Vector<DBObject> results = new Vector<DBObject>();
+		Vector<Pokemon> pokemon = new Vector<Pokemon>();
+		int k = 0;
+		
     	while(c.hasNext()){
-    		results.add(c.next());
+    		//results.add(c.next());
+    		DBObject d = c.next();
+    		BasicDBList l = (BasicDBList) d.get("moves");
+    		System.out.println(k);
+    		pokemon.add(convertData(d, l));
+    		k++;
+    		
     	}
     	
-    	return convertData(results);
+    	return pokemon;
     	
     }
 
-	public Vector<Pokemon> convertData(Vector<DBObject> results) {
-		Vector<Pokemon> pokemon = new Vector<Pokemon>();
+	private Pokemon convertData(DBObject Next, BasicDBList list) {
+		BasicDBObject next = (BasicDBObject) Next;
+		
+		String n = next.getString("Name");
+		//System.out.println(n);
+		int d = Integer.parseInt(next.getString("Defense"));
+		int a = next.getInt("Attack");
+		int s = next.getInt("Speed");
+		int mh = next.getInt("HP");
+		//int r = next.getInt("Rarity");
+		int l = next.getInt("Level");
+		System.out.println(n + a + s + mh + l);
+		//BasicDBList m = next.get("moves");
+		
+		
+		Pokemon p = new Pokemon();
+		p.setName(n);
+		p.setAttack(a);
+		p.setDefense(d);
+		p.setSpeed(s);
+		p.setMaxHealth(mh);
+		p.setLevel(l);
+		//p.setRarity(r);
+		
+		Vector<Move> mlist = new Vector<Move>();
+		for(int i = 0; i < list.size(); i++){
+			BasicDBObject b = (BasicDBObject) list.get(i);
+			String na = b.getString("name");
+			int da = b.getInt("damage");
+			
+			Move m = new Move();
+			m.setName(na);
+			m.setDamage(da);
+			
+			
+			//Move q = new Move();
+			
+			mlist.add(m);
+			System.out.println(m.getName());
+		}
+		
+		p.setMoveList(mlist);
+		
+		
+		return p;
+	}
+
+	/*public Vector<Pokemon> convertData(Vector<DBObject> results) {
+		//Vector<Pokemon> pokemon = new Vector<Pokemon>();
 		
 		for(int i = 0; i < results.size(); i++){
 			BasicDBObject obj = (BasicDBObject) results.get(i);
 			String n = obj.getString("Name");
 			//System.out.println(n);
-			int d = Integer.parseInt(obj.getString("Level"));
+			int d = Integer.parseInt(obj.getString("Defense"));
 			int a = obj.getInt("Attack");
 			int s = obj.getInt("Speed");
 			int mh = obj.getInt("HP");
 			int r = obj.getInt("Rarity");
 			int l = obj.getInt("Level");
 			System.out.println(n + a + s + mh + r + l);
+			//BasicDBList m = obj.get("moves");
 			
+			
+			Pokemon p = new Pokemon();
+			p.setName(n);
+			p.setAttack(a);
+			p.setDefense(d);
+			p.setSpeed(s);
+			p.setMaxHealth(mh);
+			p.setLevel(l);
+			p.setRarity(r);
+			//pokemon.add(p);
+			//ObjectID id = obj.get("moves");
 			//DatamonStats ds = (DatamonStats) obj.get("datamonStats");
 			//int d = ds.getDefense();
 			//System.out.println(n + d+a);
@@ -87,9 +154,9 @@ public class MongoDB {
 		}
 		
 		return null;
-	}
+	}*/
 
-	private void addAllCards() throws FileNotFoundException {
+/*	private void addAllCards() throws FileNotFoundException {
 		Gson gson = new Gson();
 		BufferedReader br = new BufferedReader(new FileReader("pokemonStats.json"));
 		ArrayList<Datamon> all = gson.fromJson(br, new TypeToken<ArrayList<Datamon>>() {}.getType());
@@ -103,6 +170,6 @@ public class MongoDB {
 		
 		//String obj = gson.fromJson();
 		
-	}
+	}*/
    
 }
