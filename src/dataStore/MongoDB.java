@@ -1,6 +1,5 @@
 package dataStore;
 
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -34,7 +33,7 @@ public class MongoDB {
        
     }
 
-    public static void main(String[] args) throws Exception{
+    /*public static void main(String[] args) throws Exception{
 
 		MongoDB db = new MongoDB();
 		//PokemanCollection.remove(new BasicDBObject());
@@ -47,7 +46,7 @@ public class MongoDB {
 		db.getPokemon();
     	
 		
-    }
+    }*/
     
     public Vector<Pokemon> getPokemon(){
     	
@@ -112,7 +111,6 @@ public class MongoDB {
 		}
 		
 		p.setMoveList(mlist);
-		
 		
 		return p;
 	}
