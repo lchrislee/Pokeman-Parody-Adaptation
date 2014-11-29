@@ -28,7 +28,7 @@ public class Client{
 		System.out.println("GUI CREATED");
 		hostAddress = ipAddress;
 		try {
-			clientSocket = new Socket(hostAddress,Server.BATTLEPORT);
+			clientSocket = new Socket(hostAddress,Server.COMMUNICATIONPORT);
 			br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 			pw = new PrintWriter(clientSocket.getOutputStream());
 		} catch (UnknownHostException e) {
