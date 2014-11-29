@@ -1,9 +1,8 @@
 package Battle;
 
-import java.util.Vector;
 import java.util.concurrent.RecursiveTask;
 
-import dataStore.Move;
+import dataStore.NetworkPlayer;
 import dataStore.Player;
 import dataStore.Pokemon;
 
@@ -21,8 +20,8 @@ public class Battle extends RecursiveTask<Boolean> {
 	private final int PLAYERONE = 1;
 	private final int PLAYERTWO = 2;
 	
-	private Player p1;
-	private Player p2;
+	private NetworkPlayer p1;
+	private NetworkPlayer p2;
 	
 	
 	public Battle(){
@@ -30,7 +29,7 @@ public class Battle extends RecursiveTask<Boolean> {
 		setTurnVariables();
 	}
 	
-	public Battle(Player p1, Player p2){
+	public Battle(NetworkPlayer p1, NetworkPlayer p2){
 		this.p1 = p1;
 		this.p2 = p2;
 		winnerDetermined = false;

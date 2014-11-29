@@ -7,12 +7,13 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.concurrent.ForkJoinPool;
 
 import javax.swing.JOptionPane;
 
-import dataStore.NetworkPlayer;
 import server.chatSystem.ChatServer;
 import Battle.Battle;
+import dataStore.NetworkPlayer;
 
 public class Server implements Runnable{
 	public static final int COMMUNICATIONPORT = 5555;
@@ -54,14 +55,18 @@ public class Server implements Runnable{
 
 				Socket chatSocketInput = ssChat.accept();
 				System.out.println(chatSocketInput.toString() + " CONNECTED TO CHAT");
-				chatServer.listen(chatSocketInput);
 				chatSockets.add(chatSocketInput);
 				players.add(new NetworkPlayer());
 			}
 			chatSockets.sort(new SocketSort());
 			communicationSockets.sort(new SocketSort());
-			for (NetworkPlayer p : players){
-				
+			for (int i = 0; i < 4; ++i){
+				NetworkPlayer p = players.get(i);
+				p.setChatSocket(chatSockets.get(i));
+				p.setCommSocket(communicationSockets.get(i));
+				p.setBr();
+				p.setPw();
+				chatServer.listen(p.getChatSocket());
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -89,14 +94,30 @@ public class Server implements Runnable{
 	
 	@Override
 	public void run(){
+		getPlayers();
 		generateBattlePairs();
 		createBattles();
 		boolean result1 = first.join();
 		boolean result2 = second.join();
+		
+		int b1winner = (result1 ? battleOneP1 : battleOneP2);
+		int b1loser = (result1 ? battleOneP2 : battleOneP1);
+		int b2winner = (result2 ? battleTwoP1 : battleTwoP2);
+		int b2loser = (result2 ? battleTwoP2 : battleTwoP1);
+	}
+	
+	private void getPlayers(){
+		for (NetworkPlayer n : players){
+			n.readPlayer();
+		}
 	}
 	
 	private void createBattles(){
-		
+		first = new Battle(players.get(battleOneP1 - 1), players.get(battleOneP2 - 1));
+		second = new Battle(players.get(battleTwoP1 - 1), players.get(battleTwoP2 - 1));
+		ForkJoinPool pool = new ForkJoinPool(2);
+		pool.execute(first);
+		pool.execute(second);
 	}
 	
 	private void generateBattlePairs(){
