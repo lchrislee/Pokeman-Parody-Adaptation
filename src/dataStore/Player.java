@@ -38,6 +38,10 @@ public class Player implements Serializable{
 			pokemonList.add(p);
 		}
 	
+		public Player(Player p){
+			setPlayer(p);
+		}
+		
 		public Player(Vector<Pokemon>pList, Vector <ImageIcon> imageList){
 			this.pokemonList = pList;
 			this.spriteList = imageList;
@@ -82,6 +86,13 @@ public class Player implements Serializable{
 			}
 		}
 		
+		protected void setPlayer(Player p){
+			currentPokemonIndex = p.currentPokemonIndex;
+			pokemonList = new Vector<Pokemon>(p.pokemonList);
+			spriteList = new Vector<ImageIcon> (p.spriteList);
+			currentSprite = new ImageIcon(p.currentSprite.getImage());
+			statsMap = new HashMap<String,Integer>(p.statsMap);
+		}
 			
 		public void choosePokemon(){//gets called only when we start the battle
 			this.currentPokemon = this.pokemonList.get(0);
