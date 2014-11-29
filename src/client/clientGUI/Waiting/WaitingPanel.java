@@ -3,8 +3,11 @@ package client.clientGUI.Waiting;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -22,8 +25,11 @@ public class WaitingPanel extends JPanel {
 	public void createWaitingGUI() {
 		waitingLabel = new JLabel("Waiting for other players . . .");
 		waitingLabel.setFont(new Font("Arial",Font.PLAIN, 30));
-//		Image sexyPod =
+		final Image sexypodImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/sexypod_left_tr.png");
+		final ImageIcon sexypodImageIcon = new ImageIcon(sexypodImage);
+		JLabel sexypodLabel = new JLabel(sexypodImageIcon);
 		add(waitingLabel);
+		add(sexypodLabel);
 	}
 	public static void main(String args[]) {
 		WaitingPanel w = new WaitingPanel();
