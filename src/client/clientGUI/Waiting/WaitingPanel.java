@@ -1,6 +1,7 @@
 package client.clientGUI.Waiting;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -17,6 +18,7 @@ import client.clientGUI.LoginScreen.LoginScreen;
 public class WaitingPanel extends JPanel {
 	private JLabel waitingLabel;
 	public WaitingPanel() {
+		setPreferredSize(new Dimension(500,600));
 		setLayout(new GridBagLayout());
 		setBackground(Color.white);
 		createWaitingGUI();
@@ -35,10 +37,11 @@ public class WaitingPanel extends JPanel {
 		WaitingPanel w = new WaitingPanel();
 		JFrame testWindow = new JFrame();
 		testWindow.setTitle("Testing Login");
-		testWindow.setSize(500,600);
+		//testWindow.setSize(500,600);
 		testWindow.setResizable(false);
 		testWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		testWindow.add(w);
+		testWindow.pack();
 		testWindow.setVisible(true);
 	}
 }
