@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 //did not finish switch
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -41,8 +42,8 @@ public class CommandCenterGUI extends JPanel {
 	private void createGUI(){
 		CardLayout switcher = new CardLayout();
 		setLayout(switcher);
-		Move[] m = {new Move(50, 1, "Tackle"), new Move(100, 2, "HYPER BEAM"), new Move(60, 3, "Wing Attack"), new Move(0, 4, "Splash")};
-		attacks = (pw == null ? new AttackSelection(m, switcher, this) : new AttackSelection(m, switcher, this, pw));
+		//Move[] m = {new Move(50, 1, "Tackle"), new Move(100, 2, "HYPER BEAM"), new Move(60, 3, "Wing Attack"), new Move(0, 4, "Splash")};
+		attacks = (pw == null ? new AttackSelection(pokes.get(0).getMoveList(), switcher, this) : new AttackSelection(pokes.get(0).getMoveList(), switcher, this, pw));
 		add(attacks, ATTACKSELECT);
 		text = (pw == null ? new TextScreen(this,switcher) : new TextScreen(this, switcher, pw));
 		add(text, TEXT);
