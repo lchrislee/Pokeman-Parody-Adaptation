@@ -19,6 +19,7 @@ public class CommandCenterGUI extends JPanel {
 	private AttackSelection attacks;
 	TextScreen text;
 	private ActionSelection selection;
+	private SwitchSelection switchPokemon;
 	
 	public CommandCenterGUI(){
 		createGUI();
@@ -34,6 +35,8 @@ public class CommandCenterGUI extends JPanel {
 		add(text, TEXT);
 		selection = new ActionSelection(switcher, this);
 		add(selection, ACTION);
+		switchPokemon = new SwitchSelection(switcher, this);
+		add(switchPokemon, SWITCH);
 		switcher.show(this, ACTION);
 	}
 	
@@ -44,5 +47,7 @@ public class CommandCenterGUI extends JPanel {
 		j.add(new CommandCenterGUI());
 		j.setVisible(true);
 	}
-
+	
 }
+
+
