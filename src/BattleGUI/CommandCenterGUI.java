@@ -5,12 +5,10 @@ import java.io.BufferedReader;
 //did not finish switch
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import dataStore.Move;
 import dataStore.Pokemon;
 
 public class CommandCenterGUI extends JPanel {
