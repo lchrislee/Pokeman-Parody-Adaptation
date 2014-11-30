@@ -22,9 +22,48 @@ public class FirstBracket extends JPanel implements ActionListener {
 	int timerCountSpeed = 1;
 	public boolean done = false;
 	ArrayList<NetworkPlayer> players;
-	public FirstBracket(ArrayList<NetworkPlayer> players) {
+	private int selector;
+	private int winner1, winner2, winner3;
+	private boolean drawWinner1 = false;
+	private boolean drawWinner2 = false;
+	private boolean drawWinner3 = false;
+	
+	public FirstBracket(ArrayList<NetworkPlayer> players,
+			int selector) {
 		this.players = players;
+		this.selector = selector;
 	}
+	
+	public FirstBracket(ArrayList<NetworkPlayer> players,
+			int selector, int winner1) {
+		this.players = players;
+		this.selector = selector;
+		this.winner1 = winner1;
+		this.drawWinner1 = true;
+	}
+	
+	public FirstBracket(ArrayList<NetworkPlayer> players,
+			int selector, int winner1, int winner2) {
+		this.players = players;
+		this.selector = selector;
+		this.winner1 = winner1;
+		this.winner2 = winner2;
+		this.drawWinner1 = true;
+		this.drawWinner2 = true;
+	}
+	
+	public FirstBracket(ArrayList<NetworkPlayer> players,
+			int selector, int winner1, int winner2, int winner3) {
+		this.players = players;
+		this.selector = selector;
+		this.winner1 = winner1;
+		this.winner2 = winner2;
+		this.winner3 = winner3;
+		this.drawWinner1 = true;
+		this.drawWinner2 = true;
+		this.drawWinner3 = true;
+	}
+		
 	public void paintComponent(Graphics g) {
 		g.setColor(Color.white);
 		g.fillRect(0, 0, 800, 600);
@@ -74,10 +113,6 @@ public class FirstBracket extends JPanel implements ActionListener {
 		g.drawImage(firstImage,400,420,this);
 		g.drawString(fourthPlayerName,670,420);
 		g.drawImage(firstImage,600,420,this);
-
-		g.setColor(Color.red);
-		g.setFont(new Font("Arial",Font.BOLD, 35));
-		g.drawString("WINNER", 330, 60);
 		
 		g.setColor(Color.BLACK);
 		
@@ -92,12 +127,35 @@ public class FirstBracket extends JPanel implements ActionListener {
 		
 		g.fillRect(400,70,5,130);
 		
+		g.setFont(new Font("Arial",Font.BOLD, 20));
+		g.setColor(Color.ORANGE);
+		// dummy name for winner 1
+		String winner1Name = "Winner 1";
+		/* String winner1Name = players.get(winner1).getName();*/
+		if (drawWinner1) {
+			g.drawString(winner1Name,210,195);
+		}
+		
+		String winner2Name = "Winner 2";
+		/* String winner2Name = players.get(winner2).getName();*/
+		if (drawWinner2) {
+			g.drawString(winner2Name,500,195);
+		}
+		
+		g.setFont(new Font("Arial",Font.BOLD, 35));
+		g.setColor(Color.RED);
+		String winner3Name = "Winner 3";
+		/* String winner3Name = players.get(winner3).getName();*/
+		if (drawWinner3) {
+			g.drawString(winner3Name,335,60);
+		}
+		
 		timer.start();
 	}
 	
 	public void actionPerformed (ActionEvent e) {
 		timerCount += timerCountSpeed;
-		if (timerCount >= 1600) {
+		if (timerCount >= 2000) {
 			done = true;
 			System.out.println("Ready to move");
 			timer.stop();
@@ -106,7 +164,7 @@ public class FirstBracket extends JPanel implements ActionListener {
 	}
 	public static void main (String args []) {
 		ArrayList<NetworkPlayer> dummy = new ArrayList<NetworkPlayer>();
-		FirstBracket f = new FirstBracket(dummy);
+		FirstBracket f = new FirstBracket(dummy,0,1,2,3);
 		JFrame testWindow = new JFrame();
 		testWindow.setTitle("Testing Bracket");
 		testWindow.setSize(800,600);
