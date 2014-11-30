@@ -94,6 +94,7 @@ public class LoginScreen extends JPanel {
 		pokemonSelectButton.setFont(new Font("Arial",Font.PLAIN, 15));
 		pokemonSelectButton.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent action) {
+		if (chosenPokemonQueue.size() == 3) {
 		pokemonSelectButton.setEnabled(false);
 		System.out.println("Current chosen pokemans: ");
 		int numInQueue = chosenPokemonQueue.size();
@@ -124,6 +125,7 @@ public class LoginScreen extends JPanel {
 	//	}
 		hasSelectedPokeman = true;
 		repaint();
+		}
 		}
 		});
 		pokemonSelectPanel.add(pokemonSelectLabel);
