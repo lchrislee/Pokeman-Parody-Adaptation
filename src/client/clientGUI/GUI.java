@@ -28,7 +28,9 @@ public class GUI extends JFrame{
 		setResizable(false);
 		setLocation(100,100);
 		OpeningPanel op = new OpeningPanel();
+		op.run();
 		add(op);
+		
 		System.out.println("OPENING ADDED");
 		setVisible(true);
 		
