@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import client.clientGUI.GUI;
 import dataStore.Move;
 import dataStore.Pokemon;
 
@@ -26,12 +27,14 @@ public class CommandCenterGUI extends JPanel {
 	private PrintWriter pw = null;
 	private BufferedReader br = null;
 	private ArrayList<Pokemon> pokes = null;
+	private GUI holder;
 	
 	public CommandCenterGUI(){
 		createGUI();
 	}
 
-	public CommandCenterGUI(PrintWriter p, BufferedReader bf){
+	public CommandCenterGUI(GUI h, PrintWriter p, BufferedReader bf){
+		holder = h;
 		pw = p;
 		br = bf;
 		//getPokes();
@@ -63,6 +66,10 @@ public class CommandCenterGUI extends JPanel {
 		j.setSize(500, 150);
 		j.add(new CommandCenterGUI());
 		j.setVisible(true);
+	}
+
+	protected void send(String m) {
+		holder.send(m);
 	}
 	
 }
