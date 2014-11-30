@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.PrintWriter;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -19,23 +20,23 @@ public class AttackSelection extends JPanel {
 	private CommandCenterGUI central;
 	private PrintWriter pw;
 	
-	public AttackSelection(Move[] m, CardLayout s, CommandCenterGUI c){
+	public AttackSelection(Vector<Move> m, CardLayout s, CommandCenterGUI c){
 		createGUI(m);
 		selecter = s;
 		central = c;
 	}
 	
-	public AttackSelection(Move[] m, CardLayout s, CommandCenterGUI c, PrintWriter p){
+	public AttackSelection(Vector<Move> m, CardLayout s, CommandCenterGUI c, PrintWriter p){
 		createGUI(m);
 		selecter = s;
 		central = c;
 		pw = p;
 	}
 	
-	private void createGUI(Move[] m){
+	private void createGUI(Vector<Move> m){
 		setLayout(new GridLayout(2,2));
-		for (int i = 0; i < m.length; ++i)
-			add(new AttackButton(m[i]));
+		for (int i = 0; i < m.size(); ++i)
+			add(new AttackButton(m.get(i)));
 	}
 	
 	private class AttackButton extends JButton{
