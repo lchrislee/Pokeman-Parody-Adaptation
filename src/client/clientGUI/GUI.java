@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import BattleGUI.CommandCenterGUI;
 import client.clientGUI.LoginScreen.LoginScreen;
 import client.clientGUI.Opening.OpeningPanel;
+import client.clientGUI.Waiting.WaitingPanel;
 import client.clientGUI.sidebarGUI.ChatGUI;
 import client.clientGUI.sidebarGUI.SideBar;
 import client.clientGUI.sidebarGUI.SideBarMenuAdapter;
@@ -52,13 +53,8 @@ public class GUI extends JFrame{
 		repaint();
 		while(!l.done)
 			Thread.yield();
-		
-	
-		//remove opening panel by setting to null and add op login
-		//login//
-		
-		//createGUI(); client calls this
-		
+		WaitingPanel waiting = new WaitingPanel();
+		add(waiting);
 		
 	}
 	
