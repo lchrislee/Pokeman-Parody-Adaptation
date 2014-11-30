@@ -1,5 +1,7 @@
 package client.clientGUI.Opening;
 
+import helper.MusicPlayer;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -71,21 +73,6 @@ public class OpeningPanel extends JPanel implements ActionListener {
 				| IllegalAccessException | UnsupportedLookAndFeelException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public void run(){
-		File url = new File("Epic_sax_guy.wav");
-			try {
-				clip = AudioSystem.getClip();
-				 AudioInputStream ais = AudioSystem.
-				            getAudioInputStream( url );
-				        clip.open(ais);
-				        clip.loop(Clip.LOOP_CONTINUOUSLY);
-			} catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	        // getAudioInputStream() also accepts a File or InputStream
 	}
 	
 	public void stop(){
@@ -165,6 +152,8 @@ public class OpeningPanel extends JPanel implements ActionListener {
 		
 		/* start the timer */
 		timer.start();
+		if (clip == null)
+			clip = MusicPlayer.run("Epic_sax_guy.wav");
 	}
 	
 	public void actionPerformed (ActionEvent e) {
@@ -265,7 +254,7 @@ public class OpeningPanel extends JPanel implements ActionListener {
 			System.out.println("opening done!");
 			done = true;
 			timer.stop();
-			clip.stop();
+//			clip.stop();
 		}
 //		if (done) System.out.println("DONE and ALAN LIKES DETERGENTS");
 		

@@ -1,5 +1,7 @@
 package client.clientGUI.LoginScreen;
 
+import helper.MusicPlayer;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -18,6 +20,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Vector;
 
+import javax.sound.sampled.Clip;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -48,10 +51,17 @@ public class LoginScreen extends JPanel {
 	
 	private boolean hasSelectedPokeman = false;
 	public boolean done = false;
+	public Clip clip = null;
 	
 	public LoginScreen() {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		createLoginGUI();
+		if (clip == null)
+			clip = MusicPlayer.run("Menu.wav");
+	}
+	
+	public void stop(){
+		clip.stop();
 	}
 	
 	private void createLoginGUI() {
