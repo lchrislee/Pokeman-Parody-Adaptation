@@ -43,13 +43,13 @@ public class CommandCenterGUI extends JPanel {
 		CardLayout switcher = new CardLayout();
 		setLayout(switcher);
 		//Move[] m = {new Move(50, 1, "Tackle"), new Move(100, 2, "HYPER BEAM"), new Move(60, 3, "Wing Attack"), new Move(0, 4, "Splash")};
-		attacks = (pw == null ? new AttackSelection(pokes.get(0).getMoveList(), switcher, this) : new AttackSelection(pokes.get(0).getMoveList(), switcher, this, pw));
+		attacks = (pw == null ? new AttackSelection(pokes.get(0).getMoveList(), switcher, this) : new AttackSelection(pokes.get(0).getMoveList(), switcher, this, pw, br));
 		add(attacks, ATTACKSELECT);
-		text = (pw == null ? new TextScreen(this,switcher) : new TextScreen(this, switcher, pw));
+		text = (pw == null ? new TextScreen(this,switcher) : new TextScreen(this, switcher, pw, br));
 		add(text, TEXT);
-		selection = (pw == null ? new ActionSelection(switcher, this) : new ActionSelection(switcher, this, pw));
+		selection = (pw == null ? new ActionSelection(switcher, this) : new ActionSelection(switcher, this, pw, br));
 		add(selection, ACTION);
-		switchPokemon = (pw == null ? new SwitchSelection(switcher, this) : null/*new SwitchSelection(switcher, this, pw)*/);
+		switchPokemon = (pw == null ? new SwitchSelection(switcher, this) : null/*new SwitchSelection(switcher, this, pw, br, pokes)*/);
 		add(switchPokemon, SWITCH);
 		switcher.show(this, ACTION);
 	}

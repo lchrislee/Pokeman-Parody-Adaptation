@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -18,6 +20,7 @@ public class ActionSelection extends JPanel {
 	private CardLayout selecter;
 	private CommandCenterGUI central;
 	private PrintWriter pw;
+	private BufferedReader br;
 	
 	public static Lock lock = new ReentrantLock();
 	
@@ -27,11 +30,12 @@ public class ActionSelection extends JPanel {
 		central = c;
 	}
 	
-	public ActionSelection(CardLayout s, CommandCenterGUI c, PrintWriter p){
+	public ActionSelection(CardLayout s, CommandCenterGUI c, PrintWriter p, BufferedReader b){
 		createGUI();
 		selecter = s;
 		central = c;
 		pw = p;
+		br = b;
 	}
 	
 	private void createGUI(){
@@ -70,8 +74,17 @@ public class ActionSelection extends JPanel {
 						ActionSelection.this.pw.println("Su");
 						ActionSelection.this.pw.flush();
 					}
+					
+					String input = "";
+					try {
+						input = br.readLine();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+					
+					ActionSelection.this.central.text.setText(input);
 					ActionSelection.this.selecter.show(central, central.TEXT);
-					ActionSelection.this.central.text.setText("You tried to run away!");
+//					ActionSelection.this.central.text.setText("You tried to run away!");
 			}
 		}
 	}
