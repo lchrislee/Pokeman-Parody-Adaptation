@@ -5,11 +5,11 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.PrintWriter;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class ActionSelection extends JPanel {
@@ -17,6 +17,7 @@ public class ActionSelection extends JPanel {
 	final String ACTIONS[] = {"Attack", "Switch", "Surrender"};
 	private CardLayout selecter;
 	private CommandCenterGUI central;
+	private PrintWriter pw;
 	
 	public static Lock lock = new ReentrantLock();
 	
@@ -24,6 +25,13 @@ public class ActionSelection extends JPanel {
 		createGUI();
 		selecter = s;
 		central = c;
+	}
+	
+	public ActionSelection(CardLayout s, CommandCenterGUI c, PrintWriter p){
+		createGUI();
+		selecter = s;
+		central = c;
+		pw = p;
 	}
 	
 	private void createGUI(){
@@ -37,18 +45,8 @@ public class ActionSelection extends JPanel {
 			add(b);
 		}
 	}
-
-//	public static void main(String[] args) {
-//		JFrame j = new JFrame();
-//		j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		j.setSize(500, 150);
-//		j.add(new ActionSelection());
-//		j.setVisible(true);
-//	}
 	
 	private class ActionButtonListener implements ActionListener{
-		
-		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			switch(((JButton)e.getSource()).getText()){
@@ -68,9 +66,12 @@ public class ActionSelection extends JPanel {
 				case "Surrender":
 					ActionSelection.lock.lock();
 					System.out.println("SURRENDERED");
+					if (ActionSelection.this.pw != null){
+						ActionSelection.this.pw.println("Su");
+						ActionSelection.this.pw.flush();
+					}
 					ActionSelection.this.selecter.show(central, central.TEXT);
 					ActionSelection.this.central.text.setText("You tried to run away!");
-					
 			}
 		}
 	}
