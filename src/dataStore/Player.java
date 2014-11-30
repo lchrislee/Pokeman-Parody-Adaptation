@@ -12,13 +12,14 @@ public class Player implements Serializable{
 	private int currentPokemonIndex = 0;//which pokemon in the list is currently out
 	
 	private Vector <Pokemon> pokemonList;// this will store the Pokemon the player has caught
-	private Vector <ImageIcon> spriteList;
+//	private Vector <ImageIcon> spriteList;
 	private ImageIcon currentSprite;
 	private HashMap<String,Integer> statsMap; //([Capture]how many times player¡¯s died, num pokemon caught, num pokemon released, avg pokemon level & rarity) ([Battle]wins, losses, avg pokemon used per battle)
 	private Pokemon enemyPokemon;
 	private Pokemon currentPokemon;//in battle at the moment
 	private boolean quit = false;
 	private String name;
+	private String characterImageName;
 	//private Set<String> playerMoves;
 		
 		public Player(){/*
@@ -43,15 +44,17 @@ public class Player implements Serializable{
 			setPlayer(p);
 		}
 		
-		public Player(Vector<Pokemon>pList, Vector <ImageIcon> imageList,String name){
+		public Player(Vector<Pokemon>pList,/* Vector <ImageIcon> imageList,*/String chosenCharacterName, String playerName){
 			this.pokemonList = pList;
-			this.spriteList = imageList;
-			this.currentSprite = new ImageIcon(this.spriteList.get(0).getImage());
-			if(currentSprite == null)
-				System.out.println("NULL SPRITE");
+//			this.spriteList = imageList;
+//			this.currentSprite = new ImageIcon(this.);
+//			if(currentSprite == null)
+//				System.out.println("NULL SPRITE");
 			//this.itemList = itemList;
-			this.name = name;
-						
+			this.name = playerName;
+			characterImageName = chosenCharacterName + "_normal.png";
+//			System.out.println("NAME IS: " + name + "_normal.png");
+//			currentSprite = new ImageIcon(name + "_normal.png");
 		}	
 		
 		public boolean hasActivePokemon(){//return false if all pokemon are unconscious
@@ -78,12 +81,12 @@ public class Player implements Serializable{
 				
 			}*/
 		}
-		
-		public void setSpriteList(Vector<ImageIcon>spriteList){
-			this.spriteList = spriteList;
-			if(spriteList!=null && !spriteList.isEmpty())
-				currentSprite = spriteList.get(0);
-		}
+//		
+//		public void setSpriteList(Vector<ImageIcon>spriteList){
+//			this.spriteList = spriteList;
+//			if(spriteList!=null && !spriteList.isEmpty())
+//				currentSprite = spriteList.get(0);
+//		}
 				
 		public void setEnemyPokemon(Pokemon enemy){
 			if(enemy!=null){
@@ -93,11 +96,12 @@ public class Player implements Serializable{
 		
 		protected void setPlayer(Player p){
 			currentPokemonIndex = p.currentPokemonIndex;
+			characterImageName = p.characterImageName;
 			pokemonList = new Vector<Pokemon>(p.pokemonList);
-			spriteList = new Vector<ImageIcon> (p.spriteList);
-			currentSprite = new ImageIcon(p.currentSprite.getImage());
+//			spriteList = new Vector<ImageIcon> (p.spriteList);
+			currentSprite = new ImageIcon("res/" + characterImageName);
 			
-			statsMap = new HashMap<String,Integer>(p.statsMap);
+//			statsMap = new HashMap<String,Integer>(p.statsMap);
 		}
 			
 		public void choosePokemon(){//gets called only when we start the battle
@@ -138,10 +142,10 @@ public class Player implements Serializable{
 			return this.pokemonList;
 		}
 		
-				
-		public Vector<ImageIcon>getSpriteList(){
-			return this.spriteList;
-		}
+//				
+//		public Vector<ImageIcon>getSpriteList(){
+//			return this.spriteList;
+//		}
 		
 		public HashMap<String,Integer>getStats(){
 			return this.statsMap;

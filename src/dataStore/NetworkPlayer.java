@@ -157,8 +157,8 @@ public class NetworkPlayer extends Player {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(p.getCurrentSprite()==null)
-			System.out.println("CURRENT SPRITE IS NULL");
+//		if(p.getCurrentSprite()==null)
+//			System.out.println("CURRENT SPRITE IS NULL");
 		
 		System.out.println(p);
 		super.setPlayer(p);

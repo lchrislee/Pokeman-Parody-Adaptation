@@ -105,40 +105,39 @@ public class LoginScreen extends JPanel {
 		final JButton pokemonSelectButton = new JButton("Select");
 		pokemonSelectButton.setFont(new Font("Arial",Font.PLAIN, 15));
 		pokemonSelectButton.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent action) {
-		if (chosenPokemonQueue.size() == 3) {
-		pokemonSelectButton.setEnabled(false);
-		System.out.println("Current chosen pokemans: ");
-		int numInQueue = chosenPokemonQueue.size();
-		String [] descs = new String[3];
-		for (int i = 0; i < numInQueue; i++) {
-		ImageIcon temp = chosenPokemonQueue.remove();
-		System.out.println("Pokemon " + i + ": " + 
-		temp);
-		String tempDesc = temp.getDescription();
-		descs[i] = tempDesc;
-		}
-		Component[] components = pokemonSpriteListPanel.getComponents();
-		for (int k = 0; k < components.length; k++){
-		boolean DONOTREMOVE = false;
-		for (int j = 0; j < descs.length; ++j)
-		if (((JButton)components[k]).getName().equalsIgnoreCase(descs[j])) {
-		DONOTREMOVE = true;
-		((JButton)components[k]).setBackground(Color.WHITE);
-		}
-		if (!DONOTREMOVE)
-		pokemonSpriteListPanel.remove(pokemonSpriteList.get(k));
-		}
-	//	for (int j = 0; j < pokemonSpriteList.size(); j++) {
-	//	if ( !tempDesc.equals(pokemonSpriteList.get(j).getName()) )  {
-	//	pokemonSpriteListPanel.remove(pokemonSpriteList.get(j));
-	//	
-	//	}
-	//	}
-		hasSelectedPokeman = true;
-		repaint();
-		}
-		}
+			public void actionPerformed(ActionEvent action) {
+				if (chosenPokemonQueue.size() == 3) {
+					pokemonSelectButton.setEnabled(false);
+					System.out.println("Current chosen pokemans: ");
+					int numInQueue = chosenPokemonQueue.size();
+					String [] descs = new String[3];
+					for (int i = 0; i < numInQueue; i++) {
+						ImageIcon temp = chosenPokemonQueue.remove();
+						System.out.println("Pokemon " + i + ": " + temp);
+						String tempDesc = temp.getDescription();
+						descs[i] = tempDesc;
+					}
+					Component[] components = pokemonSpriteListPanel.getComponents();
+					for (int k = 0; k < components.length; k++){
+						boolean DONOTREMOVE = false;
+						for (int j = 0; j < descs.length; ++j)
+							if (((JButton)components[k]).getName().equalsIgnoreCase(descs[j])) {
+								DONOTREMOVE = true;
+								((JButton)components[k]).setBackground(Color.WHITE);
+							}
+						if (!DONOTREMOVE)
+							pokemonSpriteListPanel.remove(pokemonSpriteList.get(k));
+					}
+			//	for (int j = 0; j < pokemonSpriteList.size(); j++) {
+			//	if ( !tempDesc.equals(pokemonSpriteList.get(j).getName()) )  {
+			//	pokemonSpriteListPanel.remove(pokemonSpriteList.get(j));
+			//	
+			//	}
+			//	}
+					hasSelectedPokeman = true;
+					repaint();
+				}
+			}
 		});
 		pokemonSelectPanel.add(pokemonSelectLabel);
 		pokemonSelectPanel.add(pokemonSelectButton);
@@ -893,11 +892,11 @@ public class LoginScreen extends JPanel {
 				  		poke.setName(pokemonNamesList.get(i));
 				  		pokemonList.add(poke);
 				  }
-				  Vector<ImageIcon> imageList = new Vector<ImageIcon>();
-				  imageList.add(chosenCharacter);
+//				  Vector<ImageIcon> imageList = new Vector<ImageIcon>();
+//				  imageList.add(chosenCharacter);
 				  if(chosenCharacter == null)
 					  System.out.println("WHY IS CHOSEN CHARACTER NULL ");
-				  player = new Player(pokemonList,imageList,chosenCharacterName);
+				  player = new Player(pokemonList,/*imageList,*/chosenCharacterName, inputNameTextField.getText());
 				  
 					
 			  }
