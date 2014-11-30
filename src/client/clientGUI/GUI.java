@@ -67,7 +67,7 @@ public class GUI extends JFrame{
 		remove(l);
 		l = null;
 		JPanel leftContainer = new JPanel(new BorderLayout());
-		add(new SideBar(address), BorderLayout.EAST);
+		add(new SideBar(address, playerName), BorderLayout.EAST);
 		add(leftContainer, BorderLayout.CENTER);
 		leftContainer.add(new CommandCenterGUI(this, pw, bf), BorderLayout.SOUTH);
 		validate();
@@ -80,7 +80,7 @@ public class GUI extends JFrame{
 		remove(l);
 		l = null;
 		JPanel leftContainer = new JPanel(new BorderLayout());
-		add(new SideBar(address), BorderLayout.EAST);
+		add(new SideBar(address, playerName), BorderLayout.EAST);
 		add(leftContainer, BorderLayout.CENTER);
 		leftContainer.add(new CommandCenterGUI(), BorderLayout.SOUTH);
 		validate();
