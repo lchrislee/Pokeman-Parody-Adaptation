@@ -129,6 +129,7 @@ public class NetworkPlayer extends Player {
 	}
 	
 	public void readPlayer(){
+		System.out.println("NETWORK PLAYER IS READING ");
 		Player p = null;
 		super.setPlayer(p);
 		ObjectInputStream ois = this.ois;
