@@ -39,45 +39,33 @@ public class Client{
 			br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 			pw = new PrintWriter(clientSocket.getOutputStream());
 			
-			oos = new ObjectOutputStream(clientSocket.getOutputStream());
-			ois = new ObjectInputStream(clientSocket.getInputStream());
+			//oos = new ObjectOutputStream(clientSocket.getOutputStream());
+			//ois = new ObjectInputStream(clientSocket.getInputStream());
 			
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		System.out.println("BEFORE GETTING PLAYER");
 		Player p = clientGUI.getPlayer();
-		System.out.println(p.getName() + " PLAYER NAME ");
-		/*OutputStream os = null;
-		ObjectOutputStream oos = null;
-		try {
-			os = clientSocket.getOutputStream();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			oos = new ObjectOutputStream(os);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*/
+		System.out.println("AFTER GETTING PLAYER");
+		/*System.out.println(p.getName() + " PLAYER NAME ");
+	
 		System.out.println(p.getPokemonList().get(0).getName() + " FIRST POKEMON NAME ");
 		try {
 			oos.writeObject(p);//tries to send the player over to the server
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		System.out.println("DID IT WORK?");
 	}
 	
 	public void run(){
 		System.out.println("CLIENT MAKING GUI");
-		//clientGUI.createGUI(hostAddress, pw, br);
-		clientGUI.createGUI(hostAddress, oos, ois);
+		clientGUI.createGUI(hostAddress, pw, br);
+		//clientGUI.createGUI(hostAddress, oos, ois);
 		
 	
 	}

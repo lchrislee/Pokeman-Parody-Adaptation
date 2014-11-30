@@ -876,7 +876,7 @@ public class LoginScreen extends JPanel {
 				  done = true;
 				  //create a player using default constructor and then set name
 				  //Player player = new Player();
-				 
+				 				  
 				  Vector<Pokemon>pokemonList = new Vector<Pokemon>();
 				  	for(int i=0;i<3;++i){
 				  		Pokemon poke = new Pokemon();
