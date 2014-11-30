@@ -4,19 +4,19 @@ import helper.PokemonDisplay;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+//import java.awt.GridBagConstraints;
+//import java.awt.GridBagLayout;
+//import java.awt.event.ActionEvent;
+//import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+//import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
+//import javax.swing.ImageIcon;
+//import javax.swing.JButton;
+//import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import dataStore.Pokemon;
@@ -27,8 +27,8 @@ public class MenuUI extends JPanel {
 	private ArrayList<PokemonDisplay> listPokemon;
 	private CardLayout switcher;
 	private SideBarMenuAdapter parent;
-	private JButton items;
-	private JButton trainer;
+//	private JButton items;
+//	private JButton trainer;
 	//instance of player
 	
 	public MenuUI(){
@@ -42,52 +42,51 @@ public class MenuUI extends JPanel {
 		parent = p;
 		switcher = c;
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		setBackground(Color.cyan);
+//		setBackground(Color.cyan);
 		listPokemon = new ArrayList<PokemonDisplay>();
 		createGui();
 		addListeners();
 	}
 
 	private void createGui(){
-		add(new JLabel("Drag Pokemon to reorder party."));
+//		add(new JLabel("Drag Pokemon to reorder party."));
 		for (int i = 0; i < 3; ++i){
 			add(createPokemonDisplay());
 		}
 		
-		items = new JButton("Open Items Bag");
-		items.setFocusable(false);
-		items.setBorderPainted(false);
-		items.setBackground(Color.cyan);
-		add(items);
+//		items = new JButton("Open Items Bag");
+//		items.setFocusable(false);
+//		items.setBorderPainted(false);
+//		items.setBackground(Color.cyan);
+//		add(items);
 		
-		trainer = new JButton("Trainer Info");
-		trainer.setFocusable(false);
-		trainer.setBorderPainted(false);
-		trainer.setBackground(Color.cyan);
-		add(trainer);
+//		trainer = new JButton("Trainer Info");
+//		trainer.setFocusable(false);
+//		trainer.setBorderPainted(false);
+//		trainer.setBackground(Color.cyan);
+//		add(trainer);
 	}
 	
 	private void addListeners(){
-		items.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				switcher.show(parent, parent.ITEMNAME);
-			}
-		});
+//		items.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				switcher.show(parent, parent.ITEMNAME);
+//			}
+//		});
 		
-		trainer.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				switcher.show(parent, parent.USERINFO);
-			}
-		});
+//		trainer.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				switcher.show(parent, parent.USERINFO);
+//			}
+//		});
 		
-//		for (PokemonDisplay d : listPokemon){
-//			d.addMouseListener(new MouseListener() {
-//				
-//				@Override
-//				public void mouseReleased(MouseEvent e) {
-//					//TODO make shrink?
+		for (PokemonDisplay d : listPokemon){
+			d.addMouseListener(new MouseListener() {
+				
+				@Override
+				public void mouseReleased(MouseEvent e) {
 //					PokemonDisplay p = (PokemonDisplay) e.getSource();
 //					if (p.getMouseLeftOff() != p.getY()){
 //						int index = listPokemon.indexOf(p);
@@ -112,28 +111,26 @@ public class MenuUI extends JPanel {
 //							swap(index, 1);
 //						}
 //					}
-//				}
-//				
-//				@Override
-//				public void mousePressed(MouseEvent e) {
-//					//TODO make grow?
-//				}
-//				
-//				@Override
-//				public void mouseExited(MouseEvent e) {
-//					//do nothing
-//				}
-//				
-//				@Override
-//				public void mouseEntered(MouseEvent e) {
-//					//do nothing
-//				}
-//				
-//				@Override
-//				public void mouseClicked(MouseEvent e) {
-//					switcher.show(parent, parent.STATUSNAME);
-//				}
-//			});
+				}
+				
+				@Override
+				public void mousePressed(MouseEvent e) {}
+				
+				@Override
+				public void mouseExited(MouseEvent e) {
+					//do nothing
+				}
+				
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					//do nothing
+				}
+				
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					switcher.show(parent, parent.STATUSNAME);
+				}
+			});
 //			d.addMouseMotionListener(new MouseMotionListener() {
 //				
 //				@Override
@@ -147,7 +144,7 @@ public class MenuUI extends JPanel {
 //					p.setMouseLeftOff(e.getYOnScreen());
 //				}
 //			});
-//		}
+		}
 	}
 	
 	private PokemonDisplay createPokemonDisplay(){

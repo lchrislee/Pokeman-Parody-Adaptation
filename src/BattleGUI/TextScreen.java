@@ -54,6 +54,12 @@ public class TextScreen extends JPanel {
 					do{
 						if (input != "")
 							appendText(input);
+						else if (input.contains("HIT")){
+							
+						}else if (input.contains("SWAP")){
+							
+						}
+						
 						if (pw != null){
 							pw.println("PROGRESS");
 							pw.flush();

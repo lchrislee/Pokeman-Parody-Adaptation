@@ -35,7 +35,7 @@ public class GUI extends JFrame{
 		setResizable(false);
 		setLocation(100,100);
 		OpeningPanel op = new OpeningPanel();
-		op.run();
+//		op.run();
 		add(op);
 		
 		System.out.println("OPENING ADDED");
@@ -43,6 +43,7 @@ public class GUI extends JFrame{
 		
 		while(!op.done)
 			Thread.yield();//System.out.println("WAITING");
+		op.stop();
 		System.out.println("OPENING COMPLETE");
 		
 		remove(op);
@@ -53,6 +54,7 @@ public class GUI extends JFrame{
 		repaint();
 		while(!l.done)
 			Thread.yield();
+		l.stop();
 		WaitingPanel waiting = new WaitingPanel();
 		add(waiting);
 		
