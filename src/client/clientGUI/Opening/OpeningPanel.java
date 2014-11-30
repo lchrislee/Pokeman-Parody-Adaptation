@@ -18,6 +18,8 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 public class OpeningPanel extends JPanel implements ActionListener {
 	
@@ -60,9 +62,19 @@ public class OpeningPanel extends JPanel implements ActionListener {
 	int timerCount = 0;
 	int timerCountSpeed = 1;
 	
+	public Clip clip;
+	
+	public OpeningPanel(){
+		try {
+			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+		} catch (ClassNotFoundException | InstantiationException
+				| IllegalAccessException | UnsupportedLookAndFeelException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void run(){
 		File url = new File("Epic_sax_guy.wav");
-	        Clip clip;
 			try {
 				clip = AudioSystem.getClip();
 				 AudioInputStream ais = AudioSystem.
@@ -74,6 +86,10 @@ public class OpeningPanel extends JPanel implements ActionListener {
 				e.printStackTrace();
 			}
 	        // getAudioInputStream() also accepts a File or InputStream
+	}
+	
+	public void stop(){
+		clip.stop();
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -249,6 +265,7 @@ public class OpeningPanel extends JPanel implements ActionListener {
 			System.out.println("opening done!");
 			done = true;
 			timer.stop();
+			clip.stop();
 		}
 //		if (done) System.out.println("DONE and ALAN LIKES DETERGENTS");
 		
