@@ -1,6 +1,7 @@
 package server;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -48,6 +49,9 @@ public class Server implements Runnable{
 			
 			for (int i = 0; i < 4; ++i){
 				Socket communicationSocketInput = ssComm.accept();
+				
+				
+				
 				System.out.println(communicationSocketInput.toString() + " CONNECTED TO SERVER");
 				communicationSockets.add(communicationSocketInput);
 
@@ -56,8 +60,10 @@ public class Server implements Runnable{
 				chatSockets.add(chatSocketInput);
 				players.add(new NetworkPlayer());
 			}
+			
 			chatSockets.sort(new SocketSort());
 			communicationSockets.sort(new SocketSort());
+			
 			for (int i = 0; i < 4; ++i){
 				NetworkPlayer p = players.get(i);
 				p.setChatSocket(chatSockets.get(i));
@@ -75,6 +81,7 @@ public class Server implements Runnable{
 	
 	@Override
 	public void run(){
+	
 		getPlayers();
 		generateBattlePairs();
 		createBattles();
@@ -109,7 +116,7 @@ public class Server implements Runnable{
 	
 	private void getPlayers(){
 		for (NetworkPlayer n : players){
-			n.readPlayer(pokemonMap);
+			//n.readPlayer(pokemonMap);
 		}
 	}
 	
@@ -169,6 +176,7 @@ public class Server implements Runnable{
 		}
 		pokemonMap = dba.getMap();
 		t.run();
+		
 		
 	}
 	

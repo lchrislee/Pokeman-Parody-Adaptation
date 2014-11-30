@@ -2,7 +2,11 @@ package client;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -37,6 +41,30 @@ public class Client{
 			e.printStackTrace();
 		}
 		Player p = clientGUI.getPlayer();
+		System.out.println(p.getName() + " PLAYER NAME ");
+		OutputStream os = null;
+		ObjectOutputStream oos = null;
+		try {
+			os = clientSocket.getOutputStream();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			oos = new ObjectOutputStream(os);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println(p.getPokemonList().get(0).getName() + " FIRST POKEMON NAME ");
+		try {
+			oos.writeObject(p);//tries to send the player over to the server
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("DID IT WORK?");
 	}
 	
 	public void run(){

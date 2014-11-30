@@ -38,7 +38,9 @@ public class LoginScreen extends JPanel {
 	private List<JButton> pokemonSpriteList;
 	private JButton readyButton;
 	private ImageIcon chosenCharacter = new ImageIcon();
+	private String chosenCharacterName;
 	private ImageIcon chosenPokemon = new ImageIcon();
+	
 	private Queue<ImageIcon> chosenPokemonQueue = new LinkedList<ImageIcon>();
 	private Vector<String> pokemonNamesList = new Vector<String>();
 	
@@ -883,7 +885,7 @@ public class LoginScreen extends JPanel {
 				  }
 				  Vector<ImageIcon> imageList = new Vector<ImageIcon>();
 				  imageList.add(chosenCharacter);
-				  player = new Player(pokemonList,imageList);
+				  player = new Player(pokemonList,imageList,chosenCharacterName);
 				  
 					
 			  }
@@ -953,6 +955,8 @@ public class LoginScreen extends JPanel {
 	            	System.out.println("Selected Character: " + ((JButton)me.getSource()).getName());
 //		            	chosenCharacter.setImage(millerImage);
 	            	((JButton)me.getSource()).setBackground(Color.RED);
+	            	String buttonName = ((JButton) me.getSource()).getName();
+	            	chosenCharacterName = buttonName;			
 	            	//millerButton.setBackground(Color.white);
 	            	Component[] buttons = characterSpriteListPanel.getComponents();
 	            	for (int i = 0; i < buttons.length; ++i)
