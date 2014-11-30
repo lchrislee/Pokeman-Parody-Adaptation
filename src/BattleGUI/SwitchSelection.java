@@ -53,7 +53,9 @@ public class SwitchSelection extends JPanel{ //make this panel 300 wide by 150 t
 	
 	private void createGUI() {
 		for (int i = 0; i < 3; i++) {
-			Pokemon p = pokemon.get(i);
+			Pokemon p = null;
+			if (pokemon != null)
+				p = pokemon.get(i);
 			String dummyName = "dummy " + String.valueOf(i);
 			JPanel selectionAreaPanel = new JPanel();
 			selectionAreaPanel.setBorder(new LineBorder(Color.BLACK, 1, true));

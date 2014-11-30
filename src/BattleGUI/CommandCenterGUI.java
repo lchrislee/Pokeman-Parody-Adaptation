@@ -23,9 +23,9 @@ public class CommandCenterGUI extends JPanel {
 	TextScreen text;
 	private ActionSelection selection;
 	private SwitchSelection switchPokemon;
-	private PrintWriter pw;
-	private BufferedReader br;
-	private ArrayList<Pokemon> pokes;
+	private PrintWriter pw = null;
+	private BufferedReader br = null;
+	private ArrayList<Pokemon> pokes = null;
 	
 	public CommandCenterGUI(){
 		createGUI();
@@ -34,7 +34,7 @@ public class CommandCenterGUI extends JPanel {
 	public CommandCenterGUI(PrintWriter p, BufferedReader bf){
 		pw = p;
 		br = bf;
-		getPokes();
+		//getPokes();
 		createGUI();
 	}
 	
@@ -48,7 +48,7 @@ public class CommandCenterGUI extends JPanel {
 		add(text, TEXT);
 		selection = (pw == null ? new ActionSelection(switcher, this) : new ActionSelection(switcher, this, pw));
 		add(selection, ACTION);
-		switchPokemon = (pw == null ? new SwitchSelection(switcher, this) : new SwitchSelection(switcher, this, pw));
+		switchPokemon = (pw == null ? new SwitchSelection(switcher, this) : null/*new SwitchSelection(switcher, this, pw)*/);
 		add(switchPokemon, SWITCH);
 		switcher.show(this, ACTION);
 	}
