@@ -27,8 +27,6 @@ public class Client{
 	
 	//method to store players
 	
-	
-	
 	public Client(String ipAddress){
 		clientGUI = new GUI();
 		System.out.println("GUI CREATED");
@@ -38,10 +36,8 @@ public class Client{
 			br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 			pw = new PrintWriter(clientSocket.getOutputStream());
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Player p = clientGUI.getPlayer();
@@ -76,16 +72,7 @@ public class Client{
 	
 	}
 	
-	public void createGUI(String ip){
-		
-	}
-	
-	
-	
-
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-	
 		String address = JOptionPane.showInputDialog(null, "Enter the server's IP address", "Get IP Address", JOptionPane.DEFAULT_OPTION);
 		System.out.println(address + " ADDRESS ");
 		Client client = new Client(address);
