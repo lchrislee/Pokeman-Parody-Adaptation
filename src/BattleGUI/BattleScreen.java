@@ -140,6 +140,10 @@ public class BattleScreen extends JPanel {
 		testWindow.add(w);
 		testWindow.pack();
 		testWindow.setVisible(true);
+		w.ChangeEnemyPokemon(new Pokemon());
+		w.ChangeYourPokemon(new Pokemon());
+		w.ChangeEnemyPokemon(new Pokemon());
+		w.ChangeYourPokemon(new Pokemon());
 	}
 }
 
