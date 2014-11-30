@@ -5,6 +5,8 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.swing.JPanel;
@@ -16,6 +18,7 @@ public class TextScreen extends JPanel {
 	private final int MAXCHARACTERSPERLINE = 91;
 	private JTextArea message;
 	private PrintWriter pw;
+	private BufferedReader br;
 	private CardLayout switcher;
 	
 	private CommandCenterGUI central;
@@ -26,10 +29,11 @@ public class TextScreen extends JPanel {
 		this.switcher = switcher;
 	}
 	
-	public TextScreen(CommandCenterGUI central,CardLayout switcher, PrintWriter p){
+	public TextScreen(CommandCenterGUI central,CardLayout switcher, PrintWriter p, BufferedReader b){
 		createGUI();
 		this.central = central;
 		this.pw = p;
+		this.br = b;
 		this.switcher = switcher;
 	}
 	
@@ -40,34 +44,38 @@ public class TextScreen extends JPanel {
 		message.setLineWrap(true);
 		add(message);
 		message.addMouseListener(new MouseListener(){
-
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				System.out.println("LET's go back");
-				if (pw != null){
-					pw.println("PROGRESS");
-					pw.flush();
-				}
 				ActionSelection.lock.unlock();
+				System.out.println("LET's go back");
+
+				String input = "";
+				try {
+					do{
+						if (input != "")
+							appendText(input);
+						if (pw != null){
+							pw.println("PROGRESS");
+							pw.flush();
+						}
+					}while (!(input = br.readLine()).equals("DONE"));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 				switcher.show(central, central.ACTION);
 			}
 
 			@Override
-			public void mouseEntered(MouseEvent arg0) {
-			}
+			public void mouseEntered(MouseEvent arg0) {}
 
 			@Override
-			public void mouseExited(MouseEvent arg0) {
-			}
+			public void mouseExited(MouseEvent arg0) {}
 
 			@Override
-			public void mousePressed(MouseEvent arg0) {
-			}
+			public void mousePressed(MouseEvent arg0) {}
 
 			@Override
-			public void mouseReleased(MouseEvent arg0) {
-			}
-			
+			public void mouseReleased(MouseEvent arg0) {}
 		});
 	}
 	
