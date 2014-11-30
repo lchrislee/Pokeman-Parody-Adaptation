@@ -37,10 +37,22 @@ public class AttackSelection extends JPanel {
 		br = b;
 	}
 	
+	public AttackSelection(Move[] m, CardLayout switcher, CommandCenterGUI c) {
+		createGUI(m);
+		selecter = switcher;
+		central = c;
+	}
+
 	private void createGUI(Vector<Move> m){
 		setLayout(new GridLayout(2,2));
 		for (int i = 0; i < m.size(); ++i)
 			add(new AttackButton(m.get(i)));
+	}
+	
+	private void createGUI(Move[] m){
+		setLayout(new GridLayout(2,2));
+		for (int i = 0; i < m.length; ++i)
+			add(new AttackButton(m[i]));
 	}
 	
 	private class AttackButton extends JButton{

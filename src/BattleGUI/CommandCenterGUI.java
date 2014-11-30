@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import dataStore.Move;
 import dataStore.Pokemon;
 
 public class CommandCenterGUI extends JPanel {
@@ -40,8 +41,8 @@ public class CommandCenterGUI extends JPanel {
 	private void createGUI(){
 		CardLayout switcher = new CardLayout();
 		setLayout(switcher);
-		//Move[] m = {new Move(50, 1, "Tackle"), new Move(100, 2, "HYPER BEAM"), new Move(60, 3, "Wing Attack"), new Move(0, 4, "Splash")};
-		attacks = (pw == null ? new AttackSelection(pokes.get(0).getMoveList(), switcher, this) : new AttackSelection(pokes.get(0).getMoveList(), switcher, this, pw, br));
+		Move[] m = {new Move(50, 1, "Tackle"), new Move(100, 2, "HYPER BEAM"), new Move(60, 3, "Wing Attack"), new Move(0, 4, "Splash")};
+		attacks = (pw == null ? new AttackSelection(m, switcher, this) : new AttackSelection(pokes.get(0).getMoveList(), switcher, this, pw, br));
 		add(attacks, ATTACKSELECT);
 		text = (pw == null ? new TextScreen(this,switcher) : new TextScreen(this, switcher, pw, br));
 		add(text, TEXT);
