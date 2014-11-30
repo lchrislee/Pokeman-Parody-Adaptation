@@ -116,7 +116,7 @@ public class Server implements Runnable{
 	
 	private void getPlayers(){
 		for (NetworkPlayer n : players){
-			//n.readPlayer(pokemonMap);
+//			//n.readPlayer(pokemonMap);
 		}
 	}
 	
