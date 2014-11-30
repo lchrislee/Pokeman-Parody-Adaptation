@@ -15,43 +15,101 @@ import client.clientGUI.Waiting.WaitingPanel;
 import dataStore.Pokemon;
 
 public class BattleScreen extends JPanel {
-	Pokemon enemyPokemon;
-	Pokemon yourPokemon;
-	public BattleScreen() {
+	
+	JPanel enemyInfoPanel, enemyPokemonPanel, yourPokemonPanel, yourInfoPanel;
+	Pokemon enemyPokemon = null;
+	Pokemon yourPokemon = null;
+	
+	public BattleScreen(Pokemon enemy, Pokemon yours) {
+		enemyPokemon = enemy;
+		yourPokemon = yours;
 		setPreferredSize(new Dimension(500,350));
 		setLayout(new GridLayout(2,2));
 		setBackground(Color.white);
 		createGUI();
 	}
+	
+	public BattleScreen() {
+		
+		setPreferredSize(new Dimension(500,350));
+		setLayout(new GridLayout(2,2));
+		setBackground(Color.white);
+		createGUI();
+	}
+	
 	private void createGUI() {
-		JPanel enemyInfoPanel = new JPanel();
-		enemyInfoPanel.setBackground(Color.white);
 		/* dummy enemy info */
-		JLabel enemyPokemonLabel = new JLabel("Pikayu lvl 42");
-		enemyPokemonLabel.setFont(new Font("Arial",Font.PLAIN, 35));
-		JLabel enemyPokemonHealth = new JLabel("5/10");
-		enemyPokemonHealth.setFont(new Font("Arial",Font.PLAIN, 35));
-		enemyInfoPanel.add(enemyPokemonLabel);
-		enemyInfoPanel.add(enemyPokemonHealth);
+		if (enemyPokemon == null) {
+			enemyInfoPanel = new JPanel();
+			enemyInfoPanel.setBackground(Color.white);
+			JLabel enemyPokemonLabel = new JLabel("Dummy lvl 420");
+			enemyPokemonLabel.setFont(new Font("Arial",Font.PLAIN, 35));
+			JLabel enemyPokemonHealth = new JLabel("5/10");
+			enemyPokemonHealth.setFont(new Font("Arial",Font.PLAIN, 35));
+			enemyInfoPanel.add(enemyPokemonLabel);
+			enemyInfoPanel.add(enemyPokemonHealth);
+			
+			enemyPokemonPanel = new JPanel();
+			enemyPokemonPanel.setBackground(Color.white);
+			JLabel enemyPokemonImage = new JLabel(new ImageIcon("res/Pokemon_sprites/pikayu_left_tr.png"));
+			enemyPokemonPanel.add(enemyPokemonImage);
+		}
+		else {
+			enemyInfoPanel = new JPanel();
+			enemyInfoPanel.setBackground(Color.white);
+			JLabel enemyPokemonLabel = new JLabel(enemyPokemon.getName());
+			JLabel enemyPokemonLevel = new JLabel( String.valueOf(enemyPokemon.getLevel()));
+			enemyPokemonLabel.setFont(new Font("Arial",Font.PLAIN, 35));
+			enemyPokemonLevel.setFont(new Font("Arial",Font.PLAIN, 35));
+			String enemyHealth = String.valueOf(enemyPokemon.getHealth()) + "/" + 
+								 String.valueOf(enemyPokemon.getMaxHealth());
+			JLabel enemyPokemonHealth = new JLabel(enemyHealth);
+			enemyPokemonHealth.setFont(new Font("Arial",Font.PLAIN, 35));
+			enemyInfoPanel.add(enemyPokemonLabel);
+			enemyInfoPanel.add(enemyPokemonLevel);
+			enemyInfoPanel.add(enemyPokemonHealth);
+			
+			enemyPokemonPanel = new JPanel();
+			enemyPokemonPanel.setBackground(Color.white);
+			JLabel enemyPokemonImage = new JLabel(enemyPokemon.getLeftSprite());
+			enemyPokemonPanel.add(enemyPokemonImage);
+		}
 		
-		JPanel enemyPokemonPanel = new JPanel();
-		enemyPokemonPanel.setBackground(Color.white);
-		JLabel enemyPokemonImage = new JLabel(new ImageIcon("res/Pokemon_sprites/pikayu_left_tr.png"));
-		enemyPokemonPanel.add(enemyPokemonImage);
-		
-		JPanel yourPokemonPanel = new JPanel();
-		yourPokemonPanel.setBackground(Color.white);
-		JLabel yourPokemonImage = new JLabel(new ImageIcon("res/Pokemon_sprites/feelglet_right_tr.png"));
-		yourPokemonPanel.add(yourPokemonImage);
-		
-		JPanel yourInfoPanel = new JPanel();
-		yourInfoPanel.setBackground(Color.white);
-		JLabel yourPokemonLabel = new JLabel("Feelglet lvl 69");
-		yourPokemonLabel.setFont(new Font("Arial",Font.PLAIN, 35));
-		JLabel yourPokemonHealth = new JLabel("69/420");
-		yourPokemonHealth.setFont(new Font("Arial",Font.PLAIN, 35));
-		yourInfoPanel.add(yourPokemonLabel);
-		yourInfoPanel.add(yourPokemonHealth);
+		if (yourPokemon == null) {
+			yourPokemonPanel = new JPanel();
+			yourPokemonPanel.setBackground(Color.white);
+			JLabel yourPokemonImage = new JLabel(new ImageIcon("res/Pokemon_sprites/feelglet_right_tr.png"));
+			yourPokemonPanel.add(yourPokemonImage);
+			
+			yourInfoPanel = new JPanel();
+			yourInfoPanel.setBackground(Color.white);
+			JLabel yourPokemonLabel = new JLabel("Dummy lvl 69");
+			yourPokemonLabel.setFont(new Font("Arial",Font.PLAIN, 35));
+			JLabel yourPokemonHealth = new JLabel("69/420");
+			yourPokemonHealth.setFont(new Font("Arial",Font.PLAIN, 35));
+			yourInfoPanel.add(yourPokemonLabel);
+			yourInfoPanel.add(yourPokemonHealth);
+		}
+		else {
+			yourPokemonPanel = new JPanel();
+			yourPokemonPanel.setBackground(Color.white);
+			JLabel yourPokemonImage = new JLabel(yourPokemon.getRightSprite());
+			yourPokemonPanel.add(yourPokemonImage);
+			
+			yourInfoPanel = new JPanel();
+			yourInfoPanel.setBackground(Color.white);
+			JLabel yourPokemonLabel = new JLabel(yourPokemon.getName());
+			yourPokemonLabel.setFont(new Font("Arial",Font.PLAIN, 35));
+			JLabel yourPokemonLevel = new JLabel( String.valueOf(yourPokemon.getLevel()) );
+			yourPokemonLevel.setFont(new Font("Arial",Font.PLAIN, 35));
+			String yourHealth = String.valueOf(yourPokemon.getHealth()) + "/" + 
+					 String.valueOf(yourPokemon.getMaxHealth());
+			JLabel yourPokemonHealth = new JLabel(yourHealth);
+			yourPokemonHealth.setFont(new Font("Arial",Font.PLAIN, 35));
+			yourInfoPanel.add(yourPokemonLabel);
+			yourInfoPanel.add(yourPokemonLevel);
+			yourInfoPanel.add(yourPokemonHealth);
+		}
 		
 		add(enemyInfoPanel);
 		add(enemyPokemonPanel);
