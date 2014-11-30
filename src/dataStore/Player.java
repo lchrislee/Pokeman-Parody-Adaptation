@@ -18,6 +18,7 @@ public class Player implements Serializable{
 	private Pokemon enemyPokemon;
 	private Pokemon currentPokemon;//in battle at the moment
 	private boolean quit = false;
+	private String name;
 	//private Set<String> playerMoves;
 		
 		public Player(){/*
@@ -42,10 +43,11 @@ public class Player implements Serializable{
 			setPlayer(p);
 		}
 		
-		public Player(Vector<Pokemon>pList, Vector <ImageIcon> imageList){
+		public Player(Vector<Pokemon>pList, Vector <ImageIcon> imageList,String name){
 			this.pokemonList = pList;
 			this.spriteList = imageList;
 			//this.itemList = itemList;
+			this.name = name;
 						
 		}	
 		
@@ -116,6 +118,9 @@ public class Player implements Serializable{
 			this.quit = true;
 		}
 		
+		public String getName(){
+			return this.name;
+		}
 						
 		public Pokemon getCurrentPokemon(){
 			return this.currentPokemon;
