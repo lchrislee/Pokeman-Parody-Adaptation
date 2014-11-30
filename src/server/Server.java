@@ -94,7 +94,7 @@ public class Server implements Runnable{
 	@Override
 	public void run(){
 	
-		getPlayers();/*
+		getPlayers();
 		generateBattlePairs();
 		createBattles();
 		boolean result1 = first.join();
@@ -123,7 +123,7 @@ public class Server implements Runnable{
 		
 		signalResults(b3winner, b3loser, b4winner, b4loser);
 		
-		signalFinalResults(b3winner, b3loser, b4winner, b4loser);*/
+		signalFinalResults(b3winner, b3loser, b4winner, b4loser);
 	}
 	
 	private void getPlayers(){
