@@ -50,8 +50,8 @@ public class GUI extends JFrame{
 		//login//
 		
 		//createGUI(); client calls this
-		System.out.println("WHAT WHAT");
-		Player p = this.l.getPlayer();
+		
+		
 	}
 	
 	public void createGUI(String address, PrintWriter pw, BufferedReader bf){
@@ -66,6 +66,9 @@ public class GUI extends JFrame{
 		repaint();
 	}
 
+	public Player getPlayer(){
+		return l.getPlayer();
+	}
 		
 	public static void main(String[] args) {
 		/*JFrame j = new JFrame();

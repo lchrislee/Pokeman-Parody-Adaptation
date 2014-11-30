@@ -14,6 +14,7 @@ import client.clientGUI.GUI;
 import dataStore.Player;
 
 public class Client{
+	
 	private GUI clientGUI;
 	private Socket clientSocket;
 	private BufferedReader br;
@@ -39,6 +40,7 @@ public class Client{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		Player p = clientGUI.getPlayer();
 	}
 	
 	public void run(){
