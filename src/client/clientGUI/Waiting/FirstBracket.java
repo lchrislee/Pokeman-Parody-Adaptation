@@ -97,7 +97,7 @@ public class FirstBracket extends JPanel implements ActionListener {
 	
 	public void actionPerformed (ActionEvent e) {
 		timerCount += timerCountSpeed;
-		if (timerCount >= 1300) {
+		if (timerCount >= 1600) {
 			done = true;
 			System.out.println("Ready to move");
 			timer.stop();
