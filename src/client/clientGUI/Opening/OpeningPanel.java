@@ -7,7 +7,14 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -52,6 +59,22 @@ public class OpeningPanel extends JPanel implements ActionListener {
 	public boolean done = false;
 	int timerCount = 0;
 	int timerCountSpeed = 1;
+	
+	public void run(){
+		File url = new File("Epic_sax_guy.wav");
+	        Clip clip;
+			try {
+				clip = AudioSystem.getClip();
+				 AudioInputStream ais = AudioSystem.
+				            getAudioInputStream( url );
+				        clip.open(ais);
+				        clip.loop(Clip.LOOP_CONTINUOUSLY);
+			} catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        // getAudioInputStream() also accepts a File or InputStream
+	}
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
