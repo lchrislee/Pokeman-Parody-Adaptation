@@ -2,13 +2,14 @@
 package dataStore;
 
 import java.io.BufferedReader;
-import java.io.PrintWriter;
-import java.net.Socket;
-
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class NetworkPlayer extends Player {
 	private static final long serialVersionUID = -6142557240391241069L;
@@ -30,7 +31,7 @@ public class NetworkPlayer extends Player {
 	}
 	
 	public NetworkPlayer(Player p){
-		super(p);
+		super(p, null);
 		chatSocket = null;
 		commSocket = null;
 	}
@@ -132,7 +133,7 @@ public class NetworkPlayer extends Player {
 		this.oos = oos;
 	}
 	
-	public void readPlayer(){
+	public void readPlayer(HashMap<String, ArrayList<Pokemon>> mapping){
 		System.out.println("NETWORK PLAYER IS READING ");
 		Player p = null;
 		ObjectInputStream ois = this.ois;
@@ -153,7 +154,7 @@ public class NetworkPlayer extends Player {
 //			System.out.println("CURRENT SPRITE IS NULL");
 		
 		System.out.println(p);
-		super.setPlayer(p);
+		super.setPlayer(p, mapping);
 		
 		
 	}

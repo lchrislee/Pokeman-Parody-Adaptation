@@ -128,8 +128,8 @@ public class Server implements Runnable{
 	
 	private void getPlayers(){
 		for (NetworkPlayer n : players){
-			n.readPlayer();
-//			//n.readPlayer(pokemonMap);
+//			n.readPlayer();
+			n.readPlayer(pokemonMap);
 		}
 	}
 	

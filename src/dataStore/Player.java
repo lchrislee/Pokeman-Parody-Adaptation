@@ -1,14 +1,17 @@
 package dataStore;
 
 import java.io.Serializable;
-import java.util.Vector;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Vector;
 
 import javax.swing.ImageIcon;
 
 //player needs to know the index of the current pokemon that's out
 
 public class Player implements Serializable{
+	private static final long serialVersionUID = 5504055184113660229L;
+
 	private int currentPokemonIndex = 0;//which pokemon in the list is currently out
 	
 	private Vector <Pokemon> pokemonList;// this will store the Pokemon the player has caught
@@ -40,8 +43,8 @@ public class Player implements Serializable{
 			pokemonList.add(p);
 		}
 	
-		public Player(Player p){
-			setPlayer(p);
+		public Player(Player p, HashMap<String, ArrayList<Pokemon>> map){
+			setPlayer(p, map);
 		}
 		
 		public Player(Vector<Pokemon>pList,/* Vector <ImageIcon> imageList,*/String chosenCharacterName, String playerName){
@@ -94,13 +97,21 @@ public class Player implements Serializable{
 			}
 		}
 		
-		protected void setPlayer(Player p){
+		protected void setPlayer(Player p, HashMap<String, ArrayList<Pokemon>> map){
 			currentPokemonIndex = p.currentPokemonIndex;
 			characterImageName = p.characterImageName;
-			pokemonList = new Vector<Pokemon>(p.pokemonList);
-//			spriteList = new Vector<ImageIcon> (p.spriteList);
 			currentSprite = new ImageIcon("res/" + characterImageName);
-			
+			if (map == null)
+				return;
+			pokemonList = new Vector<Pokemon>(p.pokemonList);
+			for (Pokemon poke : pokemonList){
+				if (poke.getMoveList() == null){
+					ArrayList<Pokemon> possible = map.get(poke.getName());
+					int position = (int)(Math.random() * possible.size());
+					poke = new Pokemon(possible.get(position));
+				}
+			}
+//			spriteList = new Vector<ImageIcon> (p.spriteList);			
 //			statsMap = new HashMap<String,Integer>(p.statsMap);
 		}
 			
