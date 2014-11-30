@@ -1,14 +1,13 @@
-package helper;
+package BattleGUI;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -17,7 +16,6 @@ import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 /*
@@ -27,21 +25,29 @@ import javax.swing.JPanel;
 
 
 
-import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-import client.clientGUI.Waiting.WaitingPanel;
 import dataStore.Pokemon;
 
-public class PokemonStatusHorizontalUI extends JPanel{ //make this panel 300 wide by 150 tall
+public class SwitchSelection extends JPanel{ //make this panel 300 wide by 150 tall
 	
-	public PokemonStatusHorizontalUI() {
+	/**
+	 * 
+	 */
+	
+	private static final long serialVersionUID = 3499666410519520395L;
+	private CardLayout selecter;
+	private CommandCenterGUI central;
+	
+	public SwitchSelection(CardLayout s, CommandCenterGUI c) {
 		setLayout(new GridLayout(1,3));
 		setPreferredSize(new Dimension(500,150));
-		createHorizontalUI();
+		selecter = s;
+		central = c;
+		createGUI();
 	}
 	
-	private void createHorizontalUI() {
+	private void createGUI() {
 		List<Pokemon> dummyPokemonList = new ArrayList<Pokemon>();
 		for (int i = 0; i < 3; i++) {
 			String dummyName = "dummy " + String.valueOf(i);
@@ -95,6 +101,8 @@ public class PokemonStatusHorizontalUI extends JPanel{ //make this panel 300 wid
 	            public void mouseClicked(MouseEvent me) {
 	            	((JButton)me.getSource()).setBackground(Color.RED);
 	            	System.out.println("Pokemon name: " + ((JButton)me.getSource()).getName());
+					SwitchSelection.this.central.text.setText("You switched to " + ((JButton)me.getSource()).getName() + "!");
+					SwitchSelection.this.selecter.show(central, central.TEXT);
 	            }
 	        });
 			selectionAreaPanel.add(dummyButton);
@@ -104,16 +112,5 @@ public class PokemonStatusHorizontalUI extends JPanel{ //make this panel 300 wid
 			
 			add(selectionAreaPanel);
 		}
-	}
-	public static void main(String args[]) {
-		PokemonStatusHorizontalUI p = new PokemonStatusHorizontalUI();
-		JFrame testWindow = new JFrame();
-		testWindow.setTitle("Testing Login");
-		//testWindow.setSize(500,600);
-		testWindow.setResizable(false);
-		testWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		testWindow.add(p);
-		testWindow.pack();
-		testWindow.setVisible(true);
 	}
 }
