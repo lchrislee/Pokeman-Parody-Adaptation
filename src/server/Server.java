@@ -155,9 +155,6 @@ public class Server implements Runnable{
 	}
 	
 	public static void main(String[] args) {
-		Server s = new Server();
-		DataBaseAccess dba = s.new DataBaseAccess();
-		dba.start();
 		String ipAddress = "";
 		try {
 			ipAddress = InetAddress.getLocalHost().getHostAddress();
@@ -168,6 +165,11 @@ public class Server implements Runnable{
 			System.out.println("YOU HAVE AN ERROR!");
 		
 		JOptionPane.showMessageDialog(null, "Please tell your clients the following IP address: \n" + ipAddress, "Your IP Address", JOptionPane.INFORMATION_MESSAGE, null);
+		
+		Server s = new Server();
+		DataBaseAccess dba = s.new DataBaseAccess();
+		dba.start();
+		
 		Thread t = new Thread(s);
 		try {
 			dba.join();
