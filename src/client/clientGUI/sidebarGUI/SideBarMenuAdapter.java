@@ -11,7 +11,7 @@ public class SideBarMenuAdapter extends JPanel {
 	public final String MENUNAME = "MENU";
 	public final String ITEMNAME = "ITEMLIST";
 	public final String STATUSNAME = "POKEMONSTATUS";
-	public final String USERINFO = "USERINFORMATION";
+//	public final String USERINFO = "USERINFORMATION";
 
 	public SideBarMenuAdapter(){
 		createGUI();
@@ -22,9 +22,8 @@ public class SideBarMenuAdapter extends JPanel {
 		CardLayout switcher = new CardLayout();
 		setLayout(switcher);
 		add(new MenuUI(switcher, this), MENUNAME);
-		add(new ItemListUI(switcher, this), ITEMNAME);
+//		add(new ItemListUI(switcher, this), ITEMNAME);
 		add(new PokemonStatusUI(switcher, this), STATUSNAME);
-		add(new UserInformationGUI(switcher, this), USERINFO);
+//		add(new UserInformationGUI(switcher, this), USERINFO);
 	}
-
 }

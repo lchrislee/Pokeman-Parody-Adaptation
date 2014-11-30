@@ -11,7 +11,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -22,7 +21,7 @@ public class PokemonStatusUI extends JPanel {
 	private JTextArea txeaInformation;
 	private JTextArea txeaStats;
 	private JTextArea txeaMovesList;
-	private JButton btnRelease;
+//	private JButton btnRelease;
 	private JButton btnBack;
 	private String imageName = "";
 	private String name;
@@ -33,7 +32,7 @@ public class PokemonStatusUI extends JPanel {
 	private int defense;
 	private int speed;
 	private String[] attacks;
-	private boolean canRelease;
+//	private boolean canRelease;
 	private GridBagConstraints gbc;
 	private CardLayout switcher;
 	private SideBarMenuAdapter parent;
@@ -53,7 +52,7 @@ public class PokemonStatusUI extends JPanel {
 		attacks[1] = "Splash";
 		attacks[2] = "Harden";
 		attacks[3] = "Tackle";
-		canRelease = true;
+//		canRelease = true;
 		createGUI();
 	}
 	
@@ -74,7 +73,7 @@ public class PokemonStatusUI extends JPanel {
 		attacks[1] = "Splash";
 		attacks[2] = "Harden";
 		attacks[3] = "Tackle";
-		canRelease = true;
+//		canRelease = true;
 		createGUI();
 		addListeners();
 	}
@@ -91,7 +90,7 @@ public class PokemonStatusUI extends JPanel {
 		attacks = new String[moves.length];
 		for (int i = 0; i < moves.length; ++i)
 			attacks[i] = moves[i];
-		canRelease =r;
+//		canRelease =r;
 	}
 	
 	private void createGUI(){
@@ -142,11 +141,11 @@ public class PokemonStatusUI extends JPanel {
 		JPanel bottom = new JPanel();
 		btnBack = new JButton("Back");
 		bottom.add(btnBack);
-		
-		if (canRelease){
-			btnRelease = new JButton("Release");
-			bottom.add(btnRelease);
-		}
+//		
+//		if (canRelease){
+//			btnRelease = new JButton("Release");
+//			bottom.add(btnRelease);
+//		}
 		
 		add(mainView);
 		add(bottom, BorderLayout.SOUTH);

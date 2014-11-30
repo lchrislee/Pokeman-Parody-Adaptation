@@ -1,6 +1,7 @@
 package helper;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -66,12 +67,15 @@ public class PokemonDisplay extends JPanel{
 		gbc.gridheight = 1;
 		gbc.gridx = 1;
 		name = new JLabel("Dadizard");
+		name.setFont(new Font("Arial", Font.PLAIN, 18));
 		add(name, gbc);
 		gbc.gridy = 1;
 		level = new JLabel("Level " + "20");
+		level.setFont(new Font("Arial", Font.PLAIN, 18));
 		add(level, gbc);
 		gbc.gridy = 2;
 		hp = new JLabel("30/30");
+		hp.setFont(new Font("Arial", Font.PLAIN, 18));
 		add(hp, gbc);
 	}
 	

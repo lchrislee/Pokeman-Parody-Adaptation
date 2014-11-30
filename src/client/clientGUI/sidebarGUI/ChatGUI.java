@@ -11,7 +11,7 @@ import java.net.Socket;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
+//import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -26,13 +26,13 @@ import client.helper.chatSystem.ChatClient;
 
 public class ChatGUI extends JPanel {
 	private static final long serialVersionUID = 8239335834925382510L;
-	private final String[] groupNames = {"ALL", "P1 Only", "P2 Only", "P3 Only", "P4 Only", "P1 & P2", "P1 & P3", "P1 & P4", "P2 & P3", "P2 & P4", "P3 & P4"};
+//	private final String[] groupNames = {"ALL", "P1 Only", "P2 Only", "P3 Only", "P4 Only", "P1 & P2", "P1 & P3", "P1 & P4", "P2 & P3", "P2 & P4", "P3 & P4"};
 	public static JTextPane txeaAllMessages;
 	private JTextField txFdCurrentText;
-	@SuppressWarnings("rawtypes")
-	private JComboBox groups;
+//	@SuppressWarnings("rawtypes")
+//	private JComboBox groups;
 	private JButton btnSend;
-	private String chatSelected = groupNames[0];
+//	private String chatSelected = groupNames[0];
 	private ChatClient chatClient;
 	private Socket socket;
 	private PrintWriter output;
@@ -43,10 +43,10 @@ public class ChatGUI extends JPanel {
 		setListeners();
 		//connect to server
 		serverAddress = address;
-		Connect(address);
+		Connect(/*address*/);
 	}
 	
-	@SuppressWarnings({"rawtypes", "unchecked"})
+//	@SuppressWarnings({"rawtypes", "unchecked"})
 	private void createGUI(){
 		setLayout(new BorderLayout());
 		setPreferredSize(new Dimension(300, 250));
@@ -62,11 +62,11 @@ public class ChatGUI extends JPanel {
 		add(container);
 		
 		txFdCurrentText = new JTextField(70);
-		groups = new JComboBox(groupNames);
+//		groups = new JComboBox(groupNames);
 		btnSend = new JButton("Send");
 		
 		JPanel holder = new JPanel(new BorderLayout());
-		holder.add(groups, BorderLayout.WEST);
+//		holder.add(groups, BorderLayout.WEST);
 		holder.add(txFdCurrentText);
 		holder.add(btnSend, BorderLayout.EAST);
 		add(holder, BorderLayout.SOUTH);
@@ -94,18 +94,18 @@ public class ChatGUI extends JPanel {
 		txFdCurrentText.getInputMap().put(enter, "ENTER");
 		txFdCurrentText.getActionMap().put("ENTER", enterPressed);
 		
-		groups.addActionListener(new ActionListener(){
-			@SuppressWarnings("rawtypes")
-			@Override
-			public void actionPerformed(ActionEvent source) {
-				String selected = ((JComboBox)source.getSource()).getSelectedItem().toString();
-				if (selected.equals(chatSelected))
-					return;
-				else{
-					txeaAllMessages.setText("Only " + selected + " can see your messages.");
-				}
-			}
-		});
+//		groups.addActionListener(new ActionListener(){
+//			@SuppressWarnings("rawtypes")
+//			@Override
+//			public void actionPerformed(ActionEvent source) {
+//				String selected = ((JComboBox)source.getSource()).getSelectedItem().toString();
+//				if (selected.equals(chatSelected))
+//					return;
+//				else{
+//					txeaAllMessages.setText("Only " + selected + " can see your messages.");
+//				}
+//			}
+//		});
 	}
 
 	public void readMessage(String message){
@@ -127,9 +127,9 @@ public class ChatGUI extends JPanel {
 		String content = txFdCurrentText.getText();
 		if (content.length() == 0)
 			return;
-		String text = groups.getSelectedItem().toString() + "_You sent: " + content;
+		String text = /*groups.getSelectedItem().toString() +*/ "_You sent: " + content;
 		txFdCurrentText.setText("");
-		System.out.println("sent message: " + text + " to " + groups.getSelectedItem().toString());
+		System.out.println("sent message: " + text + " to all" /*+ groups.getSelectedItem().toString()*/);
 		//outputs to all clients, received from server
 		output.println(text);
 		output.flush();
@@ -139,10 +139,10 @@ public class ChatGUI extends JPanel {
 		// pretext = "#FROM: tony #TO: " + box.text
 		
 	}
-	public void Connect(String address){
+	public void Connect(/*String address*/){
 		try {
 			
-			socket = new Socket(address, Server.CHATPORT);
+			socket = new Socket(serverAddress, Server.CHATPORT);
 			System.out.println("You connected to: " + socket);
 			
 			chatClient = new ChatClient(socket);
@@ -159,13 +159,13 @@ public class ChatGUI extends JPanel {
 			e.printStackTrace();
 		}
 	}	
-	private void processMessage(String message) {
-		
-		// readMessage(text);
-	//			output.println(message);
-				// if (box.text != 'all')
-				// pretext = "#FROM: tony #TO: " + box.text
-		//		output.flush();
-		
-	}
+//	private void processMessage(String message) {
+//		
+//		// readMessage(text);
+//	//			output.println(message);
+//				// if (box.text != 'all')
+//				// pretext = "#FROM: tony #TO: " + box.text
+//		//		output.flush();
+//		
+//	}
 }
