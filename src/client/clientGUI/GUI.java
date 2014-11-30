@@ -27,6 +27,8 @@ public class GUI extends JFrame{
 	private static ObjectInputStream ois;
 	
 	private LoginScreen l;
+	private String playerName;
+	
 	public GUI(){
 		//opening
 //		setLayout(new BorderLayout());
@@ -86,7 +88,9 @@ public class GUI extends JFrame{
 	}
 
 	public Player getPlayer(){
-		return l.getPlayer();
+		Player p = l.getPlayer();
+		playerName = p.getName();
+		return p;
 	}
 		
 	public static void main(String[] args) {

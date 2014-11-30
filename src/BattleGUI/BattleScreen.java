@@ -149,6 +149,7 @@ public class BattleScreen extends JPanel {
 	}
 	
 	public void update(String m){
+		String toParse = m;
 		
 	}
 	

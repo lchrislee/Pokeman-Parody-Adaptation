@@ -24,6 +24,7 @@ public class Client{
 	private BufferedReader br;
 	private PrintWriter pw;
 	private String hostAddress;
+	private String playerName;
 	
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
@@ -59,6 +60,7 @@ public class Client{
 	public void run(){
 		System.out.println("CLIENT MAKING GUI");
 		Player p = clientGUI.getPlayer();
+		this.playerName = p.getName();
 		clientGUI.createGUI(hostAddress, pw, br);
 
 		try {
@@ -90,6 +92,10 @@ public class Client{
 		Client client = new Client(address);
 		client.run();
 
+	}
+	
+	public String getName() {
+		return this.playerName;
 	}
 
 }
