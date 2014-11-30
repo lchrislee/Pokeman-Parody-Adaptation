@@ -29,8 +29,8 @@ public class AttackSelection extends JPanel {
 		central = c;
 	}
 	
-	public AttackSelection(Vector<Move> m, CardLayout s, CommandCenterGUI c, PrintWriter p, BufferedReader b){
-		createGUI(m);
+	public AttackSelection(CardLayout s, CommandCenterGUI c, PrintWriter p, BufferedReader b){
+		createGUI(new Vector<Move>(getMoves(0)));
 		selecter = s;
 		central = c;
 		pw = p;
@@ -53,6 +53,37 @@ public class AttackSelection extends JPanel {
 		setLayout(new GridLayout(2,2));
 		for (int i = 0; i < m.length; ++i)
 			add(new AttackButton(m[i]));
+	}
+	
+	private Vector<Move> getMoves(int index){
+		pw.println("MOVES " + index);
+		pw.flush();
+		
+		String movesList = null;
+		try {
+			movesList = br.readLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return parse(movesList);
+	}
+	
+	private Vector<Move> parse(String input){
+		Vector<Move> v = new Vector<Move>();
+		int moveStartIndex = 0;
+		int moveEndIndex = input.indexOf("?");
+		int space = input.indexOf(" ");
+		
+		int i = 0;
+		do{
+			v.add(new Move(Integer.parseInt(input.substring(space + 1, moveEndIndex)), input.substring(moveStartIndex, space)));
+			moveStartIndex = moveEndIndex + 1;
+			moveEndIndex = input.indexOf("?", moveStartIndex);
+			space = input.indexOf(" ", moveStartIndex);
+			++i;
+		}while (i < 4);
+		
+		return v;
 	}
 	
 	private class AttackButton extends JButton{

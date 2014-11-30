@@ -2,6 +2,7 @@ package BattleGUI;
 
 import java.awt.CardLayout;
 import java.io.BufferedReader;
+import java.io.IOException;
 //did not finish switch
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -26,7 +27,6 @@ public class CommandCenterGUI extends JPanel {
 	private SwitchSelection switchPokemon;
 	private PrintWriter pw = null;
 	private BufferedReader br = null;
-	private ArrayList<Pokemon> pokes = null;
 	private GUI holder;
 	
 	public CommandCenterGUI(){
@@ -37,15 +37,14 @@ public class CommandCenterGUI extends JPanel {
 		holder = h;
 		pw = p;
 		br = bf;
-		//getPokes();
 		createGUI();
 	}
 	
 	private void createGUI(){
 		CardLayout switcher = new CardLayout();
 		setLayout(switcher);
-		Move[] m = {new Move(50, 1, "Tackle"), new Move(100, 2, "HYPER BEAM"), new Move(60, 3, "Wing Attack"), new Move(0, 4, "Splash")};
-		attacks = (pw == null ? new AttackSelection(m, switcher, this) : new AttackSelection(pokes.get(0).getMoveList(), switcher, this, pw, br));
+		Move[] m = {new Move(50,/* 1, */"Tackle"), new Move(100,/* 2, */"HYPER BEAM"), new Move(60,/* 3, */"Wing Attack"), new Move(0,/* 4, */"Splash")};
+		attacks = (pw == null ? new AttackSelection(m, switcher, this) : new AttackSelection(switcher, this, pw, br));
 		add(attacks, ATTACKSELECT);
 		text = (pw == null ? new TextScreen(this,switcher) : new TextScreen(this, switcher, pw, br));
 		add(text, TEXT);
@@ -54,10 +53,6 @@ public class CommandCenterGUI extends JPanel {
 		switchPokemon = (pw == null ? new SwitchSelection(switcher, this) : null/*new SwitchSelection(switcher, this, pw, br, pokes)*/);
 		add(switchPokemon, SWITCH);
 		switcher.show(this, ACTION);
-	}
-	
-	private void getPokes(){
-		
 	}
 	
 	public static void main(String[] args) {
