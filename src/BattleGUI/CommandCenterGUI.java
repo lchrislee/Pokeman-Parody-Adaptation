@@ -1,13 +1,16 @@
 package BattleGUI;
 
 import java.awt.CardLayout;
+import java.io.BufferedReader;
 //did not finish switch
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 
 import dataStore.Move;
+import dataStore.Pokemon;
 
 public class CommandCenterGUI extends JPanel {
 	private static final long serialVersionUID = 3387827640413193491L;
@@ -20,8 +23,18 @@ public class CommandCenterGUI extends JPanel {
 	TextScreen text;
 	private ActionSelection selection;
 	private SwitchSelection switchPokemon;
+	private PrintWriter pw = null;
+	private BufferedReader br = null;
+	private ArrayList<Pokemon> pokes = null;
 	
 	public CommandCenterGUI(){
+		createGUI();
+	}
+
+	public CommandCenterGUI(PrintWriter p, BufferedReader bf){
+		pw = p;
+		br = bf;
+		//getPokes();
 		createGUI();
 	}
 	
@@ -29,15 +42,19 @@ public class CommandCenterGUI extends JPanel {
 		CardLayout switcher = new CardLayout();
 		setLayout(switcher);
 		Move[] m = {new Move(50, 1, "Tackle"), new Move(100, 2, "HYPER BEAM"), new Move(60, 3, "Wing Attack"), new Move(0, 4, "Splash")};
-		attacks = new AttackSelection(m, switcher, this);
+		attacks = (pw == null ? new AttackSelection(m, switcher, this) : new AttackSelection(m, switcher, this, pw));
 		add(attacks, ATTACKSELECT);
-		text = new TextScreen(this,switcher);
+		text = (pw == null ? new TextScreen(this,switcher) : new TextScreen(this, switcher, pw));
 		add(text, TEXT);
-		selection = new ActionSelection(switcher, this);
+		selection = (pw == null ? new ActionSelection(switcher, this) : new ActionSelection(switcher, this, pw));
 		add(selection, ACTION);
-		switchPokemon = new SwitchSelection(switcher, this);
+		switchPokemon = (pw == null ? new SwitchSelection(switcher, this) : null/*new SwitchSelection(switcher, this, pw)*/);
 		add(switchPokemon, SWITCH);
 		switcher.show(this, ACTION);
+	}
+	
+	private void getPokes(){
+		
 	}
 	
 	public static void main(String[] args) {
@@ -49,5 +66,3 @@ public class CommandCenterGUI extends JPanel {
 	}
 	
 }
-
-
