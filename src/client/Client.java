@@ -61,7 +61,6 @@ public class Client{
 		System.out.println("CLIENT MAKING GUI");
 		Player p = clientGUI.getPlayer();
 		this.playerName = p.getName();
-		clientGUI.createGUI(hostAddress, pw, br);
 
 		try {
 			oos = new ObjectOutputStream(clientSocket.getOutputStream());
@@ -75,7 +74,7 @@ public class Client{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
+		clientGUI.createGUI(hostAddress, pw, br);
 	}
 	
 	public static void main(String[] args) {

@@ -57,6 +57,8 @@ public class GUI extends JFrame{
 		while(!l.done)
 			Thread.yield();
 		l.stop();
+		remove(l);
+		l = null;
 		WaitingPanel waiting = new WaitingPanel();
 		add(waiting);
 		
@@ -77,8 +79,6 @@ public class GUI extends JFrame{
 	//trying something
 	public void createGUI(String address,ObjectOutputStream oos, ObjectInputStream ois){//same as above function but with objectstreams
 		System.out.println("IN GUI CREATEGUI oostream ");
-		remove(l);
-		l = null;
 		JPanel leftContainer = new JPanel(new BorderLayout());
 		add(new SideBar(address, playerName), BorderLayout.EAST);
 		add(leftContainer, BorderLayout.CENTER);
