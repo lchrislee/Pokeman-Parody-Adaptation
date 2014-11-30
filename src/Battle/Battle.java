@@ -99,9 +99,7 @@ public class Battle extends RecursiveTask<Boolean> {
 			}
 			
 			parse();
-			
-			
-			
+				
 			if (firstPlayerToQuit != 0)
 				return endBattle(firstPlayerToQuit);
 			
@@ -117,9 +115,7 @@ public class Battle extends RecursiveTask<Boolean> {
 				continue;
 			}
 			
-			
-			
-			
+			interpretAttack();
 			
 			System.out.println("Player 1 quit: " + player1Quit);
 			System.out.println("Player 2 quit: " + player2Quit);
@@ -142,37 +138,10 @@ public class Battle extends RecursiveTask<Boolean> {
 		}
 		
 		if(p1message.equals("Sw") || p2message.equals("Sw")){
-			interpretSwap();
-			
+			interpretSwap();	
+			if(p1message.equals(p2message))//if both players swap
+				return;
 		}
-		
-		else if(p1message.equals("Sw")){
-			player1Selected = true;
-			player1Switch = true;
-			
-		}
-		else if(p1message.equals("At")){
-			player1Selected = true;
-			interpretAttack(p1Input);
-		}
-		
-		if(p2message.equals("Su")){
-			player2Quit = true;
-			player2Selected = true;
-		}
-		
-		else if(p2message.equals("Sw")){
-			player2Selected = true;
-			player2Switch = true;
-
-		}
-		else if(p2message.equals("At")){
-			interpretAttack(p2Input);
-			player2Selected = true;
-		}
-
-
-		
 	}
 
 	private void setTurnVariables(){
@@ -194,33 +163,67 @@ public class Battle extends RecursiveTask<Boolean> {
 			return true;
 	}
 	
-	private void interpretAttack(String input){
-		System.out.println(input);
-		int moveNameStartIndex = input.indexOf("_") + 1;
-		int moveNameEndIndex = input.indexOf("|");
-		int powerStartIndex = input.indexOf("|") + 1;
-		int powerEndIndex = input.length();
-		//int sourcePlayerIndex = input.indexOf("~") + 2;
-		//int receivePlayerIndex = input.indexOf(" ") + 2;
+	private void interpretAttack(){
 		
-		String moveName = input.substring(moveNameStartIndex, moveNameEndIndex);
-		int power = Integer.parseInt(input.substring(powerStartIndex, powerEndIndex));
-		int damage = calculateDamage(power);
-		doDamage(moveName, damage);
-		//System.out.println("Player " + input.charAt(sourcePlayerIndex) + " did " + damage + " with " + moveName + " to Player " + input.charAt(receivePlayerIndex)); 
-		//if (input.charAt(sourcePlayerIndex) == '1')
-		//	player1Selected = true;
-		//else
-		//	player2Selected = true;
+		String p1message = p1Input.substring(0, 2);
+		String p2message = p2Input.substring(0, 2);
+		
+		if(p1message.equals("At") && p2message.equals("At")){
+			if(turnOrder() == 1){
+				doDamage(p1);
+				doDamage(p2);
+			}
+			else{
+				doDamage(p2);
+				doDamage(p1);
+			}
+		}
+		
+		else if(p1message.equals("At"))
+			doDamage(p1);
+		
+		else doDamage(p2);
+		
+		System.out.println(input);
+
 	}
 	
-	private void doDamage(String mN, int d) {
-		String out = "%s attacked with %s and did %d damage";
-		String.format(out, p1.getName(), mN, d);
-		p1.getPw().write(out);
-		p2.getPw().write(out);
-		p1.getPw().flush();
-		p2.getPw().flush();
+	
+	
+	private void doDamage(NetworkPlayer p) {
+		if(p.equals(p1)){
+			int moveNameStartIndex = p1Input.indexOf("_") + 1;
+			int moveNameEndIndex = p1Input.indexOf("|");
+			int powerStartIndex = p1Input.indexOf("|") + 1;
+			int powerEndIndex = p1Input.length();
+			String moveName = p1Input.substring(moveNameStartIndex, moveNameEndIndex);
+			int power = Integer.parseInt(p1Input.substring(powerStartIndex, powerEndIndex));
+			int damage = calculateDamage(power);
+			String out = "%s attacked with %s and did %d damage";
+			String.format(out, p.getName(), moveName, damage);
+			p1.getPw().write(out);
+			p2.getPw().write(out);
+			p1.getPw().flush();
+			p2.getPw().flush();
+		}
+		else{
+			int moveNameStartIndex = p2Input.indexOf("_") + 1;
+			int moveNameEndIndex = p2Input.indexOf("|");
+			int powerStartIndex = p2Input.indexOf("|") + 1;
+			int powerEndIndex = p2Input.length();
+			String moveName = p2Input.substring(moveNameStartIndex, moveNameEndIndex);
+			int power = Integer.parseInt(p2Input.substring(powerStartIndex, powerEndIndex));
+			int damage = calculateDamage(power);
+			String out = "%s attacked with %s and did %d damage";
+			String.format(out, p.getName(), moveName, damage);
+			p1.getPw().write(out);
+			p2.getPw().write(out);
+			p1.getPw().flush();
+			p2.getPw().flush();
+			
+		}
+		
+
 	}
 
 	private int calculateDamage(int power){
@@ -228,21 +231,7 @@ public class Battle extends RecursiveTask<Boolean> {
 	}
 	
 	private void interpretSurrender(){
-		/*System.out.println(input);
-		int playerIndex = input.indexOf("_P") + 2;
-		System.out.println("Player " + input.charAt(playerIndex) + " wants to quit");
-		if (input.charAt(playerIndex) == '1')
-			player1Quit = true;
-		else
-			player2Quit = true;
-		if (player1Quit && !player2Quit){
-			firstPlayerToQuit = 1;
-			player1Selected = true;
-		}else if (player2Quit && !player1Quit){
-			firstPlayerToQuit = 2;
-			player2Selected = true;
-		}*/
-		
+
 		String p1message = p1Input.substring(0, 2);
 		String p2message = p2Input.substring(0, 2);
 		if(p1message.equals("Su") && p2message.equals("Su")){
@@ -297,31 +286,28 @@ public class Battle extends RecursiveTask<Boolean> {
 	
 	private synchronized void interpretSwap(){//string will be number-pokemonname... eg: 1-Lickister  or 2-Beetwo
 		
+		String p1message = p1Input.substring(0, 2);
+		String p2message = p2Input.substring(0, 2);
 		
-			//will run only if nobody's quit yet
-				int digitIndex = input.indexOf("_")+1;
-				int playerIndex = Integer.parseInt(input.substring(digitIndex,digitIndex+1));
-				
-				String pokemonName = input.substring(input.indexOf("-")+1,input.length());
-				
-				if (playerIndex == 1){
-					player1Switch = true;
-					player2Switch = false;
-					firstPlayerToSwitch = PLAYERONE;
-					player1Selected = true;
-					player2Selected = false;
-				}
-				
-				else{
-					player2Switch = true;
-					player1Switch = false;
-					player2Selected = true;
-					player1Selected = false;
-					firstPlayerToSwitch = PLAYERTWO;
-				}
-				
-				System.out.println("Player " + firstPlayerToSwitch + " wants to switch to " + pokemonName);
-				//can reset turn order later
+		if(p1message.equals("Sw") && p2message.equals("Sw")){
+			if(turnOrder() == 1){
+				firstPlayerToSwitch = 1;
+				player2Switch = true;
 			}
+			else{
+				firstPlayerToSwitch = 2;
+				player1Switch = true;
+			}
+		}
+		else if(p1message.equals("Sw")){
+			firstPlayerToSwitch = 1;
+			player1Switch = true;
+		}
+		else if(p2message.equals("Sw")){
+			firstPlayerToSwitch = 2;
+			player2Switch = true;
+		}
+		
+	}
 			
 }
