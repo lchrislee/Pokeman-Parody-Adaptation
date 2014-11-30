@@ -1,6 +1,7 @@
 package Battle;
 
 import java.io.IOException;
+import java.util.Random;
 import java.util.concurrent.RecursiveTask;
 
 import dataStore.NetworkPlayer;
@@ -97,7 +98,7 @@ public class Battle extends RecursiveTask<Boolean> {
 				e.printStackTrace();
 			}
 			
-			parse(p1Input, p2Input);
+			parse();
 			
 			
 			
@@ -116,6 +117,10 @@ public class Battle extends RecursiveTask<Boolean> {
 				continue;
 			}
 			
+			
+			
+			
+			
 			System.out.println("Player 1 quit: " + player1Quit);
 			System.out.println("Player 2 quit: " + player2Quit);
 			System.out.println("Who Quit first: " + firstPlayerToQuit);
@@ -126,14 +131,21 @@ public class Battle extends RecursiveTask<Boolean> {
 		return output;
 	}
 	
-	private void parse(String p1Input, String p2Input) {
+	private void parse() {
 		String p1message = p1Input.substring(0, 2);
 		String p2message = p2Input.substring(0, 2);
 		
-		if(p1message.equals("Su")){
-			player1Selected = true;
-			player1Quit = true;
+		
+		if(p1message.equals("Su") || p2message.equals("Su")){
+			interpretSurrender();
+			return;
 		}
+		
+		if(p1message.equals("Sw") || p2message.equals("Sw")){
+			interpretSwap();
+			
+		}
+		
 		else if(p1message.equals("Sw")){
 			player1Selected = true;
 			player1Switch = true;
@@ -194,7 +206,7 @@ public class Battle extends RecursiveTask<Boolean> {
 		String moveName = input.substring(moveNameStartIndex, moveNameEndIndex);
 		int power = Integer.parseInt(input.substring(powerStartIndex, powerEndIndex));
 		int damage = calculateDamage(power);
-		doDamage();
+		doDamage(moveName, damage);
 		//System.out.println("Player " + input.charAt(sourcePlayerIndex) + " did " + damage + " with " + moveName + " to Player " + input.charAt(receivePlayerIndex)); 
 		//if (input.charAt(sourcePlayerIndex) == '1')
 		//	player1Selected = true;
@@ -202,16 +214,21 @@ public class Battle extends RecursiveTask<Boolean> {
 		//	player2Selected = true;
 	}
 	
-	private void doDamage() {
-		
+	private void doDamage(String mN, int d) {
+		String out = "%s attacked with %s and did %d damage";
+		String.format(out, p1.getName(), mN, d);
+		p1.getPw().write(out);
+		p2.getPw().write(out);
+		p1.getPw().flush();
+		p2.getPw().flush();
 	}
 
 	private int calculateDamage(int power){
 		return (2 * 10 + 10)/150 * (39/28) * power + 2;
 	}
 	
-	private void interpretSurrender(String input){
-		System.out.println(input);
+	private void interpretSurrender(){
+		/*System.out.println(input);
 		int playerIndex = input.indexOf("_P") + 2;
 		System.out.println("Player " + input.charAt(playerIndex) + " wants to quit");
 		if (input.charAt(playerIndex) == '1')
@@ -224,7 +241,32 @@ public class Battle extends RecursiveTask<Boolean> {
 		}else if (player2Quit && !player1Quit){
 			firstPlayerToQuit = 2;
 			player2Selected = true;
+		}*/
+		
+		String p1message = p1Input.substring(0, 2);
+		String p2message = p2Input.substring(0, 2);
+		if(p1message.equals("Su") && p2message.equals("Su")){
+
+			Random r = new Random();
+			int i = r.nextInt();
+		
+			if(i % 2 == 0){
+				firstPlayerToQuit = 1;
+			}
+			else firstPlayerToQuit = 2;
+			return;
 		}
+		
+		else if(p1message.equals("Su")){
+			firstPlayerToQuit = 1;
+			return;
+		}
+		else if(p2message.equals("Su")){
+			firstPlayerToQuit = 2;
+			return;
+		}
+		
+		
 	}
 	
 	private int turnOrder(){//returns who goes first
@@ -253,7 +295,7 @@ public class Battle extends RecursiveTask<Boolean> {
 		return PLAYERTWO;
 	}
 	
-	private synchronized void interpretSwap(String input){//string will be number-pokemonname... eg: 1-Lickister  or 2-Beetwo
+	private synchronized void interpretSwap(){//string will be number-pokemonname... eg: 1-Lickister  or 2-Beetwo
 		
 		
 			//will run only if nobody's quit yet
