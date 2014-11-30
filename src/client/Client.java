@@ -11,8 +11,10 @@ import javax.swing.JOptionPane;
 
 import server.Server;
 import client.clientGUI.GUI;
+import dataStore.Player;
 
 public class Client{
+	
 	private GUI clientGUI;
 	private Socket clientSocket;
 	private BufferedReader br;
@@ -20,8 +22,6 @@ public class Client{
 	private String hostAddress;
 	
 	//method to store players
-	
-	
 	
 	public Client(String ipAddress){
 		clientGUI = new GUI();
@@ -32,27 +32,20 @@ public class Client{
 			br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 			pw = new PrintWriter(clientSocket.getOutputStream());
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		Player p = clientGUI.getPlayer();
 	}
 	
 	public void run(){
 		System.out.println("CLIENT MAKING GUI");
 		clientGUI.createGUI(hostAddress, pw, br);
+	
 	}
 	
-	public void createGUI(String ip){
-		
-	}
-	
-
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-	
 		String address = JOptionPane.showInputDialog(null, "Enter the server's IP address", "Get IP Address", JOptionPane.DEFAULT_OPTION);
 		System.out.println(address + " ADDRESS ");
 		Client client = new Client(address);

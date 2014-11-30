@@ -1,4 +1,10 @@
+
 package dataStore;
+
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -77,4 +83,5 @@ public class NetworkPlayer extends Player {
 		Player p = null;
 		super.setPlayer(p);
 	}
+
 }

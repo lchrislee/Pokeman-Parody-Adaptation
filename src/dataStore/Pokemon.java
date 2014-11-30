@@ -21,6 +21,9 @@ public class Pokemon implements Serializable{
 	//private Vector<ImageIcon> spriteList = new Vector<ImageIcon>();
 	private ImageIcon leftSprite;
 	private ImageIcon rightSprite;
+	private ImageIcon smallLeftSprite;
+	private ImageIcon smallRightSprite;
+	
 	private String name;
 	private String[] FileNameArray;	
 
@@ -75,15 +78,27 @@ public class Pokemon implements Serializable{
 		this.name = name;
 	}
 
+	public void setFileNameArray(String[]array){
+		this.FileNameArray = array;
+	}
+	
 	private void createSprites(){
 		for(int i=0;i<FileNameArray.length;++i){
 			ImageIcon icon = new ImageIcon(FileNameArray[i]);
 		//	spriteList.add(icon);
-			if(FileNameArray[i].contains("left"))
-				leftSprite = icon;
+			if(FileNameArray[i].contains("left")){
+				if(FileNameArray[i].contains("small"))
+					smallLeftSprite = icon;
+				else
+					leftSprite = icon;
+			}
 			
-			if(FileNameArray[i].contains("right"))
-				rightSprite = icon;
+			if(FileNameArray[i].contains("right")){
+				if(FileNameArray[i].contains("small"))
+					smallRightSprite = icon;
+				else
+					rightSprite = icon;
+			}
 		}
 	}
 	
@@ -149,6 +164,13 @@ public class Pokemon implements Serializable{
 		return rightSprite;
 	}
 
+	public ImageIcon getsmallLeftSprite(){
+		return this.smallLeftSprite;
+	}
+	
+	public ImageIcon getsmallRightSprite(){
+		return this.smallRightSprite;
+	}
 	
 	public String getName(){
 		return name;

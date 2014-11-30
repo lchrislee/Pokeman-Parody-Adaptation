@@ -3,11 +3,14 @@ package helper;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,10 +44,10 @@ public class PokemonStatusHorizontalUI extends JPanel{ //make this panel 300 wid
 	private void createHorizontalUI() {
 		List<Pokemon> dummyPokemonList = new ArrayList<Pokemon>();
 		for (int i = 0; i < 3; i++) {
-			String dummyName = "dummy";
+			String dummyName = "dummy " + String.valueOf(i);
 			JPanel selectionAreaPanel = new JPanel();
 			selectionAreaPanel.setBorder(new LineBorder(Color.BLACK, 1, true));
-			//selectionAreaPanel.setLayout(new BoxLayout(selectionAreaPanel, BoxLayout.X_AXIS));
+			selectionAreaPanel.setLayout(new BorderLayout());
 			//selectionAreaPanel.setPreferredSize(new Dimension(166,150));
 			
 			//JPanel pokemonButtonPanel = new JPanel();
@@ -56,20 +59,42 @@ public class PokemonStatusHorizontalUI extends JPanel{ //make this panel 300 wid
 			JPanel panel = new JPanel();
 			BoxLayout b = new BoxLayout(panel, BoxLayout.Y_AXIS);
 			panel.setLayout(b);
-			panel.add(new JLabel("Dummy " + i));
-			panel.add(new JLabel(" Level 69"));
-			panel.add(new JLabel(" HP 69/420"));
+			panel.setOpaque(false);
+			JLabel nameLabel = new JLabel("Dummy " + i);
+			JLabel levelLabel = new JLabel(" Level 69");
+			JLabel healthLabel = new JLabel("HP 69/420");
+			Color darkgreen = new Color(64,201,100);
+			nameLabel.setFont(new Font("Arial",Font.BOLD, 15));
+			nameLabel.setForeground(Color.GREEN);
+			levelLabel.setFont(new Font("Arial",Font.BOLD, 15));
+			levelLabel.setForeground(Color.GREEN);
+			healthLabel.setFont(new Font("Arial",Font.BOLD, 15));
+			healthLabel.setForeground(Color.GREEN);
+			panel.add(nameLabel);
+			panel.add(levelLabel);
+			panel.add(healthLabel);
 			dummyButton.add(panel, BorderLayout.SOUTH);
+			dummyButton.setBackground(Color.WHITE);
 //			dummyButton.setText();
 //			dummyButton.setHorizontalTextPosition(SwingConstants.CENTER);
 //			dummyButton.setVerticalTextPosition(SwingConstants.BOTTOM);
-//			JLabel nameLabel = new JLabel("Dummy " + i);
-//			JLabel levelLabel = new JLabel(" Level 69");
-//			JLabel healthLabel = new JLabel("HP 69/420");
-			dummyButton.addActionListener(new ActionListener(){
-	            public void actionPerformed(ActionEvent e){
-	            	//String name = 
-	            	System.out.println("");
+			dummyButton.addMouseListener(new MouseListener() {
+	            @Override
+	            public void mouseReleased(MouseEvent arg0) {}           
+	            @Override
+	            public void mousePressed(MouseEvent arg0) {}            
+	            @Override
+	            public void mouseExited(MouseEvent me) { 
+	            	((JButton)me.getSource()).setBackground(Color.WHITE);
+	            }           
+	            @Override
+	            public void mouseEntered(MouseEvent me) {
+	            	((JButton)me.getSource()).setBackground(Color.BLUE);
+	            }           
+	            @Override
+	            public void mouseClicked(MouseEvent me) {
+	            	((JButton)me.getSource()).setBackground(Color.RED);
+	            	System.out.println("Pokemon name: " + ((JButton)me.getSource()).getName());
 	            }
 	        });
 			selectionAreaPanel.add(dummyButton);
