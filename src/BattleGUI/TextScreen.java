@@ -55,9 +55,9 @@ public class TextScreen extends JPanel {
 						if (input != "")
 							appendText(input);
 						else if (input.contains("HIT")){
-							
+							sendMessage(input);
 						}else if (input.contains("SWAP")){
-							
+							sendMessage(input);
 						}
 						
 						if (pw != null){
@@ -83,6 +83,10 @@ public class TextScreen extends JPanel {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {}
 		});
+	}
+	
+	private void sendMessage(String m){
+		central.send(m);
 	}
 	
 	public void setText(String s){

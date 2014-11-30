@@ -147,6 +147,11 @@ public class BattleScreen extends JPanel {
 		add(yourPokemonPanel);
 		add(yourInfoPanel);
 	}
+	
+	public void update(String m){
+		
+	}
+	
 	public static void main(String args[]) {
 		BattleScreen w = new BattleScreen();
 		JFrame testWindow = new JFrame();
@@ -157,10 +162,12 @@ public class BattleScreen extends JPanel {
 		testWindow.add(w);
 		testWindow.pack();
 		testWindow.setVisible(true);
+		/*
 		w.ChangeEnemyPokemon(new Pokemon());
 		w.ChangeYourPokemon(new Pokemon());
 		w.ChangeEnemyPokemon(new Pokemon());
 		w.ChangeYourPokemon(new Pokemon());
+		*/
 	}
 }
 

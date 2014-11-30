@@ -67,7 +67,7 @@ public class GUI extends JFrame{
 		JPanel leftContainer = new JPanel(new BorderLayout());
 		add(new SideBar(address), BorderLayout.EAST);
 		add(leftContainer, BorderLayout.CENTER);
-		leftContainer.add(new CommandCenterGUI(), BorderLayout.SOUTH);
+		leftContainer.add(new CommandCenterGUI(this, pw, bf), BorderLayout.SOUTH);
 		validate();
 		repaint();
 	}
@@ -102,5 +102,9 @@ public class GUI extends JFrame{
 		g.setVisible(true);
 		//j.setVisible(true);
 		//setvisible is before opening
+	}
+
+	public void send(String m) {
+		//battleScreen.update(m);
 	}
 }
