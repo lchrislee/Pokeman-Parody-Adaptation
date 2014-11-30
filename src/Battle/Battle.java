@@ -9,7 +9,7 @@ import dataStore.Player;
 import dataStore.Pokemon;
 
 public class Battle extends RecursiveTask<Boolean> {
-	String input;
+	//String input;
 	String p1Input;
 	String p2Input;
 	private boolean player1Quit;
@@ -54,7 +54,7 @@ public class Battle extends RecursiveTask<Boolean> {
 		//Pokemon poke = new Pokemon("Magikuna",imageNamesTwo,attack,defense,speed,mh,rarity, level,moveList);
 		
 		Battle b = new Battle();
-		b.input = "At_Tackle|50~P1 P2";
+		/*b.input = "At_Tackle|50~P1 P2";
 		System.out.println(b.compute());
 		b.input = "At_Tackle|50~P2 P1";
 		System.out.println(b.compute());
@@ -76,7 +76,7 @@ public class Battle extends RecursiveTask<Boolean> {
 		System.out.println(b.compute());
 		b.input = "Sw_2-Pikachu";
 		System.out.println(b.compute());
-		System.out.println(">>>>>>");
+		System.out.println(">>>>>>");*/
 	
 	}
 
@@ -115,18 +115,32 @@ public class Battle extends RecursiveTask<Boolean> {
 				continue;
 			}
 			
-			interpretAttack();
-			
-			System.out.println("Player 1 quit: " + player1Quit);
-			System.out.println("Player 2 quit: " + player2Quit);
-			System.out.println("Who Quit first: " + firstPlayerToQuit);
-			System.out.println("Player 1 selected: " + player1Selected);
-			System.out.println("Player 2 selected: " + player2Selected);
+			interpretAttack();			
+			checkForWinner();//might go somewhere else			
 			setTurnVariables();
+			
+			p1.getPw().write("DONE");
+			p2.getPw().write("DONE");
+			p1.getPw().flush();
+			p2.getPw().flush();
+			
 		}
 		return output;
 	}
 	
+	private boolean checkForWinner() {
+		// TODO Auto-generated method stub
+		
+		return false;
+	}
+
+	private boolean checkForFaint(int player) {
+		
+		
+		
+		return false;
+	}
+
 	private void parse() {
 		String p1message = p1Input.substring(0, 2);
 		String p2message = p2Input.substring(0, 2);
@@ -153,6 +167,45 @@ public class Battle extends RecursiveTask<Boolean> {
 	}
 	
 	private void doSwitch(int player){
+		if(player == 2){
+			String fromClient = "";
+			try {
+				fromClient = p2.getBr().readLine();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			int index = Integer.parseInt(fromClient.substring(fromClient.length()));
+			String swapMessage = "swap_%s?%s|%d!%d:%d";
+			String.format(swapMessage, p2.getName(), p2.getPokemonList().get(index),
+			p2.getPokemonList().get(index).getLevel(), 
+			p2.getPokemonList().get(index).getHealth(), 
+			p2.getPokemonList().get(index).getMaxHealth());
+	
+			p1.getPw().write(swapMessage);
+			p2.getPw().write(swapMessage);
+			p1.getPw().flush();
+			p2.getPw().flush();
+		}
+		else{
+			String fromClient = "";
+			try {
+				fromClient = p1.getBr().readLine();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			int index = Integer.parseInt(fromClient.substring(fromClient.length()));
+			String swapMessage = "swap_%s?%s|%d!%d:%d";
+			String.format(swapMessage, p1.getName(), p1.getPokemonList().get(index),
+			p1.getPokemonList().get(index).getLevel(), 
+			p1.getPokemonList().get(index).getHealth(), 
+			p1.getPokemonList().get(index).getMaxHealth());
+	
+			p1.getPw().write(swapMessage);
+			p2.getPw().write(swapMessage);
+			p1.getPw().flush();
+			p2.getPw().flush();
+			
+		}
 		
 	}
 	
@@ -171,25 +224,31 @@ public class Battle extends RecursiveTask<Boolean> {
 		if(p1message.equals("At") && p2message.equals("At")){
 			if(turnOrder() == 1){
 				doDamage(p1);
+				checkForFaint(PLAYERTWO);
 				doDamage(p2);
+				checkForFaint(PLAYERONE);
 			}
 			else{
 				doDamage(p2);
+				checkForFaint(PLAYERONE);
 				doDamage(p1);
+				checkForFaint(PLAYERTWO);
 			}
 		}
 		
-		else if(p1message.equals("At"))
+		else if(p1message.equals("At")){
 			doDamage(p1);
+			checkForFaint(PLAYERTWO);
+		}
 		
-		else doDamage(p2);
+		else{
+			doDamage(p2);
+			checkForFaint(PLAYERONE);
+		}
 		
-		System.out.println(input);
-
+		//System.out.println(input);
 	}
-	
-	
-	
+		
 	private void doDamage(NetworkPlayer p) {
 		if(p.equals(p1)){
 			int moveNameStartIndex = p1Input.indexOf("_") + 1;
@@ -199,12 +258,33 @@ public class Battle extends RecursiveTask<Boolean> {
 			String moveName = p1Input.substring(moveNameStartIndex, moveNameEndIndex);
 			int power = Integer.parseInt(p1Input.substring(powerStartIndex, powerEndIndex));
 			int damage = calculateDamage(power);
-			String out = "%s attacked with %s and did %d damage";
-			String.format(out, p.getName(), moveName, damage);
-			p1.getPw().write(out);
-			p2.getPw().write(out);
+			int remain = p1.getCurrentPokemon().getHealth() - damage;
+			if(remain < 0)
+				remain = 0;
+			String initialMessage = "hit_" + p2.getName() + "_" + remain;
+			p1.getPw().write(initialMessage);
+			p2.getPw().write(initialMessage);
 			p1.getPw().flush();
 			p2.getPw().flush();
+			if(remain == 0){
+				if(checkForWinner()){
+					
+					
+					
+					return;
+				}
+				else
+					doSwitch(2);
+			}
+			else{
+			
+				String out = "%s attacked with %s and did %d damage";
+				String.format(out, p.getName(), moveName, damage);
+				p1.getPw().write(out);
+				p2.getPw().write(out);
+				p1.getPw().flush();
+				p2.getPw().flush();
+			}
 		}
 		else{
 			int moveNameStartIndex = p2Input.indexOf("_") + 1;
@@ -214,12 +294,30 @@ public class Battle extends RecursiveTask<Boolean> {
 			String moveName = p2Input.substring(moveNameStartIndex, moveNameEndIndex);
 			int power = Integer.parseInt(p2Input.substring(powerStartIndex, powerEndIndex));
 			int damage = calculateDamage(power);
-			String out = "%s attacked with %s and did %d damage";
-			String.format(out, p.getName(), moveName, damage);
-			p1.getPw().write(out);
-			p2.getPw().write(out);
+			int remain = p1.getCurrentPokemon().getHealth() - damage;
+			if(remain < 0)
+				remain = 0;
+			String initialMessage = "hit_" + p1.getName() + "_" + remain;
+			p1.getPw().write(initialMessage);
+			p2.getPw().write(initialMessage);
 			p1.getPw().flush();
 			p2.getPw().flush();
+			if(remain == 0){
+				if(checkForWinner()){
+					
+					return;
+				}
+				else
+					doSwitch(1);
+			
+			}else{
+				String out = "%s attacked with %s and did %d damage";
+				String.format(out, p.getName(), moveName, damage);
+				p1.getPw().write(out);
+				p2.getPw().write(out);
+				p1.getPw().flush();
+				p2.getPw().flush();
+			}
 			
 		}
 		
