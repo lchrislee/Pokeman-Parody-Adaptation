@@ -895,6 +895,8 @@ public class LoginScreen extends JPanel {
 				  }
 				  Vector<ImageIcon> imageList = new Vector<ImageIcon>();
 				  imageList.add(chosenCharacter);
+				  if(chosenCharacter == null)
+					  System.out.println("WHY IS CHOSEN CHARACTER NULL ");
 				  player = new Player(pokemonList,imageList,chosenCharacterName);
 				  
 					

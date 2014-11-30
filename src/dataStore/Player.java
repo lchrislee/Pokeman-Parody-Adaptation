@@ -46,6 +46,9 @@ public class Player implements Serializable{
 		public Player(Vector<Pokemon>pList, Vector <ImageIcon> imageList,String name){
 			this.pokemonList = pList;
 			this.spriteList = imageList;
+			this.currentSprite = new ImageIcon(this.spriteList.get(0).getImage());
+			if(currentSprite == null)
+				System.out.println("NULL SPRITE");
 			//this.itemList = itemList;
 			this.name = name;
 						
@@ -93,6 +96,7 @@ public class Player implements Serializable{
 			pokemonList = new Vector<Pokemon>(p.pokemonList);
 			spriteList = new Vector<ImageIcon> (p.spriteList);
 			currentSprite = new ImageIcon(p.currentSprite.getImage());
+			
 			statsMap = new HashMap<String,Integer>(p.statsMap);
 		}
 			
@@ -148,5 +152,7 @@ public class Player implements Serializable{
 		}
 
 	
-		
+		public String toString(){
+			return name + "\n" + currentPokemonIndex;
+		}
 }

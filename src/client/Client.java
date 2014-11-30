@@ -45,14 +45,7 @@ public class Client{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("BEFORE GETTING PLAYER");
-		Player p = clientGUI.getPlayer();
-		if(p == null)
-			System.out.println("DAMN");
-		System.out.println("AFTER GETTING PLAYER" + p.getName());
-		System.out.println(p.getName() + " PLAYER NAME ");
-	
-		System.out.println(p.getPokemonList().get(0).getName() + " FIRST POKEMON NAME ");
+		
 		/*
 		try {
 			oos.writeObject(p);//tries to send the player over to the server
@@ -65,10 +58,13 @@ public class Client{
 	
 	public void run(){
 		System.out.println("CLIENT MAKING GUI");
+		Player p = clientGUI.getPlayer();
 		clientGUI.createGUI(hostAddress, pw, br);
+
 		try {
 			
 			oos = new ObjectOutputStream(clientSocket.getOutputStream());
+			oos.writeObject(p);//trying to write player
 			oos.flush();
 			System.out.println("Trying to make outputstream");
 		} catch (IOException e) {
