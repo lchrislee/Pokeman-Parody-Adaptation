@@ -70,6 +70,9 @@ public class NetworkPlayer extends Player {
 		
 			try {
 				this.ois = new ObjectInputStream(commSocket.getInputStream());
+				if(ois==null){
+					System.out.println("ois IS NULL");
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -118,6 +121,9 @@ public class NetworkPlayer extends Player {
 	public void setOOS(){
 		try {
 			this.oos = new ObjectOutputStream(commSocket.getOutputStream());
+			if(ois==null){
+				System.out.println("oos IS NULL");
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -133,8 +139,13 @@ public class NetworkPlayer extends Player {
 		Player p = null;
 		super.setPlayer(p);
 		ObjectInputStream ois = this.ois;
+		if(ois == null)
+			System.out.println("ois cannot be assigned ");
 		try {
 			Player p2 = (Player) ois.readObject();
+			if(p2 == null){
+				System.out.println("PLAYER SENT IS NULL ");
+			}
 			System.out.println(p2.getName() + " WHOSE NAME IS IT ");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

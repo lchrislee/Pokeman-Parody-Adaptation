@@ -76,7 +76,7 @@ public class GUI extends JFrame{
 	
 	//trying something
 	public void createGUI(String address,ObjectOutputStream oos, ObjectInputStream ois){//same as above function but with objectstreams
-		System.out.println("IN GUI CREATEGUI");
+		System.out.println("IN GUI CREATEGUI oostream ");
 		remove(l);
 		l = null;
 		JPanel leftContainer = new JPanel(new BorderLayout());
@@ -99,8 +99,8 @@ public class GUI extends JFrame{
 		GUI g = new GUI();
 		System.out.println("CREATE ME");
 		//j.add(g);
-		//g.createGUI("192.168.0.106",oos,ois);
-		g.createGUI("192.168.0.106", pw, bf); //pass in printerwriter to everything in command cneter
+		g.createGUI("192.168.0.106",oos,ois);
+		//g.createGUI("192.168.0.106", pw, bf); //pass in printerwriter to everything in command cneter
 		g.setVisible(true);
 		//j.setVisible(true);
 		//setvisible is before opening

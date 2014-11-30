@@ -68,8 +68,9 @@ public class Server implements Runnable{
 				NetworkPlayer p = players.get(i);
 				p.setChatSocket(chatSockets.get(i));
 				p.setCommSocket(communicationSockets.get(i));
-				//p.setOIS();
-				//p.setOOS();
+				
+				p.setOIS();
+				p.setOOS();
 				
 				p.setBr();
 				p.setPw();

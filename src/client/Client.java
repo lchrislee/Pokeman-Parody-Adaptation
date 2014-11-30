@@ -36,12 +36,24 @@ public class Client{
 		hostAddress = ipAddress;
 		try {
 			clientSocket = new Socket(hostAddress,Server.COMMUNICATIONPORT);
-			br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-			pw = new PrintWriter(clientSocket.getOutputStream());
-			
 			//oos = new ObjectOutputStream(clientSocket.getOutputStream());
 			//ois = new ObjectInputStream(clientSocket.getInputStream());
 			
+			
+			br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+			pw = new PrintWriter(clientSocket.getOutputStream());
+			System.out.println("NOW GETING BR AND PW ");
+			oos = new ObjectOutputStream(clientSocket.getOutputStream());
+			
+			//ois = new ObjectInputStream(clientSocket.getInputStream());
+			
+			if(oos == null || ois == null){
+				System.out.println("STREAMS ARE NULL");
+			}
+			else
+				System.out.println("GOOD TO GO");
+			
+			//ois = new ObjectInputStream(clientSocket.getInputStream());
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -50,7 +62,7 @@ public class Client{
 		System.out.println("BEFORE GETTING PLAYER");
 		Player p = clientGUI.getPlayer();
 		System.out.println("AFTER GETTING PLAYER" + p.getName());
-		/*System.out.println(p.getName() + " PLAYER NAME ");
+		System.out.println(p.getName() + " PLAYER NAME ");
 	
 		System.out.println(p.getPokemonList().get(0).getName() + " FIRST POKEMON NAME ");
 		try {
@@ -58,7 +70,7 @@ public class Client{
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 		System.out.println("DID IT WORK?");
 	}
 	
