@@ -21,12 +21,26 @@ public class BattleScreen extends JPanel {
 	Pokemon yourPokemon = null;
 	
 	public BattleScreen(Pokemon enemy, Pokemon yours) {
-		enemyPokemon = enemy;
-		yourPokemon = yours;
+		this.enemyPokemon = enemy;
+		this.yourPokemon = yours;
 		setPreferredSize(new Dimension(500,350));
 		setLayout(new GridLayout(2,2));
 		setBackground(Color.white);
 		createGUI();
+	}
+	
+	public void ChangeYourPokemon (Pokemon yours) {
+		this.yourPokemon = yours;
+		createGUI();
+		repaint();
+		revalidate();
+	}
+	
+	public void ChangeEnemyPokemon (Pokemon enemy) {
+		this.enemyPokemon = enemy;
+		createGUI();
+		repaint();
+		revalidate();
 	}
 	
 	public BattleScreen() {
@@ -126,6 +140,10 @@ public class BattleScreen extends JPanel {
 		testWindow.add(w);
 		testWindow.pack();
 		testWindow.setVisible(true);
+		w.ChangeEnemyPokemon(new Pokemon());
+		w.ChangeYourPokemon(new Pokemon());
+		w.ChangeEnemyPokemon(new Pokemon());
+		w.ChangeYourPokemon(new Pokemon());
 	}
 }
 

@@ -22,6 +22,7 @@ public class FirstBracket extends JPanel implements ActionListener {
 	int timerCountSpeed = 1;
 	public boolean done = false;
 	ArrayList<NetworkPlayer> players;
+	
 	private int selector;
 	private int winner1, winner2, winner3;
 	private boolean drawWinner1 = false;
