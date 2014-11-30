@@ -41,6 +41,22 @@ public class Pokemon implements Serializable{
 		createSprites();//store left and right cuz we dunno which player we'll be.
 	}
 
+	public Pokemon(Pokemon p){
+		this.name = p.name;
+		this.FileNameArray = new String[p.FileNameArray.length];
+		for (int i = 0; i < p.FileNameArray.length; ++i)
+			this.FileNameArray[i] = p.FileNameArray[i];
+		this.attack = p.attack;
+		this.defense = p.defense;
+		this.speed = p.speed;
+		this.health = p.health;
+		this.maxHealth = p.maxHealth;
+		this.rarity = p.rarity;
+		this.level = p.level;
+		this.moveList = new Vector<Move>(p.moveList);
+		createSprites();
+	}
+	
 	public Pokemon(){
 		
 	}
