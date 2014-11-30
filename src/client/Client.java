@@ -64,34 +64,27 @@ public class Client{
 		clientGUI.createGUI(hostAddress, pw, br);
 
 		try {
-			
 			oos = new ObjectOutputStream(clientSocket.getOutputStream());
 			oos.writeObject(p);//trying to write player
 			oos.flush();
 			System.out.println("Trying to make outputstream");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
 			
 			ois = new ObjectInputStream(clientSocket.getInputStream());
 			System.out.println("Trying to make inputstream");//i think input streams are working ok
-			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	
 	}
 	
 	public static void main(String[] args) {
 		String address = JOptionPane.showInputDialog(null, "Enter the server's IP address", "Get IP Address", JOptionPane.DEFAULT_OPTION);
 		System.out.println(address + " ADDRESS ");
+		if (address == null)
+			return;
 		Client client = new Client(address);
 		client.run();
-
 	}
 	
 	public String getName() {

@@ -37,8 +37,10 @@ public class ChatGUI extends JPanel {
 	private Socket socket;
 	private PrintWriter output;
 	private String serverAddress;
+	private String playerName;
 	
-	public ChatGUI(String address){		
+	public ChatGUI(String address, String name){
+		playerName = name;
 		createGUI();
 		setListeners();
 		//connect to server
@@ -127,7 +129,7 @@ public class ChatGUI extends JPanel {
 		String content = txFdCurrentText.getText();
 		if (content.length() == 0)
 			return;
-		String text = /*groups.getSelectedItem().toString() +*/ "_You sent: " + content;
+		String text = /*groups.getSelectedItem().toString() +*/ playerName + ": " + content;
 		txFdCurrentText.setText("");
 		System.out.println("sent message: " + text + " to all" /*+ groups.getSelectedItem().toString()*/);
 		//outputs to all clients, received from server
