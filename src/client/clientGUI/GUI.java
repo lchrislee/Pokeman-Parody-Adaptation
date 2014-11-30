@@ -21,6 +21,10 @@ import dataStore.Player;
 public class GUI extends JFrame{
 	public static  PrintWriter pw;
 	public static  BufferedReader bf;
+	
+	private static ObjectOutputStream oos;
+	private static ObjectInputStream ois;
+	
 	private LoginScreen l;
 	public GUI(){
 		//opening
@@ -49,7 +53,7 @@ public class GUI extends JFrame{
 		while(!l.done)
 			Thread.yield();
 		
-		System.out.println("NOTHINGS WORKING");
+	
 		//remove opening panel by setting to null and add op login
 		//login//
 		
@@ -93,7 +97,9 @@ public class GUI extends JFrame{
 		j.setSize(800, 600);
 		*/
 		GUI g = new GUI();
+		System.out.println("CREATE ME");
 		//j.add(g);
+		//g.createGUI("192.168.0.106",oos,ois);
 		g.createGUI("192.168.0.106", pw, bf); //pass in printerwriter to everything in command cneter
 		g.setVisible(true);
 		//j.setVisible(true);
