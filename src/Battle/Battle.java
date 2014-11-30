@@ -1,5 +1,6 @@
 package Battle;
 
+import java.io.IOException;
 import java.util.concurrent.RecursiveTask;
 
 import dataStore.NetworkPlayer;
@@ -8,6 +9,8 @@ import dataStore.Pokemon;
 
 public class Battle extends RecursiveTask<Boolean> {
 	String input;
+	String p1Input;
+	String p2Input;
 	private boolean player1Quit;
 	private boolean player2Quit;
 	private boolean player1Selected;
@@ -50,9 +53,9 @@ public class Battle extends RecursiveTask<Boolean> {
 		//Pokemon poke = new Pokemon("Magikuna",imageNamesTwo,attack,defense,speed,mh,rarity, level,moveList);
 		
 		Battle b = new Battle();
-		b.input = "Attack_Tackle|50~P1 P2";
+		b.input = "At_Tackle|50~P1 P2";
 		System.out.println(b.compute());
-		b.input = "Attack_Tackle|50~P2 P1";
+		b.input = "At_Tackle|50~P2 P1";
 		System.out.println(b.compute());
 	
 		System.out.println("<<<<<<<");
@@ -62,9 +65,9 @@ public class Battle extends RecursiveTask<Boolean> {
 		System.out.println(b.compute());
 		System.out.println("<<<<<<<");
 		
-		b.input = "Surrender_P1";
+		b.input = "Su_P1";
 		System.out.println(b.compute());
-		b.input = "Surrender_P2";
+		b.input = "Su_P2";
 		System.out.println(b.compute());
 	
 		System.out.println(">>>>>>");
@@ -80,8 +83,23 @@ public class Battle extends RecursiveTask<Boolean> {
 	protected Boolean compute() {
 		Boolean output = null;
 		while (!winnerDetermined){
-			while (!player1Selected && !player2Selected)
-				Thread.yield();
+			//while (!player1Selected && !player2Selected)
+			//Thread.yield();
+			
+			p1Input = "";
+			p2Input = "";
+			
+			try {
+				p1Input = p1.getBr().readLine();
+				p2Input = p2.getBr().readLine();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			parse(p1Input, p2Input);
+			
+			
 			
 			if (firstPlayerToQuit != 0)
 				return endBattle(firstPlayerToQuit);
@@ -108,6 +126,43 @@ public class Battle extends RecursiveTask<Boolean> {
 		return output;
 	}
 	
+	private void parse(String p1Input, String p2Input) {
+		String p1message = p1Input.substring(0, 2);
+		String p2message = p2Input.substring(0, 2);
+		
+		if(p1message.equals("Su")){
+			player1Selected = true;
+			player1Quit = true;
+		}
+		else if(p1message.equals("Sw")){
+			player1Selected = true;
+			player1Switch = true;
+			
+		}
+		else if(p1message.equals("At")){
+			player1Selected = true;
+			interpretAttack(p1Input);
+		}
+		
+		if(p2message.equals("Su")){
+			player2Quit = true;
+			player2Selected = true;
+		}
+		
+		else if(p2message.equals("Sw")){
+			player2Selected = true;
+			player2Switch = true;
+
+		}
+		else if(p2message.equals("At")){
+			interpretAttack(p2Input);
+			player2Selected = true;
+		}
+
+
+		
+	}
+
 	private void setTurnVariables(){
 		player1Quit = false;
 		player2Quit = false;
@@ -132,20 +187,25 @@ public class Battle extends RecursiveTask<Boolean> {
 		int moveNameStartIndex = input.indexOf("_") + 1;
 		int moveNameEndIndex = input.indexOf("|");
 		int powerStartIndex = input.indexOf("|") + 1;
-		int powerEndIndex = input.indexOf("~");
-		int sourcePlayerIndex = input.indexOf("~") + 2;
-		int receivePlayerIndex = input.indexOf(" ") + 2;
+		int powerEndIndex = input.length();
+		//int sourcePlayerIndex = input.indexOf("~") + 2;
+		//int receivePlayerIndex = input.indexOf(" ") + 2;
 		
 		String moveName = input.substring(moveNameStartIndex, moveNameEndIndex);
 		int power = Integer.parseInt(input.substring(powerStartIndex, powerEndIndex));
 		int damage = calculateDamage(power);
-		System.out.println("Player " + input.charAt(sourcePlayerIndex) + " did " + damage + " with " + moveName + " to Player " + input.charAt(receivePlayerIndex)); 
-		if (input.charAt(sourcePlayerIndex) == '1')
-			player1Selected = true;
-		else
-			player2Selected = true;
+		doDamage();
+		//System.out.println("Player " + input.charAt(sourcePlayerIndex) + " did " + damage + " with " + moveName + " to Player " + input.charAt(receivePlayerIndex)); 
+		//if (input.charAt(sourcePlayerIndex) == '1')
+		//	player1Selected = true;
+		//else
+		//	player2Selected = true;
 	}
 	
+	private void doDamage() {
+		
+	}
+
 	private int calculateDamage(int power){
 		return (2 * 10 + 10)/150 * (39/28) * power + 2;
 	}

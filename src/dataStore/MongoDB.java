@@ -35,7 +35,7 @@ public class MongoDB {
        
     }
 
-   /* public static void main(String[] args) throws Exception{
+    /*public static void main(String[] args) throws Exception{
 
 		MongoDB db = new MongoDB();
 		//PokemanCollection.remove(new BasicDBObject());
@@ -51,6 +51,8 @@ public class MongoDB {
     }*/
     
     public HashMap<String, ArrayList<Pokemon>> getPokemon(){
+    	
+    	System.out.println("here");
     	
     	DBCursor c = PokemanCollection.find();
     	//Vector<DBObject> results = new Vector<DBObject>();
