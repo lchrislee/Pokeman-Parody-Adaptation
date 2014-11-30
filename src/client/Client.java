@@ -25,6 +25,9 @@ public class Client{
 	private PrintWriter pw;
 	private String hostAddress;
 	
+	private ObjectOutputStream oos;
+	private ObjectInputStream ois;
+	
 	//method to store players
 	
 	public Client(String ipAddress){
@@ -35,6 +38,10 @@ public class Client{
 			clientSocket = new Socket(hostAddress,Server.COMMUNICATIONPORT);
 			br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 			pw = new PrintWriter(clientSocket.getOutputStream());
+			
+			oos = new ObjectOutputStream(clientSocket.getOutputStream());
+			ois = new ObjectInputStream(clientSocket.getInputStream());
+			
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -42,7 +49,7 @@ public class Client{
 		}
 		Player p = clientGUI.getPlayer();
 		System.out.println(p.getName() + " PLAYER NAME ");
-		OutputStream os = null;
+		/*OutputStream os = null;
 		ObjectOutputStream oos = null;
 		try {
 			os = clientSocket.getOutputStream();
@@ -56,7 +63,7 @@ public class Client{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		*/
 		System.out.println(p.getPokemonList().get(0).getName() + " FIRST POKEMON NAME ");
 		try {
 			oos.writeObject(p);//tries to send the player over to the server
@@ -69,7 +76,9 @@ public class Client{
 	
 	public void run(){
 		System.out.println("CLIENT MAKING GUI");
-		clientGUI.createGUI(hostAddress, pw, br);
+		//clientGUI.createGUI(hostAddress, pw, br);
+		clientGUI.createGUI(hostAddress, oos, ois);
+		
 	
 	}
 	

@@ -2,6 +2,8 @@ package client.clientGUI;
 
 import java.awt.BorderLayout;
 import java.io.BufferedReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 
 import javax.swing.JFrame;
@@ -57,6 +59,19 @@ public class GUI extends JFrame{
 	}
 	
 	public void createGUI(String address, PrintWriter pw, BufferedReader bf){
+		System.out.println("IN GUI CREATEGUI");
+		remove(l);
+		l = null;
+		JPanel leftContainer = new JPanel(new BorderLayout());
+		add(new SideBar(address), BorderLayout.EAST);
+		add(leftContainer, BorderLayout.CENTER);
+		leftContainer.add(new CommandCenterGUI(), BorderLayout.SOUTH);
+		validate();
+		repaint();
+	}
+	
+	//trying something
+	public void createGUI(String address,ObjectOutputStream oos, ObjectInputStream ois){//same as above function but with objectstreams
 		System.out.println("IN GUI CREATEGUI");
 		remove(l);
 		l = null;

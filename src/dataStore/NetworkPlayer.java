@@ -9,6 +9,8 @@ import java.net.Socket;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 
@@ -16,6 +18,12 @@ public class NetworkPlayer extends Player {
 	private static final long serialVersionUID = -6142557240391241069L;
 	private Socket chatSocket;
 	private Socket commSocket;
+	
+	private ObjectInputStream ois;
+	private ObjectOutputStream oos;
+	//testing stuff
+	
+	
 	private BufferedReader br;
 	private PrintWriter pw;
 	
@@ -47,10 +55,33 @@ public class NetworkPlayer extends Player {
 		return this.chatSocket;
 	}
 
+	//trying to get objectinputstream;
+	
+	public ObjectInputStream getOIS(){
+		return ois;
+	}
+	
 	public BufferedReader getBr() {
 		return br;
 	}
 
+	//testing
+	public void setOIS(){
+		
+			try {
+				this.ois = new ObjectInputStream(commSocket.getInputStream());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+	}
+	
+	//testing
+	public void setOIS(ObjectInputStream ois){
+		this.ois = ois;
+	}
+	
 	public void setBr() {
 		try {
 			this.br = new BufferedReader(new InputStreamReader(commSocket.getInputStream()));
@@ -80,9 +111,37 @@ public class NetworkPlayer extends Player {
 		this.pw = pw;
 	}	
 
+	public ObjectOutputStream getOOS(){
+		return oos;
+	}
+	
+	public void setOOS(){
+		try {
+			this.oos = new ObjectOutputStream(commSocket.getOutputStream());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void setOOS(ObjectOutputStream oos){
+		this.oos = oos;
+	}
+	
 	public void readPlayer(){
 		Player p = null;
 		super.setPlayer(p);
+		ObjectInputStream ois = this.ois;
+		try {
+			Player p2 = (Player) ois.readObject();
+			System.out.println(p2.getName() + " WHOSE NAME IS IT ");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
