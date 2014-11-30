@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 
 import server.Server;
 import client.clientGUI.GUI;
+import dataStore.Player;
 
 public class Client{
 	private GUI clientGUI;
@@ -43,6 +44,7 @@ public class Client{
 	public void run(){
 		System.out.println("CLIENT MAKING GUI");
 		clientGUI.createGUI(hostAddress, pw, br);
+	
 	}
 	
 	public void createGUI(String ip){

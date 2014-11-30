@@ -14,6 +14,7 @@ import client.clientGUI.Opening.OpeningPanel;
 import client.clientGUI.sidebarGUI.ChatGUI;
 import client.clientGUI.sidebarGUI.SideBar;
 import client.clientGUI.sidebarGUI.SideBarMenuAdapter;
+import dataStore.Player;
 
 public class GUI extends JFrame{
 	public static  PrintWriter pw;
@@ -49,7 +50,8 @@ public class GUI extends JFrame{
 		//login//
 		
 		//createGUI(); client calls this
-	
+		System.out.println("WHAT WHAT");
+		Player p = this.l.getPlayer();
 	}
 	
 	public void createGUI(String address, PrintWriter pw, BufferedReader bf){
