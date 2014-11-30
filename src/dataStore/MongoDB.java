@@ -1,16 +1,18 @@
 package dataStore;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Vector;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.mongodb.*;
-import com.mongodb.util.JSON;
+import com.mongodb.BasicDBList;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
+import com.mongodb.MongoClient;
 
 public class MongoDB {
 	
@@ -48,11 +50,11 @@ public class MongoDB {
 		
     }*/
     
-    public Vector<Pokemon> getPokemon(){
+    public HashMap<String, ArrayList<Pokemon>> getPokemon(){
     	
     	DBCursor c = PokemanCollection.find();
     	//Vector<DBObject> results = new Vector<DBObject>();
-		Vector<Pokemon> pokemon = new Vector<Pokemon>();
+		ArrayList<Pokemon> pokemonList = new ArrayList<Pokemon>();
 		int k = 0;
 		
     	while(c.hasNext()){
@@ -60,12 +62,31 @@ public class MongoDB {
     		DBObject d = c.next();
     		BasicDBList l = (BasicDBList) d.get("moves");
     		System.out.println(k);
-    		pokemon.add(convertData(d, l));
+    		pokemonList.add(convertData(d, l));
     		k++;
     		
     	}
     	
-    	return pokemon;
+    	pokemonList.sort(new PokemonNameCompare());
+    	
+    	HashMap<String, ArrayList<Pokemon>> pokemonMap = new HashMap<String, ArrayList<Pokemon>>();
+    	ArrayList<Pokemon> current = new ArrayList<Pokemon>();
+    	for (Pokemon p : pokemonList){
+    		if (current.isEmpty()){
+    			current.add(p);
+    		}else{
+    			if (p.getName().equals(current.get(0).getName()))
+    				current.add(p);
+    			else{
+    				pokemonMap.put(current.get(0).getName(), current);
+    				current = new ArrayList<Pokemon>();
+    				current.add(p);
+    			}
+    		}
+    	}
+    	pokemonMap.put(current.get(0).getName(), current);
+    	
+    	return pokemonMap;
     	
     }
 
@@ -169,5 +190,12 @@ public class MongoDB {
 		//String obj = gson.fromJson();
 		
 	}*/
-   
+	private class PokemonNameCompare implements Comparator<Pokemon>{
+
+		@Override
+		public int compare(Pokemon o1, Pokemon o2) {
+			return o1.getName().compareTo(o2.getName());
+		}
+		
+	}
 }
