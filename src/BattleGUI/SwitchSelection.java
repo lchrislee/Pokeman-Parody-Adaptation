@@ -6,13 +6,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -30,6 +29,7 @@ public class SwitchSelection extends JPanel{ //make this panel 300 wide by 150 t
 	private static final long serialVersionUID = 3499666410519520395L;
 	private CardLayout selecter;
 	private PrintWriter pw;
+	private BufferedReader br;
 	private CommandCenterGUI central;
 	private ArrayList<Pokemon> pokemon;
 	
@@ -41,11 +41,12 @@ public class SwitchSelection extends JPanel{ //make this panel 300 wide by 150 t
 		createGUI();
 	}
 	
-	public SwitchSelection(CardLayout s, CommandCenterGUI c, PrintWriter p, ArrayList<Pokemon> pokes) {
+	public SwitchSelection(CardLayout s, CommandCenterGUI c, PrintWriter p, BufferedReader b, ArrayList<Pokemon> pokes) {
 		setLayout(new GridLayout(1,3));
 		setPreferredSize(new Dimension(500,150));
 		selecter = s;
 		pw = p;
+		br = b;
 		central = c;
 		pokemon = pokes;
 		createGUI();
@@ -93,7 +94,7 @@ public class SwitchSelection extends JPanel{ //make this panel 300 wide by 150 t
 				healthLabel = new JLabel(String.format("HP: %d/%d", p.getHealth(), p.getMaxHealth()));
 			}
 			
-			Color darkgreen = new Color(64,201,100);
+//			Color darkgreen = new Color(64,201,100);
 			nameLabel.setFont(new Font("Arial",Font.BOLD, 18));
 			nameLabel.setForeground(Color.BLUE);
 			levelLabel.setFont(new Font("Arial",Font.BOLD, 18));
@@ -129,6 +130,14 @@ public class SwitchSelection extends JPanel{ //make this panel 300 wide by 150 t
 						pw.println("Sw_" + ((JButton)me.getSource()).getName());
 						pw.flush();
 					}
+					
+					String input = "";
+					try {
+						input = br.readLine();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					SwitchSelection.this.central.text.setText(input);
 					SwitchSelection.this.selecter.show(central, central.TEXT);
 	            }
 	        });

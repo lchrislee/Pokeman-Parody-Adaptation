@@ -6,7 +6,10 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -18,24 +21,26 @@ public class AttackSelection extends JPanel {
 	private CardLayout selecter;
 	private CommandCenterGUI central;
 	private PrintWriter pw;
+	private BufferedReader br;
 	
-	public AttackSelection(Move[] m, CardLayout s, CommandCenterGUI c){
+	public AttackSelection(Vector<Move> m, CardLayout s, CommandCenterGUI c){
 		createGUI(m);
 		selecter = s;
 		central = c;
 	}
 	
-	public AttackSelection(Move[] m, CardLayout s, CommandCenterGUI c, PrintWriter p){
+	public AttackSelection(Vector<Move> m, CardLayout s, CommandCenterGUI c, PrintWriter p, BufferedReader b){
 		createGUI(m);
 		selecter = s;
 		central = c;
 		pw = p;
+		br = b;
 	}
 	
-	private void createGUI(Move[] m){
+	private void createGUI(Vector<Move> m){
 		setLayout(new GridLayout(2,2));
-		for (int i = 0; i < m.length; ++i)
-			add(new AttackButton(m[i]));
+		for (int i = 0; i < m.size(); ++i)
+			add(new AttackButton(m.get(i)));
 	}
 	
 	private class AttackButton extends JButton{
@@ -58,7 +63,15 @@ public class AttackSelection extends JPanel {
 						AttackSelection.this.pw.println("At_" + ((JButton)e.getSource()).getText() + "|" + ((JButton)e.getSource()).getName());
 						AttackSelection.this.pw.flush();
 					}
-					AttackSelection.this.central.text.setText("You used " + move.getName() + "!");
+					String input = null;
+					try {
+						input = br.readLine();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+					AttackSelection.this.central.text.setText(input);
+//					AttackSelection.this.central.text.setText("You used " + move.getName() + "!");
+					
 					AttackSelection.this.selecter.show(central, central.TEXT);
 				}
 			});
