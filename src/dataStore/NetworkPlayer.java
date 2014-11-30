@@ -61,6 +61,7 @@ public class NetworkPlayer extends Player {
 	
 	public void setBr(BufferedReader br) {
 		this.br = br;
+		
 	}
 
 	public PrintWriter getPw() {
@@ -82,6 +83,7 @@ public class NetworkPlayer extends Player {
 	public void readPlayer(){
 		Player p = null;
 		super.setPlayer(p);
+		
 	}
 
 }

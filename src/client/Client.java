@@ -41,6 +41,7 @@ public class Client{
 			e.printStackTrace();
 		}
 		Player p = clientGUI.getPlayer();
+		System.out.println(p.getName() + " PLAYER NAME ");
 		OutputStream os = null;
 		ObjectOutputStream oos = null;
 		try {
