@@ -49,7 +49,7 @@ public class Client{
 		}
 		System.out.println("BEFORE GETTING PLAYER");
 		Player p = clientGUI.getPlayer();
-		System.out.println("AFTER GETTING PLAYER");
+		System.out.println("AFTER GETTING PLAYER" + p.getName());
 		/*System.out.println(p.getName() + " PLAYER NAME ");
 	
 		System.out.println(p.getPokemonList().get(0).getName() + " FIRST POKEMON NAME ");
