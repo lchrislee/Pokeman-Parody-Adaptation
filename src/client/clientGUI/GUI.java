@@ -95,8 +95,8 @@ public class GUI extends JFrame{
 		GUI g = new GUI();
 		System.out.println("CREATE ME");
 		//j.add(g);
-		g.createGUI("192.168.0.106",oos,ois);
-		//g.createGUI("192.168.0.106", pw, bf); //pass in printerwriter to everything in command cneter
+		//g.createGUI("192.168.0.106",oos,ois);
+		g.createGUI("192.168.0.106", pw, bf); //pass in printerwriter to everything in command cneter
 		g.setVisible(true);
 		//j.setVisible(true);
 		//setvisible is before opening

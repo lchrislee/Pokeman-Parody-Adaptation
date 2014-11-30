@@ -36,24 +36,10 @@ public class Client{
 		hostAddress = ipAddress;
 		try {
 			clientSocket = new Socket(hostAddress,Server.COMMUNICATIONPORT);
-			//oos = new ObjectOutputStream(clientSocket.getOutputStream());
-			//ois = new ObjectInputStream(clientSocket.getInputStream());
-			
-			
+					
 			br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 			pw = new PrintWriter(clientSocket.getOutputStream());
-			System.out.println("NOW GETING BR AND PW ");
-			oos = new ObjectOutputStream(clientSocket.getOutputStream());
-			
-			//ois = new ObjectInputStream(clientSocket.getInputStream());
-			
-			if(oos == null || ois == null){
-				System.out.println("STREAMS ARE NULL");
-			}
-			else
-				System.out.println("GOOD TO GO");
-			
-			//ois = new ObjectInputStream(clientSocket.getInputStream());
+					
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -61,23 +47,43 @@ public class Client{
 		}
 		System.out.println("BEFORE GETTING PLAYER");
 		Player p = clientGUI.getPlayer();
+		if(p == null)
+			System.out.println("DAMN");
 		System.out.println("AFTER GETTING PLAYER" + p.getName());
 		System.out.println(p.getName() + " PLAYER NAME ");
 	
 		System.out.println(p.getPokemonList().get(0).getName() + " FIRST POKEMON NAME ");
+		/*
 		try {
 			oos.writeObject(p);//tries to send the player over to the server
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("DID IT WORK?");
+		System.out.println("DID IT WORK?");*/
 	}
 	
 	public void run(){
 		System.out.println("CLIENT MAKING GUI");
 		clientGUI.createGUI(hostAddress, pw, br);
-		//clientGUI.createGUI(hostAddress, oos, ois);
+		try {
+			
+			oos = new ObjectOutputStream(clientSocket.getOutputStream());
+			oos.flush();
+			System.out.println("Trying to make outputstream");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			
+			ois = new ObjectInputStream(clientSocket.getInputStream());
+			System.out.println("Trying to make inputstream");//i think input streams are working ok
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	
 	}

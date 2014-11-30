@@ -88,6 +88,8 @@ public class NetworkPlayer extends Player {
 	public void setBr() {
 		try {
 			this.br = new BufferedReader(new InputStreamReader(commSocket.getInputStream()));
+			if(br == null)
+				System.out.println("br is null");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -105,6 +107,8 @@ public class NetworkPlayer extends Player {
 	public void setPw() {
 		try {
 			this.pw = new PrintWriter(commSocket.getOutputStream());
+			if(pw == null)
+				System.out.println("pw is null");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

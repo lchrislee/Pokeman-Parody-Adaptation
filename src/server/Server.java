@@ -60,6 +60,7 @@ public class Server implements Runnable{
 				chatSockets.add(chatSocketInput);
 				players.add(new NetworkPlayer());
 			}
+			System.out.println("AM I DONE WITH ACCEPTING ");
 			
 			chatSockets.sort(new SocketSort());
 			communicationSockets.sort(new SocketSort());
@@ -68,14 +69,20 @@ public class Server implements Runnable{
 				NetworkPlayer p = players.get(i);
 				p.setChatSocket(chatSockets.get(i));
 				p.setCommSocket(communicationSockets.get(i));
-				
-				p.setOIS();
-				p.setOOS();
-				
 				p.setBr();
 				p.setPw();
 				
+				//p.setOIS();
+				p.setOOS();
+				
 				chatServer.listen(p.getChatSocket());
+				System.out.println("FINISHED LISTENING");
+			}
+			
+			for(int j=0;j<4;++j){
+				NetworkPlayer p = players.get(j);
+				p.setOIS();
+				System.out.println("nEED TO GET INPUT NOW");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -202,12 +209,13 @@ public class Server implements Runnable{
 		
 		@Override
 		public void run(){
-			try {
-				MongoDB accessor = new MongoDB();
-				map = accessor.getPokemon();
-			} catch (UnknownHostException e) {
-				e.printStackTrace();
-			}
+			//try {
+				System.out.println("TEST");//comment this out and get hte mongodb stuff back up
+				//MongoDB accessor = new MongoDB();
+				//map = accessor.getPokemon();
+			//} catch (UnknownHostException e) {
+				//e.printStackTrace();
+			//}
 		}
 		public HashMap<String, ArrayList<Pokemon>> getMap(){
 			return map;
