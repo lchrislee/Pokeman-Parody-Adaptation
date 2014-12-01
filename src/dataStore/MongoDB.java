@@ -25,7 +25,7 @@ public class MongoDB {
  	
     
     public MongoDB() throws UnknownHostException{
-        this("", 27017);
+        this("68.181.36.24", 27017);
     }
     
     public MongoDB(String ip,int port) throws UnknownHostException{
