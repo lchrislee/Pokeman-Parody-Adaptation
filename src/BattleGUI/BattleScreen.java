@@ -163,7 +163,9 @@ public class BattleScreen extends JPanel {
 			
 			enemyPokemonPanel = new JPanel();
 			enemyPokemonPanel.setBackground(Color.white);
-			JLabel enemyPokemonImage = new JLabel(enemyPokemon.getLeftSprite());
+			//JLabel enemyPokemonImage = new JLabel(enemyPokemon.getLeftSprite());
+			String enemyPokemonString = enemyPokemon.getName();
+			JLabel enemyPokemonImage = new JLabel(new ImageIcon("res/Pokemon_sprites/" + enemyPokemonString + "_left_tr.png"));
 			enemyPokemonPanel.add(enemyPokemonImage);
 		}
 		
@@ -185,7 +187,8 @@ public class BattleScreen extends JPanel {
 		else {
 			yourPokemonPanel = new JPanel();
 			yourPokemonPanel.setBackground(Color.white);
-			JLabel yourPokemonImage = new JLabel(yourPokemon.getRightSprite());
+			String yourPokemonString = yourPokemon.getName();
+			JLabel yourPokemonImage = new JLabel(new ImageIcon("res/Pokemon_sprites/" + yourPokemonString + "_right_tr.png"));
 			yourPokemonPanel.add(yourPokemonImage);
 			
 			yourInfoPanel = new JPanel();

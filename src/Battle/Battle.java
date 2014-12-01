@@ -2,9 +2,11 @@ package Battle;
 
 import java.io.IOException;
 import java.util.Random;
+import java.util.Vector;
 import java.util.concurrent.RecursiveTask;
 
 import dataStore.NetworkPlayer;
+import dataStore.Player;
 //import dataStore.Player;
 import dataStore.Pokemon;
 
@@ -37,12 +39,27 @@ public class Battle extends RecursiveTask<Boolean> {
 		setTurnVariables();
 	}
 	
-//	public static void main(String[] args) {
-//		Player p1 = new Player();
-//		Player p2 = new Player();
-//		
-//		Battle b = new Battle();
-//	}
+	public static void main(String[] args) {
+		Player player = new Player();
+		
+		NetworkPlayer p1 = new NetworkPlayer(player);
+		NetworkPlayer p2 = new NetworkPlayer(player);
+		
+		Battle b = new Battle(p1, p2);
+		
+		System.out.println("player one is out of pokemon: " + b.checkForWinner(1));
+		Vector<Pokemon> pokemonList = b.p1.getPokemonList();
+		for (int i = 0; i < pokemonList.size(); ++i){
+			pokemonList.get(i).setHealth(0);
+			System.out.println("player one is out of pokemon: " + b.checkForWinner(1));
+		}
+		System.out.println("player two is out of pokemon: " + b.checkForWinner(2));
+		pokemonList = b.p2.getPokemonList();
+		for (int i = 0; i < pokemonList.size(); ++i){
+			pokemonList.get(i).setHealth(0);
+			System.out.println("player two is out of pokemon: " + b.checkForWinner(2));
+		}
+	}
 
 	@Override
 	protected Boolean compute() {

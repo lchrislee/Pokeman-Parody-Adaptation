@@ -105,9 +105,10 @@ public class Player implements Serializable{
 			currentPokemonIndex = p.currentPokemonIndex;
 			characterImageName = p.characterImageName;
 			currentSprite = new ImageIcon("res/" + characterImageName);
+			pokemonList = new Vector<Pokemon>(p.pokemonList);
 			if (map == null)
 				return;
-			pokemonList = new Vector<Pokemon>(p.pokemonList);
+			
 			for (Pokemon poke : pokemonList){
 				if (poke.getMoveList() == null){
 					ArrayList<Pokemon> possible = map.get(poke.getName());
