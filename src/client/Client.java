@@ -32,8 +32,6 @@ public class Client{
 	//method to store players
 	
 	public Client(String ipAddress){
-		clientGUI = new GUI();
-		System.out.println("GUI CREATED");
 		hostAddress = ipAddress;
 		try {
 			clientSocket = new Socket(hostAddress,Server.COMMUNICATIONPORT);
@@ -46,7 +44,8 @@ public class Client{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+		clientGUI = new GUI();
+		System.out.println("GUI INITIALIZED");
 		/*
 		try {
 			oos.writeObject(p);//tries to send the player over to the server
