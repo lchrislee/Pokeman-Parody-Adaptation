@@ -35,6 +35,7 @@ public class Battle extends RecursiveTask<Boolean> {
 	public Battle(NetworkPlayer p1, NetworkPlayer p2){
 		this.p1 = p1;
 		this.p2 = p2;
+		System.out.println(this.p1);
 		winnerDetermined = false;
 		setTurnVariables();
 	}
@@ -47,23 +48,8 @@ public class Battle extends RecursiveTask<Boolean> {
 		NetworkPlayer p2 = new NetworkPlayer(player2);
 		
 		Battle b = new Battle(p1, p2);
+	
 		b.compute();
-
-		System.out.println("player one is out of pokemon: " + b.checkForWinner(1));
-		Vector<Pokemon> pokemonList = b.p1.getPokemonList();
-		for (int i = 0; i < pokemonList.size(); ++i){
-			pokemonList.get(i).setHealth(0);
-			System.out.println(pokemonList.get(i).getName());
-			//System.out.println(pokemonList.size());
-			System.out.println("player one is out of pokemon: " + b.checkForWinner(1));
-		}
-		System.out.println("player two is out of pokemon: " + b.checkForWinner(2));
-		pokemonList = b.p2.getPokemonList();
-		for (int i = 0; i < pokemonList.size(); ++i){
-			pokemonList.get(i).setHealth(0);
-			System.out.println(pokemonList.get(i).getName());
-			System.out.println("player two is out of pokemon: " + b.checkForWinner(2));
-		}
 	}
 
 	@Override
@@ -77,10 +63,13 @@ public class Battle extends RecursiveTask<Boolean> {
 			try {
 				p1Input = p1.getBr().readLine();
 				p2Input = p2.getBr().readLine();
+
 			} catch (Exception e) {
 				//e.printStackTrace();
-				p1Input = "Sw_2";
-				p2Input = "Su_";
+
+				p1Input = "At_Tackle|6";
+				p2Input = "At_HURT|9";
+
 			}
 			
 			parse();
@@ -166,6 +155,7 @@ public class Battle extends RecursiveTask<Boolean> {
 		}
 		
 		if(p1message.equals("Sw") || p2message.equals("Sw")){
+			System.out.println("SOMEONE SWAPPED POKEMON");
 			interpretSwap();	
 			//if(p1message.equals(p2message))//if both players swap
 				//return;
@@ -182,10 +172,11 @@ public class Battle extends RecursiveTask<Boolean> {
 	private void doSwitch(int player){
 		if(player == 2){
 			String fromClient = "";
+			System.out.println(p2.getCurrentPokemon().getName());
 			if (p2.getCurrentPokemon().getHealth() == 0){ //added check to see if already fainted or not
 				try {
-					fromClient = p2.getBr().readLine();
-				} catch (IOException e) {
+					fromClient = p2Input;
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
@@ -397,7 +388,7 @@ public class Battle extends RecursiveTask<Boolean> {
 
 		String p1message = p1Input.substring(0, 2);
 		String p2message = p2Input.substring(0, 2);
-		if(p1message.equals("Su") && p2message.equals("Su")){
+		if(p1message.equals("Su") && p2message.equals("Su")){//if both player surrender, randomly select a player to lose
 
 			Random r = new Random();
 			int i = r.nextInt();
@@ -411,10 +402,12 @@ public class Battle extends RecursiveTask<Boolean> {
 		}
 		
 		else if(p1message.equals("Su")){
+			System.out.println("P1QUIT");
 			firstPlayerToQuit = 1;
 			return;
 		}
 		else if(p2message.equals("Su")){
+			System.out.println("P2QUIT");
 			firstPlayerToQuit = 2;
 			return;
 		}
@@ -425,6 +418,7 @@ public class Battle extends RecursiveTask<Boolean> {
 	private int turnOrder(){//returns who goes first
 		Pokemon p1Poke = p1.getCurrentPokemon();
 		Pokemon p2Poke = p2.getCurrentPokemon();
+		
 		
 		if(p1Poke.getSpeed() > p2Poke.getSpeed())
 			return PLAYERONE;
@@ -452,6 +446,9 @@ public class Battle extends RecursiveTask<Boolean> {
 		String p1message = p1Input.substring(0, 2);
 		String p2message = p2Input.substring(0, 2);
 		
+		System.out.println(p1message + " P1 SWAP MESSAGE ");
+		System.out.println(p2message + " P2 SWAP MESSAGE ");
+		
 		if(p1message.equals("Sw") && p2message.equals("Sw")){
 			if(turnOrder() == 1){
 				firstPlayerToSwitch = 1;
@@ -470,7 +467,7 @@ public class Battle extends RecursiveTask<Boolean> {
 			firstPlayerToSwitch = 2;
 			player2Switch = true;
 		}
-		
+		System.out.println(firstPlayerToSwitch + " FIRST PLAYER TO SWITCH " + player1Switch + " P1SWITCH " + player2Switch + " P2SWITCH ");
 	}
 			
 }

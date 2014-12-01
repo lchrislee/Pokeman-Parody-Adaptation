@@ -12,7 +12,7 @@ import javax.swing.ImageIcon;
 public class Player implements Serializable{
 	private static final long serialVersionUID = 5504055184113660229L;
 
-	private int currentPokemonIndex = 0;//which pokemon in the list is currently out
+	private Integer currentPokemonIndex = 0;//which pokemon in the list is currently out
 	
 	private Vector <Pokemon> pokemonList;// this will store the Pokemon the player has caught
 //	private Vector <ImageIcon> spriteList;
@@ -20,7 +20,7 @@ public class Player implements Serializable{
 	private HashMap<String,Integer> statsMap; //([Capture]how many times players died, num pokemon caught, num pokemon released, avg pokemon level & rarity) ([Battle]wins, losses, avg pokemon used per battle)
 	private Pokemon enemyPokemon;
 	private Pokemon currentPokemon;//in battle at the moment
-	private boolean quit = false;
+	private Boolean quit = false;
 	private String name;
 	private String characterImageName;
 	//private Set<String> playerMoves;
@@ -44,6 +44,8 @@ public class Player implements Serializable{
 			pokemonList.add(p);
 			pokemonList.add(p1);
 			pokemonList.add(p2);
+			currentPokemon = pokemonList.get(0);
+			currentPokemonIndex = 0;
 		}
 	
 		public Player(Player p, HashMap<String, ArrayList<Pokemon>> map){
@@ -106,6 +108,7 @@ public class Player implements Serializable{
 		
 		protected void setPlayer(Player p, HashMap<String, ArrayList<Pokemon>> map){
 			currentPokemonIndex = p.currentPokemonIndex;
+			currentPokemon = p.getCurrentPokemon();
 			characterImageName = p.characterImageName;
 			currentSprite = new ImageIcon("res/" + characterImageName);
 			pokemonList = new Vector<Pokemon>(p.pokemonList);
@@ -150,6 +153,7 @@ public class Player implements Serializable{
 		}
 						
 		public Pokemon getCurrentPokemon(){
+			System.out.println(currentPokemon.getName());
 			return this.currentPokemon;
 		}
 		

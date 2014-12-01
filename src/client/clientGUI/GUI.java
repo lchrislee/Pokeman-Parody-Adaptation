@@ -89,16 +89,20 @@ public class GUI extends JFrame{
 		remove(l);
 		l = null;
 		JPanel leftContainer = new JPanel(new BorderLayout());
-		add(new SideBar(address, playerName), BorderLayout.EAST);
 		add(leftContainer, BorderLayout.CENTER);
 		leftContainer.add(new CommandCenterGUI(this, pw, bf), BorderLayout.SOUTH);
+		System.out.println("waiting to read");
 		try {
-		bf.readLine();
+			System.out.println(bf.readLine());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		validate();
 		repaint();
+	}
+	
+	public void createChat(String address){
+		add(new SideBar(address, playerName), BorderLayout.EAST);
 	}
 	
 	public Player getPlayer(){
