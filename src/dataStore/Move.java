@@ -43,4 +43,8 @@ public class Move implements Serializable {
 	public String getName(){
 		return this.name;
 	}
+	
+	public String toString(){
+		return name + " " + damage;
+	}
 }

@@ -1,7 +1,6 @@
 package server;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -15,7 +14,7 @@ import javax.swing.JOptionPane;
 
 import server.chatSystem.ChatServer;
 import Battle.Battle;
-import dataStore.MongoDB;
+import dataStore.Move;
 import dataStore.NetworkPlayer;
 import dataStore.Pokemon;
 
@@ -49,8 +48,6 @@ public class Server implements Runnable{
 			
 			for (int i = 0; i < 1; ++i){
 				Socket communicationSocketInput = ssComm.accept();
-				
-				
 				
 				System.out.println(communicationSocketInput.toString() + " CONNECTED TO SERVER");
 				communicationSockets.add(communicationSocketInput);
@@ -93,8 +90,9 @@ public class Server implements Runnable{
 	
 	@Override
 	public void run(){
-	
 		getPlayers();
+		giveMoves();
+		
 		generateBattlePairs();
 		createBattles();
 		boolean result1 = first.join();
@@ -130,6 +128,29 @@ public class Server implements Runnable{
 		for (NetworkPlayer n : players){
 //			n.readPlayer();
 			n.readPlayer(pokemonMap);
+		}
+	}
+	
+	private void giveMoves(){
+		for (NetworkPlayer p : players){
+			String input = null;
+			String output = "";
+			try {
+				input = p.getBr().readLine();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			if (input.contains("MOVES")){
+				int position = Integer.parseInt(input.substring(input.length() - 1));
+				int i = 0;
+				for (Move m : p.getPokemonList().get(position).getMoveList()){
+					output += m.toString();
+					if (i != 3)
+						output += "?";
+					++i;
+				}
+			}
+			p.getPw().println(output);
 		}
 	}
 	
