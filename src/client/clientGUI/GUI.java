@@ -63,20 +63,21 @@ public class GUI extends JFrame{
 		add(l);
 		revalidate();
 		repaint();
+		System.out.println("BEFORE L.DONE WHILE");
+
 		while(!l.done)
 			Thread.yield();
 		l.stop();
 		//remove(l);
 		
+		System.out.println("BEFORE WAITING");
 		waiting = new WaitingPanel();
 		add(waiting);
 		revalidate();
 		repaint();
-		try {
-			bf.readLine();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		System.out.println("BEFORE TRY");
+
+		
 //		while(!waiting.done)
 //			Thread.yield();
 //		waiting.done();
@@ -91,6 +92,11 @@ public class GUI extends JFrame{
 		add(new SideBar(address, playerName), BorderLayout.EAST);
 		add(leftContainer, BorderLayout.CENTER);
 		leftContainer.add(new CommandCenterGUI(this, pw, bf), BorderLayout.SOUTH);
+		try {
+		bf.readLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		validate();
 		repaint();
 	}

@@ -64,7 +64,18 @@ public class CommandCenterGUI extends JPanel {
 	}
 
 	protected void send(String m) {
+		parseForSwitch(m);
+		
+		
 		holder.send(m);
+	}
+
+	private void parseForSwitch(String m) {
+		String mess = m.substring(0, 2);
+		if(mess.equals("Sw")){
+			int index = Integer.parseInt(m.substring(m.length()));
+			attacks.replaceMoveGUI(attacks.getMoves(index));
+		}
 	}
 	
 }
