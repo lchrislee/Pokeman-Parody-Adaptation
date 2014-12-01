@@ -402,6 +402,7 @@ public class Battle extends RecursiveTask<Boolean> {
 			Random r = new Random();
 			int i = r.nextInt();
 		
+			
 			if(i % 2 == 0){
 				firstPlayerToQuit = 1;
 			}
