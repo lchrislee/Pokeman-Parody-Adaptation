@@ -20,7 +20,7 @@ public class Player implements Serializable{
 	private HashMap<String,Integer> statsMap; //([Capture]how many times player��s died, num pokemon caught, num pokemon released, avg pokemon level & rarity) ([Battle]wins, losses, avg pokemon used per battle)
 	private Pokemon enemyPokemon;
 	private Pokemon currentPokemon;//in battle at the moment
-	private boolean quit = false;
+	private Boolean quit = false;
 	private String name;
 	private String characterImageName;
 	//private Set<String> playerMoves;

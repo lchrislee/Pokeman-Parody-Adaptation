@@ -69,27 +69,32 @@ public class Server implements Runnable{
 			chatSockets.sort(new SocketSort());
 			communicationSockets.sort(new SocketSort());
 			
-			
-			
 			for (int i = 0; i < numPlayers; ++i){
 				NetworkPlayer p = players.get(i);
 				p.setChatSocket(chatSockets.get(i));
 				p.setCommSocket(communicationSockets.get(i));
 				p.setBr();
 				p.setPw();
-				
-				//p.setOIS();
-				p.setOOS();
-				
 				chatServer.listen(p.getChatSocket());
 				System.out.println("FINISHED LISTENING");
 			}
 			
+			System.out.println("WAITING TO ACCEPT PLAYERS");
 			for(int j=0;j<numPlayers;++j){
 				NetworkPlayer p = players.get(j);
+				System.out.println("SADHFILDSAJFJ");
+				System.out.println(p.getBr().readLine()); //CHECK
+				p.setOOS();
 				p.setOIS();
+				p.getPw().println("CHECK AGAIN");
+				p.getPw().flush();
 				System.out.println("nEED TO GET INPUT NOW");
+				if (p.getOIS() == null)
+					System.out.println("OIS IS NULL");
+				if (p.getOOS() == null)
+					System.out.println("OOS IS NULL");
 			}
+			giveMoves();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
