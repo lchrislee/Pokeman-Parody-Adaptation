@@ -48,7 +48,7 @@ public class Battle extends RecursiveTask<Boolean> {
 		
 		Battle b = new Battle(p1, p2);
 		b.compute();
-		
+
 		System.out.println("player one is out of pokemon: " + b.checkForWinner(1));
 		Vector<Pokemon> pokemonList = b.p1.getPokemonList();
 		for (int i = 0; i < pokemonList.size(); ++i){
@@ -77,8 +77,10 @@ public class Battle extends RecursiveTask<Boolean> {
 			try {
 				p1Input = p1.getBr().readLine();
 				p2Input = p2.getBr().readLine();
-			} catch (IOException e) {
-				e.printStackTrace();
+			} catch (Exception e) {
+				//e.printStackTrace();
+				p1Input = "Sw_2";
+				p2Input = "Su_";
 			}
 			
 			parse();
@@ -102,10 +104,10 @@ public class Battle extends RecursiveTask<Boolean> {
 			//checkForWinner(PLAYERTWO);//might go somewhere else			
 			setTurnVariables();
 			
-			p1.getPw().write("DONE");
+			/*p1.getPw().write("DONE");
 			p2.getPw().write("DONE");
 			p1.getPw().flush();
-			p2.getPw().flush();
+			p2.getPw().flush();*/
 			
 		}
 		
@@ -158,6 +160,7 @@ public class Battle extends RecursiveTask<Boolean> {
 		
 		
 		if(p1message.equals("Su") || p2message.equals("Su")){
+			System.out.println("SOMEONE SURRENDERED");
 			interpretSurrender();
 			return;
 		}
