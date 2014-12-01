@@ -50,7 +50,7 @@ public class AttackSelection extends JPanel {
 	}
 	
 	public void replaceMoveGUI(Vector<Move> v){
-		removeAll();
+		this.removeAll();
 		createGUI(v);
 	}
 	

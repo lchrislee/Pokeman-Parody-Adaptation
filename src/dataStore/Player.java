@@ -44,6 +44,8 @@ public class Player implements Serializable{
 			pokemonList.add(p);
 			pokemonList.add(p1);
 			pokemonList.add(p2);
+			currentPokemon = pokemonList.get(0);
+			currentPokemonIndex = 0;
 		}
 	
 		public Player(Player p, HashMap<String, ArrayList<Pokemon>> map){
