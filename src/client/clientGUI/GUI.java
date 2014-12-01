@@ -45,20 +45,20 @@ public class GUI extends JFrame{
 		setSize(800, 600);
 		setResizable(false);
 		setLocation(100,100);
-		OpeningPanel op = new OpeningPanel();
-//		op.run();
-		add(op);
-		
-		System.out.println("OPENING ADDED");
+//		OpeningPanel op = new OpeningPanel();
+////		op.run();
+//		add(op);
+//		
+//		System.out.println("OPENING ADDED");
 		setVisible(true);
-		
-		while(!op.done)
-			Thread.yield();//System.out.println("WAITING");
-		op.stop();
-		System.out.println("OPENING COMPLETE");
-		
-		remove(op);
-		op = null;
+//		
+//		while(!op.done)
+//			Thread.yield();//System.out.println("WAITING");
+//		op.stop();
+//		System.out.println("OPENING COMPLETE");
+//		
+//		remove(op);
+//		op = null;
 		l = new LoginScreen();
 		add(l);
 		revalidate();

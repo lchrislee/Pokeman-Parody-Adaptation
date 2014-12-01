@@ -47,8 +47,9 @@ public class Server implements Runnable{
 		try {
 			ssChat = new ServerSocket(CHATPORT);
 			ssComm = new ServerSocket(COMMUNICATIONPORT);
+			int numPlayers = 1;
 			
-			for (int i = 0; i < 4; ++i){
+			for (int i = 0; i < numPlayers; ++i){
 				Socket communicationSocketInput = ssComm.accept();
 				
 				
@@ -65,7 +66,9 @@ public class Server implements Runnable{
 			chatSockets.sort(new SocketSort());
 			communicationSockets.sort(new SocketSort());
 			
-			for (int i = 0; i < 4; ++i){
+			
+			
+			for (int i = 0; i < numPlayers; ++i){
 				NetworkPlayer p = players.get(i);
 				p.setChatSocket(chatSockets.get(i));
 				p.setCommSocket(communicationSockets.get(i));
@@ -79,7 +82,7 @@ public class Server implements Runnable{
 				System.out.println("FINISHED LISTENING");
 			}
 			
-			for(int j=0;j<4;++j){
+			for(int j=0;j<numPlayers;++j){
 				NetworkPlayer p = players.get(j);
 				p.setOIS();
 				System.out.println("nEED TO GET INPUT NOW");
