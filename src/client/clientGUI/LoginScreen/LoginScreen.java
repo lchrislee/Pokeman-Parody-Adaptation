@@ -57,7 +57,7 @@ public class LoginScreen extends JPanel {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		createLoginGUI();
 		if (clip == null)
-			clip = MusicPlayer.run("Menu.wav");
+			clip = MusicPlayer.run("res/Menu.wav");
 	}
 	
 	public void stop(){
