@@ -63,7 +63,7 @@ public class GUI extends JFrame{
 		while(!l.done)
 			Thread.yield();
 		l.stop();
-		remove(l);
+		//remove(l);
 		
 		waiting = new WaitingPanel();
 		add(waiting);
@@ -77,7 +77,7 @@ public class GUI extends JFrame{
 	}
 	
 	public void createGUI(String address, PrintWriter pw, BufferedReader bf){
-		l = null;
+		
 		System.out.println("IN GUI CREATEGUI");
 		remove(l);
 		l = null;
