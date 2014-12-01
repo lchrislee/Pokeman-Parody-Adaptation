@@ -63,11 +63,7 @@ public class Client{
 		System.out.println("CLIENT MAKING GUI");
 		Player p = clientGUI.getPlayer();
 		
-		try {
-			br.readLine();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 		
 		System.out.println("GOT PLAYER");
 		this.playerName = p.getName();

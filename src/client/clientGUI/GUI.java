@@ -92,6 +92,11 @@ public class GUI extends JFrame{
 		add(new SideBar(address, playerName), BorderLayout.EAST);
 		add(leftContainer, BorderLayout.CENTER);
 		leftContainer.add(new CommandCenterGUI(this, pw, bf), BorderLayout.SOUTH);
+		try {
+		bf.readLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		validate();
 		repaint();
 	}
