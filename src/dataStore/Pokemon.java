@@ -1,4 +1,5 @@
 package dataStore;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Vector;
 
@@ -194,4 +195,34 @@ public class Pokemon implements Serializable{
 		return this.FileNameArray;
 	}
 	
+	private void readObject(java.io.ObjectInputStream stream) throws IOException, ClassNotFoundException{
+		name = (String) stream.readObject();
+		FileNameArray = (String[]) stream.readObject();
+		moveList = new Vector<Move>();
+		for (int i = 0; i < 4; ++i)
+			moveList.add((Move)stream.readObject());
+		level = (Integer) stream.readInt();
+		rarity = (Double) stream.readDouble();
+		maxHealth = (Integer) stream.readInt();
+		health = (Integer) stream.readInt();
+		speed = (Integer) stream.readInt();
+		defense = (Integer) stream.readInt();
+		attack = (Integer) stream.readInt();
+		conscious = (Boolean) stream.readBoolean();
+	}
+	
+	private void writeObject(java.io.ObjectOutputStream stream) throws IOException{
+		stream.writeObject(name);
+		stream.writeObject(FileNameArray);
+		for (Move m : moveList)
+			stream.writeObject(m);
+		stream.writeInt(level);
+		stream.writeDouble(rarity);
+		stream.writeInt(maxHealth);
+		stream.writeInt(health);
+		stream.writeInt(speed);
+		stream.writeInt(defense);
+		stream.writeInt(attack);
+		stream.writeBoolean(conscious);
+	}
 }

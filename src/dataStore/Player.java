@@ -1,5 +1,6 @@
 package dataStore;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -179,11 +180,38 @@ public class Player implements Serializable{
 		public ImageIcon getCurrentSprite() {
 			return currentSprite;
 		}
+
+		@SuppressWarnings("unchecked")
+		protected void readObject(java.io.ObjectInputStream stream) throws IOException, ClassNotFoundException{
+			characterImageName = (String) stream.readObject();
+			name = (String) stream.readObject();
+			quit = (Boolean) stream.readBoolean();
+//			currentPokemon = (Pokemon) stream.readObject();
+//			enemyPokemon = (Pokemon) stream.readObject();
+			statsMap = (HashMap<String, Integer>) stream.readObject();
+			pokemonList = new Vector<Pokemon>();
+			for (int i = 0; i < 3; ++i)
+				pokemonList.add((Pokemon) stream.readObject());
+			currentPokemonIndex = (Integer) stream.readObject();
+			currentPokemon = pokemonList.get(currentPokemonIndex);
+		}
+		
+		private void writeObject(java.io.ObjectOutputStream stream) throws IOException{
+			stream.writeObject(characterImageName);
+			stream.writeObject(name);
+			stream.writeBoolean(quit);
+//			stream.writeObject(currentPokemon);
+			stream.writeObject(enemyPokemon);
+			stream.writeObject(statsMap);
+			for (Pokemon p : pokemonList)
+				stream.writeObject(p);
+			stream.writeObject(currentPokemonIndex);
+		}
 		
 		public String getCharacterImageName() {
 			return this.characterImageName;
 		}
-	
+
 		public String toString(){
 			return name + "\n" + currentPokemonIndex;
 		}

@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OptionalDataException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -143,13 +144,18 @@ public class NetworkPlayer extends Player {
 		if(ois == null)
 			System.out.println("ois cannot be assigned ");
 		try {
-			p = (Player) ois.readObject();
+			p.readObject(ois);
 			if(p == null){
 				System.out.println("PLAYER SENT IS NULL ");
 			}
 			System.out.println(p.getName() + " WHOSE NAME IS IT ");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
+		} catch (OptionalDataException e){
+			e.printStackTrace();
+			System.out.println("END OF FILE? " + e.eof);
+			System.out.println("LEFT? " + e.length);
+			System.exit(1);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
