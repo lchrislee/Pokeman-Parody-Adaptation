@@ -59,8 +59,12 @@ public class Client{
 	}
 	
 	public void run(){
+		
 		System.out.println("CLIENT MAKING GUI");
 		Player p = clientGUI.getPlayer();
+		
+		
+		
 		System.out.println("GOT PLAYER");
 		this.playerName = p.getName();
 		System.out.println("STARTING TO SEND");
