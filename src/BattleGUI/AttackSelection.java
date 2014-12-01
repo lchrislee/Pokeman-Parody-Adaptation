@@ -30,11 +30,11 @@ public class AttackSelection extends JPanel {
 	}
 	
 	public AttackSelection(CardLayout s, CommandCenterGUI c, PrintWriter p, BufferedReader b){
-		createGUI(new Vector<Move>(getMoves(0)));
 		selecter = s;
 		central = c;
 		pw = p;
 		br = b;
+		createGUI(new Vector<Move>(getMoves(0)));
 	}
 	
 	public AttackSelection(Move[] m, CardLayout switcher, CommandCenterGUI c) {
