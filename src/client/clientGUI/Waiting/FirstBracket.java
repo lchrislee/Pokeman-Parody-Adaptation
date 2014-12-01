@@ -22,7 +22,7 @@ public class FirstBracket extends JPanel implements ActionListener {
 	int timerCountSpeed = 1;
 	public boolean done = false;
 	ArrayList<NetworkPlayer> players;
-	private int selector;
+	private int selector; // not used.
 	private int winner1, winner2, winner3;
 	private boolean drawWinner1 = false;
 	private boolean drawWinner2 = false;
@@ -188,7 +188,7 @@ public class FirstBracket extends JPanel implements ActionListener {
 	}
 	public static void main (String args []) {
 		ArrayList<NetworkPlayer> dummy = new ArrayList<NetworkPlayer>();
-		FirstBracket f = new FirstBracket(dummy,0,1,2,3);
+		FirstBracket f = new FirstBracket(dummy,0,1,2);
 		JFrame testWindow = new JFrame();
 		testWindow.setTitle("Testing Bracket");
 		testWindow.setSize(800,600);
