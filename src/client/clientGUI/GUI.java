@@ -113,12 +113,10 @@ public class GUI extends JFrame{
 	public void send(String m) {//work on this when u get back
 		if(m.contains("END")){
 			
+		 switchToWaitingScreen();
+			
+		 
 		
-			
-			
-			
-			//make changes to battle screen
-			//battlescreen(playername,pw,br);
 		
 		}
 		
@@ -131,7 +129,7 @@ public class GUI extends JFrame{
 	
 	public void switchToBattleScreen(){
 		remove(waiting);
-		//waiting = null;
+		
 		if(bs == null)
 			bs = new BattleScreen(pw,bf,playerName);
 		
@@ -139,7 +137,7 @@ public class GUI extends JFrame{
 		revalidate();
 	}
 	
-	public void switchToWaitingScreen(){
+	private void switchToWaitingScreen(){
 		remove(bs);
 		add(waiting);
 		revalidate();
