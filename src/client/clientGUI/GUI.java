@@ -67,7 +67,8 @@ public class GUI extends JFrame{
 		
 		waiting = new WaitingPanel();
 		add(waiting);
-		
+		revalidate();
+		repaint();
 		/*
 		while(!waiting.done)
 			Thread.yield();
