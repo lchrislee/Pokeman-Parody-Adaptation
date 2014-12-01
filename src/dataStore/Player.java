@@ -38,9 +38,12 @@ public class Player implements Serializable{
 			v.add(new Move(10,/* 4, */"Jump"));
 			String[] s = {"Bee-two_left_tr.png"};
 			Pokemon p = new Pokemon("Bee-Two", s, 40, 50, 55, 100, 2, 17, v);
+			Pokemon p1 = new Pokemon("Bee-Two", s, 40, 50, 55, 100, 2, 17, v);
+			Pokemon p2 = new Pokemon("Bee-Two", s, 40, 50, 55, 100, 2, 17, v);
+
 			pokemonList.add(p);
-			pokemonList.add(p);
-			pokemonList.add(p);
+			pokemonList.add(p1);
+			pokemonList.add(p2);
 		}
 	
 		public Player(Player p, HashMap<String, ArrayList<Pokemon>> map){
