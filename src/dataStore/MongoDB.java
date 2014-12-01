@@ -25,11 +25,11 @@ public class MongoDB {
  	
     
     public MongoDB() throws UnknownHostException{
-        this("10.120.122.16", 27017);
+        this("", 27017);
     }
     
     public MongoDB(String ip,int port) throws UnknownHostException{
-        m = new MongoClient(ip, port);
+        m = new MongoClient();
         PokemanDB = m.getDB(POKEMAN_DB_NAME);
         PokemanCollection = PokemanDB.getCollection(POKEMAN_DB_COLLECTION);
        
