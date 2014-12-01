@@ -52,7 +52,16 @@ public class TextScreen extends JPanel {
 				String input = "";
 				try {
 					do{
-						if (input != "")
+						//for a specfici message->send the message to the gui (through the ccg) at gui...parse message
+						//if its end message->change the battle screen (entire GUI) to something
+					//else keep whatever's there
+						if(input.contains("END")){//battle's over at this point
+							//pw.write(input);
+							//System.out.println("SENDING END MESSAGE OVER!");
+							sendMessage(input);
+						}
+						
+						else if (input != "")
 							appendText(input);
 						else if (input.contains("hit")){
 							sendMessage(input);

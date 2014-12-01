@@ -1,5 +1,7 @@
 package client.clientGUI;
 
+
+
 import java.awt.BorderLayout;
 import java.io.BufferedReader;
 import java.io.ObjectInputStream;
@@ -10,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import BattleGUI.BattleScreen;
 import BattleGUI.CommandCenterGUI;
 import client.clientGUI.LoginScreen.LoginScreen;
 import client.clientGUI.Opening.OpeningPanel;
@@ -28,6 +31,9 @@ public class GUI extends JFrame{
 	
 	private LoginScreen l;
 	private String playerName;
+	private BattleScreen bs =null;
+	private WaitingPanel waiting;
+	
 	
 	public GUI(){
 		//opening
@@ -58,13 +64,20 @@ public class GUI extends JFrame{
 			Thread.yield();
 		l.stop();
 		remove(l);
-		l = null;
-		WaitingPanel waiting = new WaitingPanel();
+		
+		waiting = new WaitingPanel();
 		add(waiting);
+		
+		/*
+		while(!waiting.done)
+			Thread.yield();
+		waiting.done();*/
+		
 		
 	}
 	
 	public void createGUI(String address, PrintWriter pw, BufferedReader bf){
+		l = null;
 		System.out.println("IN GUI CREATEGUI");
 		remove(l);
 		l = null;
@@ -76,17 +89,6 @@ public class GUI extends JFrame{
 		repaint();
 	}
 	
-	//trying something
-	public void createGUI(String address,ObjectOutputStream oos, ObjectInputStream ois){//same as above function but with objectstreams
-		System.out.println("IN GUI CREATEGUI oostream ");
-		JPanel leftContainer = new JPanel(new BorderLayout());
-		add(new SideBar(address, playerName), BorderLayout.EAST);
-		add(leftContainer, BorderLayout.CENTER);
-		leftContainer.add(new CommandCenterGUI(), BorderLayout.SOUTH);
-		validate();
-		repaint();
-	}
-
 	public Player getPlayer(){
 		Player p = l.getPlayer();
 		playerName = p.getName();
@@ -108,7 +110,38 @@ public class GUI extends JFrame{
 		//setvisible is before opening
 	}
 
-	public void send(String m) {
+	public void send(String m) {//work on this when u get back
+		if(m.contains("END")){
+			
+		
+			
+			
+			
+			//make changes to battle screen
+			//battlescreen(playername,pw,br);
+		
+		}
+		
+		//for a specfici message->send the message to the gui (through the ccg) at gui...parse message
+		//if its end message->change the battle screen (entire GUI) to something
+	//else keep whatever's there
+		
 		//battleScreen.update(m);
+	}
+	
+	public void switchToBattleScreen(){
+		remove(waiting);
+		//waiting = null;
+		if(bs == null)
+			bs = new BattleScreen(pw,bf,playerName);
+		
+		add(bs);
+		revalidate();
+	}
+	
+	public void switchToWaitingScreen(){
+		remove(bs);
+		add(waiting);
+		revalidate();
 	}
 }

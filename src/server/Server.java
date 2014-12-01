@@ -89,6 +89,7 @@ public class Server implements Runnable{
 		}
 		
 		System.out.println("Done getting input from other players");
+		
 	}
 	
 	@Override

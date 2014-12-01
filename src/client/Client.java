@@ -75,6 +75,9 @@ public class Client{
 			e.printStackTrace();
 		}
 		clientGUI.createGUI(hostAddress, pw, br);
+		///fjdfjdkjfkdjfkjfjfakjfk
+		clientGUI.switchToBattleScreen();
+	
 	}
 	
 	public static void main(String[] args) {
