@@ -54,20 +54,21 @@ public class Client{
 		System.out.println("CLIENT MAKING GUI");
 		Player p = clientGUI.getPlayer();
 		this.playerName = p.getName();
-
+		clientGUI.createGUI(hostAddress);
 		try {
 			oos = new ObjectOutputStream(clientSocket.getOutputStream());
 			oos.writeObject(p);//trying to write player
 			oos.flush();
 			System.out.println("Trying to make outputstream");
-			
-			ois = new ObjectInputStream(clientSocket.getInputStream());
-			System.out.println("Trying to make inputstream");//i think input streams are working ok
+			InputStream i = clientSocket.getInputStream();
+			System.out.println("THIS WORKS");
+			ois = new ObjectInputStream(i);
+			System.out.println("Trying to make inputstream");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		clientGUI.createGUI(hostAddress);
+		
 	}
 	
 	public static void main(String[] args) {
