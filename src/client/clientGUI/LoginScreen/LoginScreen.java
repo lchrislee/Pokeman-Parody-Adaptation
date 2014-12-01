@@ -14,12 +14,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Vector;
 
+import javax.imageio.ImageIO;
 import javax.sound.sampled.Clip;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -44,6 +46,10 @@ public class LoginScreen extends JPanel {
 	private String chosenCharacterName;
 	private ImageIcon chosenPokemon = new ImageIcon();
 	
+	private Image aerodonImage = null, lickisterImage = null, beetwoImage = null,
+			marozardImage = null, meonxImage = null, geonxImage = null,
+			weepintoiseImage = null, pikayuImage = null, sexypodImage = null, feelgletImage = null;
+	
 	private Queue<ImageIcon> chosenPokemonQueue = new LinkedList<ImageIcon>();
 	private Vector<String> pokemonNamesList = new Vector<String>();
 	
@@ -54,6 +60,21 @@ public class LoginScreen extends JPanel {
 	public Clip clip = null;
 	
 	public LoginScreen() {
+		try {
+			aerodonImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/Aerodon_left_tr_small.png"));
+			lickisterImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/Lickister_left_tr_small.png"));
+			beetwoImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/Bee-Two_left_tr_small.png"));
+			marozardImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/Marozard_left_tr_small.png"));
+			meonxImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/Meonx_left_tr_small.png"));
+			geonxImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/Geonx_left_tr_small.png"));
+			weepintoiseImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/Weepintoise_left_tr_small.png"));
+			pikayuImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/Pikayu_left_tr_small.png"));
+			sexypodImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/Sexypod_left_tr_small.png"));
+			feelgletImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/Feelglet_left_tr_small.png"));
+		}
+		catch(IOException ioe) {
+			System.out.println("fail reading login images");
+		}
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		createLoginGUI();
 		if (clip == null)
@@ -147,7 +168,6 @@ public class LoginScreen extends JPanel {
 		pokemonSpriteListPanel.setMaximumSize(new Dimension(600,30000));
 		pokemonSpriteList = new ArrayList<JButton>();
 		
-		final Image aerodonImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Aerodon_left_tr_small.png");
 		final ImageIcon aerodonImageIcon = new ImageIcon(aerodonImage,"Aerodon");
 		aerodonButton = new JButton(aerodonImageIcon);
 		aerodonButton.setBackground(Color.WHITE);
@@ -221,7 +241,6 @@ public class LoginScreen extends JPanel {
 		
 		pokemonSpriteList.add(aerodonButton);
 		
-		final Image lickisterImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Lickister_left_tr_small.png");
 		final ImageIcon lickisterImageIcon = new ImageIcon(lickisterImage,"Lickister");
 		lickisterButton = new JButton(lickisterImageIcon);
 		lickisterButton.setBackground(Color.WHITE);
@@ -292,7 +311,7 @@ public class LoginScreen extends JPanel {
 		
 		pokemonSpriteList.add(lickisterButton);
 		
-		final Image beetwoImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Bee-two_left_tr_small.png");
+		
 		final ImageIcon beetwoImageIcon = new ImageIcon(beetwoImage,"Bee-Two");
 		beetwoButton = new JButton(beetwoImageIcon);
 		beetwoButton.setBackground(Color.WHITE);
@@ -362,7 +381,7 @@ public class LoginScreen extends JPanel {
 		
 		pokemonSpriteList.add(beetwoButton);
 		
-		final Image marozardImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Marozard_left_tr_small.png");
+		
 		final ImageIcon marozardImageIcon = new ImageIcon(marozardImage,"Marozard");
 		marozardButton = new JButton(marozardImageIcon);
 		marozardButton.setBackground(Color.WHITE);
@@ -431,7 +450,7 @@ public class LoginScreen extends JPanel {
 	        });
 		pokemonSpriteList.add(marozardButton);
 		
-		final Image meonxImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Meonx_left_tr_small.png");
+		
 		final ImageIcon meonxImageIcon = new ImageIcon(meonxImage,"Meonx");
 		meonxButton = new JButton(meonxImageIcon);
 		meonxButton.setBackground(Color.WHITE);
@@ -502,7 +521,7 @@ public class LoginScreen extends JPanel {
 		
 		pokemonSpriteList.add(meonxButton);
 		
-		final Image geonxImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Geonx_left_tr_small.png");
+		
 		final ImageIcon geonxImageIcon = new ImageIcon(geonxImage,"Geonx");
 		geonxButton = new JButton(geonxImageIcon);
 		geonxButton.setBackground(Color.WHITE);
@@ -572,7 +591,7 @@ public class LoginScreen extends JPanel {
 		
 		pokemonSpriteList.add(geonxButton);
 		
-		final Image weepintoiseImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Weepintoise_left_tr_small.png");
+		
 		final ImageIcon weepintoiseImageIcon = new ImageIcon(weepintoiseImage,"Weepintoise");
 		weepintoiseButton = new JButton(weepintoiseImageIcon);
 		weepintoiseButton.setBackground(Color.WHITE);
@@ -642,7 +661,7 @@ public class LoginScreen extends JPanel {
 		
 		pokemonSpriteList.add(weepintoiseButton);
 		
-		final Image pikayuImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Pikayu_left_tr_small.png");
+		
 		final ImageIcon pikayuImageIcon = new ImageIcon(pikayuImage,"Pikayu");
 		pikayuButton = new JButton(pikayuImageIcon);
 		pikayuButton.setBackground(Color.WHITE);
@@ -712,7 +731,7 @@ public class LoginScreen extends JPanel {
 		
 		pokemonSpriteList.add(pikayuButton);
 		
-		final Image sexypodImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/sexypod_left_tr_small.png");
+		
 		final ImageIcon sexypodImageIcon = new ImageIcon(sexypodImage,"Sexypod");
 		sexypodButton = new JButton(sexypodImageIcon);
 		sexypodButton.setBackground(Color.WHITE);
@@ -782,7 +801,7 @@ public class LoginScreen extends JPanel {
 		
 		pokemonSpriteList.add(sexypodButton);
 		
-		final Image feelgletImage = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/feelglet_left_tr_small.png");
+		
 		final ImageIcon feelgletImageIcon = new ImageIcon(feelgletImage,"Feelglet");
 		feelgletButton = new JButton(feelgletImageIcon);
 		feelgletButton.setBackground(Color.WHITE);
