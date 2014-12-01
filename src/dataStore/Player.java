@@ -108,6 +108,7 @@ public class Player implements Serializable{
 		
 		protected void setPlayer(Player p, HashMap<String, ArrayList<Pokemon>> map){
 			currentPokemonIndex = p.currentPokemonIndex;
+			currentPokemon = p.getCurrentPokemon();
 			characterImageName = p.characterImageName;
 			currentSprite = new ImageIcon("res/" + characterImageName);
 			pokemonList = new Vector<Pokemon>(p.pokemonList);
@@ -152,6 +153,7 @@ public class Player implements Serializable{
 		}
 						
 		public Pokemon getCurrentPokemon(){
+			System.out.println(currentPokemon.getName());
 			return this.currentPokemon;
 		}
 		
