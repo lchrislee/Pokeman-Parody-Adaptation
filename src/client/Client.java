@@ -44,7 +44,9 @@ public class Client{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		clientGUI = new GUI();
+		if (pw == null || br == null)
+			System.out.println("BROKEDED");
+		clientGUI = new GUI(pw, br);
 		System.out.println("GUI INITIALIZED");
 		/*
 		try {
@@ -62,7 +64,7 @@ public class Client{
 		System.out.println("GOT PLAYER");
 		this.playerName = p.getName();
 		System.out.println("STARTING TO SEND");
-		clientGUI.createGUI(hostAddress, pw, br);
+		clientGUI.createGUI(hostAddress);
 		try {
 			oos = new ObjectOutputStream(clientSocket.getOutputStream());
 			oos.writeObject(p);//trying to write player

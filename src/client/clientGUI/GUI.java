@@ -35,9 +35,11 @@ public class GUI extends JFrame{
 	private WaitingPanel waiting;
 	
 	
-	public GUI(){
+	public GUI(PrintWriter p, BufferedReader b){
 		//opening
 //		setLayout(new BorderLayout());
+		pw = p;
+		bf = b;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(800, 600);
 		setResizable(false);
@@ -79,7 +81,7 @@ public class GUI extends JFrame{
 //		waiting.done();
 	}
 	
-	public void createGUI(String address, PrintWriter pw, BufferedReader bf){
+	public void createGUI(String address){
 		
 		System.out.println("IN GUI CREATEGUI");
 		remove(l);
@@ -102,15 +104,15 @@ public class GUI extends JFrame{
 		/*JFrame j = new JFrame();
 		j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		j.setSize(800, 600);
-		*/
-		GUI g = new GUI();
-		System.out.println("CREATE ME");
-		//j.add(g);
-		//g.createGUI("192.168.0.106",oos,ois);
-		g.createGUI("192.168.0.106", pw, bf); //pass in printerwriter to everything in command cneter
-		g.setVisible(true);
-		//j.setVisible(true);
-		//setvisible is before opening
+//		*/
+//		GUI g = new GUI();
+//		System.out.println("CREATE ME");
+//		//j.add(g);
+//		//g.createGUI("192.168.0.106",oos,ois);
+//		g.createGUI("192.168.0.106", pw, bf); //pass in printerwriter to everything in command cneter
+//		g.setVisible(true);
+//		//j.setVisible(true);
+//		//setvisible is before opening
 	}
 
 	public void send(String m) {//work on this when u get back
