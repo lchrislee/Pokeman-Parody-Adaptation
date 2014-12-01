@@ -30,6 +30,7 @@ public class Server implements Runnable{
 	private ServerSocket ssComm;
 	private ArrayList<NetworkPlayer> players;
 	private static HashMap<String, ArrayList<Pokemon>> pokemonMap;
+	private static DataBaseAccess dba;
 	int battleOneP1 = 1;
 	int battleOneP2 = -1;
 	int battleTwoP1 = -1;
@@ -37,6 +38,8 @@ public class Server implements Runnable{
 	
 	
 	public Server(){
+		dba = new DataBaseAccess();
+		dba.start();
 		chatServer = new ChatServer(CHATPORT);
 		players = new ArrayList<NetworkPlayer>();
 		ArrayList<Socket> chatSockets = new ArrayList<Socket>();
@@ -202,8 +205,7 @@ public class Server implements Runnable{
 		JOptionPane.showMessageDialog(null, "Please tell your clients the following IP address: \n" + ipAddress, "Your IP Address", JOptionPane.INFORMATION_MESSAGE, null);
 		
 		Server s = new Server();
-		DataBaseAccess dba = s.new DataBaseAccess();
-		dba.start();
+		
 		
 		Thread t = new Thread(s);
 		try {
