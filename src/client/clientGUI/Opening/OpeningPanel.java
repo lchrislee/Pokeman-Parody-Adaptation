@@ -87,14 +87,9 @@ public class OpeningPanel extends JPanel implements ActionListener {
 		g.fillRect(0, 0, 800, 800);
 		
 		/* get the image files and place them on their default position */
-		Image millerTest = null;
-		try {
-			millerTest = ImageIO.read(getClass().getResource("/Character_sprites/Miller_hot.jpg"));
-		} catch(IOException ioe) {
-			System.out.println("FUCK");
-		}
+		
 		Image millerImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/Miller_hot.jpg");
-		g.drawImage(millerTest, millerX, millerY, this);
+		g.drawImage(millerImage, millerX, millerY, this);
 		
 		Image crowleyImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/Crowley_robot.jpg");
 		g.drawImage(crowleyImage, crowleyX, crowleyY, this);
