@@ -44,8 +44,11 @@ public class Battle extends RecursiveTask<Boolean> {
 		Player player = new Player();
 		Player player2 = new Player();
 		
+		
 		NetworkPlayer p1 = new NetworkPlayer(player);
 		NetworkPlayer p2 = new NetworkPlayer(player2);
+		
+		
 		
 		Battle b = new Battle(p1, p2);
 	
@@ -69,7 +72,7 @@ public class Battle extends RecursiveTask<Boolean> {
 
 				p1Input = "At_Tackle|6";
 				p2Input = "At_HURT|9";
-
+				
 			}
 			
 			parse();
@@ -419,7 +422,7 @@ public class Battle extends RecursiveTask<Boolean> {
 		Pokemon p1Poke = p1.getCurrentPokemon();
 		Pokemon p2Poke = p2.getCurrentPokemon();
 		
-		
+
 		if(p1Poke.getSpeed() > p2Poke.getSpeed())
 			return PLAYERONE;
 	
