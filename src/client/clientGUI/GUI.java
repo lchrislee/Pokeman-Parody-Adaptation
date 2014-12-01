@@ -69,12 +69,14 @@ public class GUI extends JFrame{
 		add(waiting);
 		revalidate();
 		repaint();
-		/*
-		while(!waiting.done)
-			Thread.yield();
-		waiting.done();*/
-		
-		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+//		while(!waiting.done)
+//			Thread.yield();
+//		waiting.done();
 	}
 	
 	public void createGUI(String address, PrintWriter pw, BufferedReader bf){
@@ -82,12 +84,12 @@ public class GUI extends JFrame{
 		System.out.println("IN GUI CREATEGUI");
 		remove(l);
 		l = null;
-//		JPanel leftContainer = new JPanel(new BorderLayout());
-//		add(new SideBar(address, playerName), BorderLayout.EAST);
-//		add(leftContainer, BorderLayout.CENTER);
-//		leftContainer.add(new CommandCenterGUI(this, pw, bf), BorderLayout.SOUTH);
-//		validate();
-//		repaint();
+		JPanel leftContainer = new JPanel(new BorderLayout());
+		add(new SideBar(address, playerName), BorderLayout.EAST);
+		add(leftContainer, BorderLayout.CENTER);
+		leftContainer.add(new CommandCenterGUI(this, pw, bf), BorderLayout.SOUTH);
+		validate();
+		repaint();
 	}
 	
 	public Player getPlayer(){
