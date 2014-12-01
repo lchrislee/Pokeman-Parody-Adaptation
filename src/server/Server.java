@@ -1,6 +1,7 @@
 package server;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -31,12 +32,11 @@ public class Server implements Runnable{
 	private ServerSocket ssComm;
 	private ArrayList<NetworkPlayer> players;
 	private static HashMap<String, ArrayList<Pokemon>> pokemonMap;
-	private static DataBaseAccess dba;
 	int battleOneP1 = 1;
 	int battleOneP2 = -1;
 	int battleTwoP1 = -1;
 	int battleTwoP2 = -1;
-	
+	private DataBaseAccess dba = null;
 	
 	public Server(){
 		dba = new DataBaseAccess();
@@ -50,23 +50,20 @@ public class Server implements Runnable{
 		try {
 			ssChat = new ServerSocket(CHATPORT);
 			ssComm = new ServerSocket(COMMUNICATIONPORT);
-			System.out.println("Created server sockets");
+			
 			for (int i = 0; i < 4; ++i){
-				System.out.println(i);
-				Socket communicationSocketInput = ssComm.accept(); //this is blocking
+				Socket communicationSocketInput = ssComm.accept();
+				
 				
 				System.out.println(communicationSocketInput.toString() + " CONNECTED TO SERVER");
 				communicationSockets.add(communicationSocketInput);
-			}
-			System.out.println("DONE CONNECTING ALL");
-			for (int i = 0; i < 4; ++i){
-				Socket chatSocketInput = ssChat.accept(); //this is blocking
+
+				Socket chatSocketInput = ssChat.accept();
 				System.out.println(chatSocketInput.toString() + " CONNECTED TO CHAT");
 				chatSockets.add(chatSocketInput);
 				players.add(new NetworkPlayer());
-				System.out.println("SIZE: " + players.size());
 			}
-			System.out.println("DONE WITH ACCEPTING");
+			System.out.println("AM I DONE WITH ACCEPTING ");
 			
 			chatSockets.sort(new SocketSort());
 			communicationSockets.sort(new SocketSort());
@@ -82,7 +79,6 @@ public class Server implements Runnable{
 				p.setOOS();
 				
 				chatServer.listen(p.getChatSocket());
-				players.get(i).getPw().println("DONE");
 				System.out.println("FINISHED LISTENING");
 			}
 			
@@ -96,15 +92,12 @@ public class Server implements Runnable{
 		}
 		
 		System.out.println("Done getting input from other players");
-		
 	}
 	
 	@Override
 	public void run(){
-		pokemonMap = dba.getMap();
+	
 		getPlayers();
-		giveMoves();
-		
 		generateBattlePairs();
 		createBattles();
 		boolean result1 = first.join();
@@ -140,6 +133,7 @@ public class Server implements Runnable{
 		for (NetworkPlayer n : players){
 //			n.readPlayer();
 			n.readPlayer(pokemonMap);
+
 		}
 	}
 	
@@ -168,6 +162,7 @@ public class Server implements Runnable{
 			}
 			System.out.println(output);
 			p.getPw().println(output);
+
 		}
 	}
 	
@@ -218,13 +213,19 @@ public class Server implements Runnable{
 		JOptionPane.showMessageDialog(null, "Please tell your clients the following IP address: \n" + ipAddress, "Your IP Address", JOptionPane.INFORMATION_MESSAGE, null);
 		
 		Server s = new Server();
+		DataBaseAccess dba = s.new DataBaseAccess();
+		dba.start();
+		
 		Thread t = new Thread(s);
-		t.run();
 		try {
 			dba.join();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		pokemonMap = dba.getMap();
+		t.run();
+		
+		
 	}
 	
 	private class SocketSort implements Comparator<Socket>{
