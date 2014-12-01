@@ -32,6 +32,7 @@ public class Client{
 	//method to store players
 	
 	public Client(String ipAddress){
+		
 		hostAddress = ipAddress;
 		try {
 			clientSocket = new Socket(hostAddress,Server.COMMUNICATIONPORT);
@@ -44,47 +45,29 @@ public class Client{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		if (pw == null || br == null)
-			System.out.println("BROKEDED");
-		clientGUI = new GUI(pw, br);
-		System.out.println("GUI INITIALIZED");
-		/*
-		try {
-			oos.writeObject(p);//tries to send the player over to the server
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("DID IT WORK?");*/
+		
+		clientGUI = new GUI(pw,br);
+		System.out.println("GUI CREATED");
 	}
 	
 	public void run(){
-		
 		System.out.println("CLIENT MAKING GUI");
 		Player p = clientGUI.getPlayer();
-		
-		
-		
-		System.out.println("GOT PLAYER");
 		this.playerName = p.getName();
-		System.out.println("STARTING TO SEND");
-		clientGUI.createGUI(hostAddress);
+
 		try {
 			oos = new ObjectOutputStream(clientSocket.getOutputStream());
 			oos.writeObject(p);//trying to write player
 			oos.flush();
 			System.out.println("Trying to make outputstream");
 			
-//			ois = new ObjectInputStream(clientSocket.getInputStream());
-//			System.out.println("Trying to make inputstream");//i think input streams are working ok
+			ois = new ObjectInputStream(clientSocket.getInputStream());
+			System.out.println("Trying to make inputstream");//i think input streams are working ok
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("DONE SENDING STUFF");
-		///fjdfjdkjfkdjfkjfjfakjfk
-//		clientGUI.switchToBattleScreen();
-	
+		clientGUI.createGUI(hostAddress);
 	}
 	
 	public static void main(String[] args) {

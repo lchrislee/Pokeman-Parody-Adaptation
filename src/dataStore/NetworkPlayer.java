@@ -121,7 +121,7 @@ public class NetworkPlayer extends Player {
 	public void setOOS(){
 		try {
 			this.oos = new ObjectOutputStream(commSocket.getOutputStream());
-			if(oos==null){
+			if(this.oos==null){
 				System.out.println("oos IS NULL");
 			}
 		} catch (IOException e) {
