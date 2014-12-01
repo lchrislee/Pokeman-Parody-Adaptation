@@ -49,8 +49,9 @@ public class Server implements Runnable{
 		try {
 			ssChat = new ServerSocket(CHATPORT);
 			ssComm = new ServerSocket(COMMUNICATIONPORT);
-			
-			for (int i = 0; i < 1; ++i){
+			System.out.println("Created server sockets");
+			for (int i = 0; i < 4; ++i){
+				System.out.println(i);
 				Socket communicationSocketInput = ssComm.accept();
 				
 				System.out.println(communicationSocketInput.toString() + " CONNECTED TO SERVER");
@@ -60,13 +61,14 @@ public class Server implements Runnable{
 				System.out.println(chatSocketInput.toString() + " CONNECTED TO CHAT");
 				chatSockets.add(chatSocketInput);
 				players.add(new NetworkPlayer());
+				System.out.println("SIZE: " + players.size());
 			}
-			System.out.println("AM I DONE WITH ACCEPTING ");
+			System.out.println("DONE WITH ACCEPTING");
 			
 			chatSockets.sort(new SocketSort());
 			communicationSockets.sort(new SocketSort());
 			
-			for (int i = 0; i < 1; ++i){
+			for (int i = 0; i < 4; ++i){
 				NetworkPlayer p = players.get(i);
 				p.setChatSocket(chatSockets.get(i));
 				p.setCommSocket(communicationSockets.get(i));
@@ -80,7 +82,7 @@ public class Server implements Runnable{
 				System.out.println("FINISHED LISTENING");
 			}
 			
-			for(int j=0;j<1;++j){
+			for(int j=0;j<4;++j){
 				NetworkPlayer p = players.get(j);
 				p.setOIS();
 				System.out.println("nEED TO GET INPUT NOW");
@@ -95,6 +97,7 @@ public class Server implements Runnable{
 	
 	@Override
 	public void run(){
+		pokemonMap = dba.getMap();
 		getPlayers();
 		giveMoves();
 		
@@ -206,18 +209,13 @@ public class Server implements Runnable{
 		JOptionPane.showMessageDialog(null, "Please tell your clients the following IP address: \n" + ipAddress, "Your IP Address", JOptionPane.INFORMATION_MESSAGE, null);
 		
 		Server s = new Server();
-		
-		
 		Thread t = new Thread(s);
+		t.run();
 		try {
 			dba.join();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		pokemonMap = dba.getMap();
-		t.run();
-		
-		
 	}
 	
 	private class SocketSort implements Comparator<Socket>{
