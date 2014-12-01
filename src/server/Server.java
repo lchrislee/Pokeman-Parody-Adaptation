@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 
 import server.chatSystem.ChatServer;
 import Battle.Battle;
+import dataStore.MongoDB;
 import dataStore.Move;
 import dataStore.NetworkPlayer;
 import dataStore.Pokemon;
@@ -234,13 +235,13 @@ public class Server implements Runnable{
 		
 		@Override
 		public void run(){
-			//try {
+			try {
 				System.out.println("TEST");//comment this out and get hte mongodb stuff back up
-				//MongoDB accessor = new MongoDB();
-				//map = accessor.getPokemon();
-			//} catch (UnknownHostException e) {
-				//e.printStackTrace();
-			//}
+				MongoDB accessor = new MongoDB();
+				map = accessor.getPokemon();
+			} catch (UnknownHostException e) {
+				e.printStackTrace();
+			}
 		}
 		public HashMap<String, ArrayList<Pokemon>> getMap(){
 			return map;
