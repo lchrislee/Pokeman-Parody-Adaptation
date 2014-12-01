@@ -882,7 +882,6 @@ public class LoginScreen extends JPanel {
 				 System.out.println("#####");
 				
 			  if(inputNameTextField.getText().length() != 0 && hasSelectedPokeman && !chosenCharacter.getDescription().equals("0")){
-				  done = true;
 				  //create a player using default constructor and then set name
 				  //Player player = new Player();
 				 				  
@@ -898,7 +897,7 @@ public class LoginScreen extends JPanel {
 					  System.out.println("WHY IS CHOSEN CHARACTER NULL ");
 				  player = new Player(pokemonList,/*imageList,*/chosenCharacterName, inputNameTextField.getText());
 				  
-					
+				  done = true;
 			  }
 			}
 		});
