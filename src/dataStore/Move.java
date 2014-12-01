@@ -3,9 +3,9 @@ package dataStore;
 import java.io.Serializable;
 
 public class Move implements Serializable {
-	private static final long serialVersionUID = 8303834611226519467L;
+	private static final long serialVersionUID = 7404749907295089929L;
 //	private int id;//so we can take name and damage value from database
-	private int damage;//maybe store this..dunno yet
+	private Integer damage;//maybe store this..dunno yet
 	private String name;
 	
 	public Move(int damage,/*int id, */String n){	//4 moves x 20 pokemon = 80 moves -.-
@@ -22,6 +22,8 @@ public class Move implements Serializable {
 	public Move(){
 		
 	}
+	
+	
 	
 	public void setDamage(int i){
 		damage = i;

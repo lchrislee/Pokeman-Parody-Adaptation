@@ -12,7 +12,7 @@ import javax.swing.ImageIcon;
 public class Player implements Serializable{
 	private static final long serialVersionUID = 5504055184113660229L;
 
-	private int currentPokemonIndex = 0;//which pokemon in the list is currently out
+	private Integer currentPokemonIndex = 0;//which pokemon in the list is currently out
 	
 	private Vector <Pokemon> pokemonList;// this will store the Pokemon the player has caught
 //	private Vector <ImageIcon> spriteList;

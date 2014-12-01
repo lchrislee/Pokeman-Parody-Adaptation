@@ -1,21 +1,19 @@
 package dataStore;
 import java.io.Serializable;
 import java.util.Vector;
-import java.util.Random;
 
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-
 
 public class Pokemon implements Serializable{
-	private boolean conscious = true; //default
-	private int attack;
-	private int defense;
-	private int speed;//stat that is used to decide which pokemon can attack first
-	private int health;//the total amount of health points the pokemon currently has
-	private int maxHealth;
-	private double rarity; /*the level of rarity (the higher level of rarity, the stronger the pokemon will be and less likely it will be to appear, more difficult to catch)*/
-	private int level;
+	private static final long serialVersionUID = 5248689392207082811L;
+	private Boolean conscious = true; //default
+	private Integer attack;
+	private Integer defense;
+	private Integer speed;//stat that is used to decide which pokemon can attack first
+	private Integer health;//the total amount of health points the pokemon currently has
+	private Integer maxHealth;
+	private Double rarity; /*the level of rarity (the higher level of rarity, the stronger the pokemon will be and less likely it will be to appear, more difficult to catch)*/
+	private Integer level;
 	
 	private Vector<Move> moveList;
 	//private Vector<ImageIcon> spriteList = new Vector<ImageIcon>();
