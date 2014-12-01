@@ -10,6 +10,9 @@ import dataStore.Player;
 //import dataStore.Player;
 import dataStore.Pokemon;
 
+//need to fix some null pointer exceptions
+
+
 public class Battle extends RecursiveTask<Boolean> {
 	private static final long serialVersionUID = -5076483035782993247L;
 	//String input;
@@ -51,7 +54,8 @@ public class Battle extends RecursiveTask<Boolean> {
 		
 		
 		Battle b = new Battle(p1, p2);
-	
+		
+		
 		b.compute();
 	}
 
@@ -421,8 +425,8 @@ public class Battle extends RecursiveTask<Boolean> {
 	private int turnOrder(){//returns who goes first
 		Pokemon p1Poke = p1.getCurrentPokemon();
 		Pokemon p2Poke = p2.getCurrentPokemon();
+	
 		
-
 		if(p1Poke.getSpeed() > p2Poke.getSpeed())
 			return PLAYERONE;
 	
