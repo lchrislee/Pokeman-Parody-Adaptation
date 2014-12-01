@@ -412,8 +412,7 @@ public class Battle extends RecursiveTask<Boolean> {
 		return PLAYERTWO;
 	}
 	
-	private synchronized void interpretSwap(){//string will be number-pokemonname... eg: 1-Lickister  or 2-Beetwo
-		
+	private synchronized void interpretSwap(){//string will be number-pokemonname... eg: 1-Lickister  or 2-Beetwo	
 		String p1message = p1Input.substring(0, 2);
 		String p2message = p2Input.substring(0, 2);
 		
