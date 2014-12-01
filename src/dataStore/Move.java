@@ -1,5 +1,6 @@
 package dataStore;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 public class Move implements Serializable {
@@ -44,6 +45,16 @@ public class Move implements Serializable {
 	
 	public String getName(){
 		return this.name;
+	}
+	
+	private void readObject(java.io.ObjectInputStream stream) throws IOException, ClassNotFoundException{
+		this.name = (String) stream.readObject();
+		this.damage = stream.readInt();
+	}
+	
+	private void writeObject(java.io.ObjectOutputStream stream) throws IOException{
+		stream.writeObject(name);
+		stream.writeInt(damage);
 	}
 	
 	public String toString(){
