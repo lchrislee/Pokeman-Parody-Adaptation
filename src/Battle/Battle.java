@@ -47,7 +47,7 @@ public class Battle extends RecursiveTask<Boolean> {
 		NetworkPlayer p2 = new NetworkPlayer(player2);
 		
 		Battle b = new Battle(p1, p2);
-		b.compute();
+		//b.compute();
 		
 		System.out.println("player one is out of pokemon: " + b.checkForWinner(1));
 		Vector<Pokemon> pokemonList = b.p1.getPokemonList();
@@ -57,6 +57,7 @@ public class Battle extends RecursiveTask<Boolean> {
 			//System.out.println(pokemonList.size());
 			System.out.println("player one is out of pokemon: " + b.checkForWinner(1));
 		}
+		
 		System.out.println("player two is out of pokemon: " + b.checkForWinner(2));
 		pokemonList = b.p2.getPokemonList();
 		for (int i = 0; i < pokemonList.size(); ++i){
@@ -64,6 +65,7 @@ public class Battle extends RecursiveTask<Boolean> {
 			System.out.println(pokemonList.get(i).getName());
 			System.out.println("player two is out of pokemon: " + b.checkForWinner(2));
 		}
+		b.compute();
 	}
 
 	@Override
@@ -78,7 +80,7 @@ public class Battle extends RecursiveTask<Boolean> {
 				p1Input = p1.getBr().readLine();
 				p2Input = p2.getBr().readLine();
 			} catch (IOException e) {
-				e.printStackTrace();
+				
 			}
 			
 			parse();
