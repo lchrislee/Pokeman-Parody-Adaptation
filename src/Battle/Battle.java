@@ -41,9 +41,10 @@ public class Battle extends RecursiveTask<Boolean> {
 	
 	public static void main(String[] args) {
 		Player player = new Player();
+		Player player2 = new Player();
 		
 		NetworkPlayer p1 = new NetworkPlayer(player);
-		NetworkPlayer p2 = new NetworkPlayer(player);
+		NetworkPlayer p2 = new NetworkPlayer(player2);
 		
 		Battle b = new Battle(p1, p2);
 		
@@ -51,12 +52,15 @@ public class Battle extends RecursiveTask<Boolean> {
 		Vector<Pokemon> pokemonList = b.p1.getPokemonList();
 		for (int i = 0; i < pokemonList.size(); ++i){
 			pokemonList.get(i).setHealth(0);
+			System.out.println(pokemonList.get(i).getName());
+			//System.out.println(pokemonList.size());
 			System.out.println("player one is out of pokemon: " + b.checkForWinner(1));
 		}
 		System.out.println("player two is out of pokemon: " + b.checkForWinner(2));
 		pokemonList = b.p2.getPokemonList();
 		for (int i = 0; i < pokemonList.size(); ++i){
 			pokemonList.get(i).setHealth(0);
+			System.out.println(pokemonList.get(i).getName());
 			System.out.println("player two is out of pokemon: " + b.checkForWinner(2));
 		}
 	}
@@ -120,6 +124,7 @@ public class Battle extends RecursiveTask<Boolean> {
 				if(p1.getPokemonList().get(i).getHealth() == 0)
 					count++;
 			}
+			System.out.println(count + "COUNT");
 			if(count == 3)
 				return true;
 			else return false;
@@ -130,6 +135,7 @@ public class Battle extends RecursiveTask<Boolean> {
 				if(p2.getPokemonList().get(i).getHealth() == 0)
 					count++;
 			}
+			System.out.println(count + "");
 			if(count == 3)
 				return true;
 			else return false;
