@@ -26,7 +26,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 public class OpeningPanel extends JPanel implements ActionListener {
 	
-	Timer timer = new Timer(40, this);
+	Timer timer = new Timer(30, this);
 	
 	/* initial position and moving speed of each sprites */
 	int millerX = 0, millerXSpeed = 6, millerY = 170, millerYSpeed;
@@ -61,6 +61,32 @@ public class OpeningPanel extends JPanel implements ActionListener {
 	int sexypodX = seanasaurX-103, sexypodXSpeed = 0;
 	int weepintoiseX = sexypodX-115, weepintoiseXSpeed = 0;
 	
+	Image dolanImage = null, millerImage = null, crowleyImage = null,
+			mistyImage = null, jungIllImage = null, goobyImage = null;
+	Image aerodon_left = null;//Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Aerodon_left_tr.png"); 
+	Image beetwo_left = null;//Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Bee-two_left_tr.png"); 
+	Image dadizard_left = null;//Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/dadizard_left_tr.png"); 
+	Image exegynx_left = null;//Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Exegynx_left_tr.png"); 
+	Image feelglet_left = null;//Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/feelglet_left_tr.png");
+	Image gengynx_left = null;//Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Gengynx_left_tr.png"); 
+	Image geonx_left = null;//Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Geonx_left_tr.png"); 
+	Image golem_left = null;//Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Golem_left_tr.png"); 
+	Image jiwodude_left = null;//Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/jiwodude_left_tr.png"); 
+	Image lapradactyl_left = null;
+	
+	Image lickister_right = null;//Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Lickister_right_tr.png"); 
+	Image magikuna_right = null;//Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Magikuna_right_tr.png"); 
+	Image marozard_right = null;//Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Marozard_right_tr.png"); 
+	Image meonx_right = null;//Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Meonx_right_tr.png"); 
+	Image pikayu_right = null;//Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Pikayu_right_tr.png");
+	Image rhyfetch_right = null;//Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/sexypod_left_tr.png"); 
+	Image scydra_right = null;//Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Scydra_right_tr.png"); 
+	Image seanasaur_right = null;//Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Seanasaur_right_tr.png"); 
+	Image sexypod_right = null;//Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/sexypod_right_tr.png"); 
+	Image weepintoise_right = null;
+	
+	Image gameScreen = null;
+	
 	public boolean done = false;
 	int timerCount = 0;
 	int timerCountSpeed = 1;
@@ -69,11 +95,70 @@ public class OpeningPanel extends JPanel implements ActionListener {
 	
 	public OpeningPanel(){
 		try {
+			millerImage = ImageIO.read(getClass().getResource("/Character_sprites/Miller_hot.jpg"));
+			crowleyImage = ImageIO.read(getClass().getResource("/Character_sprites/Crowley_robot.jpg"));
+			dolanImage = ImageIO.read(getClass().getResource("/Character_sprites/Dolan_normal.png"));
+		} catch(IOException ioe) {
+			System.out.println("fail reading image; openingPanel");
+		}
+		try {
+			jungIllImage = ImageIO.read(getClass().getResource("/Character_sprites/JungIll_normal.png"));
+		} catch(IOException ioe) {
+			System.out.println("fail reading image; openingPanel");
+		}
+		try {
+			goobyImage = ImageIO.read(getClass().getResource("/Character_sprites/Gooby_normal.png"));
+		} catch(IOException ioe) {
+			System.out.println("fail reading image; openingPanel");
+		}
+		try {
+			mistyImage = ImageIO.read(getClass().getResource("/Character_sprites/Misty_normal.png"));
+		} catch(IOException ioe) {
+			System.out.println("fail reading image; openingPanel");
+		}
+		try {
+			aerodon_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/aerodon_left_tr.png")); 
+			beetwo_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/Bee-two_left_tr.png"));
+			dadizard_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/dadizard_left_tr.png"));
+			exegynx_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/exegynx_left_tr.png")); 
+			feelglet_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/feelglet_left_tr.png"));
+			
+			gengynx_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/gengynx_left_tr.png")); 
+			geonx_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/geonx_left_tr.png")); 
+			golem_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/golem_left_tr.png")); 
+			jiwodude_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/jiwodude_left_tr.png")); 
+			lapradactyl_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/lapradactyl_left_tr.png"));
+			
+		} catch(IOException ioe) {
+			System.out.println("fail reading img openingpanel");
+		}
+
+		try {
+			lickister_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/lickister_left_tr.png"));
+			magikuna_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/magikuna_left_tr.png")); 
+			marozard_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/marozard_left_tr.png"));
+			meonx_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/meonx_left_tr.png"));
+			pikayu_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/pikayu_left_tr.png"));
+			rhyfetch_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/sexypod_right_tr.png"));
+			scydra_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/sexypod_left_tr.png"));
+			seanasaur_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/seanasaur_left_tr.png"));
+			sexypod_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/sexypod_left_tr.png")); 
+			weepintoise_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/weepintoise_left_tr.png"));
+		} catch(IOException ioe) {
+			System.out.println("Fail reading images openingpanel");
+		}
+		try {
+			gameScreen = ImageIO.read(getClass().getResource("/screen_opening.png"));
+		} catch(IOException ioe) {
+			System.out.println("Fail reading screen oopeningpanel");
+		}
+		try {
 			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
 		} catch (ClassNotFoundException | InstantiationException
 				| IllegalAccessException | UnsupportedLookAndFeelException e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
 	public void stop(){
@@ -87,40 +172,20 @@ public class OpeningPanel extends JPanel implements ActionListener {
 		g.fillRect(0, 0, 800, 800);
 		
 		/* get the image files and place them on their default position */
-		Image millerTest = null;
-		try {
-			millerTest = ImageIO.read(getClass().getResource("/Character_sprites/Miller_hot.jpg"));
-		} catch(IOException ioe) {
-			System.out.println("FUCK");
-		}
-		Image millerImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/Miller_hot.jpg");
-		g.drawImage(millerTest, millerX, millerY, this);
 		
-		Image crowleyImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/Crowley_robot.jpg");
+		g.drawImage(millerImage, millerX, millerY, this);
+		
+	
 		g.drawImage(crowleyImage, crowleyX, crowleyY, this);
-		
-		Image dolanImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/Dolan_normal.png");
+
 		g.drawImage(dolanImage, dolanX, dolanY, this);
 		
-		Image jungIllImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/JungIll_normal.png"); 
 		g.drawImage(jungIllImage, jungIllX, jungIllY, this);
 		
-		Image goobyImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/Gooby_normal.png");
 		g.drawImage(goobyImage, goobyX, goobyY, this);
-		
-		Image mistyImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/Misty_normal.png"); 
+	
 		g.drawImage(mistyImage, mistyX, mistyY, this);
 		
-		Image aerodon_left = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Aerodon_left_tr.png"); 
-		Image beetwo_left = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Bee-two_left_tr.png"); 
-		Image dadizard_left = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/dadizard_left_tr.png"); 
-		Image exegynx_left = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Exegynx_left_tr.png"); 
-		Image feelglet_left = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/feelglet_left_tr.png");
-		Image gengynx_left = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Gengynx_left_tr.png"); 
-		Image geonx_left = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Geonx_left_tr.png"); 
-		Image golem_left = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Golem_left_tr.png"); 
-		Image jiwodude_left = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/jiwodude_left_tr.png"); 
-		Image lapradactyl_left = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Lapradactyl_left_tr.png"); 
 		g.drawImage(aerodon_left, aerodonX, 0, this);
 		g.drawImage(beetwo_left, beetwoX, 0, this);
 		g.drawImage(dadizard_left, dadizardX, 0, this);
@@ -131,18 +196,7 @@ public class OpeningPanel extends JPanel implements ActionListener {
 		g.drawImage(golem_left, golemX, 0, this);
 		g.drawImage(jiwodude_left, jiwodudeX, 0, this);
 		g.drawImage(lapradactyl_left, lapradactylX, 0, this);
-		
-		
-		Image lickister_right = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Lickister_right_tr.png"); 
-		Image magikuna_right = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Magikuna_right_tr.png"); 
-		Image marozard_right = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Marozard_right_tr.png"); 
-		Image meonx_right = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Meonx_right_tr.png"); 
-		Image pikayu_right = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Pikayu_right_tr.png");
-		Image rhyfetch_right = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/sexypod_left_tr.png"); 
-		Image scydra_right = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Scydra_right_tr.png"); 
-		Image seanasaur_right = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Seanasaur_right_tr.png"); 
-		Image sexypod_right = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/sexypod_right_tr.png"); 
-		Image weepintoise_right = Toolkit.getDefaultToolkit().getImage("res/Pokemon_sprites/Weepintoise_right_tr.png"); 
+
 		g.drawImage(lickister_right, lickisterX, 450, this);
 		g.drawImage(magikuna_right, magikunaX, 450, this);
 		g.drawImage(marozard_right, marozardX, 450, this);
@@ -154,7 +208,6 @@ public class OpeningPanel extends JPanel implements ActionListener {
 		g.drawImage(sexypod_right, sexypodX, 450, this);
 		g.drawImage(weepintoise_right, weepintoiseX, 450, this);
 		
-		Image gameScreen = Toolkit.getDefaultToolkit().getImage("res/screen_opening.png");
 		g.drawImage(gameScreen, 0, gameLogoY, this);
 		
 		/* start the timer */
