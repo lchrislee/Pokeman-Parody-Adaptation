@@ -248,16 +248,17 @@ public class Battle extends RecursiveTask<Boolean> {
 		
 		if(p1message.equals("At") && p2message.equals("At")){
 			if(turnOrder() == 1){
-				doDamage(p1); //if p1 beats p2 here, doDamage returns but p2 still does its attack?
-				//checkForFaint(PLAYERTWO);
-				doDamage(p2);
+				if(!doDamage(p1)){
+					doDamage(p2);
+				}
+				
 				//checkForFaint(PLAYERONE);
 			}
 			else{
-				doDamage(p2);
-				//checkForFaint(PLAYERONE);
-				doDamage(p1);
-				//checkForFaint(PLAYERTWO);
+				if(!doDamage(p2)){
+					doDamage(p1);
+				}
+				
 			}
 		}
 		
@@ -274,7 +275,7 @@ public class Battle extends RecursiveTask<Boolean> {
 		//System.out.println(input);
 	}
 		
-	private void doDamage(NetworkPlayer p) {
+	private boolean doDamage(NetworkPlayer p) {//returns true if winner is deterrmined or pokemon fainted
 		if(p.equals(p1)){
 			int moveNameStartIndex = p1Input.indexOf("_") + 1;
 			int moveNameEndIndex = p1Input.indexOf("|");
@@ -312,10 +313,11 @@ public class Battle extends RecursiveTask<Boolean> {
 				p2.getPw().flush();
 				if(checkForWinner(PLAYERTWO)){
 					winnerDetermined = true;
-					return;
+					return true;
 				}
 				else
 					doSwitch(PLAYERTWO);
+				return true;
 			}
 		}
 		else{
@@ -347,13 +349,15 @@ public class Battle extends RecursiveTask<Boolean> {
 			if(remain == 0){
 				if(checkForWinner(PLAYERONE)){
 					winnerDetermined = true;
-					return;
+					return true;
 				}
 				else
-					doSwitch(PLAYERONE);				
+					doSwitch(PLAYERONE);
+				return true;
 			}
 			
 		}
+		return false;
 		
 
 	}
