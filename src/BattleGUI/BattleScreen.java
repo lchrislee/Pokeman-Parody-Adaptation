@@ -4,10 +4,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -165,7 +167,14 @@ public class BattleScreen extends JPanel {
 			enemyPokemonPanel.setBackground(Color.white);
 			//JLabel enemyPokemonImage = new JLabel(enemyPokemon.getLeftSprite());
 			String enemyPokemonString = enemyPokemon.getName();
-			JLabel enemyPokemonImage = new JLabel(new ImageIcon("res/Pokemon_sprites/" + enemyPokemonString + "_left_tr.png"));
+			Image pokemonImage = null;
+			try {
+				pokemonImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/" + enemyPokemonString + "_left_tr.png"));
+			} catch(IOException ioe) {
+				System.out.println("fail image reading in battle screen");
+			}
+			ImageIcon enemyPokemonImageIcon = new ImageIcon(pokemonImage);
+			JLabel enemyPokemonImage = new JLabel(enemyPokemonImageIcon);
 			enemyPokemonPanel.add(enemyPokemonImage);
 		}
 		
@@ -188,7 +197,14 @@ public class BattleScreen extends JPanel {
 			yourPokemonPanel = new JPanel();
 			yourPokemonPanel.setBackground(Color.white);
 			String yourPokemonString = yourPokemon.getName();
-			JLabel yourPokemonImage = new JLabel(new ImageIcon("res/Pokemon_sprites/" + yourPokemonString + "_right_tr.png"));
+			Image pokemonImage = null;
+			try {
+				pokemonImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/" + yourPokemonString + "_right_tr.png"));
+			} catch(IOException ioe) {
+				System.out.println("fail image reading in battle screen");
+			}
+			ImageIcon yourPokemonImageIcon = new ImageIcon(pokemonImage);
+			JLabel yourPokemonImage = new JLabel(yourPokemonImageIcon);
 			yourPokemonPanel.add(yourPokemonImage);
 			
 			yourInfoPanel = new JPanel();
