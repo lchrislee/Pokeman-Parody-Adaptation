@@ -36,9 +36,12 @@ public class Server implements Runnable{
 	int battleOneP2 = -1;
 	int battleTwoP1 = -1;
 	int battleTwoP2 = -1;
-	
+	private DataBaseAccess dba = null;
 	
 	public Server(){
+		dba = new DataBaseAccess();
+		System.out.println("TEST");
+		dba.start();
 		chatServer = new ChatServer(CHATPORT);
 		players = new ArrayList<NetworkPlayer>();
 		ArrayList<Socket> chatSockets = new ArrayList<Socket>();
