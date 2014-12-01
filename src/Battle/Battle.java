@@ -164,7 +164,7 @@ public class Battle extends RecursiveTask<Boolean> {
 			}
 			int index = Integer.parseInt(fromClient.substring(fromClient.length() - 1)); //added -1
 			String swapMessage = "swap_%s?%s|%d!%d:%d";
-			String.format(swapMessage, p2.getName(), p2.getPokemonList().get(index),
+			swapMessage = String.format(swapMessage, p2.getName(), p2.getPokemonList().get(index),
 			p2.getPokemonList().get(index).getLevel(), 
 			p2.getPokemonList().get(index).getHealth(), 
 			p2.getPokemonList().get(index).getMaxHealth());
@@ -177,7 +177,7 @@ public class Battle extends RecursiveTask<Boolean> {
 			p2.getPw().flush();
 			
 			String swapDisplayMessage = "%s sent out %s to battle";
-			String.format(swapDisplayMessage, p2.getName(), p2.getPokemonList().get(index));
+			swapDisplayMessage = String.format(swapDisplayMessage, p2.getName(), p2.getPokemonList().get(index));
 			
 			p1.getPw().write(swapDisplayMessage);
 			p2.getPw().write(swapDisplayMessage);
@@ -203,7 +203,7 @@ public class Battle extends RecursiveTask<Boolean> {
 			}
 			int index = Integer.parseInt(fromClient.substring(fromClient.length() - 1));
 			String swapMessage = "swap_%s?%s|%d!%d:%d";
-			String.format(swapMessage, p1.getName(), p1.getPokemonList().get(index),
+			swapMessage = String.format(swapMessage, p1.getName(), p1.getPokemonList().get(index),
 			p1.getPokemonList().get(index).getLevel(), 
 			p1.getPokemonList().get(index).getHealth(), 
 			p1.getPokemonList().get(index).getMaxHealth());
@@ -216,7 +216,7 @@ public class Battle extends RecursiveTask<Boolean> {
 			p2.getPw().flush();
 			
 			String swapDisplayMessage = "%s sent out %s to battle";
-			String.format(swapDisplayMessage, p1.getName(), p1.getPokemonList().get(index));
+			swapDisplayMessage = String.format(swapDisplayMessage, p1.getName(), p1.getPokemonList().get(index));
 			
 			p1.getPw().write(swapDisplayMessage);
 			p2.getPw().write(swapDisplayMessage);
@@ -298,7 +298,7 @@ public class Battle extends RecursiveTask<Boolean> {
 			//checkForFaint(PLAYERTWO);
 			
 			String out = "%s attacked with %s and did %d damage"; //moved this statement chunk from the if statement below
-			String.format(out, p.getName(), moveName, damage);
+			out = String.format(out, p.getName(), moveName, damage);
 			p1.getPw().write(out);
 			p2.getPw().write(out);
 			p1.getPw().flush();
@@ -341,7 +341,7 @@ public class Battle extends RecursiveTask<Boolean> {
 			p2.getPw().flush();
 			
 			String out = "%s attacked with %s and did %d damage";
-			String.format(out, p.getName(), moveName, damage);
+			out = String.format(out, p.getName(), moveName, damage);
 			p1.getPw().write(out);
 			p2.getPw().write(out);
 			p1.getPw().flush();
