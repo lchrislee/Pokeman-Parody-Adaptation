@@ -57,6 +57,15 @@ public class BattleScreen extends JPanel {
 		revalidate();
 	}
 	
+	public void deleteYourPokemon() {
+		this.yourPokemonPanel.removeAll();
+	}
+	
+	public void deleteEnemyPokemon() {
+		this.enemyPokemonPanel.removeAll();
+	}
+
+	
 	private void parse(String input, Pokemon changeMe){
 		/* parse messages for info */
 		String m = input;
