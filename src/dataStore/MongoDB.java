@@ -29,7 +29,7 @@ public class MongoDB {
     }
     
     public MongoDB(String ip,int port) throws UnknownHostException{
-        m = new MongoClient(ip, port);
+        m = new MongoClient();
         PokemanDB = m.getDB(POKEMAN_DB_NAME);
         PokemanCollection = PokemanDB.getCollection(POKEMAN_DB_COLLECTION);
        
