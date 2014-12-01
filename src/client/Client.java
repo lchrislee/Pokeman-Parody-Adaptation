@@ -54,11 +54,21 @@ public class Client{
 		System.out.println("CLIENT MAKING GUI");
 		Player p = clientGUI.getPlayer();
 		this.playerName = p.getName();
-		clientGUI.createGUI(hostAddress);
+		clientGUI.createChat(hostAddress);
+		System.out.println("DONE MAKING CHAT");
 		try {
+			pw.println("CHECK");
+			pw.flush();
+			br.readLine();
 			oos = new ObjectOutputStream(clientSocket.getOutputStream());
 			oos.writeObject(p);//trying to write player
 			oos.flush();
+			oos.close();
+			
+			pw.println("alkdsjf");
+			pw.flush();
+			
+			System.out.println(br.readLine());
 			System.out.println("Trying to make outputstream");
 			InputStream i = clientSocket.getInputStream();
 			System.out.println("THIS WORKS");
@@ -68,7 +78,7 @@ public class Client{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		clientGUI.createGUI(hostAddress);
 	}
 	
 	public static void main(String[] args) {

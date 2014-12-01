@@ -50,7 +50,7 @@ public class AttackSelection extends JPanel {
 	}
 	
 	public void replaceMoveGUI(Vector<Move> v){
-		removeAll();
+		this.removeAll();
 		createGUI(v);
 	}
 	
@@ -61,12 +61,15 @@ public class AttackSelection extends JPanel {
 	}
 	
 	public Vector<Move> getMoves(int index){
+		System.out.println("TRYING TO GET MOVES");
 		pw.println("MOVES " + index);
 		pw.flush();
 		
 		String movesList = null;
 		try {
 			movesList = br.readLine();
+			System.out.println("GOT MOVES");
+			System.out.println(movesList);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

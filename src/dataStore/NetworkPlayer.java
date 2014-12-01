@@ -64,16 +64,16 @@ public class NetworkPlayer extends Player {
 
 	//testing
 	public void setOIS(){
-		
-			try {
-				this.ois = new ObjectInputStream(commSocket.getInputStream());
-				if(ois==null){
-					System.out.println("ois IS NULL");
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
+		try {
+			this.ois = new ObjectInputStream(commSocket.getInputStream());
+			if(ois==null){
+				System.out.println("ois IS NULL");
 			}
-		
+		} catch (IOException e) {
+			System.out.println("BAD OIS");
+			System.exit(0);
+			e.printStackTrace();
+		}
 	}
 	
 	//testing
@@ -126,6 +126,8 @@ public class NetworkPlayer extends Player {
 				System.out.println("oos IS NULL");
 			}
 		} catch (IOException e) {
+			System.out.println("BAD OOS");
+			System.exit(0);
 			e.printStackTrace();
 		}
 	}
@@ -154,7 +156,7 @@ public class NetworkPlayer extends Player {
 //		if(p.getCurrentSprite()==null)
 //			System.out.println("CURRENT SPRITE IS NULL");
 		
-		System.out.println(p);
+		System.out.println("PLAYER IS " + p);
 		super.setPlayer(p, mapping);
 		
 		
