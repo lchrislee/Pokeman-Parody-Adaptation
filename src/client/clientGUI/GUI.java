@@ -81,12 +81,12 @@ public class GUI extends JFrame{
 		System.out.println("IN GUI CREATEGUI");
 		remove(l);
 		l = null;
-		JPanel leftContainer = new JPanel(new BorderLayout());
-		add(new SideBar(address, playerName), BorderLayout.EAST);
-		add(leftContainer, BorderLayout.CENTER);
-		leftContainer.add(new CommandCenterGUI(this, pw, bf), BorderLayout.SOUTH);
-		validate();
-		repaint();
+//		JPanel leftContainer = new JPanel(new BorderLayout());
+//		add(new SideBar(address, playerName), BorderLayout.EAST);
+//		add(leftContainer, BorderLayout.CENTER);
+//		leftContainer.add(new CommandCenterGUI(this, pw, bf), BorderLayout.SOUTH);
+//		validate();
+//		repaint();
 	}
 	
 	public Player getPlayer(){

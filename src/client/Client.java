@@ -74,9 +74,10 @@ public class Client{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println("DONE SENDING STUFF");
 		clientGUI.createGUI(hostAddress, pw, br);
 		///fjdfjdkjfkdjfkjfjfakjfk
-		clientGUI.switchToBattleScreen();
+//		clientGUI.switchToBattleScreen();
 	
 	}
 	
