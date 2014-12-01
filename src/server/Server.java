@@ -96,7 +96,12 @@ public class Server implements Runnable{
 	
 	@Override
 	public void run(){
-	
+		try {
+			dba.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		pokemonMap = dba.getMap();
 		getPlayers();
 		generateBattlePairs();
 		createBattles();
@@ -213,19 +218,9 @@ public class Server implements Runnable{
 		JOptionPane.showMessageDialog(null, "Please tell your clients the following IP address: \n" + ipAddress, "Your IP Address", JOptionPane.INFORMATION_MESSAGE, null);
 		
 		Server s = new Server();
-		DataBaseAccess dba = s.new DataBaseAccess();
-		dba.start();
 		
 		Thread t = new Thread(s);
-		try {
-			dba.join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		pokemonMap = dba.getMap();
 		t.run();
-		
-		
 	}
 	
 	private class SocketSort implements Comparator<Socket>{
