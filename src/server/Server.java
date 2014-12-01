@@ -146,9 +146,13 @@ public class Server implements Runnable{
 			String input = null;
 			String output = "";
 			try {
-				input = p.getBr().readLine();
+				input = p.getBr().readLine(); //read MOVES # from attackselection of client
 			} catch (IOException e) {
 				e.printStackTrace();
+			}
+			if (input == null){
+				System.out.println("BROKEDEDEDED");
+				return;
 			}
 			if (input.contains("MOVES")){
 				int position = Integer.parseInt(input.substring(input.length() - 1));
@@ -160,6 +164,7 @@ public class Server implements Runnable{
 					++i;
 				}
 			}
+			System.out.println(output);
 			p.getPw().println(output);
 		}
 	}
