@@ -32,10 +32,10 @@ public class Player implements Serializable{
 			playerMoves.add("Quit");*/
 			pokemonList = new Vector<Pokemon>();
 			Vector<Move> v = new Vector<Move>();
-			v.add(new Move(50, 1, "Tackle"));
-			v.add(new Move(90, 2, "Psychic"));
-			v.add(new Move(100, 3, "Hyper Beam"));
-			v.add(new Move(10, 4, "Jump"));
+			v.add(new Move(50,/* 1, */"Tackle"));
+			v.add(new Move(90,/* 2, */"Psychic"));
+			v.add(new Move(100,/* 3, */"Hyper Beam"));
+			v.add(new Move(10,/* 4, */"Jump"));
 			String[] s = {"Bee-two_left_tr.png"};
 			Pokemon p = new Pokemon("Bee-Two", s, 40, 50, 55, 100, 2, 17, v);
 			pokemonList.add(p);

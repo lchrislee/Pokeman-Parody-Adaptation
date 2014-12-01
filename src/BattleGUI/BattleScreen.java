@@ -29,22 +29,28 @@ public class BattleScreen extends JPanel {
 		pw = p;
 		br = b;
 		this.yourName = yn;
-		changeYourPokemon();
-		changeEnemyPokemon();
 		setPreferredSize(new Dimension(500,350));
 		setLayout(new GridLayout(2,2));
 		setBackground(Color.white);
-		createGUI();
-	}
-	
-//	public void ChangeYourPokemon (Pokemon yours) {
-	public void changeYourPokemon (){
-//		this.yourPokemon = yours;
+		
 		try {
 			parse(br.readLine(), yourPokemon);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		changeYourPokemon();
+		
+		try {
+			parse(br.readLine(), enemyPokemon);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		changeEnemyPokemon();
+	}
+	
+//	public void ChangeYourPokemon (Pokemon yours) {
+	public void changeYourPokemon (){
+//		this.yourPokemon = yours;
 		this.removeAll();
 		createGUI();
 		repaint();
@@ -55,8 +61,8 @@ public class BattleScreen extends JPanel {
 		/* parse messages for info */
 		String m = input;
 		Pokemon p = new Pokemon();
-		if (m.contains("get")) {
-			m = m.substring(4);
+		if (m.contains("swap")) {
+			m = m.substring(5);
 			int nameBound = m.indexOf("?");
 			int pokemonBound = m.indexOf("|");
 			int levelBound = m.indexOf("!");
@@ -80,27 +86,7 @@ public class BattleScreen extends JPanel {
 			//System.out.println("Max health checking in swap: " + maxHealth);
 			changeMe = p;
 		}
-		if (m.contains("swap")) {
-			boolean yourPokemonCheck = false;
-			m = m.substring(5);
-			int nameBound = m.indexOf("?");
-			int pokemonBound = m.indexOf("|");
-			int levelBound = m.indexOf("!");
-			int currentHealthBound = m.indexOf(":");
-			String nameCheck = m.substring(0, nameBound);
-			if (yourName.equals(nameCheck)) yourPokemonCheck = true;
-			//System.out.println("Name checking in swap: " + nameCheck);
-			String pokemonCheck = m.substring(nameBound+1,pokemonBound);
-			//System.out.println("Pokemon checking in swap: " + pokemonCheck);
-			String levelCheck = m.substring(pokemonBound+1,levelBound);
-			///System.out.println("Level checking in swap: " + levelCheck);
-			String currentHealthCheck = m.substring(levelBound+1,currentHealthBound);
-			int currentHealth = Integer.parseInt(currentHealthCheck);
-			//System.out.println("Current health checking in swap: " + currentHealth);
-			String maxHealthCheck = m.substring(currentHealthBound+1,m.length());
-			int maxHealth = Integer.parseInt(maxHealthCheck);
-			//System.out.println("Max health checking in swap: " + maxHealth);
-		}
+		
 	}
 	
 	public void changeYourPokemonHealth (int remainder) {
@@ -118,11 +104,6 @@ public class BattleScreen extends JPanel {
 	}
 	
 	public void changeEnemyPokemon () {
-		try {
-			parse(br.readLine(), enemyPokemon);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		this.removeAll();
 		createGUI();
 		repaint();
@@ -220,12 +201,13 @@ public class BattleScreen extends JPanel {
 	}
 	
 	public void update(String m){
-		if (m.contains("hit")) {
-			m = m.substring(4);
-			int nameBound = m.indexOf("_");
-			String nameCheck = m.substring(0, nameBound);
+		String temp = m;
+		if (temp.contains("hit")) {
+			temp = temp.substring(4);
+			int nameBound = temp.indexOf("_");
+			String nameCheck = temp.substring(0, nameBound);
 			//System.out.println("Name checking in hit: " + nameCheck);
-			String remainingHealthString = m.substring(nameBound+1, m.length());
+			String remainingHealthString = temp.substring(nameBound+1, temp.length());
 			int remainingHealth = Integer.parseInt(remainingHealthString);
 			//System.out.println("Remaining health in hit: " + remainingHealth);
 			if (yourName.equals(nameCheck)) {
@@ -233,6 +215,26 @@ public class BattleScreen extends JPanel {
 			}
 			else {
 				changeEnemyPokemonHealth(remainingHealth);
+			}
+		}
+		else if (temp.contains("swap")){
+			swap(m);
+		}
+	}
+	
+	private void swap(String m){
+		String temp = m;
+		if (temp.contains("swap")) {
+			temp = temp.substring(5);
+			int nameBound = temp.indexOf("?");
+			String nameCheck = temp.substring(0, nameBound);
+			if (yourName.equals(nameCheck)) { 
+				parse(m,yourPokemon);
+				changeYourPokemon();
+			}
+			else {
+				parse(m,enemyPokemon);
+				changeEnemyPokemon();
 			}
 		}
 	}
