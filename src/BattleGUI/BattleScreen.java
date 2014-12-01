@@ -57,6 +57,15 @@ public class BattleScreen extends JPanel {
 		revalidate();
 	}
 	
+	public void deleteYourPokemon() {
+		this.yourPokemonPanel.removeAll();
+	}
+	
+	public void deleteEnemyPokemon() {
+		this.enemyPokemonPanel.removeAll();
+	}
+
+	
 	private void parse(String input, Pokemon changeMe){
 		/* parse messages for info */
 		String m = input;
@@ -126,9 +135,9 @@ public class BattleScreen extends JPanel {
 			enemyInfoPanel = new JPanel();
 			enemyInfoPanel.setBackground(Color.white);
 			JLabel enemyPokemonLabel = new JLabel("Dummy lvl 420");
-			enemyPokemonLabel.setFont(new Font("Arial",Font.PLAIN, 35));
+			enemyPokemonLabel.setFont(new Font("Arial",Font.PLAIN, 25));
 			enemyPokemonHealth = new JLabel("5/10");
-			enemyPokemonHealth.setFont(new Font("Arial",Font.PLAIN, 35));
+			enemyPokemonHealth.setFont(new Font("Arial",Font.PLAIN, 25));
 			enemyInfoPanel.add(enemyPokemonLabel);
 			enemyInfoPanel.add(enemyPokemonHealth);
 			
@@ -142,12 +151,12 @@ public class BattleScreen extends JPanel {
 			enemyInfoPanel.setBackground(Color.white);
 			JLabel enemyPokemonLabel = new JLabel(enemyPokemon.getName());
 			JLabel enemyPokemonLevel = new JLabel( String.valueOf(enemyPokemon.getLevel()));
-			enemyPokemonLabel.setFont(new Font("Arial",Font.PLAIN, 35));
-			enemyPokemonLevel.setFont(new Font("Arial",Font.PLAIN, 35));
+			enemyPokemonLabel.setFont(new Font("Arial",Font.PLAIN, 25));
+			enemyPokemonLevel.setFont(new Font("Arial",Font.PLAIN, 25));
 			String enemyHealth = String.valueOf(enemyPokemon.getHealth()) + "/" + 
 								 String.valueOf(enemyPokemon.getMaxHealth());
 			enemyPokemonHealth = new JLabel(enemyHealth);
-			enemyPokemonHealth.setFont(new Font("Arial",Font.PLAIN, 35));
+			enemyPokemonHealth.setFont(new Font("Arial",Font.PLAIN, 25));
 			enemyInfoPanel.add(enemyPokemonLabel);
 			enemyInfoPanel.add(enemyPokemonLevel);
 			enemyInfoPanel.add(enemyPokemonHealth);
@@ -167,9 +176,9 @@ public class BattleScreen extends JPanel {
 			yourInfoPanel = new JPanel();
 			yourInfoPanel.setBackground(Color.white);
 			JLabel yourPokemonLabel = new JLabel("Dummy lvl 69");
-			yourPokemonLabel.setFont(new Font("Arial",Font.PLAIN, 35));
+			yourPokemonLabel.setFont(new Font("Arial",Font.PLAIN, 25));
 			yourPokemonHealth = new JLabel("69/420");
-			yourPokemonHealth.setFont(new Font("Arial",Font.PLAIN, 35));
+			yourPokemonHealth.setFont(new Font("Arial",Font.PLAIN, 25));
 			yourInfoPanel.add(yourPokemonLabel);
 			yourInfoPanel.add(yourPokemonHealth);
 		}
@@ -182,13 +191,13 @@ public class BattleScreen extends JPanel {
 			yourInfoPanel = new JPanel();
 			yourInfoPanel.setBackground(Color.white);
 			JLabel yourPokemonLabel = new JLabel(yourPokemon.getName());
-			yourPokemonLabel.setFont(new Font("Arial",Font.PLAIN, 35));
+			yourPokemonLabel.setFont(new Font("Arial",Font.PLAIN, 25));
 			JLabel yourPokemonLevel = new JLabel( String.valueOf(yourPokemon.getLevel()) );
-			yourPokemonLevel.setFont(new Font("Arial",Font.PLAIN, 35));
+			yourPokemonLevel.setFont(new Font("Arial",Font.PLAIN, 25));
 			String yourHealth = String.valueOf(yourPokemon.getHealth()) + "/" + 
 					 String.valueOf(yourPokemon.getMaxHealth());
 			yourPokemonHealth = new JLabel(yourHealth);
-			yourPokemonHealth.setFont(new Font("Arial",Font.PLAIN, 35));
+			yourPokemonHealth.setFont(new Font("Arial",Font.PLAIN, 25));
 			yourInfoPanel.add(yourPokemonLabel);
 			yourInfoPanel.add(yourPokemonLevel);
 			yourInfoPanel.add(yourPokemonHealth);
