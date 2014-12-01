@@ -79,8 +79,8 @@ public class Battle extends RecursiveTask<Boolean> {
 				p2Input = p2.getBr().readLine();
 			} catch (Exception e) {
 				//e.printStackTrace();
-				p1Input = "Sw_2";
-				p2Input = "Su_";
+				p1Input = "At_Tackle|6";
+				p2Input = "Sw_2";
 			}
 			
 			parse();
@@ -411,10 +411,12 @@ public class Battle extends RecursiveTask<Boolean> {
 		}
 		
 		else if(p1message.equals("Su")){
+			System.out.println("P1QUIT");
 			firstPlayerToQuit = 1;
 			return;
 		}
 		else if(p2message.equals("Su")){
+			System.out.println("P2QUIT");
 			firstPlayerToQuit = 2;
 			return;
 		}
