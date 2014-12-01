@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -86,8 +87,14 @@ public class OpeningPanel extends JPanel implements ActionListener {
 		g.fillRect(0, 0, 800, 800);
 		
 		/* get the image files and place them on their default position */
+		Image millerTest = null;
+		try {
+			millerTest = ImageIO.read(getClass().getResource("/Character_sprites/Miller_hot.jpg"));
+		} catch(IOException ioe) {
+			System.out.println("FUCK");
+		}
 		Image millerImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/Miller_hot.jpg");
-		g.drawImage(millerImage, millerX, millerY, this);
+		g.drawImage(millerTest, millerX, millerY, this);
 		
 		Image crowleyImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/Crowley_robot.jpg");
 		g.drawImage(crowleyImage, crowleyX, crowleyY, this);
@@ -287,7 +294,7 @@ public class OpeningPanel extends JPanel implements ActionListener {
 		*/
 		repaint();
 	}
-/*	public static void main (String args []) {
+	public static void main (String args []) {
 		OpeningPanel op = new OpeningPanel();
 		JFrame testWindow = new JFrame();
 		testWindow.setTitle("Testing Opening");
@@ -296,6 +303,6 @@ public class OpeningPanel extends JPanel implements ActionListener {
 		testWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		testWindow.add(op);
 		testWindow.setVisible(true);
-	}*/
+	}
 	
 }
