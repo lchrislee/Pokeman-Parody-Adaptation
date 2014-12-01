@@ -40,6 +40,7 @@ public class Server implements Runnable{
 	
 	public Server(){
 		dba = new DataBaseAccess();
+		System.out.println("TEST");
 		dba.start();
 		chatServer = new ChatServer(CHATPORT);
 		players = new ArrayList<NetworkPlayer>();
