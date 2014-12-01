@@ -52,12 +52,14 @@ public class Server implements Runnable{
 			System.out.println("Created server sockets");
 			for (int i = 0; i < 4; ++i){
 				System.out.println(i);
-				Socket communicationSocketInput = ssComm.accept();
+				Socket communicationSocketInput = ssComm.accept(); //this is blocking
 				
 				System.out.println(communicationSocketInput.toString() + " CONNECTED TO SERVER");
 				communicationSockets.add(communicationSocketInput);
-
-				Socket chatSocketInput = ssChat.accept();
+			}
+			System.out.println("DONE CONNECTING ALL");
+			for (int i = 0; i < 4; ++i){
+				Socket chatSocketInput = ssChat.accept(); //this is blocking
 				System.out.println(chatSocketInput.toString() + " CONNECTED TO CHAT");
 				chatSockets.add(chatSocketInput);
 				players.add(new NetworkPlayer());
