@@ -12,12 +12,12 @@ import javax.swing.ImageIcon;
 public class Player implements Serializable{
 	private static final long serialVersionUID = 5504055184113660229L;
 
-	private int currentPokemonIndex = 0;//which pokemon in the list is currently out
+	private Integer currentPokemonIndex = 0;//which pokemon in the list is currently out
 	
 	private Vector <Pokemon> pokemonList;// this will store the Pokemon the player has caught
 //	private Vector <ImageIcon> spriteList;
 	private ImageIcon currentSprite;
-	private HashMap<String,Integer> statsMap; //([Capture]how many times player��s died, num pokemon caught, num pokemon released, avg pokemon level & rarity) ([Battle]wins, losses, avg pokemon used per battle)
+	private HashMap<String,Integer> statsMap; //([Capture]how many times players died, num pokemon caught, num pokemon released, avg pokemon level & rarity) ([Battle]wins, losses, avg pokemon used per battle)
 	private Pokemon enemyPokemon;
 	private Pokemon currentPokemon;//in battle at the moment
 	private boolean quit = false;
@@ -106,6 +106,7 @@ public class Player implements Serializable{
 		
 		protected void setPlayer(Player p, HashMap<String, ArrayList<Pokemon>> map){
 			currentPokemonIndex = p.currentPokemonIndex;
+			currentPokemon = p.getCurrentPokemon();
 			characterImageName = p.characterImageName;
 			currentSprite = new ImageIcon("res/" + characterImageName);
 			pokemonList = new Vector<Pokemon>(p.pokemonList);
@@ -129,7 +130,7 @@ public class Player implements Serializable{
 		}
 		
 		//doubles up as switching
-		public void choosePokemon(Pokemon p){ //�C the player will access his/her Vector of pokemon and select one to battle (when the current pokemon faints)
+		public void choosePokemon(Pokemon p){ // the player will access his/her Vector of pokemon and select one to battle (when the current pokemon faints)
 			//if(this.currentPokemon!=p){//no switching with yourself
 				if(this.pokemonList.contains(p)){
 					this.currentPokemon = p;
@@ -150,6 +151,7 @@ public class Player implements Serializable{
 		}
 						
 		public Pokemon getCurrentPokemon(){
+			System.out.println(currentPokemon.getName());
 			return this.currentPokemon;
 		}
 		
@@ -173,7 +175,10 @@ public class Player implements Serializable{
 		public ImageIcon getCurrentSprite() {
 			return currentSprite;
 		}
-
+		
+		public String getCharacterImageName() {
+			return this.characterImageName;
+		}
 	
 		public String toString(){
 			return name + "\n" + currentPokemonIndex;

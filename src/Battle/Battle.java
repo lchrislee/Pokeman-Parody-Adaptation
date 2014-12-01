@@ -35,6 +35,7 @@ public class Battle extends RecursiveTask<Boolean> {
 	public Battle(NetworkPlayer p1, NetworkPlayer p2){
 		this.p1 = p1;
 		this.p2 = p2;
+		System.out.println(this.p1);
 		winnerDetermined = false;
 		setTurnVariables();
 	}
@@ -421,12 +422,7 @@ public class Battle extends RecursiveTask<Boolean> {
 		Pokemon p1Poke = p1.getCurrentPokemon();
 		Pokemon p2Poke = p2.getCurrentPokemon();
 		
-		if(p1Poke == null)
-			System.out.println("NULL");
-		
-		System.out.println(p1.getPokemonList().size() + " P LIST SIZE ");
-		System.out.println(p2.getPokemonList().size() + " P2 LIST SIZE ");
-		
+
 		if(p1Poke.getSpeed() > p2Poke.getSpeed())
 			return PLAYERONE;
 	
