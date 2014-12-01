@@ -85,7 +85,10 @@ public class Server implements Runnable{
 				System.out.println("SADHFILDSAJFJ");
 				System.out.println(p.getBr().readLine()); //CHECK
 				p.setOOS();
+				p.getPw().println("asdf");
+				p.getPw().flush();
 				p.setOIS();
+				p.getBr().readLine();
 				p.getPw().println("CHECK AGAIN");
 				p.getPw().flush();
 				System.out.println("nEED TO GET INPUT NOW");

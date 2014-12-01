@@ -59,10 +59,14 @@ public class Client{
 		try {
 			pw.println("CHECK");
 			pw.flush();
+			br.readLine();
 			oos = new ObjectOutputStream(clientSocket.getOutputStream());
 			oos.writeObject(p);//trying to write player
 			oos.flush();
 			oos.close();
+			
+			pw.println("alkdsjf");
+			pw.flush();
 			
 			System.out.println(br.readLine());
 			System.out.println("Trying to make outputstream");
