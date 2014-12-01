@@ -153,7 +153,7 @@ public class OpeningPanel extends JPanel implements ActionListener {
 		/* start the timer */
 		timer.start();
 		if (clip == null)
-			clip = MusicPlayer.run("Epic_sax_guy.wav");
+			clip = MusicPlayer.run("res/Epic_sax_guy.wav");
 	}
 	
 	public void actionPerformed (ActionEvent e) {
