@@ -49,13 +49,18 @@ public class AttackSelection extends JPanel {
 			add(new AttackButton(m.get(i)));
 	}
 	
+	public void replaceMoveGUI(Vector<Move> v){
+		removeAll();
+		createGUI(v);
+	}
+	
 	private void createGUI(Move[] m){
 		setLayout(new GridLayout(2,2));
 		for (int i = 0; i < m.length; ++i)
 			add(new AttackButton(m[i]));
 	}
 	
-	private Vector<Move> getMoves(int index){
+	public Vector<Move> getMoves(int index){
 		pw.println("MOVES " + index);
 		pw.flush();
 		
