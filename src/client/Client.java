@@ -61,7 +61,7 @@ public class Client{
 			oos.flush();
 			System.out.println("Trying to make outputstream");
 			
-			//ois = new ObjectInputStream(clientSocket.getInputStream());
+			ois = new ObjectInputStream(clientSocket.getInputStream());
 			System.out.println("Trying to make inputstream");//i think input streams are working ok
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
