@@ -81,6 +81,7 @@ public class Server implements Runnable{
 				p.setOOS();
 				
 				chatServer.listen(p.getChatSocket());
+				players.get(i).getPw().println("DONE");
 				System.out.println("FINISHED LISTENING");
 			}
 			

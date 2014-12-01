@@ -4,6 +4,7 @@ package client.clientGUI;
 
 import java.awt.BorderLayout;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
@@ -72,8 +73,8 @@ public class GUI extends JFrame{
 		revalidate();
 		repaint();
 		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
+			bf.readLine();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 //		while(!waiting.done)
