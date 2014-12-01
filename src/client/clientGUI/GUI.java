@@ -63,15 +63,20 @@ public class GUI extends JFrame{
 		add(l);
 		revalidate();
 		repaint();
+		System.out.println("BEFORE L.DONE WHILE");
+
 		while(!l.done)
 			Thread.yield();
 		l.stop();
 		//remove(l);
 		
+		System.out.println("BEFORE WAITING");
 		waiting = new WaitingPanel();
 		add(waiting);
 		revalidate();
 		repaint();
+		System.out.println("BEFORE TRY");
+
 		try {
 			bf.readLine();
 		} catch (IOException e) {
