@@ -939,18 +939,23 @@ public class LoginScreen extends JPanel {
 		characterSpriteListPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		characterSpriteListPanel.setPreferredSize(new Dimension(800,120));
 		
-		String[] imageLocations = {"res/Character_sprites/miller_small.png",
-								   "res/Character_sprites/Crowley_small.png",
-								   "res/Character_sprites/dolan_small.png",
-								   "res/Character_sprites/gooby_small.png",
-								   "res/Character_sprites/misty_small.png",
-								   "res/Character_sprites/jungIll_small.png"
+		String[] imageLocations = {"/Character_sprites/miller_small.png",
+								   "/Character_sprites/Crowley_small.png",
+								   "/Character_sprites/dolan_small.png",
+								   "/Character_sprites/gooby_small.png",
+								   "/Character_sprites/misty_small.png",
+								   "/Character_sprites/jungIll_small.png"
 								  };
 		String[] characterNames = {"Miller", "Crowley", "Dolan", "Gooby", "Misty", "JungIll"};
 		ArrayList<JButton> characterButtons = new ArrayList<JButton>();
 		
 		for (int i = 0; i < characterNames.length; ++i){
-			Image im = Toolkit.getDefaultToolkit().getImage(imageLocations[i]);
+			Image im = null;
+			try {
+				im = ImageIO.read(getClass().getResource(imageLocations[i]));
+			} catch(IOException ioe) {
+				System.out.println("fail reading image login");
+			}
 			ImageIcon imIcon = new ImageIcon(im, characterNames[i]);
 			JButton button = new JButton(imIcon);
 			button.setName(characterNames[i]);
