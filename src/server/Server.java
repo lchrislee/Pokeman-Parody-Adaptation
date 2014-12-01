@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import server.chatSystem.ChatServer;
 import Battle.Battle;
 import dataStore.MongoDB;
+import dataStore.Move;
 import dataStore.NetworkPlayer;
 import dataStore.Pokemon;
 
@@ -47,9 +48,8 @@ public class Server implements Runnable{
 			ssChat = new ServerSocket(CHATPORT);
 			ssComm = new ServerSocket(COMMUNICATIONPORT);
 			
-			for (int i = 0; i < 4; ++i){
+			for (int i = 0; i < 1; ++i){
 				Socket communicationSocketInput = ssComm.accept();
-				
 				
 				
 				System.out.println(communicationSocketInput.toString() + " CONNECTED TO SERVER");
@@ -65,7 +65,7 @@ public class Server implements Runnable{
 			chatSockets.sort(new SocketSort());
 			communicationSockets.sort(new SocketSort());
 			
-			for (int i = 0; i < 4; ++i){
+			for (int i = 0; i < 1; ++i){
 				NetworkPlayer p = players.get(i);
 				p.setChatSocket(chatSockets.get(i));
 				p.setCommSocket(communicationSockets.get(i));
@@ -79,7 +79,7 @@ public class Server implements Runnable{
 				System.out.println("FINISHED LISTENING");
 			}
 			
-			for(int j=0;j<4;++j){
+			for(int j=0;j<1;++j){
 				NetworkPlayer p = players.get(j);
 				p.setOIS();
 				System.out.println("nEED TO GET INPUT NOW");
