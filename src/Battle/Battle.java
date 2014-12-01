@@ -47,6 +47,7 @@ public class Battle extends RecursiveTask<Boolean> {
 		NetworkPlayer p2 = new NetworkPlayer(player2);
 		
 		Battle b = new Battle(p1, p2);
+		b.compute();
 		
 		System.out.println("player one is out of pokemon: " + b.checkForWinner(1));
 		Vector<Pokemon> pokemonList = b.p1.getPokemonList();
