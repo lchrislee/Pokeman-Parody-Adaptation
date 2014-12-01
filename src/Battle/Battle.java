@@ -80,7 +80,7 @@ public class Battle extends RecursiveTask<Boolean> {
 			} catch (Exception e) {
 				//e.printStackTrace();
 				p1Input = "At_Tackle|6";
-				p2Input = "Sw_2";
+				p2Input = "At_HURT|9";
 			}
 			
 			parse();
@@ -182,10 +182,11 @@ public class Battle extends RecursiveTask<Boolean> {
 	private void doSwitch(int player){
 		if(player == 2){
 			String fromClient = "";
+			System.out.println(p2.getCurrentPokemon().getName());
 			if (p2.getCurrentPokemon().getHealth() == 0){ //added check to see if already fainted or not
 				try {
-					fromClient = p2.getBr().readLine();
-				} catch (IOException e) {
+					fromClient = p2Input;
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
