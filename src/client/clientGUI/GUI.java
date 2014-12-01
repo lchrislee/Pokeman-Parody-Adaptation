@@ -77,11 +77,7 @@ public class GUI extends JFrame{
 		repaint();
 		System.out.println("BEFORE TRY");
 
-		try {
-			bf.readLine();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 //		while(!waiting.done)
 //			Thread.yield();
 //		waiting.done();
