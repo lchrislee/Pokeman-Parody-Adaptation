@@ -122,7 +122,7 @@ public class Player implements Serializable{
 			if(currentPokemon == null)
 				System.out.println("PLAYER.JAVA CURRENT POKEMON NULL ");
 			System.out.println("PLAYER.JAVA CURRENT POKEMON INDEX " + currentPokemonIndex);
-			
+			name = p.getName();
 			characterImageName = p.characterImageName;
 			currentSprite = new ImageIcon("res/" + characterImageName);
 			pokemonList = new Vector<Pokemon>(p.pokemonList);
@@ -207,6 +207,34 @@ public class Player implements Serializable{
 				pokemonList.add((Pokemon) stream.readObject());
 			currentPokemonIndex = (Integer) stream.readObject();
 			currentPokemon = pokemonList.get(currentPokemonIndex);
+		}
+		
+		protected void readObject(java.io.BufferedReader br){
+			try {
+				String information = br.readLine();
+				characterImageName = information.substring(0, information.indexOf("/"));
+				name = information.substring(information.indexOf("/") + 1, information.indexOf("-"));
+				pokemonList = new Vector<Pokemon>();
+				Pokemon p = new Pokemon();
+				String firstPName = information.substring(information.indexOf("-") + 1, information.indexOf("|"));
+				p.setName(firstPName);
+				pokemonList.add(p);
+				Pokemon p2 = new Pokemon();
+				String secondPName = information.substring(information.indexOf("|")+1, information.lastIndexOf("|"));
+				p2.setName(secondPName);
+				pokemonList.add(p2);
+				Pokemon p3 = new Pokemon();
+				String thirdPName = information.substring(information.lastIndexOf("|") +1, information.length() - 1);
+				p3.setName(thirdPName);
+				pokemonList.add(p3);
+				currentPokemonIndex = 0;
+				currentPokemon = pokemonList.get(0);
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+					
 		}
 		
 		private void writeObject(java.io.ObjectOutputStream stream) throws IOException{

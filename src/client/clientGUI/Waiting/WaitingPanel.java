@@ -44,7 +44,6 @@ public class WaitingPanel extends JPanel {
 		WaitingPanel w = new WaitingPanel();
 		JFrame testWindow = new JFrame();
 		testWindow.setTitle("Testing Login");
-		//testWindow.setSize(500,600);
 		testWindow.setResizable(false);
 		testWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		testWindow.add(w);
