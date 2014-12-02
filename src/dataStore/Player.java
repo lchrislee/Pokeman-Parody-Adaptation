@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
 //player needs to know the index of the current pokemon that's out
 
 public class Player implements Serializable{
-	private static final long serialVersionUID = 5504055184113660229L;
+	
 
 	private Integer currentPokemonIndex = 0;//which pokemon in the list is currently out
 	
