@@ -41,10 +41,11 @@ public class Player implements Serializable{
 			Pokemon p = new Pokemon("Bee-Two", s, 40, 50, 55, 100, 2, 17, v);
 			Pokemon p1 = new Pokemon("Bee-Two", s, 40, 50, 55, 100, 2, 17, v);
 			Pokemon p2 = new Pokemon("Bee-Two", s, 40, 50, 55, 100, 2, 17, v);
-
 			pokemonList.add(p);
 			pokemonList.add(p1);
 			pokemonList.add(p2);
+			currentPokemon = pokemonList.get(0);
+			currentPokemonIndex = 0;
 		}
 	
 		public Player(Player p, HashMap<String, ArrayList<Pokemon>> map){
