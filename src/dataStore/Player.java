@@ -24,7 +24,11 @@ public class Player implements Serializable{
 	private boolean quit = false;
 	private String name;
 	private String characterImageName;
+	
+	private Vector<String>pokemonNamesList;
 	//private Set<String> playerMoves;
+	
+	//name,3 pokemon names
 		
 		public Player(){/*
 			playerMoves = new HashSet<String>();
@@ -46,6 +50,12 @@ public class Player implements Serializable{
 			pokemonList.add(p2);
 			currentPokemon = pokemonList.get(0);
 			currentPokemonIndex = 0;
+		}
+		
+		
+		public Player(String playerName,Vector<String>pokemonNames){//new constructor
+			this.name = playerName;
+			this.pokemonNamesList = pokemonNames;
 		}
 	
 		public Player(Player p, HashMap<String, ArrayList<Pokemon>> map){

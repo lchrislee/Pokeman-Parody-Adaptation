@@ -1,6 +1,7 @@
 package client.clientGUI.Waiting;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -29,16 +30,20 @@ public class FirstBracket extends JPanel implements ActionListener {
 	private boolean drawWinner1 = false;
 	private boolean drawWinner2 = false;
 	private boolean drawWinner3 = false;
+	private int width = 800;
+	private int height = 600;
 	Image firstPlayerImage = null, secondPlayerImage = null, thirdPlayerImage = null, fourthPlayerImage = null;
 	
 	public FirstBracket(ArrayList<NetworkPlayer> players,
 			int selector) {
+		setPreferredSize(new Dimension(width,height));
 		this.players = players;
 		this.selector = selector;
 	}
 	
 	public FirstBracket(ArrayList<NetworkPlayer> players,
 			int selector, int winner1) {
+		setPreferredSize(new Dimension(width,height));
 		this.players = players;
 		this.selector = selector;
 		this.winner1 = winner1;
@@ -47,6 +52,7 @@ public class FirstBracket extends JPanel implements ActionListener {
 	
 	public FirstBracket(ArrayList<NetworkPlayer> players,
 			int selector, int winner1, int winner2) {
+		setPreferredSize(new Dimension(width,height));
 		this.players = players;
 		this.selector = selector;
 		this.winner1 = winner1;
@@ -57,6 +63,7 @@ public class FirstBracket extends JPanel implements ActionListener {
 	
 	public FirstBracket(ArrayList<NetworkPlayer> players,
 			int selector, int winner1, int winner2, int winner3) {
+		setPreferredSize(new Dimension(width,height));
 		this.players = players;
 		this.selector = selector;
 		this.winner1 = winner1;
@@ -80,10 +87,15 @@ public class FirstBracket extends JPanel implements ActionListener {
 		
 		if (dummyOn) {
 			firstPlayerName = "Player 0";
-			firstPlayerImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/Dolan_normal.png");
-			secondPlayerImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/Dolan_normal.png");
-			thirdPlayerImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/Dolan_normal.png");
-			fourthPlayerImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/Dolan_normal.png");
+			try {
+			firstPlayerImage = ImageIO.read(getClass().getResource("/Character_sprites/Dolan_normal.png"));
+			secondPlayerImage = ImageIO.read(getClass().getResource("/Character_sprites/Dolan_normal.png"));
+			thirdPlayerImage = ImageIO.read(getClass().getResource("/Character_sprites/Dolan_normal.png"));
+			fourthPlayerImage = ImageIO.read(getClass().getResource("/Character_sprites/Dolan_normal.png"));
+			}
+			catch (IOException ioe) {
+				// hi
+			}
 			secondPlayerName = "Player 1";
 			thirdPlayerName = "Player 2";
 			fourthPlayerName = "Player 3";
@@ -207,10 +219,10 @@ public class FirstBracket extends JPanel implements ActionListener {
 		FirstBracket f = new FirstBracket(dummy,0,1,2);
 		JFrame testWindow = new JFrame();
 		testWindow.setTitle("Testing Bracket");
-		testWindow.setSize(800,600);
 		testWindow.setResizable(false);
 		testWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		testWindow.add(f);
+		testWindow.pack();
 		testWindow.setVisible(true);
 	}
  }

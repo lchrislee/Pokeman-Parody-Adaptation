@@ -144,8 +144,15 @@ public class NetworkPlayer extends Player {
 	public void readPlayer(HashMap<String, ArrayList<Pokemon>> mapping){
 		System.out.println("NETWORK PLAYER IS READING ");
 		Player p = new Player();
+		try {
+			String playerInfo = this.br.readLine();
+			System.out.println(playerInfo + " PLAYER INFO ");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 //		ObjectInputStream ois = this.ois;
-		if(ois == null)
+		/*if(ois == null)
 			System.out.println("ois cannot be assigned ");
 		//try {
 			p.readObject(br);
@@ -170,7 +177,7 @@ public class NetworkPlayer extends Player {
 		}*/
 //		if(p.getCurrentSprite()==null)
 //			System.out.println("CURRENT SPRITE IS NULL");
-		
+		*/
 		System.out.println("PLAYER IS " + p);
 		super.setPlayer(p, mapping);
 		

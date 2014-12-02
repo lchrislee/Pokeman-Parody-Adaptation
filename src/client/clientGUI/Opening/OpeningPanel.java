@@ -94,6 +94,7 @@ public class OpeningPanel extends JPanel implements ActionListener {
 	public Clip clip;
 	
 	public OpeningPanel(){
+		setPreferredSize(new Dimension(800,600));
 		try {
 			millerImage = ImageIO.read(getClass().getResource("/Character_sprites/Miller_hot.jpg"));
 			crowleyImage = ImageIO.read(getClass().getResource("/Character_sprites/Crowley_robot.jpg"));
@@ -117,7 +118,7 @@ public class OpeningPanel extends JPanel implements ActionListener {
 			System.out.println("fail reading image; openingPanel");
 		}
 		try {
-			aerodon_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/aerodon_left_tr.png")); 
+			aerodon_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/Aerodon_left_tr.png")); 
 			beetwo_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/Bee-two_left_tr.png"));
 			dadizard_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/dadizard_left_tr.png"));
 			exegynx_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/exegynx_left_tr.png")); 
@@ -351,11 +352,10 @@ public class OpeningPanel extends JPanel implements ActionListener {
 		OpeningPanel op = new OpeningPanel();
 		JFrame testWindow = new JFrame();
 		testWindow.setTitle("Testing Opening");
-		testWindow.setSize(800,600);
 		testWindow.setResizable(false);
 		testWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		testWindow.add(op);
+		testWindow.pack();
 		testWindow.setVisible(true);
 	}
-	
 }

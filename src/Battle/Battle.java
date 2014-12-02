@@ -128,6 +128,7 @@ public class Battle extends RecursiveTask<Boolean> {
 				return true;
 			else return false;
 		}
+		
 		else if(player == PLAYERTWO){
 			int count = 0;
 			for(int i = 0; i < p2.getPokemonList().size(); i++){
@@ -156,16 +157,16 @@ public class Battle extends RecursiveTask<Boolean> {
 		
 		
 		if(p1message.equals("Su") || p2message.equals("Su")){
-			System.out.println("SOMEONE SURRENDERED");
+			System.out.println(p1message + " P1messagesu ");
+			System.out.println(p2message + " P2messagesu ");
 			interpretSurrender();
 			return;
 		}
 		
 		if(p1message.equals("Sw") || p2message.equals("Sw")){
-			System.out.println("SOMEONE SWAPPED POKEMON");
+			System.out.println(p1message + " P1messagesw ");
+			System.out.println(p2message + " P2messagesw ");
 			interpretSwap();	
-			//if(p1message.equals(p2message))//if both players swap
-				//return;
 		}
 	}
 
@@ -429,6 +430,7 @@ public class Battle extends RecursiveTask<Boolean> {
 
 		String p1message = p1Input.substring(0, 2);
 		String p2message = p2Input.substring(0, 2);
+		
 		if(p1message.equals("Su") && p2message.equals("Su")){//if both player surrender, randomly select a player to lose
 
 			Random r = new Random();
@@ -447,6 +449,7 @@ public class Battle extends RecursiveTask<Boolean> {
 			firstPlayerToQuit = 1;
 			return;
 		}
+		
 		else if(p2message.equals("Su")){
 			System.out.println("P2QUIT");
 			firstPlayerToQuit = 2;
