@@ -212,6 +212,7 @@ public class Player implements Serializable{
 		protected void readObject(java.io.BufferedReader br){
 			try {
 				String information = br.readLine();
+				System.out.println(information);
 				characterImageName = information.substring(0, information.indexOf("/"));
 				name = information.substring(information.indexOf("/") + 1, information.indexOf("-"));
 				pokemonList = new Vector<Pokemon>();

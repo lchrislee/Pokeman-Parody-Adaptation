@@ -144,6 +144,9 @@ public class NetworkPlayer extends Player {
 	public void readPlayer(HashMap<String, ArrayList<Pokemon>> mapping){
 		System.out.println("NETWORK PLAYER IS READING ");
 		Player p = new Player();
+		if(br == null){
+			System.out.println("NETWORKPLAYER.JAVA  br is null");
+		}
 		p.readObject(br);
 	/*	try {
 			String playerInfo = this.br.readLine();

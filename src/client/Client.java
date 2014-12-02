@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import server.Server;
 import client.clientGUI.GUI;
 import dataStore.Player;
+import dataStore.Pokemon;
 
 public class Client{
 	
@@ -58,23 +59,32 @@ public class Client{
 			//oos = new ObjectOutputStream(s.getOutputStream());
 //			oos.flush();
 			
-			pw.println("CHECK");
+		
+			
+			String pokeNameOne = p.getPokemonList().get(0).getName();
+			String pokeNameTwo = p.getPokemonList().get(1).getName();
+			String pokeNameThree = p.getPokemonList().get(2).getName();
+			
+			String message = p.getCharacterImageName()+"/"+p.getName()+"-"+pokeNameOne+"|"+pokeNameTwo+"|"+pokeNameThree;
+			System.out.println(message + " WORK DAMMIT ");
+			pw.println(message);
 			pw.flush();
+			
 			//br.readLine();
 
 			//client needs to send the message...show waiting screen then readline(wait until all players are good)...then be done -.-
 			
-			System.out.println("GOT MESSAGE TO SEND DATA");
+			//System.out.println("GOT MESSAGE TO SEND DATA");
 
 			//oos.writeObject(p);//trying to write player
 			//oos.flush();
 			//oos.close();
 			//s.close();
-			System.out.println("DONE WRITING");
+			//System.out.println("DONE WRITING");
 			
-			pw.println("DONE WRITING");
-			pw.flush();
-			
+			//pw.println("DONE WRITING");
+			//pw.flush();
+			//this.clientGUI
 			System.out.println(br.readLine());//might need to comment this out.
 			System.out.println("THIS WORKS");
 		} catch (IOException e) {

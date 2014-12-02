@@ -69,25 +69,31 @@ public class GUI extends JFrame{
 			Thread.yield();
 		l.stop();
 		//remove(l);
+		System.out.println("L IS FINISHED");
 		
 		System.out.println("BEFORE WAITING");
+		remove(l);
+	
 		waiting = new WaitingPanel();
 		add(waiting);
 		revalidate();
 		repaint();
-		System.out.println("BEFORE TRY");
+		System.out.println("BEFORE BATTLE SCREEn");
 
-		
-//		while(!waiting.done)
-//			Thread.yield();
-//		waiting.done();
+		/*
+		while(!waiting.done)
+			Thread.yield();
+		waiting.done();*/
 	}
 	
 	public void createGUI(String address){
 		
 		System.out.println("IN GUI CREATEGUI");
-		remove(l);
+		//remove(l);
+		//l = null;
 		l = null;
+		remove(waiting);
+		
 		JPanel leftContainer = new JPanel(new BorderLayout());
 		add(leftContainer, BorderLayout.CENTER);
 		leftContainer.add(new CommandCenterGUI(this, pw, bf), BorderLayout.SOUTH);

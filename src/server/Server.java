@@ -81,6 +81,7 @@ public class Server implements Runnable{
 			}
 			
 			System.out.println("WAITING TO ACCEPT PLAYERS");
+			getPlayers();
 			/*
 			ServerSocket ssObject = new ServerSocket(OBJECTPORT);
 			for(int j=0;j<numPlayers;++j){
