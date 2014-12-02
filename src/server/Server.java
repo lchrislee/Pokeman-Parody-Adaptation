@@ -51,7 +51,7 @@ public class Server implements Runnable{
 		try {
 			ssChat = new ServerSocket(CHATPORT);
 			ssComm = new ServerSocket(COMMUNICATIONPORT);
-			int numPlayers = 1;
+			int numPlayers = 4;
 			
 			for (int i = 0; i < numPlayers; ++i){
 				Socket communicationSocketInput = ssComm.accept();
@@ -81,6 +81,7 @@ public class Server implements Runnable{
 			}
 			
 			System.out.println("WAITING TO ACCEPT PLAYERS");
+			/*
 			ServerSocket ssObject = new ServerSocket(OBJECTPORT);
 			for(int j=0;j<numPlayers;++j){
 				NetworkPlayer p = players.get(j);
@@ -109,7 +110,7 @@ public class Server implements Runnable{
 				if (p.getOOS() == null)
 					System.out.println("OOS IS NULL");
 			}
-			ssObject.close();
+			ssObject.close();*/
 			giveMoves();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -171,6 +172,7 @@ public class Server implements Runnable{
 			String output = "";
 			try {
 				input = p.getBr().readLine(); //read MOVES # from attackselection of client
+			System.out.println("inputserver.java " + input);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -195,6 +197,7 @@ public class Server implements Runnable{
 	}
 	
 	private void createBattles(){
+		System.out.println((battleOneP1 -1) + " BATTLE1 p1 " + (battleOneP2-1) + " BATTLE1p2 ");
 		first = new Battle(players.get(battleOneP1 - 1), players.get(battleOneP2 - 1));
 		second = new Battle(players.get(battleTwoP1 - 1), players.get(battleTwoP2 - 1));
 		ForkJoinPool pool = new ForkJoinPool(2);

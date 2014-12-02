@@ -53,20 +53,21 @@ public class Client{
 		clientGUI.createChat(hostAddress);
 		System.out.println("DONE MAKING CHAT");
 		try {
-			Socket s = new Socket(hostAddress, Server.OBJECTPORT);
-			System.out.println("Trying to make outputstream");
-			oos = new ObjectOutputStream(s.getOutputStream());
+			//Socket s = new Socket(hostAddress, Server.OBJECTPORT);
+			//System.out.println("Trying to make outputstream");
+			//oos = new ObjectOutputStream(s.getOutputStream());
 //			oos.flush();
+			
 			pw.println("CHECK");
 			pw.flush();
 			br.readLine();
 
 			System.out.println("GOT MESSAGE TO SEND DATA");
 
-			oos.writeObject(p);//trying to write player
-			oos.flush();
-			oos.close();
-			s.close();
+			//oos.writeObject(p);//trying to write player
+			//oos.flush();
+			//oos.close();
+			//s.close();
 			System.out.println("DONE WRITING");
 			
 			pw.println("DONE WRITING");
