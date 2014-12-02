@@ -147,11 +147,11 @@ public class NetworkPlayer extends Player {
 //		ObjectInputStream ois = this.ois;
 		if(ois == null)
 			System.out.println("ois cannot be assigned ");
-		try {
-			p.readObject(ois);
+		//try {
+			p.readObject(br);
 			System.out.println(p);
 //			System.out.println(p.getName() + " WHOSE NAME IS IT ");
-		} catch(java.io.StreamCorruptedException e){
+		/*} catch(java.io.StreamCorruptedException e){
 			e.printStackTrace();
 			System.exit(1);
 		} catch (ClassNotFoundException e) {
@@ -167,7 +167,7 @@ public class NetworkPlayer extends Player {
 			System.exit(1);
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
 //		if(p.getCurrentSprite()==null)
 //			System.out.println("CURRENT SPRITE IS NULL");
 		
