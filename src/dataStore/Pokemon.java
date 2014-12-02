@@ -6,7 +6,7 @@ import java.util.Vector;
 import javax.swing.ImageIcon;
 
 public class Pokemon implements Serializable{
-	private static final long serialVersionUID = 5248689392207082811L;
+
 	private Boolean conscious = true; //default
 	private Integer attack;
 	private Integer defense;
@@ -207,7 +207,12 @@ public class Pokemon implements Serializable{
 	private void readObject(java.io.ObjectInputStream stream) throws IOException, ClassNotFoundException{
 		System.out.println("Reading in name");
 		name = (String) stream.readObject();
-		FileNameArray = (String[]) stream.readObject();
+		if ((Boolean)stream.readBoolean()){
+			int max = (Integer) stream.readInt();
+			FileNameArray = new String[max];
+			for (int i = 0; i < max; ++i)
+				FileNameArray[i] = (String) stream.readObject();
+		}
 		System.out.println("Reading in moves");
 		if (stream.readBoolean()){
 			System.out.println("THERE ARE MOVES TO READ");
@@ -228,7 +233,14 @@ public class Pokemon implements Serializable{
 	private void writeObject(java.io.ObjectOutputStream stream) throws IOException{
 		System.out.println("Writing out: " + name);
 		stream.writeObject(name);
-		stream.writeObject(FileNameArray);
+		if (FileNameArray != null){
+			stream.writeBoolean(true);
+			stream.writeInt(FileNameArray.length);
+			for (int i = 0; i < FileNameArray.length; ++i)
+				stream.writeObject(FileNameArray[i]);
+		}else{
+			stream.writeBoolean(false);
+		}
 		System.out.println("Writing out moves");
 		if (moveList != null && moveList.size() > 0){
 			System.out.println("Moves exist!");
