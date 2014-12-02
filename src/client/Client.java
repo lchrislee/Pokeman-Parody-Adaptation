@@ -60,8 +60,10 @@ public class Client{
 			
 			pw.println("CHECK");
 			pw.flush();
-			br.readLine();
+			//br.readLine();
 
+			//need to send the message...then readline...then show the waiting screen
+			
 			System.out.println("GOT MESSAGE TO SEND DATA");
 
 			//oos.writeObject(p);//trying to write player
