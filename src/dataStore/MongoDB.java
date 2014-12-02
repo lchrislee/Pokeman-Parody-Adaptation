@@ -34,6 +34,10 @@ public class MongoDB {
         PokemanCollection = PokemanDB.getCollection(POKEMAN_DB_COLLECTION);
        
     }
+    
+    public void close(){
+    	m.close();
+    }
 
     /*public static void main(String[] args) throws Exception{
 

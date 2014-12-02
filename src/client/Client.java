@@ -2,11 +2,8 @@ package client;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -27,7 +24,6 @@ public class Client{
 	private String playerName;
 	
 	private ObjectOutputStream oos;
-	private ObjectInputStream ois;
 	
 	//method to store players
 	
@@ -57,28 +53,28 @@ public class Client{
 		clientGUI.createChat(hostAddress);
 		System.out.println("DONE MAKING CHAT");
 		try {
-			oos = new ObjectOutputStream(clientSocket.getOutputStream());
+			Socket s = new Socket(hostAddress, Server.OBJECTPORT);
+			System.out.println("Trying to make outputstream");
+			oos = new ObjectOutputStream(s.getOutputStream());
 			oos.flush();
 			pw.println("CHECK");
 			pw.flush();
 			br.readLine();
-						
+
+			System.out.println("GOT MESSAGE TO SEND DATA");
+
 			oos.writeObject(p);//trying to write player
 			oos.flush();
 			oos.close();
+			s.close();
 			System.out.println("DONE WRITING");
 			
-			pw.println("alkdsjf");
+			pw.println("DONE WRITING");
 			pw.flush();
 			
 			System.out.println(br.readLine());
-			System.out.println("Trying to make outputstream");
-			InputStream i = clientSocket.getInputStream();
 			System.out.println("THIS WORKS");
-			ois = new ObjectInputStream(i);
-			System.out.println("Trying to make inputstream");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		clientGUI.createGUI(hostAddress);
