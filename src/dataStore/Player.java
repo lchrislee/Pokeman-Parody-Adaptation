@@ -181,15 +181,17 @@ public class Player implements Serializable{
 			return currentSprite;
 		}
 
-		@SuppressWarnings("unchecked")
+//		@SuppressWarnings("unchecked")
 		protected void readObject(java.io.ObjectInputStream stream) throws IOException, ClassNotFoundException{
-			characterImageName = (String) stream.readObject();
-			name = (String) stream.readObject();
-			quit = (Boolean) stream.readBoolean();
+			characterImageName = stream.readUTF();
+			System.out.println("READING IN NAME");
+			name = stream.readUTF();
+//			quit = (Boolean) stream.readBoolean();
 //			currentPokemon = (Pokemon) stream.readObject();
 //			enemyPokemon = (Pokemon) stream.readObject();
-			statsMap = (HashMap<String, Integer>) stream.readObject();
+//			statsMap = (HashMap<String, Integer>) stream.readObject();
 			pokemonList = new Vector<Pokemon>();
+			System.out.println("READING IN POKEMAN");
 			for (int i = 0; i < 3; ++i)
 				pokemonList.add((Pokemon) stream.readObject());
 			currentPokemonIndex = (Integer) stream.readObject();
@@ -197,12 +199,14 @@ public class Player implements Serializable{
 		}
 		
 		private void writeObject(java.io.ObjectOutputStream stream) throws IOException{
-			stream.writeObject(characterImageName);
-			stream.writeObject(name);
-			stream.writeBoolean(quit);
+			System.out.println("Writing out: " + name);
+			stream.writeUTF(characterImageName);
+			stream.writeUTF(name);
+//			stream.writeBoolean(quit);
 //			stream.writeObject(currentPokemon);
-			stream.writeObject(enemyPokemon);
-			stream.writeObject(statsMap);
+//			stream.writeObject(enemyPokemon);
+//			stream.writeObject(statsMap);
+			System.out.println("WRITING OUT POKEMAN");
 			for (Pokemon p : pokemonList)
 				stream.writeObject(p);
 			stream.writeObject(currentPokemonIndex);
@@ -213,6 +217,10 @@ public class Player implements Serializable{
 		}
 
 		public String toString(){
-			return name + "\n" + currentPokemonIndex;
+			String output = "Name: " + name + "\ncharacterImageName: " + characterImageName + "\ncurrentPokemonIndex: " + currentPokemonIndex;
+			for (Pokemon p : pokemonList){
+				output += "\n\t" + p.toString();
+			}
+			return output;
 		}
 }

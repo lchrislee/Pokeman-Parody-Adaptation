@@ -48,12 +48,16 @@ public class Move implements Serializable {
 	}
 	
 	private void readObject(java.io.ObjectInputStream stream) throws IOException, ClassNotFoundException{
-		this.name = (String) stream.readObject();
+		System.out.println("Reading in name");
+		this.name = stream.readUTF();
+		System.out.println("Reading in damage");
 		this.damage = stream.readInt();
 	}
 	
 	private void writeObject(java.io.ObjectOutputStream stream) throws IOException{
-		stream.writeObject(name);
+		System.out.println("Writing out: " + name);
+		stream.writeUTF(name);
+		System.out.println("Writing out: " + damage);
 		stream.writeInt(damage);
 	}
 	

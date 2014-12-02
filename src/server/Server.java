@@ -88,9 +88,11 @@ public class Server implements Runnable{
 				p.getPw().println("asdf");
 				p.getPw().flush();
 				p.setOIS();
+				getPlayers();
 				p.getBr().readLine();
 				p.getPw().println("CHECK AGAIN");
 				p.getPw().flush();
+				
 				System.out.println("nEED TO GET INPUT NOW");
 				if (p.getOIS() == null)
 					System.out.println("OIS IS NULL");
@@ -113,7 +115,6 @@ public class Server implements Runnable{
 			e.printStackTrace();
 		}
 		pokemonMap = dba.getMap();
-		getPlayers();
 		generateBattlePairs();
 		createBattles();
 		boolean result1 = first.join();

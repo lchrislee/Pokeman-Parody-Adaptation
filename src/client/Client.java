@@ -64,6 +64,7 @@ public class Client{
 			oos.writeObject(p);//trying to write player
 			oos.flush();
 			oos.close();
+			System.out.println("DONE WRITING");
 			
 			pw.println("alkdsjf");
 			pw.flush();

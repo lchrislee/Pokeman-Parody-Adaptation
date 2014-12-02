@@ -57,7 +57,16 @@ public class Pokemon implements Serializable{
 	}
 	
 	public Pokemon(){
-		
+		conscious = false;
+		attack = 0;
+		defense = 0;
+		speed = 0;
+		health = 0;
+		maxHealth = 0;
+		rarity = 0.0;
+		level = 0;
+		moveList = new Vector<Move>();
+		name = "";
 	}
 	
 	
@@ -196,11 +205,16 @@ public class Pokemon implements Serializable{
 	}
 	
 	private void readObject(java.io.ObjectInputStream stream) throws IOException, ClassNotFoundException{
-		name = (String) stream.readObject();
+		System.out.println("Reading in name");
+		name = stream.readUTF();
 		FileNameArray = (String[]) stream.readObject();
-		moveList = new Vector<Move>();
-		for (int i = 0; i < 4; ++i)
-			moveList.add((Move)stream.readObject());
+		System.out.println("Reading in moves");
+		if (stream.readBoolean()){
+			System.out.println("THERE ARE MOVES TO READ");
+			for (int i = 0; i < 4; ++i)
+				moveList.add((Move)stream.readObject());
+		}
+		System.out.println("READING IN STATS");
 		level = (Integer) stream.readInt();
 		rarity = (Double) stream.readDouble();
 		maxHealth = (Integer) stream.readInt();
@@ -212,17 +226,38 @@ public class Pokemon implements Serializable{
 	}
 	
 	private void writeObject(java.io.ObjectOutputStream stream) throws IOException{
-		stream.writeObject(name);
+		System.out.println("Writing out: " + name);
+		stream.writeUTF(name);
 		stream.writeObject(FileNameArray);
-		for (Move m : moveList)
-			stream.writeObject(m);
+		System.out.println("Writing out moves");
+		if (moveList != null && moveList.size() > 0){
+			System.out.println("Moves exist!");
+			stream.writeBoolean(true);
+			for (Move m : moveList)
+				stream.writeObject(m);
+		}else{
+			System.out.println("No moves to write out");
+			stream.writeBoolean(false);
+		}
+		System.out.println("Writing out stats");
+		System.out.println("level: " + level);
 		stream.writeInt(level);
 		stream.writeDouble(rarity);
 		stream.writeInt(maxHealth);
+		System.out.println("health: " + health);
 		stream.writeInt(health);
 		stream.writeInt(speed);
 		stream.writeInt(defense);
 		stream.writeInt(attack);
 		stream.writeBoolean(conscious);
+	}
+	
+	public String toString(){
+		String output = "";
+		output += "Name: " + name + "\n\tlevel: " + level + "\n\tRarity: " + rarity + "\n\tMax HP: " + maxHealth + "\n\tConcious: " + conscious;
+		for (Move m : moveList){
+			output += "\n\t\t" + m.toString();
+		}
+		return output;
 	}
 }

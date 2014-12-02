@@ -2,6 +2,7 @@
 package dataStore;
 
 import java.io.BufferedReader;
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
@@ -139,18 +140,20 @@ public class NetworkPlayer extends Player {
 	
 	public void readPlayer(HashMap<String, ArrayList<Pokemon>> mapping){
 		System.out.println("NETWORK PLAYER IS READING ");
-		Player p = null;
-		ObjectInputStream ois = this.ois;
+		Player p = new Player();
+//		ObjectInputStream ois = this.ois;
 		if(ois == null)
 			System.out.println("ois cannot be assigned ");
 		try {
 			p.readObject(ois);
-			if(p == null){
-				System.out.println("PLAYER SENT IS NULL ");
-			}
-			System.out.println(p.getName() + " WHOSE NAME IS IT ");
+			System.out.println(p);
+//			System.out.println(p.getName() + " WHOSE NAME IS IT ");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
+		} catch (EOFException e){
+			System.out.println("END OF FILE");
+			e.printStackTrace();
+			System.exit(1);
 		} catch (OptionalDataException e){
 			e.printStackTrace();
 			System.out.println("END OF FILE? " + e.eof);
