@@ -66,6 +66,7 @@ public class NetworkPlayer extends Player {
 
 	//testing
 	public void setOIS(){
+		System.out.println("STARTING TO MAKE OIS");
 		try {
 			this.ois = new ObjectInputStream(commSocket.getInputStream());
 			if(ois==null){
@@ -76,6 +77,7 @@ public class NetworkPlayer extends Player {
 			System.exit(0);
 			e.printStackTrace();
 		}
+		System.out.println("DONE SETTING OIS");
 	}
 	
 	//testing
@@ -132,6 +134,7 @@ public class NetworkPlayer extends Player {
 			System.exit(0);
 			e.printStackTrace();
 		}
+		System.out.println("DONE SETTING OOS");
 	}
 	
 	public void setOOS(ObjectOutputStream oos){
@@ -148,6 +151,9 @@ public class NetworkPlayer extends Player {
 			p.readObject(ois);
 			System.out.println(p);
 //			System.out.println(p.getName() + " WHOSE NAME IS IT ");
+		} catch(java.io.StreamCorruptedException e){
+			e.printStackTrace();
+			System.exit(1);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (EOFException e){

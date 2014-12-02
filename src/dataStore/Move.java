@@ -21,7 +21,8 @@ public class Move implements Serializable {
 	//doing a move just 
 	
 	public Move(){
-		
+		damage = 0;
+		name = "";
 	}
 	
 	
@@ -49,14 +50,14 @@ public class Move implements Serializable {
 	
 	private void readObject(java.io.ObjectInputStream stream) throws IOException, ClassNotFoundException{
 		System.out.println("Reading in name");
-		this.name = stream.readUTF();
+		this.name = (String) stream.readObject();
 		System.out.println("Reading in damage");
 		this.damage = stream.readInt();
 	}
 	
 	private void writeObject(java.io.ObjectOutputStream stream) throws IOException{
 		System.out.println("Writing out: " + name);
-		stream.writeUTF(name);
+		stream.writeObject(name);
 		System.out.println("Writing out: " + damage);
 		stream.writeInt(damage);
 	}

@@ -206,7 +206,7 @@ public class Pokemon implements Serializable{
 	
 	private void readObject(java.io.ObjectInputStream stream) throws IOException, ClassNotFoundException{
 		System.out.println("Reading in name");
-		name = stream.readUTF();
+		name = (String) stream.readObject();
 		FileNameArray = (String[]) stream.readObject();
 		System.out.println("Reading in moves");
 		if (stream.readBoolean()){
@@ -227,7 +227,7 @@ public class Pokemon implements Serializable{
 	
 	private void writeObject(java.io.ObjectOutputStream stream) throws IOException{
 		System.out.println("Writing out: " + name);
-		stream.writeUTF(name);
+		stream.writeObject(name);
 		stream.writeObject(FileNameArray);
 		System.out.println("Writing out moves");
 		if (moveList != null && moveList.size() > 0){

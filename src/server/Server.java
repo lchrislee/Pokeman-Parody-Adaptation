@@ -1,7 +1,6 @@
 package server;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -83,11 +82,14 @@ public class Server implements Runnable{
 			for(int j=0;j<numPlayers;++j){
 				NetworkPlayer p = players.get(j);
 				System.out.println("SADHFILDSAJFJ");
-				System.out.println(p.getBr().readLine()); //CHECK
 				p.setOOS();
+				p.setOIS();
+				System.out.println("SET OOS AND OIS");
+				System.out.println(p.getBr().readLine()); //CHECK
+				System.out.println("PRINTING TO TELL TO SEND DATA");
 				p.getPw().println("asdf");
 				p.getPw().flush();
-				p.setOIS();
+				System.out.println("GETTING PLAYERS");
 				getPlayers();
 				p.getBr().readLine();
 				p.getPw().println("CHECK AGAIN");

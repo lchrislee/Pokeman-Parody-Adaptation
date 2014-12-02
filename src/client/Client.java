@@ -57,10 +57,11 @@ public class Client{
 		clientGUI.createChat(hostAddress);
 		System.out.println("DONE MAKING CHAT");
 		try {
+			oos = new ObjectOutputStream(clientSocket.getOutputStream());
+			oos.flush();
 			pw.println("CHECK");
 			pw.flush();
 			br.readLine();
-			oos = new ObjectOutputStream(clientSocket.getOutputStream());
 			oos.writeObject(p);//trying to write player
 			oos.flush();
 			oos.close();

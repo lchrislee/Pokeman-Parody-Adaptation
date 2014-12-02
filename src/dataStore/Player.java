@@ -184,9 +184,9 @@ public class Player implements Serializable{
 
 //		@SuppressWarnings("unchecked")
 		protected void readObject(java.io.ObjectInputStream stream) throws IOException, ClassNotFoundException{
-			characterImageName = stream.readUTF();
+			characterImageName = (String) stream.readObject();
 			System.out.println("READING IN NAME");
-			name = stream.readUTF();
+			name = (String) stream.readObject();
 //			quit = (Boolean) stream.readBoolean();
 //			currentPokemon = (Pokemon) stream.readObject();
 //			enemyPokemon = (Pokemon) stream.readObject();
@@ -201,8 +201,8 @@ public class Player implements Serializable{
 		
 		private void writeObject(java.io.ObjectOutputStream stream) throws IOException{
 			System.out.println("Writing out: " + name);
-			stream.writeUTF(characterImageName);
-			stream.writeUTF(name);
+			stream.writeObject(characterImageName);
+			stream.writeObject(name);
 //			stream.writeBoolean(quit);
 //			stream.writeObject(currentPokemon);
 //			stream.writeObject(enemyPokemon);
