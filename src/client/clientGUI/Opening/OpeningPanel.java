@@ -93,6 +93,8 @@ public class OpeningPanel extends JPanel implements ActionListener {
 	
 	public Clip clip;
 	
+	AudioInputStream inputStream;// = AudioSystem.getAudioInputStream(getClass().getResourceAsStream("res/Epic_sax_guy.wav"));
+	
 	public OpeningPanel(){
 		setPreferredSize(new Dimension(800,600));
 		try {
@@ -121,30 +123,30 @@ public class OpeningPanel extends JPanel implements ActionListener {
 			aerodon_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/Aerodon_left_tr.png")); 
 			beetwo_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/Bee-two_left_tr.png"));
 			dadizard_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/dadizard_left_tr.png"));
-			exegynx_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/exegynx_left_tr.png")); 
+			exegynx_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/Exegynx_left_tr.png")); 
 			feelglet_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/feelglet_left_tr.png"));
 			
-			gengynx_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/gengynx_left_tr.png")); 
-			geonx_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/geonx_left_tr.png")); 
-			golem_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/golem_left_tr.png")); 
+			gengynx_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/Gengynx_left_tr.png")); 
+			geonx_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/Geonx_left_tr.png")); 
+			golem_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/Golem_left_tr.png")); 
 			jiwodude_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/jiwodude_left_tr.png")); 
-			lapradactyl_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/lapradactyl_left_tr.png"));
+			lapradactyl_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/Lapradactyl_left_tr.png"));
 			
 		} catch(IOException ioe) {
 			System.out.println("fail reading img openingpanel");
 		}
 
 		try {
-			lickister_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/lickister_left_tr.png"));
-			magikuna_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/magikuna_left_tr.png")); 
-			marozard_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/marozard_left_tr.png"));
-			meonx_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/meonx_left_tr.png"));
-			pikayu_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/pikayu_left_tr.png"));
+			lickister_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/Lickister_left_tr.png"));
+			magikuna_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/Magikuna_left_tr.png")); 
+			marozard_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/Marozard_left_tr.png"));
+			meonx_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/Meonx_left_tr.png"));
+			pikayu_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/Pikayu_left_tr.png"));
 			rhyfetch_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/sexypod_right_tr.png"));
 			scydra_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/sexypod_left_tr.png"));
-			seanasaur_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/seanasaur_left_tr.png"));
+			seanasaur_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/Seanasaur_left_tr.png"));
 			sexypod_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/sexypod_left_tr.png")); 
-			weepintoise_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/weepintoise_left_tr.png"));
+			weepintoise_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/Weepintoise_left_tr.png"));
 		} catch(IOException ioe) {
 			System.out.println("Fail reading images openingpanel");
 		}
@@ -214,7 +216,20 @@ public class OpeningPanel extends JPanel implements ActionListener {
 		/* start the timer */
 		timer.start();
 		if (clip == null)
-			clip = MusicPlayer.run("res/Epic_sax_guy.wav");
+			//clip = MusicPlayer.run("res/Epic_sax_guy.wav");
+			
+			try {
+				inputStream = AudioSystem.getAudioInputStream(getClass().getResource("/Epic_sax_guy.wav"));
+				clip = AudioSystem.getClip();
+				clip.open(inputStream);
+				clip.start();
+			} catch(LineUnavailableException lue) {
+				System.out.println("fail reading music");
+			} catch(IOException ioe) {
+				System.out.println("fail reading music 2");
+			} catch(UnsupportedAudioFileException uafe) {
+				System.out.println("fail reading music 3");
+			}
 	}
 	
 	public void actionPerformed (ActionEvent e) {
