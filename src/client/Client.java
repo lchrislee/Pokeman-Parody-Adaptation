@@ -62,7 +62,7 @@ public class Client{
 			pw.flush();
 			//br.readLine();
 
-			//need to send the message...then readline...then show the waiting screen
+			//client needs to send the message...show waiting screen then readline(wait until all players are good)...then be done -.-
 			
 			System.out.println("GOT MESSAGE TO SEND DATA");
 
@@ -75,7 +75,7 @@ public class Client{
 			pw.println("DONE WRITING");
 			pw.flush();
 			
-			System.out.println(br.readLine());
+			System.out.println(br.readLine());//might need to comment this out.
 			System.out.println("THIS WORKS");
 		} catch (IOException e) {
 			e.printStackTrace();
