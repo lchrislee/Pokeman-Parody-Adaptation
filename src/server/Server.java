@@ -1,6 +1,8 @@
 package server;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -22,7 +24,7 @@ import dataStore.Pokemon;
 public class Server implements Runnable{
 	public static final int COMMUNICATIONPORT = 5555;
 	public static final int CHATPORT = 4444;
-	
+	public static final int OBJECTPORT = 3456;
 	private ChatServer chatServer;
 	private Battle first;
 	private Battle second;
@@ -79,19 +81,25 @@ public class Server implements Runnable{
 			}
 			
 			System.out.println("WAITING TO ACCEPT PLAYERS");
+			ServerSocket ssObject = new ServerSocket(OBJECTPORT);
 			for(int j=0;j<numPlayers;++j){
 				NetworkPlayer p = players.get(j);
 				System.out.println("SADHFILDSAJFJ");
-				p.setOOS();
-				p.setOIS();
+//				p.getBr().close();
+				Socket s = ssObject.accept();
+				p.setOOS(new ObjectOutputStream(s.getOutputStream()));
+				p.setOIS(new ObjectInputStream(s.getInputStream()));
 				System.out.println("SET OOS AND OIS");
+//				p.setBr();
 				System.out.println(p.getBr().readLine()); //CHECK
 				System.out.println("PRINTING TO TELL TO SEND DATA");
 				p.getPw().println("asdf");
 				p.getPw().flush();
 				System.out.println("GETTING PLAYERS");
+//				p.getBr().close();
+				System.out.println("GOT: " + p.getBr().readLine());
 				getPlayers();
-				p.getBr().readLine();
+//				p.getBr().readLine();
 				p.getPw().println("CHECK AGAIN");
 				p.getPw().flush();
 				
@@ -101,6 +109,7 @@ public class Server implements Runnable{
 				if (p.getOOS() == null)
 					System.out.println("OOS IS NULL");
 			}
+			ssObject.close();
 			giveMoves();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -256,6 +265,7 @@ public class Server implements Runnable{
 				System.out.println("TEST");//comment this out and get hte mongodb stuff back up
 				MongoDB accessor = new MongoDB();
 				map = accessor.getPokemon();
+				accessor.close();
 			} catch (UnknownHostException e) {
 				e.printStackTrace();
 			}
