@@ -7,8 +7,10 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -27,6 +29,7 @@ public class FirstBracket extends JPanel implements ActionListener {
 	private boolean drawWinner1 = false;
 	private boolean drawWinner2 = false;
 	private boolean drawWinner3 = false;
+	Image firstPlayerImage = null, secondPlayerImage = null, thirdPlayerImage = null, fourthPlayerImage = null;
 	
 	public FirstBracket(ArrayList<NetworkPlayer> players,
 			int selector) {
@@ -71,14 +74,12 @@ public class FirstBracket extends JPanel implements ActionListener {
 		g.fillRect(0, 0, 800, 600);
 		
 		g.setColor(Color.black);
-		int i = 0;
 		
 		String firstPlayerName = "", secondPlayerName = "", thirdPlayerName = "", fourthPlayerName = "";
-		Image firstPlayerImage = null, secondPlayerImage = null, thirdPlayerImage = null, fourthPlayerImage = null;
 		String winner1Name = "", winner2Name= "", winner3Name = "";
 		
 		if (dummyOn) {
-			firstPlayerName = "Player 0"; i++;
+			firstPlayerName = "Player 0";
 			firstPlayerImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/Dolan_normal.png");
 			secondPlayerImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/Dolan_normal.png");
 			thirdPlayerImage = Toolkit.getDefaultToolkit().getImage("res/Character_sprites/Dolan_normal.png");
@@ -89,22 +90,37 @@ public class FirstBracket extends JPanel implements ActionListener {
 		}
 		
 		else {
+			
+			try {
+				int j = 0;
+				String firstPlayerCharacterName = players.get(j).getCharacterImageName();
+				firstPlayerImage = ImageIO.read(getClass().getResource("/Character_sprites/" + 
+									firstPlayerCharacterName + "_normal.png"));
+				j++;
+				String secondPlayerCharacterName = players.get(j).getCharacterImageName();
+				secondPlayerImage = ImageIO.read(getClass().getResource("/Character_sprites/" + 
+						secondPlayerCharacterName + "_normal.png"));
+				j++;
+				String thirdPlayerCharacterName = players.get(j).getCharacterImageName();
+				thirdPlayerImage = ImageIO.read(getClass().getResource("/Character_sprites/" + 
+						thirdPlayerCharacterName + "_normal.png"));
+				j++;
+				String fourthPlayerCharacterName = players.get(j).getCharacterImageName();
+				fourthPlayerImage = ImageIO.read(getClass().getResource("/Character_sprites/" + 
+						fourthPlayerCharacterName + "_normal.png"));
+			} catch(IOException ioe) {
+				System.out.println("fail reading image in bracketfile");
+			}
+			
+			int i = 0;
+			
 			firstPlayerName = players.get(i).getName();
-			ImageIcon firstPlayerImageIcon = players.get(i).getCurrentSprite();
-			firstPlayerImage = firstPlayerImageIcon.getImage();
 			i++;
 			secondPlayerName = players.get(i).getName();
-			ImageIcon secondPlayerImageIcon = players.get(i).getCurrentSprite();
-			secondPlayerImage = secondPlayerImageIcon.getImage();
 			i++; 
 			thirdPlayerName = players.get(i).getName();
-			ImageIcon thirdPlayerImageIcon = players.get(i).getCurrentSprite();
-			thirdPlayerImage = thirdPlayerImageIcon.getImage();
 			i++; 
 			fourthPlayerName = players.get(i).getName(); 
-			ImageIcon fourthPlayerNameImageIcon = players.get(i).getCurrentSprite();
-			fourthPlayerImage = fourthPlayerNameImageIcon.getImage();
-			i++; 
 		}
 		g.setFont(new Font("Arial",Font.BOLD, 20));
 		

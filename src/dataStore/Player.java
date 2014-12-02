@@ -1,5 +1,6 @@
 package dataStore;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,10 +18,10 @@ public class Player implements Serializable{
 	private Vector <Pokemon> pokemonList;// this will store the Pokemon the player has caught
 //	private Vector <ImageIcon> spriteList;
 	private ImageIcon currentSprite;
-	private HashMap<String,Integer> statsMap; //([Capture]how many times player��s died, num pokemon caught, num pokemon released, avg pokemon level & rarity) ([Battle]wins, losses, avg pokemon used per battle)
+	private HashMap<String,Integer> statsMap; //([Capture]how many times players died, num pokemon caught, num pokemon released, avg pokemon level & rarity) ([Battle]wins, losses, avg pokemon used per battle)
 	private Pokemon enemyPokemon;
 	private Pokemon currentPokemon;//in battle at the moment
-	private Boolean quit = false;
+	private boolean quit = false;
 	private String name;
 	private String characterImageName;
 	//private Set<String> playerMoves;
@@ -44,8 +45,6 @@ public class Player implements Serializable{
 			pokemonList.add(p);
 			pokemonList.add(p1);
 			pokemonList.add(p2);
-			currentPokemon = pokemonList.get(0);
-			currentPokemonIndex = 0;
 		}
 	
 		public Player(Player p, HashMap<String, ArrayList<Pokemon>> map){
@@ -109,6 +108,10 @@ public class Player implements Serializable{
 		protected void setPlayer(Player p, HashMap<String, ArrayList<Pokemon>> map){
 			currentPokemonIndex = p.currentPokemonIndex;
 			currentPokemon = p.getCurrentPokemon();
+			if(currentPokemon == null)
+				System.out.println("PLAYER.JAVA CURRENT POKEMON NULL ");
+			System.out.println("PLAYER.JAVA CURRENT POKEMON INDEX " + currentPokemonIndex);
+			
 			characterImageName = p.characterImageName;
 			currentSprite = new ImageIcon("res/" + characterImageName);
 			pokemonList = new Vector<Pokemon>(p.pokemonList);
@@ -132,7 +135,7 @@ public class Player implements Serializable{
 		}
 		
 		//doubles up as switching
-		public void choosePokemon(Pokemon p){ //�C the player will access his/her Vector of pokemon and select one to battle (when the current pokemon faints)
+		public void choosePokemon(Pokemon p){ // the player will access his/her Vector of pokemon and select one to battle (when the current pokemon faints)
 			//if(this.currentPokemon!=p){//no switching with yourself
 				if(this.pokemonList.contains(p)){
 					this.currentPokemon = p;
@@ -153,7 +156,7 @@ public class Player implements Serializable{
 		}
 						
 		public Pokemon getCurrentPokemon(){
-			System.out.println(currentPokemon.getName());
+
 			return this.currentPokemon;
 		}
 		
@@ -178,7 +181,37 @@ public class Player implements Serializable{
 			return currentSprite;
 		}
 
-	
+		@SuppressWarnings("unchecked")
+		protected void readObject(java.io.ObjectInputStream stream) throws IOException, ClassNotFoundException{
+			characterImageName = (String) stream.readObject();
+			name = (String) stream.readObject();
+			quit = (Boolean) stream.readBoolean();
+//			currentPokemon = (Pokemon) stream.readObject();
+//			enemyPokemon = (Pokemon) stream.readObject();
+			statsMap = (HashMap<String, Integer>) stream.readObject();
+			pokemonList = new Vector<Pokemon>();
+			for (int i = 0; i < 3; ++i)
+				pokemonList.add((Pokemon) stream.readObject());
+			currentPokemonIndex = (Integer) stream.readObject();
+			currentPokemon = pokemonList.get(currentPokemonIndex);
+		}
+		
+		private void writeObject(java.io.ObjectOutputStream stream) throws IOException{
+			stream.writeObject(characterImageName);
+			stream.writeObject(name);
+			stream.writeBoolean(quit);
+//			stream.writeObject(currentPokemon);
+			stream.writeObject(enemyPokemon);
+			stream.writeObject(statsMap);
+			for (Pokemon p : pokemonList)
+				stream.writeObject(p);
+			stream.writeObject(currentPokemonIndex);
+		}
+		
+		public String getCharacterImageName() {
+			return this.characterImageName;
+		}
+
 		public String toString(){
 			return name + "\n" + currentPokemonIndex;
 		}
