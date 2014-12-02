@@ -62,6 +62,7 @@ public class Client{
 			pw.println("CHECK");
 			pw.flush();
 			br.readLine();
+						
 			oos.writeObject(p);//trying to write player
 			oos.flush();
 			oos.close();
