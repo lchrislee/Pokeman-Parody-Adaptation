@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.io.Serializable;
 
 public class Move implements Serializable {
-	private static final long serialVersionUID = 7404749907295089929L;
-//	private int id;//so we can take name and damage value from database
+	
+	//	private int id;//so we can take name and damage value from database
 	private Integer damage;//maybe store this..dunno yet
 	private String name;
 	

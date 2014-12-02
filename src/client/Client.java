@@ -56,7 +56,7 @@ public class Client{
 			Socket s = new Socket(hostAddress, Server.OBJECTPORT);
 			System.out.println("Trying to make outputstream");
 			oos = new ObjectOutputStream(s.getOutputStream());
-			oos.flush();
+//			oos.flush();
 			pw.println("CHECK");
 			pw.flush();
 			br.readLine();
