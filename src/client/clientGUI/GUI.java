@@ -3,14 +3,13 @@ package client.clientGUI;
 
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -18,11 +17,8 @@ import javax.swing.UnsupportedLookAndFeelException;
 import BattleGUI.BattleScreen;
 import BattleGUI.CommandCenterGUI;
 import client.clientGUI.LoginScreen.LoginScreen;
-import client.clientGUI.Opening.OpeningPanel;
 import client.clientGUI.Waiting.WaitingPanel;
-import client.clientGUI.sidebarGUI.ChatGUI;
 import client.clientGUI.sidebarGUI.SideBar;
-import client.clientGUI.sidebarGUI.SideBarMenuAdapter;
 import dataStore.Player;
 
 public class GUI extends JFrame{
@@ -36,7 +32,8 @@ public class GUI extends JFrame{
 	private String playerName;
 	private BattleScreen bs =null;
 	private WaitingPanel waiting;
-	
+	private JPanel leftContainer;
+	private CardLayout switcher;	
 	
 	public GUI(PrintWriter p, BufferedReader b){
 		//opening
@@ -75,9 +72,19 @@ public class GUI extends JFrame{
 		
 		System.out.println("BEFORE WAITING");
 		remove(l);
-	
+		
+		JPanel container = new JPanel(new BorderLayout());
+		add(container, BorderLayout.CENTER);
+		container.add(new CommandCenterGUI(this, pw, bf), BorderLayout.SOUTH);
+		leftContainer = new JPanel();
+		switcher = new CardLayout();
 		waiting = new WaitingPanel();
-		add(waiting);
+		leftContainer.setLayout(switcher);
+		leftContainer.add(waiting, "WAIT");
+		container.add(leftContainer);
+		switcher.show(leftContainer, "WAIT");
+	
+//		add(waiting);
 		revalidate();
 		repaint();
 		System.out.println("BEFORE BATTLE SCREEn");
@@ -94,15 +101,7 @@ public class GUI extends JFrame{
 		//remove(l);
 		//l = null;
 		l = null;
-		remove(waiting);
-		try {
-			System.out.println(bf.readLine());
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-		JPanel leftContainer = new JPanel(new BorderLayout());
-		add(leftContainer, BorderLayout.CENTER);
-		leftContainer.add(new CommandCenterGUI(this, pw, bf), BorderLayout.SOUTH);
+		switchToBattleScreen();
 		System.out.println("waiting to read");
 
 		validate();
@@ -164,18 +163,22 @@ public class GUI extends JFrame{
 	}
 	
 	public void switchToBattleScreen(){
-		remove(waiting);
+//		remove(waiting);
 		
-		if(bs == null)
+		if(bs == null){
 			bs = new BattleScreen(pw,bf,playerName);
+			leftContainer.add(bs, "BATTLE");
+		}
 		
-		add(bs);
+//		add(bs);
+		switcher.show(leftContainer, "BATTLE");
 		revalidate();
 	}
 	
 	private void switchToWaitingScreen(){
-		remove(bs);
-		add(waiting);
+//		remove(bs);
+//		add(waiting);
+		switcher.show(leftContainer, "WAIT");
 		revalidate();
 	}
 }

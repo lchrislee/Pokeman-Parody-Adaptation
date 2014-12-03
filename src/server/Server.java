@@ -24,7 +24,7 @@ import dataStore.Pokemon;
 public class Server implements Runnable{
 	public static final int COMMUNICATIONPORT = 5555;
 	public static final int CHATPORT = 4444;
-	public static final int OBJECTPORT = 3456;
+//	public static final int OBJECTPORT = 3456;
 	private ChatServer chatServer;
 	private Battle first;
 	private Battle second;
