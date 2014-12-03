@@ -80,6 +80,12 @@ public class Server implements Runnable{
 				System.out.println("FINISHED LISTENING");
 			}
 			
+			try {
+				dba.join();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			pokemonMap = dba.getMap();
 			System.out.println("WAITING TO ACCEPT PLAYERS");
 			getPlayers();
 			/*
@@ -122,12 +128,6 @@ public class Server implements Runnable{
 	
 	@Override
 	public void run(){
-		try {
-			dba.join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		pokemonMap = dba.getMap();
 		generateBattlePairs();
 		createBattles();
 		boolean result1 = first.join();
@@ -171,17 +171,17 @@ public class Server implements Runnable{
 		for (NetworkPlayer p : players){
 			String input = null;
 			String output = "";
-			try {
-				input = p.getBr().readLine(); //read MOVES # from attackselection of client
-			System.out.println("inputserver.java " + input);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			if (input == null){
-				System.out.println("BROKEDEDEDED");
-				return;
-			}
-			if (input.contains("MOVES")){
+//			try {
+//				input = p.getBr().readLine(); //read MOVES # from attackselection of client
+//			System.out.println("inputserver.java " + input);
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//			if (input == null){
+//				System.out.println("BROKEDEDEDED");
+//				return;
+//			}
+//			if (input.contains("MOVES")){
 				int position = Integer.parseInt(input.substring(input.length() - 1));
 				int i = 0;
 				for (Move m : p.getPokemonList().get(position).getMoveList()){
@@ -190,8 +190,8 @@ public class Server implements Runnable{
 						output += "?";
 					++i;
 				}
-			}
-			System.out.println(output);
+//			}
+//			System.out.println(output);
 			p.getPw().println(output);
 
 		}
