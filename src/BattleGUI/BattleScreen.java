@@ -47,6 +47,13 @@ public class BattleScreen extends JPanel {
 			e.printStackTrace();
 		}
 		changeYourPokemon();
+		/*
+		try {
+			update(br.readLine());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		*/
 //		changeEnemyPokemon();
 	}
 	

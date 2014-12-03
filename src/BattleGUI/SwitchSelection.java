@@ -199,13 +199,16 @@ public class SwitchSelection extends JPanel{ //make this panel 300 wide by 150 t
 								chosenPokemon = pokemon.get(i);
 							}
 						}
+						/*
 						String switchString = "swap_"+playerName+"?"+chosenPokemon.getName()+
 								"|"+chosenPokemon.getLevel()+"!"+chosenPokemon.getHealth()+":"+chosenPokemon.getMaxHealth();
+								*/
+						String switchString = "Sw_" + selectedPokemonName;
 						pw.println(switchString);
 						pw.flush();
 					}
 					
-					
+
 					String input = "";
 					try {
 						input = br.readLine();
@@ -213,6 +216,7 @@ public class SwitchSelection extends JPanel{ //make this panel 300 wide by 150 t
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
+
 					
 					if(input.contains("1"))//the case that somebody surrenders during our attack
 						input = "Player 2 Wins!";
@@ -222,6 +226,7 @@ public class SwitchSelection extends JPanel{ //make this panel 300 wide by 150 t
 					
 					
 					else{ input = "You changed to " + chosenPokemon.getName();}
+
 					SwitchSelection.this.central.text.setText(input);
 					SwitchSelection.this.selecter.show(central, central.TEXT);
 					System.out.println("DONE WITH SWITCH SELECTION switchselection.java");

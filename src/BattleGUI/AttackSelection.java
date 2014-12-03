@@ -142,11 +142,18 @@ public class AttackSelection extends JPanel {
 						AttackSelection.this.pw.println(output/* + ((JButton)e.getSource()).getName()*/);
 						AttackSelection.this.pw.flush();
 					}
+					System.out.println("Pushed attack");
+					
+					AttackSelection.this.selecter.show(central, central.TEXT);
+					central.revalidate();
+					central.repaint();
+					System.out.println("switched");
 					String input = null;
 					try {
 						input = br.readLine();
-						System.out.println("WHAT IS THE INPUT I GET in attack ? " + input);
-												
+
+						System.out.println("read in: " + input);
+
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}
@@ -161,7 +168,6 @@ public class AttackSelection extends JPanel {
 					AttackSelection.this.central.text.setText(input);
 //					AttackSelection.this.central.text.setText("You used " + move.getName() + "!");
 					
-					AttackSelection.this.selecter.show(central, central.TEXT);
 				}
 			});
 		}
