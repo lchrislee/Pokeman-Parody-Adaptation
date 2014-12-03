@@ -53,7 +53,7 @@ public class Client{
 		this.playerName = p.getName();
 		clientGUI.createChat(hostAddress);
 		System.out.println("DONE MAKING CHAT");
-		try {
+//		try {
 			//Socket s = new Socket(hostAddress, Server.OBJECTPORT);
 			//System.out.println("Trying to make outputstream");
 			//oos = new ObjectOutputStream(s.getOutputStream());
@@ -85,11 +85,11 @@ public class Client{
 			//pw.println("DONE WRITING");
 			//pw.flush();
 			//this.clientGUI
-			System.out.println(br.readLine());//might need to comment this out.
+//			System.out.println(br.readLine());//might need to comment this out.
 			System.out.println("THIS WORKS");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 		clientGUI.createGUI(hostAddress);
 	}
 	

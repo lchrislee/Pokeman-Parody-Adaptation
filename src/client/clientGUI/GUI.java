@@ -80,11 +80,11 @@ System.out.println("IN GUI CREATEGUI");
 l = null;
 remove(waiting);
 System.err.println("GUI CREATEGUI AFTER REMOVING WAITING");
-try {
-System.out.println(bf.readLine());
-} catch (IOException e1) {
-e1.printStackTrace();
-}
+//try {
+//System.out.println(bf.readLine());
+//} catch (IOException e1) {
+//e1.printStackTrace();
+//}
 JPanel leftContainer = new JPanel(new BorderLayout());
 add(leftContainer, BorderLayout.CENTER);
 leftContainer.add(new CommandCenterGUI(this, pw, bf), BorderLayout.SOUTH);
