@@ -13,7 +13,7 @@ import javax.swing.ImageIcon;
 //player needs to know the index of the current pokemon that's out
 
 public class Player implements Serializable{
-	
+	private static final long serialVersionUID = 2910716062574194936L;
 
 	private Integer currentPokemonIndex = 0;//which pokemon in the list is currently out
 	
@@ -27,7 +27,7 @@ public class Player implements Serializable{
 	private String name;
 	private String characterImageName;
 	
-	private Vector<String>pokemonNamesList;
+//	private Vector<String>pokemonNamesList;
 	//private Set<String> playerMoves;
 	
 	//name,3 pokemon names
@@ -43,27 +43,27 @@ public class Player implements Serializable{
 			v.add(new Move(90,/* 2, */"Psychic"));
 			v.add(new Move(100,/* 3, */"Hyper Beam"));
 			v.add(new Move(10,/* 4, */"Jump"));
-			String[] ss = {"Aerodon_left_tr.png", "Lickister_left_tr.png",
-					"Bee-two_left_tr.png", "Marozard_left_tr", "Meonx_left_tr.png",
-					"Geonx_left_tr.png", "Weepintoise_left_tr.png",
-					"Pikayu_left_tr.png", "sexypod_left_tr.png", "feelglet_left_tr.png" ,
-					
-					"Aerodon_right_tr.png", "Lickister_right_tr.png",
-					"Bee-two_right_tr.png", "Marozard_right_tr", "Meonx_right_tr.png",
-					"Geonx_right_tr.png", "Weepintoise_right_tr.png",
-					"Pikayu_right_tr.png", "sexypod_right_tr.png", "feelglet_right_tr.png",
-					
-					"Aerodon_right_tr_small.png", "Lickister_right_tr_small.png",
-					"Bee-two_right_tr_small.png", "Marozard_right_tr_small", "Meonx_right_tr_small.png",
-					"Geonx_right_tr_small.png", "Weepintoise_right_tr_small.png",
-					"Pikayu_right_tr_small.png", "sexypod_right_tr_small.png", "feelglet_right_tr_small.png"
-					
-					,"Aerodon_left_tr_small.png", "Lickister_left_tr_small.png",
-					"Bee-two_left_tr_small.png", "Marozard_left_tr_small", "Meonx_left_tr_small.png",
-					"Geonx_left_tr_small.png", "Weepintoise_left_tr_small.png",
-					"Pikayu_left_tr_small.png", "sexypod_left_tr_small.png", "feelglet_left_tr_small.png"
-					
-					};
+//			String[] ss = {"Aerodon_left_tr.png", "Lickister_left_tr.png",
+//					"Bee-two_left_tr.png", "Marozard_left_tr", "Meonx_left_tr.png",
+//					"Geonx_left_tr.png", "Weepintoise_left_tr.png",
+//					"Pikayu_left_tr.png", "sexypod_left_tr.png", "feelglet_left_tr.png" ,
+//					
+//					"Aerodon_right_tr.png", "Lickister_right_tr.png",
+//					"Bee-two_right_tr.png", "Marozard_right_tr", "Meonx_right_tr.png",
+//					"Geonx_right_tr.png", "Weepintoise_right_tr.png",
+//					"Pikayu_right_tr.png", "sexypod_right_tr.png", "feelglet_right_tr.png",
+//					
+//					"Aerodon_right_tr_small.png", "Lickister_right_tr_small.png",
+//					"Bee-two_right_tr_small.png", "Marozard_right_tr_small", "Meonx_right_tr_small.png",
+//					"Geonx_right_tr_small.png", "Weepintoise_right_tr_small.png",
+//					"Pikayu_right_tr_small.png", "sexypod_right_tr_small.png", "feelglet_right_tr_small.png"
+//					
+//					,"Aerodon_left_tr_small.png", "Lickister_left_tr_small.png",
+//					"Bee-two_left_tr_small.png", "Marozard_left_tr_small", "Meonx_left_tr_small.png",
+//					"Geonx_left_tr_small.png", "Weepintoise_left_tr_small.png",
+//					"Pikayu_left_tr_small.png", "sexypod_left_tr_small.png", "feelglet_left_tr_small.png"
+//					
+//					};
 			String[] s = {"Bee-two_left_tr.png"};
 			Pokemon p = new Pokemon("Bee-Two", s, 40, 50, 55, 100, 2, 17, v);
 			Pokemon p1 = new Pokemon("Bee-Two", s, 40, 50, 55, 100, 2, 17, v);
@@ -78,7 +78,7 @@ public class Player implements Serializable{
 		
 		public Player(String playerName,Vector<String>pokemonNames){//new constructor
 			this.name = playerName;
-			this.pokemonNamesList = pokemonNames;
+//			this.pokemonNamesList = pokemonNames;
 		}
 	
 		public Player(Player p/*, HashMap<String, ArrayList<Pokemon>> map*/){
@@ -151,7 +151,7 @@ public class Player implements Serializable{
 //			currentPokemon = p.getCurrentPokemon();
 			if(currentPokemon == null)
 				System.out.println("PLAYER.JAVA CURRENT POKEMON NULL ");
-			System.out.println("PLAYER.JAVA CURRENT POKEMON INDEX " + currentPokemonIndex);
+//			System.out.println("PLAYER.JAVA CURRENT POKEMON INDEX " + currentPokemonIndex);
 
 //			name = p.getName();
 //			characterImageName = p.characterImageName;
@@ -160,7 +160,7 @@ public class Player implements Serializable{
 
 			Image playerImage = null;
 			try {
-				System.out.println("Player/setPlayer - characterImageName: " + characterImageName);
+//				System.out.println("Player/setPlayer - characterImageName: " + characterImageName);
 				playerImage = ImageIO.read(getClass().getResource("/Character_sprites/" + characterImageName));
 			} catch (IOException ioe) {
 				System.out.println("fail reading playerimage in Player.java");
@@ -174,13 +174,13 @@ public class Player implements Serializable{
 			
 			for (Pokemon poke : pokemonList){
 				//if (poke.getMoveList() == null){
-					System.out.println(poke.getName() + "\t\tNAME");
+//					System.out.println(poke.getName() + "\t\tNAME");
 					ArrayList<Pokemon> possible = map.get(poke.getName());
-					System.out.println(possible.size());
+//					System.out.println(possible.size());
 					int position = (int)(Math.random() * possible.size());
 					Pokemon REPLACEME = new Pokemon(possible.get(position));
 					v.add(REPLACEME);
-					System.out.println("POKEMON COPY FOR PLAYER: " + poke);
+//					System.out.println("POKEMON COPY FOR PLAYER: " + poke);
 //					System.out.println(poke.getMoveList().get(1).getName() + "\t\tMOVE");
 				//}
 			}
