@@ -12,6 +12,8 @@ import java.io.PrintWriter;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import BattleGUI.BattleScreen;
 import BattleGUI.CommandCenterGUI;
@@ -105,6 +107,18 @@ public class GUI extends JFrame{
 
 		validate();
 		repaint();
+		try {
+			UIManager.setLookAndFeel(UIManager
+					.getCrossPlatformLookAndFeelClassName());
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void createChat(String address){
