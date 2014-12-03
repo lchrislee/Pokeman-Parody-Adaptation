@@ -1,8 +1,6 @@
 package server;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -120,6 +118,8 @@ public class Server implements Runnable{
 			ssObject.close();*/
 			System.out.println("giving moves");
 			giveMoves();
+			System.out.println("sending pokemon");
+			sendPokemon();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -207,6 +207,20 @@ public class Server implements Runnable{
 			}
 //			}
 			System.out.println(output);
+			p.getPw().println(output);
+			p.getPw().flush();
+		}
+	}
+	
+	private void sendPokemon(){
+		for (NetworkPlayer p : players){
+			String output = "";
+			int counter = 1;
+			for (Pokemon pokes : p.getPokemonList()){
+				output += pokes.getName() + "=" + pokes.getLevel() + "+" + pokes.getHealth() + "_" + pokes.getMaxHealth();
+				if (counter++ < 3)
+					output += ":";
+			}
 			p.getPw().println(output);
 			p.getPw().flush();
 		}
