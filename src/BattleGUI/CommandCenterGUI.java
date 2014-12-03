@@ -1,6 +1,7 @@
 package BattleGUI;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.io.BufferedReader;
 //did not finish switch
 import java.io.PrintWriter;
@@ -9,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.border.LineBorder;
 
 import client.clientGUI.GUI;
 import dataStore.Move;
@@ -30,6 +32,7 @@ public class CommandCenterGUI extends JPanel {
 	private String playerName;
 	
 	public CommandCenterGUI(){
+		setBorder(new LineBorder(Color.black, 3));
 		createGUI();
 	}
 
