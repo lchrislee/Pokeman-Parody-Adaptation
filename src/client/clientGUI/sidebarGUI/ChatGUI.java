@@ -45,7 +45,7 @@ public class ChatGUI extends JPanel {
 		setListeners();
 		//connect to server
 		serverAddress = address;
-		//Connect(/*address*/);TODO
+		Connect(/*address*/);
 	}
 	
 //	@SuppressWarnings({"rawtypes", "unchecked"})
@@ -136,7 +136,7 @@ public class ChatGUI extends JPanel {
 		output.println(text);
 		output.flush();
 		
-		//TODO: processMessage( text);
+//		processMessage( text);
 		// if (box.text != 'all')
 		// pretext = "#FROM: tony #TO: " + box.text
 		

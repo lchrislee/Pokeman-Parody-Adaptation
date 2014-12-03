@@ -2,9 +2,9 @@ package Battle;
 
 import java.io.IOException;
 import java.util.Random;
-import java.util.Vector;
 import java.util.concurrent.RecursiveTask;
 
+import dataStore.Move;
 import dataStore.NetworkPlayer;
 import dataStore.Player;
 //import dataStore.Player;
@@ -43,7 +43,9 @@ public class Battle extends RecursiveTask<Boolean> {
 		winnerDetermined = false;
 		setTurnVariables();
 		p1.getPw().println("GO");
+		p1.getPw().flush();
 		p2.getPw().println("GO");
+		p2.getPw().flush();
 	}
 	
 	public static void main(String[] args) {
@@ -64,6 +66,22 @@ public class Battle extends RecursiveTask<Boolean> {
 
 	@Override
 	protected Boolean compute() {
+		//each pla
+		Pokemon mePoke = p1.getCurrentPokemon();
+		Pokemon enemyPoke = p2.getCurrentPokemon();
+		
+		String me = "swap_"+p1.getName()+"?"+mePoke.getName()+"|"+mePoke.getLevel()+"!"+mePoke.getHealth()+":"+mePoke.getMaxHealth();
+		String enemy = "swap_"+p2.getName()+"?"+enemyPoke.getName()+"|"+enemyPoke.getLevel()+"!"+enemyPoke.getHealth()+":"+enemyPoke.getMaxHealth();
+		
+		p1.getPw().println(me);
+		p1.getPw().println(enemy);
+		p1.getPw().flush();
+		
+		p2.getPw().println(enemy);
+		p2.getPw().println(me);
+		p2.getPw().flush();
+		
+		
 		Boolean output = null;
 		while (!winnerDetermined){
 
@@ -291,7 +309,6 @@ public class Battle extends RecursiveTask<Boolean> {
 		try {
 			Thread.sleep(90);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -331,10 +348,17 @@ public class Battle extends RecursiveTask<Boolean> {
 		if(p.equals(p1)){
 			int moveNameStartIndex = p1Input.indexOf("_") + 1;
 			int moveNameEndIndex = p1Input.indexOf("|");
-			int powerStartIndex = p1Input.indexOf("|") + 1;
-			int powerEndIndex = p1Input.length();
+//			int powerStartIndex = p1Input.indexOf("|") + 1;
+//			int powerEndIndex = p1Input.length();
 			String moveName = p1Input.substring(moveNameStartIndex, moveNameEndIndex);
-			int power = Integer.parseInt(p1Input.substring(powerStartIndex, powerEndIndex));
+//			int power = Integer.parseInt(p1Input.substring(powerStartIndex, powerEndIndex));
+			int power = 0;
+			for (Move m : p.getCurrentPokemon().getMoveList()){
+				if (m.getName().equalsIgnoreCase(moveName)){
+					power = m.getDamage();
+					break;
+				}
+			}
 			int damage = calculateDamage(power);
 			int remain = p2.getCurrentPokemon().getHealth() - damage;
 			if(remain < 0)

@@ -1,15 +1,18 @@
 package client.clientGUI;
 import java.awt.BorderLayout;
+import java.awt.Container;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+
 import BattleGUI.BattleScreen;
 import BattleGUI.CommandCenterGUI;
 import client.clientGUI.LoginScreen.LoginScreen;
@@ -87,16 +90,22 @@ public class GUI extends JFrame {
 		// } catch (IOException e1) {
 		// e1.printStackTrace();
 		// }
-		remove(waiting);
-		//repaint();
-		
-		System.out.println("REMOVED WAITING");
 		JPanel leftContainer = new JPanel(new BorderLayout());
 		
 		leftContainer.add(new CommandCenterGUI(this, pw, bf),
 				BorderLayout.SOUTH);
 //		repaint();
 //		revalidate();
+		try {
+			String action = bf.readLine();
+			System.out.println(action + " THIS ACTION!!!! ");
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		remove(waiting);
+		//repaint();
+		
+		System.out.println("REMOVED WAITING");
 		switchToBattleScreen(leftContainer);
 		add(leftContainer, BorderLayout.CENTER);
 		System.out.println("waiting to read");
@@ -114,6 +123,8 @@ public class GUI extends JFrame {
 		} catch (UnsupportedLookAndFeelException e) {
 			e.printStackTrace();
 		}
+		repaint();
+		revalidate();
 	}
 	public void createChat(String address) {
 		add(new SideBar(address, playerName), BorderLayout.EAST);
@@ -157,10 +168,6 @@ public class GUI extends JFrame {
 
 		leftContainer.add(bs,BorderLayout.CENTER);
 	
-		repaint();
-
-
-		revalidate();
 		System.out.println("ADDED BATTLE SCREEN");
 	}
 	

@@ -98,8 +98,9 @@ public class SwitchSelection extends JPanel{ //make this panel 300 wide by 150 t
 			poke.setHealth(Integer.parseInt(hp));
 			poke.setMaxHealth(Integer.parseInt(max));
 			p.add(poke);
-			
+			System.out.println("ADDING POKE SWITCH SELECTION.JAVA ");
 		}
+		System.out.println("FINISHED PARSING SWITCH SELECTION.JAVA ");
 		return p;
 	}
 	
@@ -185,11 +186,13 @@ public class SwitchSelection extends JPanel{ //make this panel 300 wide by 150 t
 					String input = "";
 					try {
 						input = br.readLine();
+						System.out.println(input + " INPUT SWITCHSELECTION.JAVA");
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
 					SwitchSelection.this.central.text.setText(input);
 					SwitchSelection.this.selecter.show(central, central.TEXT);
+					System.out.println("DONE WITH SWITCH SELECTION switchselection.java");
 	            }
 	        });
 			selectionAreaPanel.add(pokemonButton);

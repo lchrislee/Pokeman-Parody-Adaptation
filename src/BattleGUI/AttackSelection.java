@@ -136,7 +136,7 @@ public class AttackSelection extends JPanel {
 				public void actionPerformed(ActionEvent e) {
 					System.out.println(move.getName());
 					if (AttackSelection.this.pw != null){
-						AttackSelection.this.pw.println("At_" + ((JButton)e.getSource()).getText() + "|" + ((JButton)e.getSource()).getName());
+						AttackSelection.this.pw.println("At_" + ((JButton)e.getSource()).getText() + "|"/* + ((JButton)e.getSource()).getName()*/);
 						AttackSelection.this.pw.flush();
 					}
 					String input = null;

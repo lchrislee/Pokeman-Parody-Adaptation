@@ -149,7 +149,6 @@ public class NetworkPlayer extends Player {
 			String playerInfo = this.br.readLine();
 			System.out.println(playerInfo + " PLAYER INFO ");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
 //		ObjectInputStream ois = this.ois;

@@ -8,6 +8,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ForkJoinPool;
 
 import javax.swing.JOptionPane;
@@ -17,7 +18,6 @@ import server.helper.MoveSender;
 import server.helper.ServerSocketAccepter;
 import Battle.Battle;
 import dataStore.MongoDB;
-import dataStore.Move;
 import dataStore.NetworkPlayer;
 import dataStore.Pokemon;
 
@@ -44,41 +44,44 @@ public class Server implements Runnable{
 		dba = new DataBaseAccess();
 		System.out.println("TEST");
 		dba.start();
-//		chatServer = new ChatServer(CHATPORT);	//TODO
+		chatServer = new ChatServer(CHATPORT);
 		players = new ArrayList<NetworkPlayer>();
-//		ArrayList<Socket> chatSockets = new ArrayList<Socket>();TODO
+		ArrayList<Socket> chatSockets = new ArrayList<Socket>();
 		ArrayList<Socket> communicationSockets = new ArrayList<Socket>();
 		System.out.println("Waiting for clients...");
 		try {
-//			ssChat = new ServerSocket(CHATPORT);TODO
+			ssChat = new ServerSocket(CHATPORT);
 			ssComm = new ServerSocket(COMMUNICATIONPORT);
 			
 			ServerSocketAccepter comm = new ServerSocketAccepter(ssComm, numPlayers);
-//			ServerSocketAccepter chat = new ServerSocketAccepter(ssChat, numPlayers);TODO
+			ServerSocketAccepter chat = new ServerSocketAccepter(ssChat, numPlayers);
 			
 			ForkJoinPool pool = new ForkJoinPool(2);
 			pool.execute(comm);
-//			pool.execute(chat);TODO
+			pool.execute(chat);
 			
 			pool.shutdown();
 			while(!pool.isTerminated())
 				Thread.yield();
 			
+			communicationSockets = comm.get();
+			chatSockets = chat.get();
+			
 			for (int i = 0; i < numPlayers; ++i)
 				players.add(new NetworkPlayer());
 			System.out.println("AM I DONE WITH ACCEPTING ");
 			
-//			chatSockets.sort(new SocketSort());TODO
+			chatSockets.sort(new SocketSort());
 			communicationSockets.sort(new SocketSort());
 			System.out.println("DONE SORTING");
 			for (int i = 0; i < numPlayers; ++i){
 				NetworkPlayer p = players.get(i);
-				//p.setChatSocket(chatSockets.get(i));TODO
+				p.setChatSocket(chatSockets.get(i));
 				p.setCommSocket(communicationSockets.get(i));
 				p.setBr();
 				p.setPw();
 				System.out.println("HERE?");
-				//chatServer.listen(p.getChatSocket());TODO
+				chatServer.listen(p.getChatSocket());
 				System.out.println("FINISHED LISTENING");
 			}
 			
@@ -88,7 +91,6 @@ public class Server implements Runnable{
 				e.printStackTrace();
 			}
 			pokemonMap = dba.getMap();
-			System.out.println("WAITING TO ACCEPT PLAYERS");
 			/*
 			ServerSocket ssObject = new ServerSocket(OBJECTPORT);
 			for(int j=0;j<numPlayers;++j){
@@ -119,11 +121,14 @@ public class Server implements Runnable{
 					System.out.println("OOS IS NULL");
 			}
 			ssObject.close();*/
-			System.out.println("giving moves");
+			
 			getPlayersAndGiveMovesAndSendPokemonForSwitch();
-			System.out.println("sending pokemon");
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		} catch (ExecutionException e1) {
+			e1.printStackTrace();
 		}
 		
 		System.out.println("Done getting input from other players");
