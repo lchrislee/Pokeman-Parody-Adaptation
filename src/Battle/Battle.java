@@ -530,9 +530,9 @@ public class Battle extends RecursiveTask<Boolean> {
 			}
 			else firstPlayerToQuit = 2;
 			
-			p1.getPw().println(firstPlayerToQuit);//tell the results to waiting players
+			p1.getPw().println("Su"+firstPlayerToQuit);//tell the results to waiting players
 			p1.getPw().flush();
-			p2.getPw().println(firstPlayerToQuit);
+			p2.getPw().println("Su"+firstPlayerToQuit);
 			p2.getPw().flush();
 			
 			return;
@@ -541,9 +541,9 @@ public class Battle extends RecursiveTask<Boolean> {
 		else if(p1message.equals("Su")){
 			System.out.println("P1QUIT");
 			firstPlayerToQuit = 1;
-			p1.getPw().println(firstPlayerToQuit);//tell the results to waiting players
+			p1.getPw().println("Su"+firstPlayerToQuit);//tell the results to waiting players
 			p1.getPw().flush();
-			p2.getPw().println(firstPlayerToQuit);
+			p2.getPw().println("Su"+firstPlayerToQuit);
 			p2.getPw().flush();
 			return;
 		}
@@ -551,9 +551,9 @@ public class Battle extends RecursiveTask<Boolean> {
 		else if(p2message.equals("Su")){
 			System.out.println("P2QUIT");
 			firstPlayerToQuit = 2;
-			p1.getPw().println(firstPlayerToQuit);//tell the results to waiting players
+			p1.getPw().println("Su"+firstPlayerToQuit);//tell the results to waiting players
 			p1.getPw().flush();
-			p2.getPw().println(firstPlayerToQuit);
+			p2.getPw().println("Su"+firstPlayerToQuit);
 			p2.getPw().flush();
 			return;
 		}

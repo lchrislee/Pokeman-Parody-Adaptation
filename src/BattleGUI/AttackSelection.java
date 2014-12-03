@@ -159,10 +159,10 @@ public class AttackSelection extends JPanel {
 						e1.printStackTrace();
 					}
 					
-					if(input.equals("1"))//the case that somebody surrenders during our attack
+					if(input.equals("Su1"))//the case that somebody surrenders during our attack
 						input = "Player 2 Wins!";
 					
-					else if(input.equals("2"))
+					else if(input.equals("Su2"))
 						input = "Player 1 Wins!";
 					
 					System.out.println("NEW INPUT " + input);

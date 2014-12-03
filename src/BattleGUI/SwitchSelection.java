@@ -218,10 +218,10 @@ public class SwitchSelection extends JPanel{ //make this panel 300 wide by 150 t
 						e.printStackTrace();
 					}
 
-					if(input.equals("1"))//the case that somebody surrenders during our attack
+					if(input.equals("Su1"))//the case that somebody surrenders during our attack
 						input = "Player 2 Wins!";
 					
-					else if(input.equals("2"))//if someone suddenly surrenders
+					else if(input.equals("Su2"))//if someone suddenly surrenders
 						input = "Player 1 Wins!";
 					
 					else{ central.send(input);
