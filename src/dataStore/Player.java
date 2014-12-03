@@ -46,7 +46,24 @@ public class Player implements Serializable{
 			String[] ss = {"Aerodon_left_tr.png", "Lickister_left_tr.png",
 					"Bee-two_left_tr.png", "Marozard_left_tr", "Meonx_left_tr.png",
 					"Geonx_left_tr.png", "Weepintoise_left_tr.png",
-					"Pikayu_left_tr.png", "sexypod_left_tr.png", "feelglet_left_tr.png"};
+					"Pikayu_left_tr.png", "sexypod_left_tr.png", "feelglet_left_tr.png" ,
+					
+					"Aerodon_right_tr.png", "Lickister_right_tr.png",
+					"Bee-two_right_tr.png", "Marozard_right_tr", "Meonx_right_tr.png",
+					"Geonx_right_tr.png", "Weepintoise_right_tr.png",
+					"Pikayu_right_tr.png", "sexypod_right_tr.png", "feelglet_right_tr.png",
+					
+					"Aerodon_right_tr_small.png", "Lickister_right_tr_small.png",
+					"Bee-two_right_tr_small.png", "Marozard_right_tr_small", "Meonx_right_tr_small.png",
+					"Geonx_right_tr_small.png", "Weepintoise_right_tr_small.png",
+					"Pikayu_right_tr_small.png", "sexypod_right_tr_small.png", "feelglet_right_tr_small.png"
+					
+					,"Aerodon_left_tr_small.png", "Lickister_left_tr_small.png",
+					"Bee-two_left_tr_small.png", "Marozard_left_tr_small", "Meonx_left_tr_small.png",
+					"Geonx_left_tr_small.png", "Weepintoise_left_tr_small.png",
+					"Pikayu_left_tr_small.png", "sexypod_left_tr_small.png", "feelglet_left_tr_small.png"
+					
+					};
 			String[] s = {"Bee-two_left_tr.png"};
 			Pokemon p = new Pokemon("Bee-Two", s, 40, 50, 55, 100, 2, 17, v);
 			Pokemon p1 = new Pokemon("Bee-Two", s, 40, 50, 55, 100, 2, 17, v);
