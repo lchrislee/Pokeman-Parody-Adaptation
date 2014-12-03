@@ -118,6 +118,8 @@ public class LoginScreen extends JPanel {
 		nameLabelPanel.add(nameLabel);
 		inputNameTextField = new JTextField("");
 		inputNameTextField.setFocusable(true);
+		inputNameTextField.requestFocusInWindow();
+		inputNameTextField.requestFocus();
 		inputNameTextField.setMaximumSize(new Dimension(500,50));
 		inputNameTextField.addActionListener(new ActionListener(){
 	        public void actionPerformed(ActionEvent e){
