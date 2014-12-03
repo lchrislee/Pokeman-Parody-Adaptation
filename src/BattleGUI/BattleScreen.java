@@ -36,14 +36,14 @@ public class BattleScreen extends JPanel {
 		setBackground(Color.white);
 		
 		try {
-			parse(br.readLine(), yourPokemon);
+			parse(br.readLine(), true);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		changeYourPokemon();
 		
 		try {
-			parse(br.readLine(), enemyPokemon);
+			parse(br.readLine(), false);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -68,34 +68,34 @@ public class BattleScreen extends JPanel {
 	}
 
 	
-	private void parse(String input, Pokemon changeMe){
+	private void parse(String input, boolean yours){
 		/* parse messages for info */
 		String m = input;
-		Pokemon p = new Pokemon();
-		if (m.contains("swap")) {
-			m = m.substring(5);
-			int nameBound = m.indexOf("?");
-			int pokemonBound = m.indexOf("|");
-			int levelBound = m.indexOf("!");
-			int currentHealthBound = m.indexOf(":");
-			String nameCheck = m.substring(0, nameBound);
-			//System.out.println("Name checking in swap: " + nameCheck);
-			String pokemonCheck = m.substring(nameBound+1,pokemonBound);
-			p.setName(pokemonCheck);
-			//System.out.println("Pokemon checking in swap: " + pokemonCheck);
-			String levelCheck = m.substring(pokemonBound+1,levelBound);
-			int level = Integer.parseInt(levelCheck);
-			p.setLevel(level);
-			//System.out.println("Level checking in swap: " + levelCheck);
-			String currentHealthCheck = m.substring(levelBound+1,currentHealthBound);
-			int currentHealth = Integer.parseInt(currentHealthCheck);
-			p.setHealth(currentHealth);
-			//System.out.println("Current health checking in swap: " + currentHealth);
-			String maxHealthCheck = m.substring(currentHealthBound+1,m.length());
-			int maxHealth = Integer.parseInt(maxHealthCheck);
-			p.setMaxHealth(maxHealth);
-			//System.out.println("Max health checking in swap: " + maxHealth);
-			changeMe = p;
+		if (yours) {
+			if (m.contains("swap")) {
+				m = m.substring(5);
+				int nameBound = m.indexOf("?");
+				int pokemonBound = m.indexOf("|");
+				int levelBound = m.indexOf("!");
+				int currentHealthBound = m.indexOf(":");
+				String nameCheck = m.substring(0, nameBound);
+				System.out.println("Name checking in swap: " + nameCheck);
+				String pokemonCheck = m.substring(nameBound+1,pokemonBound);
+				yourPokemon.setName(pokemonCheck);
+				System.out.println("Pokemon checking in swap: " + pokemonCheck);
+				String levelCheck = m.substring(pokemonBound+1,levelBound);
+				int level = Integer.parseInt(levelCheck);
+				yourPokemon.setLevel(level);
+				System.out.println("Level checking in swap: " + levelCheck);
+				String currentHealthCheck = m.substring(levelBound+1,currentHealthBound);
+				int currentHealth = Integer.parseInt(currentHealthCheck);
+				yourPokemon.setHealth(currentHealth);
+				System.out.println("Current health checking in swap: " + currentHealth);
+				String maxHealthCheck = m.substring(currentHealthBound+1,m.length());
+				int maxHealth = Integer.parseInt(maxHealthCheck);
+				yourPokemon.setMaxHealth(maxHealth);
+				System.out.println("Max health checking in swap: " + maxHealth);
+			}
 		}
 		
 	}
@@ -264,11 +264,11 @@ public class BattleScreen extends JPanel {
 			int nameBound = temp.indexOf("?");
 			String nameCheck = temp.substring(0, nameBound);
 			if (yourName.equals(nameCheck)) { 
-				parse(m,yourPokemon);
+				parse(m,true);
 				changeYourPokemon();
 			}
 			else {
-				parse(m,enemyPokemon);
+				parse(m,false);
 				changeEnemyPokemon();
 			}
 		}
