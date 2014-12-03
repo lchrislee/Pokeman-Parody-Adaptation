@@ -98,8 +98,9 @@ public class SwitchSelection extends JPanel{ //make this panel 300 wide by 150 t
 			poke.setHealth(Integer.parseInt(hp));
 			poke.setMaxHealth(Integer.parseInt(max));
 			p.add(poke);
-			
+			System.out.println("ADDING POKE SWITCH SELECTION.JAVA ");
 		}
+		System.out.println("FINISHED PARSING SWITCH SELECTION.JAVA ");
 		return p;
 	}
 	
