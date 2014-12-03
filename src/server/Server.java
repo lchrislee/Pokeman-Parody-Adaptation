@@ -118,6 +118,7 @@ public class Server implements Runnable{
 					System.out.println("OOS IS NULL");
 			}
 			ssObject.close();*/
+			System.out.println("giving moves");
 			giveMoves();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -169,7 +170,8 @@ public class Server implements Runnable{
 	
 	private void giveMoves(){
 		for (NetworkPlayer p : players){
-			String input = null;
+			System.out.println("giving move to player: " + p.getCommSocket().getInetAddress());
+//			String input = null;
 			String output = "";
 //			try {
 //				input = p.getBr().readLine(); //read MOVES # from attackselection of client
@@ -183,13 +185,13 @@ public class Server implements Runnable{
 //			}
 //			if (input.contains("MOVES")){
 //				int position = Integer.parseInt(input.substring(input.length() - 1));
-				int i = 0;
-				for (Move m : p.getPokemonList().get(0/*position*/).getMoveList()){
-					output += m.toString();
-					if (i != 3)
-						output += "?";
-					++i;
-				}
+			int i = 0;
+			for (Move m : p.getPokemonList().get(0/*position*/).getMoveList()){
+				output += m.toString();
+				if (i != 3)
+					output += "?";
+				++i;
+			}
 //			}
 //			System.out.println(output);
 			p.getPw().println(output);
