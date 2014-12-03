@@ -141,21 +141,21 @@ public class Server implements Runnable{
 //		generateBattlePairs();
 		createBattles();
 		boolean result1 = first.join();
-		boolean result2 = second.join();
+		//boolean result2 = second.join();
 		System.out.println("after joins");
 
 		int b1winner = (result1 ? battleOneP1 : battleOneP2);
 		int b1loser = (result1 ? battleOneP2 : battleOneP1);
-		int b2winner = (result2 ? battleTwoP1 : battleTwoP2);
-		int b2loser = (result2 ? battleTwoP2 : battleTwoP1);
+		//int b2winner = (result2 ? battleTwoP1 : battleTwoP2);TODO
+		//int b2loser = (result2 ? battleTwoP2 : battleTwoP1);TODO
 		
-		signalResults(b1winner,b1loser, b2winner, b2loser);
+		//signalResults(b1winner,b1loser, b2winner, b2loser);TODO
 		
 		battleOneP1 = b1winner;
-		battleOneP2 = b2winner;
+		//battleOneP2 = b2winner;TODO
 		battleTwoP1 = b1loser;
-		battleTwoP2 = b2loser;
-		
+		//battleTwoP2 = b2loser;TODO
+		/*
 		createBattles();
 		boolean result3 = first.join();
 		boolean result4 = first.join();
@@ -168,6 +168,7 @@ public class Server implements Runnable{
 		signalResults(b3winner, b3loser, b4winner, b4loser);
 		
 		signalFinalResults(b3winner, b3loser, b4winner, b4loser);
+		*///TODO
 	}
 	
 	private void getPlayersAndGiveMovesAndSendPokemonForSwitch(){

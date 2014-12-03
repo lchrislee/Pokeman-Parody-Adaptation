@@ -90,8 +90,12 @@ public class Battle extends RecursiveTask<Boolean> {
 			p2Input = "";
 			
 			try {
+				System.out.println("p1 is waiting ");
+				System.out.println("p2 is waiting");
 				p1Input = p1.getBr().readLine();
 				p2Input = p2.getBr().readLine();
+				System.out.println(p1Input + " p1 does this ");
+				System.out.println(p2Input + " p2 does this ");
 
 				System.out.println("P1 input:\t" + p1Input);
 				System.out.println("P2 input:\t" + p2Input);
@@ -516,7 +520,7 @@ public class Battle extends RecursiveTask<Boolean> {
 		String p2message = p2Input.substring(0, 2);
 		
 		if(p1message.equals("Su") && p2message.equals("Su")){//if both player surrender, randomly select a player to lose
-
+			System.out.println("CHOOSING SOMEONE TO LOSE AT RANDOM");
 			Random r = new Random();
 			int i = r.nextInt();
 		
@@ -525,18 +529,32 @@ public class Battle extends RecursiveTask<Boolean> {
 				firstPlayerToQuit = 1;
 			}
 			else firstPlayerToQuit = 2;
+			
+			p1.getPw().println(firstPlayerToQuit);//tell the results to waiting players
+			p1.getPw().flush();
+			p2.getPw().println(firstPlayerToQuit);
+			p2.getPw().flush();
+			
 			return;
 		}
 		
 		else if(p1message.equals("Su")){
 			System.out.println("P1QUIT");
 			firstPlayerToQuit = 1;
+			p1.getPw().println(firstPlayerToQuit);//tell the results to waiting players
+			p1.getPw().flush();
+			p2.getPw().println(firstPlayerToQuit);
+			p2.getPw().flush();
 			return;
 		}
 		
 		else if(p2message.equals("Su")){
 			System.out.println("P2QUIT");
 			firstPlayerToQuit = 2;
+			p1.getPw().println(firstPlayerToQuit);//tell the results to waiting players
+			p1.getPw().flush();
+			p2.getPw().println(firstPlayerToQuit);
+			p2.getPw().flush();
 			return;
 		}
 		
@@ -577,10 +595,13 @@ public class Battle extends RecursiveTask<Boolean> {
 		System.out.println(p1message + " P1 SWAP MESSAGE ");
 		System.out.println(p2message + " P2 SWAP MESSAGE ");
 		
+		String fromP1;
+		String fromP2;
 		if(p1message.equals("Sw") && p2message.equals("Sw")){
 			if(turnOrder() == 1){
 				firstPlayerToSwitch = 1;
 				player2Switch = true;
+				
 			}
 			else{
 				firstPlayerToSwitch = 2;
@@ -590,6 +611,18 @@ public class Battle extends RecursiveTask<Boolean> {
 		else if(p1message.equals("Sw")){
 			firstPlayerToSwitch = 1;
 			player1Switch = true;
+			/*try {
+				fromP1 = p1.getBr().readLine();
+				System.out.println(fromP1 + " P1 MESSAGE if both switch ");
+				p1.getPw().println("");
+				p1.getPw().flush();
+				System.out.println("TOLD p1 to switch to this pokemon");
+				
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}*/
+			
 		}
 		else if(p2message.equals("Sw")){
 			firstPlayerToSwitch = 2;
