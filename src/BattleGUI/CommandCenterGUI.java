@@ -2,10 +2,8 @@ package BattleGUI;
 
 import java.awt.CardLayout;
 import java.io.BufferedReader;
-import java.io.IOException;
 //did not finish switch
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,7 +12,6 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import client.clientGUI.GUI;
 import dataStore.Move;
-import dataStore.Pokemon;
 
 public class CommandCenterGUI extends JPanel {
 	private static final long serialVersionUID = 3387827640413193491L;
@@ -80,10 +77,9 @@ public class CommandCenterGUI extends JPanel {
 	}
 
 	protected void send(String m) {
-		parseForSwitch(m);
-		
-		
 		holder.send(m);
+		System.out.println("about to try parsing");
+		parseForSwitch(m);
 	}
 
 	private void parseForSwitch(String m) {

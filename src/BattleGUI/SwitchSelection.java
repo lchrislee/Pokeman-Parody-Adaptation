@@ -190,34 +190,44 @@ public class SwitchSelection extends JPanel{ //make this panel 300 wide by 150 t
 	            	((JButton)me.getSource()).setBackground(Color.RED);
 	            	String selectedPokemonName = ((JButton)me.getSource()).getName();
 	            	System.out.println("Pokemon name: " + selectedPokemonName);
-					SwitchSelection.this.central.text.setText("You switched to " + selectedPokemonName + "!");
-					Pokemon chosenPokemon = null;
+//					SwitchSelection.this.central.text.setText("You switched to " + selectedPokemonName + "!");
+					int chosenPokemon = 0;
 					if (pw != null){
 						
 						for (int i = 0; i < pokemon.size(); i++) {
 							if ( (pokemon.get(i).getName()).equals(selectedPokemonName) )  {
-								chosenPokemon = pokemon.get(i);
+								chosenPokemon = i;
 							}
 						}
 						/*
 						String switchString = "swap_"+playerName+"?"+chosenPokemon.getName()+
 								"|"+chosenPokemon.getLevel()+"!"+chosenPokemon.getHealth()+":"+chosenPokemon.getMaxHealth();
 								*/
-						String switchString = "Sw_" + selectedPokemonName;
+						String switchString = "Sw_" + chosenPokemon;
 						pw.println(switchString);
 						pw.flush();
+						System.out.println(switchString);
 					}
-					
 					/* what is this?  */
 					String input = "";
 					try {
 						input = br.readLine();
 						System.out.println(input + " INPUT SWITCHSELECTION.JAVA");
+						pw.println("GOOD");
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					SwitchSelection.this.central.text.setText(input);
+					
+					central.send(input);
+					System.out.println("chANGED");
+					try {
+						input = br.readLine();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					System.out.println("got text to display");
 					SwitchSelection.this.selecter.show(central, central.TEXT);
+					SwitchSelection.this.central.text.setText(input);
 					System.out.println("DONE WITH SWITCH SELECTION switchselection.java");
 	            }
 	        });

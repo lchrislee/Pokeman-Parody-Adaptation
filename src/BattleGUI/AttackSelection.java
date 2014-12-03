@@ -62,6 +62,8 @@ public class AttackSelection extends JPanel {
 	
 	public Vector<Move> getMoves(int index){
 		String movesList = null;
+//		pw.println("AT_" + index);
+		System.out.println("Trying to get moves");
 		try {
 			movesList = br.readLine();
 			System.out.println("GOT MOVES");
@@ -84,22 +86,21 @@ public class AttackSelection extends JPanel {
 		
 		//String message = input;
 		int numMoves = 4;
-		
+		System.out.println(input + " INPUT STRING ");
 		for(int i=0;i<numMoves;++i){
 			int plusIndex;
 			String name;
 			String damage;
-			System.out.println(input + " INPUT STRING ");
 			if(input.contains("=")){
 				plusIndex = input.indexOf("+");
 				name = input.substring(0,plusIndex);
 				damage = input.substring(plusIndex+1,input.indexOf("="));
 				System.out.println(name + " NAME ! " + damage + " DAMAGE ");
-				input = input.substring(input.indexOf("=")+1,input.length());
+				input = input.substring(input.indexOf("=")+1);
 			}
 			else{
 				name = input.substring(0,input.indexOf("+"));
-				damage = input.substring(input.indexOf("+")+1,input.length());
+				damage = input.substring(input.indexOf("+")+1);
 				System.out.println(name + " NAME LAST  ! " + damage + " DAMAGE Last ");
 			}
 			v.add(new Move(Integer.parseInt(damage),name));
