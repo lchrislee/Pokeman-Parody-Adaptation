@@ -81,8 +81,15 @@ public class Player implements Serializable{
 			this.pokemonNamesList = pokemonNames;
 		}
 	
-		public Player(Player p, HashMap<String, ArrayList<Pokemon>> map){
-			setPlayer(p, map);
+		public Player(Player p/*, HashMap<String, ArrayList<Pokemon>> map*/){
+			name = p.name;
+			characterImageName = p.characterImageName;
+			currentPokemonIndex = p.currentPokemonIndex;
+			pokemonList = new Vector<Pokemon>();
+			for (Pokemon poke : p.pokemonList){
+				pokemonList.add(new Pokemon(poke));
+			}
+//			setPlayer(p, map);
 		}
 		
 		public Player(Vector<Pokemon>pList,/* Vector <ImageIcon> imageList,*/String chosenCharacterName, String playerName){
@@ -139,14 +146,18 @@ public class Player implements Serializable{
 			}
 		}
 		
-		protected void setPlayer(Player p, HashMap<String, ArrayList<Pokemon>> map){
-			currentPokemonIndex = p.currentPokemonIndex;
-			currentPokemon = p.getCurrentPokemon();
+		protected void setPlayer(HashMap<String, ArrayList<Pokemon>> map){
+//			currentPokemonIndex = p.currentPokemonIndex;
+//			currentPokemon = p.getCurrentPokemon();
 			if(currentPokemon == null)
 				System.out.println("PLAYER.JAVA CURRENT POKEMON NULL ");
 			System.out.println("PLAYER.JAVA CURRENT POKEMON INDEX " + currentPokemonIndex);
-			name = p.getName();
-			characterImageName = p.characterImageName;
+
+//			name = p.getName();
+//			characterImageName = p.characterImageName;
+			currentSprite = new ImageIcon("res/" + characterImageName);
+//			pokemonList = new Vector<Pokemon>(p.pokemonList);
+
 			Image playerImage = null;
 			try {
 				System.out.println("Player/setPlayer - characterImageName: " + characterImageName);
@@ -155,16 +166,18 @@ public class Player implements Serializable{
 				System.out.println("fail reading playerimage in Player.java");
 			}
 			currentSprite = new ImageIcon(playerImage);
-			pokemonList = new Vector<Pokemon>(p.pokemonList);
+			
 			if (map == null)
 				return;
 			
 			for (Pokemon poke : pokemonList){
-				if (poke.getMoveList() == null){
+				//if (poke.getMoveList() == null){
+					System.err.println(poke.getName());
 					ArrayList<Pokemon> possible = map.get(poke.getName());
 					int position = (int)(Math.random() * possible.size());
 					poke = new Pokemon(possible.get(position));
-				}
+					System.err.println(poke.getMoveList().get(1).getName());
+				//}
 			}
 //			spriteList = new Vector<ImageIcon> (p.spriteList);			
 //			statsMap = new HashMap<String,Integer>(p.statsMap);

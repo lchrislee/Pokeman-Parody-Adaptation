@@ -51,7 +51,7 @@ public class Server implements Runnable{
 		try {
 			ssChat = new ServerSocket(CHATPORT);
 			ssComm = new ServerSocket(COMMUNICATIONPORT);
-			int numPlayers = 4;
+			int numPlayers = 1;
 			
 			for (int i = 0; i < numPlayers; ++i){
 				Socket communicationSocketInput = ssComm.accept();	
@@ -188,14 +188,28 @@ public class Server implements Runnable{
 //			if (input.contains("MOVES")){
 //				int position = Integer.parseInt(input.substring(input.length() - 1));
 			int i = 0;
+			//System.err.println(p.getPokemonList().get(0).getMoveList().size() + "EMPTY MOVES?");
+//			System.err.println(p.getPokemonList().get(0).getName());
+//			System.err.println(p.getPokemonList().get(1).getName());
+//			System.err.println(p.getPokemonList().get(2).getName());
+			System.out.println("START PRINTING STUFF HERE");
+			for (Pokemon poke : p.getPokemonList()){
+				for (Move m : poke.getMoveList()){
+					System.out.println(p.getName());
+					System.err.println(m);
+				}
+			}
+			//System.err.println(p.getPokemonList().get(0).getName());
+
 			for (Move m : p.getPokemonList().get(0/*position*/).getMoveList()){
 				output += m.toString();
+				System.err.println(m.toString() + " MOVE TO STRING ");
 				if (i != 3)
 					output += "?";
 				++i;
 			}
 //			}
-//			System.out.println(output);
+			System.out.println(output);
 			p.getPw().println(output);
 
 		}
@@ -272,7 +286,7 @@ public class Server implements Runnable{
 			try {
 				System.out.println("TEST");//comment this out and get hte mongodb stuff back up
 				MongoDB accessor = new MongoDB();
-				map = accessor.getPokemon();
+				map = new HashMap<String, ArrayList<Pokemon>>(accessor.getPokemon());
 				accessor.close();
 			} catch (UnknownHostException e) {
 				e.printStackTrace();

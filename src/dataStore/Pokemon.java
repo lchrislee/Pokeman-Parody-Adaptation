@@ -42,9 +42,17 @@ public class Pokemon implements Serializable{
 
 	public Pokemon(Pokemon p){
 		this.name = p.name;
-		this.FileNameArray = new String[p.FileNameArray.length];
-		for (int i = 0; i < p.FileNameArray.length; ++i)
-			this.FileNameArray[i] = p.FileNameArray[i];
+		if (p.FileNameArray == null){
+			this.FileNameArray = new String[4];
+			FileNameArray[0] = name + "_left_tr_small.png";
+			FileNameArray[1] = name + "_left_tr.png";
+			FileNameArray[2] = name + "_right_tr_small.png";
+			FileNameArray[3] = name + "_right_tr.png";
+		}else{
+			this.FileNameArray = new String[p.FileNameArray.length];
+			for (int i = 0; i < p.FileNameArray.length; ++i)
+				this.FileNameArray[i] = p.FileNameArray[i];
+		}
 		this.attack = p.attack;
 		this.defense = p.defense;
 		this.speed = p.speed;
@@ -53,6 +61,11 @@ public class Pokemon implements Serializable{
 		this.rarity = p.rarity;
 		this.level = p.level;
 		this.moveList = new Vector<Move>(p.moveList);
+		System.out.println("in pokemon constructor ");
+		for(Move m : moveList){
+			System.err.println(m);
+		}
+		System.out.println("after pokemon constructor loop");
 		createSprites();
 	}
 	

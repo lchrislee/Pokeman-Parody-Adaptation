@@ -31,7 +31,7 @@ public class MongoDB {
  	
     
     public MongoDB() throws UnknownHostException{
-        this("10.120.122.130", 27017);
+        this("10.123.98.58", 27017);
     }
     
     public MongoDB(String ip,int port) throws UnknownHostException{
@@ -97,6 +97,17 @@ public class MongoDB {
     		}
     	}
     	pokemonMap.put(current.get(0).getName(), current);
+    	for(String s : pokemonMap.keySet()){
+    		for(Pokemon p: pokemonMap.get(s)){
+    			System.err.println(p.getName());
+    			for(Move m : p.getMoveList()){
+    				System.err.println(m.getName() + "-" + m.getDamage());
+    			}
+    		
+    		}
+    	}
+    	
+    	
     	
     	return pokemonMap;
     	
