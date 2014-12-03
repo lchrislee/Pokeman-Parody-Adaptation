@@ -61,10 +61,6 @@ public class AttackSelection extends JPanel {
 	}
 	
 	public Vector<Move> getMoves(int index){
-		System.out.println("TRYING TO GET MOVES");
-		pw.println("MOVES " + index);
-		pw.flush();
-		
 		String movesList = null;
 		try {
 			movesList = br.readLine();
