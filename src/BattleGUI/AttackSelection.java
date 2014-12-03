@@ -89,6 +89,7 @@ public class AttackSelection extends JPanel {
 			int plusIndex;
 			String name;
 			String damage;
+			System.out.println(input + " INPUT STRING ");
 			if(input.contains("=")){
 				plusIndex = input.indexOf("+");
 				name = input.substring(0,plusIndex);
