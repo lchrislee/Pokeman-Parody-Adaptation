@@ -81,18 +81,26 @@ public class GUI extends JFrame {
 		
 		//remove(waiting);
 		System.err.println("GUI CREATEGUI AFTER REMOVING WAITING");
+
 		// try {
 		// System.out.println(bf.readLine());
 		// } catch (IOException e1) {
 		// e1.printStackTrace();
 		// }
+		remove(waiting);
+		//repaint();
+		
+		System.out.println("REMOVED WAITING");
 		JPanel leftContainer = new JPanel(new BorderLayout());
-		add(leftContainer, BorderLayout.CENTER);
+		
 		leftContainer.add(new CommandCenterGUI(this, pw, bf),
 				BorderLayout.SOUTH);
+//		repaint();
+//		revalidate();
+		switchToBattleScreen(leftContainer);
+		add(leftContainer, BorderLayout.CENTER);
 		System.out.println("waiting to read");
-		validate();
-		repaint();
+		
 		l = null;
 		try {
 			UIManager.setLookAndFeel(UIManager
@@ -142,13 +150,20 @@ public class GUI extends JFrame {
 		// else keep whatever's there
 		// battleScreen.update(m);
 	}
-	public void switchToBattleScreen() {
-		remove(waiting);
+	public void switchToBattleScreen(JPanel leftContainer) {
+	
 		if (bs == null)
 			bs = new BattleScreen(pw, bf, playerName);
-		add(bs);
+
+		leftContainer.add(bs,BorderLayout.CENTER);
+	
+		repaint();
+
+
 		revalidate();
+		System.out.println("ADDED BATTLE SCREEN");
 	}
+	
 	private void switchToWaitingScreen() {
 		remove(bs);
 		add(waiting);

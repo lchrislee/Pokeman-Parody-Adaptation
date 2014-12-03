@@ -1,10 +1,10 @@
 package server.chatSystem;
 
-import java.io.BufferedReader;
+//import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+//import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.ServerSocket;
+//import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,7 +19,7 @@ public class ChatServer {
 	public static List<String> currentUsers = Collections.synchronizedList(new ArrayList<String>());
 	public static Vector<Socket> connectionArray = new Vector<Socket>();
 	//used for accepting new connections
-	private ServerSocket serverSocket = null;
+//	private ServerSocket serverSocket = null;
 
 	// Constructor and while-accept loop
 	public ChatServer(int port) /*throws IOException*/ {
@@ -63,14 +63,15 @@ public class ChatServer {
 	public static void AddUserName(Socket X) throws IOException {
 		Scanner INPUT = new Scanner(X.getInputStream());
 		String Username = INPUT.nextLine();
+		INPUT.close();
 		currentUsers.add(Username);
 
-		for (int i = 1; i <= ChatServer.connectionArray.size(); i++) {
-			Socket tempSock = (Socket) ChatServer.connectionArray.get(i - 1);
-			PrintWriter output = new PrintWriter(tempSock.getOutputStream());
-			output.println("#?:" + currentUsers);
-			output.flush();
-		}
+//		for (int i = 1; i <= ChatServer.connectionArray.size(); i++) {
+//			Socket tempSock = (Socket) ChatServer.connectionArray.get(i - 1);
+//			PrintWriter output = new PrintWriter(tempSock.getOutputStream());
+//			output.println("#?:" + currentUsers);
+//			output.flush();
+//		}
 	}
 	//sends message to all clients
 	void sendToAll(String message) throws IOException{
@@ -107,7 +108,7 @@ public class ChatServer {
 		for (int i = 0; i < ChatServer.connectionArray.size(); i++) {
 			Socket tempSock = (Socket) ChatServer.connectionArray
 					.get(i);
-			PrintWriter output = new PrintWriter(tempSock.getOutputStream());
+//			PrintWriter output = new PrintWriter(tempSock.getOutputStream());
 			System.out.println("Removing connection to " + s);
 			if (tempSock == s) { //or ==
 					ChatServer.connectionArray.remove(tempSock); //remove tempsock or s?

@@ -71,13 +71,14 @@ public class Server implements Runnable{
 			
 			chatSockets.sort(new SocketSort());
 			communicationSockets.sort(new SocketSort());
-			
+			System.out.println("DONE SORTING");
 			for (int i = 0; i < numPlayers; ++i){
 				NetworkPlayer p = players.get(i);
 				p.setChatSocket(chatSockets.get(i));
 				p.setCommSocket(communicationSockets.get(i));
 				p.setBr();
 				p.setPw();
+				System.out.println("HERE?");
 				chatServer.listen(p.getChatSocket());
 				System.out.println("FINISHED LISTENING");
 			}
