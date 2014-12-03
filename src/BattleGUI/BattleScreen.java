@@ -62,8 +62,8 @@ public class BattleScreen extends JPanel {
 //		this.yourPokemon = yours;
 		this.removeAll();
 		createGUI();
-		repaint();
 		revalidate();
+		repaint();
 	}
 	
 	public void deleteYourPokemon() {
@@ -150,8 +150,8 @@ public class BattleScreen extends JPanel {
 	public void changeEnemyPokemon () {
 		this.removeAll();
 		createGUI();
-		repaint();
 		revalidate();
+		repaint();
 	}
 	
 	public BattleScreen() {
@@ -270,6 +270,7 @@ public class BattleScreen extends JPanel {
 		add(enemyPokemonPanel);
 		add(yourPokemonPanel);
 		add(yourInfoPanel);
+		System.out.println("END CREATEGui OF BATTLE SCREEN");
 	}
 	
 	public void update(String m){
@@ -294,7 +295,8 @@ public class BattleScreen extends JPanel {
 		}
 	}
 	
-	private void swap(String m){
+	public void swap(String m){
+		System.out.println("SWAP TIME");
 		String temp = m;
 		if (temp.contains("swap")) {
 			temp = temp.substring(5);

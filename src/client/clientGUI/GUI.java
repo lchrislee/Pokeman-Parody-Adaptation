@@ -1,6 +1,5 @@
 package client.clientGUI;
 import java.awt.BorderLayout;
-import java.awt.Container;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -8,7 +7,6 @@ import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -18,9 +16,7 @@ import BattleGUI.CommandCenterGUI;
 import client.clientGUI.LoginScreen.LoginScreen;
 import client.clientGUI.Opening.OpeningPanel;
 import client.clientGUI.Waiting.WaitingPanel;
-import client.clientGUI.sidebarGUI.ChatGUI;
 import client.clientGUI.sidebarGUI.SideBar;
-import client.clientGUI.sidebarGUI.SideBarMenuAdapter;
 import dataStore.Player;
 public class GUI extends JFrame {
 	public static PrintWriter pw;
@@ -41,20 +37,20 @@ public class GUI extends JFrame {
 		setSize(800, 600);
 		setResizable(false);
 		setLocation(100, 100);
-		// OpeningPanel op = new OpeningPanel();
-		// // op.run();
-		// add(op);
+		 OpeningPanel op = new OpeningPanel();
+		  //op.run();
+		 add(op);
 		//
 		// System.out.println("OPENING ADDED");
 		setVisible(true);
 		//
-		// while(!op.done)
-		// Thread.yield();//System.out.println("WAITING");
-		// op.stop();
+		 while(!op.done)
+		 Thread.yield();//System.out.println("WAITING");
+		 op.stop();
 		// System.out.println("OPENING COMPLETE");
 		//
-		// remove(op);
-		// op = null;
+		 remove(op);
+		 op = null;
 		l = new LoginScreen();
 		add(l);
 		l.setNameFocus();
@@ -153,6 +149,8 @@ public class GUI extends JFrame {
 	public void send(String m) {// work on this when u get back
 		if (m.contains("END")) {
 			switchToWaitingScreen();
+		}else if (m.contains("swap")){
+			bs.swap(m);
 		}
 		// for a specfici message->send the message to the gui (through the ccg)
 		// at gui...parse message
