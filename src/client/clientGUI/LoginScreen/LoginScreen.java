@@ -117,9 +117,7 @@ public class LoginScreen extends JPanel {
 		nameLabel.setFont(new Font("Arial",Font.PLAIN, 25));
 		nameLabelPanel.add(nameLabel);
 		inputNameTextField = new JTextField("");
-		inputNameTextField.setFocusable(true);
-		inputNameTextField.requestFocusInWindow();
-		inputNameTextField.requestFocus();
+		setNameFocus();
 		inputNameTextField.setMaximumSize(new Dimension(500,50));
 		inputNameTextField.addActionListener(new ActionListener(){
 	        public void actionPerformed(ActionEvent e){
@@ -1033,7 +1031,10 @@ public class LoginScreen extends JPanel {
 	}
 	
 	public void setNameFocus() {
+		inputNameTextField.setFocusable(true);
+		inputNameTextField.requestFocusInWindow();
 		inputNameTextField.requestFocus();
+		inputNameTextField.grabFocus();
 	}
 	
 	public static void main(String[] args) {

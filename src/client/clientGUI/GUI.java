@@ -54,6 +54,7 @@ public class GUI extends JFrame {
 		// op = null;
 		l = new LoginScreen();
 		add(l);
+		l.setNameFocus();
 		revalidate();
 		repaint();
 		System.out.println("BEFORE L.DONE WHILE");
