@@ -1,11 +1,16 @@
 package dataStore;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Vector;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -13,6 +18,7 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
+import com.mongodb.util.JSON;
 
 public class MongoDB {
 	
@@ -25,7 +31,7 @@ public class MongoDB {
  	
     
     public MongoDB() throws UnknownHostException{
-        this("10.123.98.58", 27017);
+        this("10.120.122.130", 27017);
     }
     
     public MongoDB(String ip,int port) throws UnknownHostException{
@@ -43,7 +49,7 @@ public class MongoDB {
 
 		MongoDB db = new MongoDB();
 		//PokemanCollection.remove(new BasicDBObject());
-		//db.addAllCards();
+		db.addAllCards();
 		DBCursor curse = PokemanCollection.find();
 		while(curse.hasNext()){
 			System.out.println(curse.next());
@@ -181,7 +187,7 @@ public class MongoDB {
 		return null;
 	}*/
 
-/*	private void addAllCards() throws FileNotFoundException {
+	/*private void addAllCards() throws FileNotFoundException {
 		Gson gson = new Gson();
 		BufferedReader br = new BufferedReader(new FileReader("pokemonStats.json"));
 		ArrayList<Datamon> all = gson.fromJson(br, new TypeToken<ArrayList<Datamon>>() {}.getType());
