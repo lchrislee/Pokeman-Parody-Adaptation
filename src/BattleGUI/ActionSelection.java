@@ -72,17 +72,25 @@ public class ActionSelection extends JPanel {
 					
 					System.out.println("SURRENDERED");
 					if (ActionSelection.this.pw != null){
+						System.out.println("SENDING SURRENDER MESSAGE ");
 						ActionSelection.this.pw.println("Su");
 						ActionSelection.this.pw.flush();
+						System.out.println("SENt SURRENDER MESSAGE ");
 					}
 					
 					String input = "";
 					try {
+						System.out.println("WAITING FOR INPUT IN ACTIONSELECTION.java");
 						input = br.readLine();
 						System.out.println(input + " SURRENDER INPUT ACTIONSELECTION.java");
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}
+					
+					if(input.contains("1"))
+						input = "Player 2 wins!";
+					else
+						input = "Player 1 wins!";
 					
 					ActionSelection.this.central.text.setText(input);
 					ActionSelection.this.selecter.show(central, central.TEXT);

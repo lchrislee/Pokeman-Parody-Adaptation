@@ -86,6 +86,7 @@ public class AttackSelection extends JPanel {
 		int numMoves = 4;
 		
 		for(int i=0;i<numMoves;++i){
+			
 			int plusIndex;
 			String name;
 			String damage;
@@ -144,9 +145,19 @@ public class AttackSelection extends JPanel {
 					String input = null;
 					try {
 						input = br.readLine();
+						System.out.println("WHAT IS THE INPUT I GET in attack ? " + input);
+												
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}
+					
+					if(input.contains("1"))//the case that somebody surrenders during our attack
+						input = "Player 2 Wins!";
+					
+					else
+						input = "Player 1 Wins!";
+					
+					System.out.println("NEW INPUT " + input);
 					AttackSelection.this.central.text.setText(input);
 //					AttackSelection.this.central.text.setText("You used " + move.getName() + "!");
 					

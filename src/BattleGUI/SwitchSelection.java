@@ -205,7 +205,7 @@ public class SwitchSelection extends JPanel{ //make this panel 300 wide by 150 t
 						pw.flush();
 					}
 					
-					/* what is this? 
+					
 					String input = "";
 					try {
 						input = br.readLine();
@@ -213,8 +213,15 @@ public class SwitchSelection extends JPanel{ //make this panel 300 wide by 150 t
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					*/
-					String input = "You changed to " + chosenPokemon.getName();
+					
+					if(input.contains("1"))//the case that somebody surrenders during our attack
+						input = "Player 2 Wins!";
+					
+					else if(input.contains("2"))//if someone suddenly surrenders
+						input = "Player 1 Wins!";
+					
+					
+					else{ input = "You changed to " + chosenPokemon.getName();}
 					SwitchSelection.this.central.text.setText(input);
 					SwitchSelection.this.selecter.show(central, central.TEXT);
 					System.out.println("DONE WITH SWITCH SELECTION switchselection.java");
