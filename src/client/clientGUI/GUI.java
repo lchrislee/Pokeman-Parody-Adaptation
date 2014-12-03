@@ -74,16 +74,16 @@ public class GUI extends JFrame{
 		remove(l);
 		
 		JPanel container = new JPanel(new BorderLayout());
-		add(container, BorderLayout.CENTER);
+		
 		container.add(new CommandCenterGUI(this, pw, bf), BorderLayout.SOUTH);
 		leftContainer = new JPanel();
 		switcher = new CardLayout();
-		waiting = new WaitingPanel();
 		leftContainer.setLayout(switcher);
+		waiting = new WaitingPanel();
 		leftContainer.add(waiting, "WAIT");
 		container.add(leftContainer);
 		switcher.show(leftContainer, "WAIT");
-	
+		add(container);
 //		add(waiting);
 		revalidate();
 		repaint();
