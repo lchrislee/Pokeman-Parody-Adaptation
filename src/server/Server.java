@@ -202,7 +202,7 @@ public class Server implements Runnable{
 				output += m.toString();
 				System.out.println(m.toString() + " MOVE TO STRING ");
 				if (i != 3)
-					output += "?";
+					output += "=";
 				++i;
 			}
 //			}

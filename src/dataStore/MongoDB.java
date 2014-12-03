@@ -31,7 +31,7 @@ public class MongoDB {
  	
     
     public MongoDB() throws UnknownHostException{
-        this("10.123.98.58", 27017);
+        this("10.120.19.61", 27017);
     }
     
     public MongoDB(String ip,int port) throws UnknownHostException{
@@ -141,6 +141,9 @@ public class MongoDB {
 		for(int i = 0; i < list.size(); i++){
 			BasicDBObject b = (BasicDBObject) list.get(i);
 			String na = b.getString("name");
+			if (na.contains("?")){
+				na = na.substring(0, na.indexOf("?")) + " " + na.substring(na.indexOf("?") + 1);
+			}
 			int da = b.getInt("damage");
 			
 			Move m = new Move();

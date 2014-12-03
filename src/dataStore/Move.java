@@ -63,6 +63,6 @@ public class Move implements Serializable {
 	}
 	
 	public String toString(){
-		return name + " " + damage;
+		return name + "+" + damage;
 	}
 }
