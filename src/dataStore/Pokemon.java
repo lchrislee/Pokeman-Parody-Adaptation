@@ -56,8 +56,8 @@ public class Pokemon implements Serializable{
 		this.attack = p.attack;
 		this.defense = p.defense;
 		this.speed = p.speed;
-		this.health = p.health;
 		this.maxHealth = p.maxHealth;
+		this.health = maxHealth;
 		this.rarity = p.rarity;
 		this.level = p.level;
 		this.moveList = new Vector<Move>(p.moveList);
@@ -150,7 +150,7 @@ public class Pokemon implements Serializable{
 	}
 	
 	public void setHealth(int h){// this method will be used when a pokemon health must be adjusted (potion is used the pokemon is attacked)
-		if(health <= 0)
+		if(h <= 0)
 			this.health = 0;
 		else
 			this.health = h;

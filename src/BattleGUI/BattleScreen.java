@@ -40,14 +40,14 @@ public class BattleScreen extends JPanel {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		changeYourPokemon();
 		
 		try {
 			parse(br.readLine(), false);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		changeEnemyPokemon();
+		changeYourPokemon();
+//		changeEnemyPokemon();
 	}
 	
 //	public void ChangeYourPokemon (Pokemon yours) {
@@ -177,7 +177,9 @@ public class BattleScreen extends JPanel {
 		else {
 			enemyInfoPanel = new JPanel();
 			enemyInfoPanel.setBackground(Color.white);
+			System.err.println(enemyPokemon.getName());
 			JLabel enemyPokemonLabel = new JLabel(enemyPokemon.getName());
+			System.err.println(enemyPokemon.getLevel());
 			JLabel enemyPokemonLevel = new JLabel( String.valueOf(enemyPokemon.getLevel()));
 			enemyPokemonLabel.setFont(new Font("Arial",Font.PLAIN, 25));
 			enemyPokemonLevel.setFont(new Font("Arial",Font.PLAIN, 25));

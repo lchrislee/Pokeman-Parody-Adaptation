@@ -185,10 +185,11 @@ public class Player implements Serializable{
 				//}
 			}
 			setPokemonList(v);
-//			System.out.println("HARD COPIED NEW LIST PRINT OUT");
-//			for (Pokemon poke : getPokemonList()){
-//				System.out.println(poke);
-//			}
+			currentPokemon = this.pokemonList.get(0);
+			System.out.println("HARD COPIED NEW LIST PRINT OUT");
+			for (Pokemon poke : getPokemonList()){
+				System.out.println(poke);
+			}
 //			spriteList = new Vector<ImageIcon> (p.spriteList);			
 //			statsMap = new HashMap<String,Integer>(p.statsMap);
 		}
@@ -282,7 +283,7 @@ public class Player implements Serializable{
 				p3.setName(thirdPName);
 				pokemonList.add(p3);
 				currentPokemonIndex = 0;
-				currentPokemon = pokemonList.get(0);
+				currentPokemon = pokemonList.get(currentPokemonIndex);
 				
 			} catch (IOException e) {
 				e.printStackTrace();

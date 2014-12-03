@@ -179,7 +179,7 @@ public class NetworkPlayer extends Player {
 //			System.out.println("CURRENT SPRITE IS NULL");
 		
 //		System.out.println("PLAYER IS " + p);
-		super.setPlayer(mapping);
+		setPlayer(mapping);
 //		System.out.println("AFTER MAPPING PRINT");
 //		for (Pokemon poke : getPokemonList()){
 //			for (Move m : poke.getMoveList()){

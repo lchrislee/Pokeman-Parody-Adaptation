@@ -72,6 +72,8 @@ public class Battle extends RecursiveTask<Boolean> {
 		
 		String me = "swap_"+p1.getName()+"?"+mePoke.getName()+"|"+mePoke.getLevel()+"!"+mePoke.getHealth()+":"+mePoke.getMaxHealth();
 		String enemy = "swap_"+p2.getName()+"?"+enemyPoke.getName()+"|"+enemyPoke.getLevel()+"!"+enemyPoke.getHealth()+":"+enemyPoke.getMaxHealth();
+		System.err.print(me + " me battle.java");
+		System.err.print(enemy + " enemy battle.java");
 		
 		p1.getPw().println(me);
 		p1.getPw().println(enemy);
@@ -405,10 +407,17 @@ public class Battle extends RecursiveTask<Boolean> {
 		else{
 			int moveNameStartIndex = p2Input.indexOf("_") + 1;
 			int moveNameEndIndex = p2Input.indexOf("|");
-			int powerStartIndex = p2Input.indexOf("|") + 1;
-			int powerEndIndex = p2Input.length();
+//			int powerStartIndex = p2Input.indexOf("|") + 1;
+//			int powerEndIndex = p2Input.length();
 			String moveName = p2Input.substring(moveNameStartIndex, moveNameEndIndex);
-			int power = Integer.parseInt(p2Input.substring(powerStartIndex, powerEndIndex));
+//			int power = Integer.parseInt(p2Input.substring(powerStartIndex, powerEndIndex));
+			int power = 0;
+			for (Move m : p1.getCurrentPokemon().getMoveList()){
+				if (m.getName().equals(moveName)){
+					power = m.getDamage();
+					break;
+				}
+			}
 			int damage = calculateDamage(power);
 			int remain = p1.getCurrentPokemon().getHealth() - damage;
 			if(remain < 0)

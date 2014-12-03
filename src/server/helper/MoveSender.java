@@ -30,9 +30,9 @@ public class MoveSender extends RecursiveTask<Void> {
 		System.out.println("WAITING TO ACCEPT PLAYERS");
 		n.readPlayer(pokemonMap); //GET PLAYER
 //		System.out.println("START PRINTING STUFF HERE");
-//		for (Pokemon poke : n.getPokemonList()){
-//			System.out.println(poke);
-//		}
+		for (Pokemon poke : n.getPokemonList()){
+			System.out.println(poke);
+		}
 		
 		//NEW SECTION BELOW
 		System.out.println("giving moves");
@@ -45,7 +45,7 @@ public class MoveSender extends RecursiveTask<Void> {
 				output += "=";
 			++i;
 		}
-		System.out.println(output);
+//		System.out.println("MOVES IN MOVESENDER" + output);
 		pw.println(output); //OUTPUT MOVE OF FIRST POKEMON
 		pw.flush();
 		
@@ -59,6 +59,7 @@ public class MoveSender extends RecursiveTask<Void> {
 				output += ":";
 		}
 		pw.println(output);
+		System.out.println(output + "OUTPUT OF MOVESENDER FOR STATS");
 		pw.flush(); //OUTPUT POKEMON STATS FOR SWITCHING
 		return null;
 	}

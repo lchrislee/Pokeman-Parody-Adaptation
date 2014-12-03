@@ -34,9 +34,9 @@ public class Server implements Runnable{
 	private ServerSocket ssComm;
 	private ArrayList<NetworkPlayer> players;
 	private static HashMap<String, ArrayList<Pokemon>> pokemonMap;
-	private int numPlayers = 4;
+	private int numPlayers = 2;
 	private int battleOneP1 = 1;
-	private int battleOneP2 = -1;
+	private int battleOneP2 = 2;
 	private int battleTwoP1 = -1;
 	private int battleTwoP2 = -1;
 	private DataBaseAccess dba = null;
@@ -138,7 +138,7 @@ public class Server implements Runnable{
 	@Override
 	public void run(){
 		System.out.println("at the beginning of run");
-		generateBattlePairs();
+//		generateBattlePairs();
 		createBattles();
 		boolean result1 = first.join();
 		boolean result2 = second.join();
@@ -209,10 +209,10 @@ public class Server implements Runnable{
 	private void createBattles(){
 		System.out.println((battleOneP1 -1) + " BATTLE1 p1 " + (battleOneP2-1) + " BATTLE1p2 ");
 		first = new Battle(players.get(battleOneP1 - 1), players.get(battleOneP2 - 1));
-		second = new Battle(players.get(battleTwoP1 - 1), players.get(battleTwoP2 - 1));
+//		second = new Battle(players.get(battleTwoP1 - 1), players.get(battleTwoP2 - 1));
 		ForkJoinPool pool = new ForkJoinPool(2);
 		pool.execute(first);
-		pool.execute(second);
+//		pool.execute(second);
 	}
 	
 	private void signalResults(int b1winner, int b1loser, int b2winner, int b2loser){
