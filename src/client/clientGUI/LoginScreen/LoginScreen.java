@@ -752,10 +752,10 @@ public class LoginScreen extends JPanel {
 		pokemonSpriteList.add(pikayuButton);
 		
 		
-		final ImageIcon sexypodImageIcon = new ImageIcon(sexypodImage,"Sexypod");
+		final ImageIcon sexypodImageIcon = new ImageIcon(sexypodImage,"Sexy-apod");
 		sexypodButton = new JButton(sexypodImageIcon);
 		sexypodButton.setBackground(Color.WHITE);
-		sexypodButton.setName("Sexypod");
+		sexypodButton.setName("Sexy-apod");
 		sexypodButton.addMouseListener(new MouseListener() {
 	            @Override
 	            public void mouseReleased(MouseEvent arg0) {}           
@@ -789,10 +789,10 @@ public class LoginScreen extends JPanel {
 	            }           
 	            @Override
 	            public void mouseClicked(MouseEvent me) {
-	            	chosenPokemon.setDescription("Sexypod");
-	            	if(!pokemonNamesList.contains("Sexypod"))
-	            		pokemonNamesList.add("Sexypod");
-	            	System.out.println("Selected Character: Sexypod");
+	            	chosenPokemon.setDescription("Sexy-apod");
+	            	if(!pokemonNamesList.contains("Sexy-apod"))
+	            		pokemonNamesList.add("Sexy-apod");
+	            	System.out.println("Selected Character: Sexy-apod");
 	            	chosenPokemon.setImage(sexypodImage);
 	            	((JButton)me.getSource()).setBackground(Color.RED);
 	            	if (chosenPokemonQueue.size() == 0) chosenPokemonQueue.add(sexypodImageIcon);
@@ -822,10 +822,10 @@ public class LoginScreen extends JPanel {
 		pokemonSpriteList.add(sexypodButton);
 		
 		
-		final ImageIcon feelgletImageIcon = new ImageIcon(feelgletImage,"Feelglet");
+		final ImageIcon feelgletImageIcon = new ImageIcon(feelgletImage,"Derplett");
 		feelgletButton = new JButton(feelgletImageIcon);
 		feelgletButton.setBackground(Color.WHITE);
-		feelgletButton.setName("Feelglet");
+		feelgletButton.setName("Derplett");
 		feelgletButton.addMouseListener(new MouseListener() {
 	            @Override
 	            public void mouseReleased(MouseEvent arg0) {}           
@@ -859,10 +859,10 @@ public class LoginScreen extends JPanel {
 	            }           
 	            @Override
 	            public void mouseClicked(MouseEvent me) {
-	            	chosenPokemon.setDescription("Feelglet");
-	            	if(!pokemonNamesList.contains("Feelglet"))
-	            	pokemonNamesList.add("Feelglet");
-	            	System.out.println("Selected Character: Feelglet");
+	            	chosenPokemon.setDescription("Derplett");
+	            	if(!pokemonNamesList.contains("Derplett"))
+	            	pokemonNamesList.add("Derplett");
+	            	System.out.println("Selected Character: Derplett");
 	            	chosenPokemon.setImage(feelgletImage);
 	            	((JButton)me.getSource()).setBackground(Color.RED);
 	            	if (chosenPokemonQueue.size() == 0) chosenPokemonQueue.add(feelgletImageIcon);
