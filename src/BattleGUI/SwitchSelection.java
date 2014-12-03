@@ -199,13 +199,16 @@ public class SwitchSelection extends JPanel{ //make this panel 300 wide by 150 t
 								chosenPokemon = pokemon.get(i);
 							}
 						}
+						/*
 						String switchString = "swap_"+playerName+"?"+chosenPokemon.getName()+
 								"|"+chosenPokemon.getLevel()+"!"+chosenPokemon.getHealth()+":"+chosenPokemon.getMaxHealth();
+								*/
+						String switchString = "Sw_" + selectedPokemonName;
 						pw.println(switchString);
 						pw.flush();
 					}
 					
-					/* what is this? 
+					/* what is this?  */
 					String input = "";
 					try {
 						input = br.readLine();
@@ -213,8 +216,6 @@ public class SwitchSelection extends JPanel{ //make this panel 300 wide by 150 t
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					*/
-					String input = "You changed to " + chosenPokemon.getName();
 					SwitchSelection.this.central.text.setText(input);
 					SwitchSelection.this.selecter.show(central, central.TEXT);
 					System.out.println("DONE WITH SWITCH SELECTION switchselection.java");
