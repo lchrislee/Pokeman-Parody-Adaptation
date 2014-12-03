@@ -117,6 +117,7 @@ public class LoginScreen extends JPanel {
 		nameLabel.setFont(new Font("Arial",Font.PLAIN, 25));
 		nameLabelPanel.add(nameLabel);
 		inputNameTextField = new JTextField("");
+		inputNameTextField.setFocusable(true);
 		inputNameTextField.setMaximumSize(new Dimension(500,50));
 		inputNameTextField.addActionListener(new ActionListener(){
 	        public void actionPerformed(ActionEvent e){

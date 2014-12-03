@@ -151,8 +151,8 @@ public class ChatGUI extends JPanel {
 			
 			//TODO: sends the users name
 			output = new PrintWriter(socket.getOutputStream());
-			output.println("poopernames");
-			output.flush();
+//			output.println("poopernames");
+//			output.flush();
 			
 			Thread x = new Thread(chatClient);
 			x.start();
