@@ -123,18 +123,20 @@ public class Pokemon implements Serializable{
 		for(int i=0;i<FileNameArray.length;++i){
 			ImageIcon icon = new ImageIcon(FileNameArray[i]);
 		//	spriteList.add(icon);
-			if(FileNameArray[i].contains("left")){
-				if(FileNameArray[i].contains("small"))
-					smallLeftSprite = icon;
-				else
-					leftSprite = icon;
-			}
-			
-			if(FileNameArray[i].contains("right")){
-				if(FileNameArray[i].contains("small"))
-					smallRightSprite = icon;
-				else
-					rightSprite = icon;
+			if (FileNameArray[i].contains(name)) {
+				if(FileNameArray[i].contains("left")){
+					if(FileNameArray[i].contains("small"))
+						smallLeftSprite = icon;
+					else
+						leftSprite = icon;
+				}
+				
+				if(FileNameArray[i].contains("right")){
+					if(FileNameArray[i].contains("small"))
+						smallRightSprite = icon;
+					else
+						rightSprite = icon;
+				}
 			}
 		}
 	}
@@ -147,7 +149,7 @@ public class Pokemon implements Serializable{
 		this.conscious = false;
 	}
 	
-	public void setHealth(int h){// �C this method will be used when a pokemon��s health must be adjusted (potion is used the pokemon is attacked)
+	public void setHealth(int h){// this method will be used when a pokemon health must be adjusted (potion is used the pokemon is attacked)
 		if(health <= 0)
 			this.health = 0;
 		else
