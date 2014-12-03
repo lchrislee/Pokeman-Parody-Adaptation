@@ -97,6 +97,32 @@ public class BattleScreen extends JPanel {
 				System.out.println("Max health checking in swap: " + maxHealth);
 			}
 		}
+		else {
+			if (m.contains("swap")) {
+				m = m.substring(5);
+				int nameBound = m.indexOf("?");
+				int pokemonBound = m.indexOf("|");
+				int levelBound = m.indexOf("!");
+				int currentHealthBound = m.indexOf(":");
+				String nameCheck = m.substring(0, nameBound);
+				System.out.println("Name checking in swap: " + nameCheck);
+				String pokemonCheck = m.substring(nameBound+1,pokemonBound);
+				enemyPokemon.setName(pokemonCheck);
+				System.out.println("Pokemon checking in swap: " + pokemonCheck);
+				String levelCheck = m.substring(pokemonBound+1,levelBound);
+				int level = Integer.parseInt(levelCheck);
+				enemyPokemon.setLevel(level);
+				System.out.println("Level checking in swap: " + levelCheck);
+				String currentHealthCheck = m.substring(levelBound+1,currentHealthBound);
+				int currentHealth = Integer.parseInt(currentHealthCheck);
+				enemyPokemon.setHealth(currentHealth);
+				System.out.println("Current health checking in swap: " + currentHealth);
+				String maxHealthCheck = m.substring(currentHealthBound+1,m.length());
+				int maxHealth = Integer.parseInt(maxHealthCheck);
+				enemyPokemon.setMaxHealth(maxHealth);
+				System.out.println("Max health checking in swap: " + maxHealth);
+			}
+		}
 		
 	}
 	
