@@ -80,7 +80,7 @@ public class GUI extends JFrame {
 		
 		//remove(waiting);
 		System.err.println("GUI CREATEGUI AFTER REMOVING WAITING");
-		
+
 		// try {
 		// System.out.println(bf.readLine());
 		// } catch (IOException e1) {
@@ -153,9 +153,12 @@ public class GUI extends JFrame {
 	
 		if (bs == null)
 			bs = new BattleScreen(pw, bf, playerName);
+
 		leftContainer.add(bs,BorderLayout.CENTER);
 	
 		repaint();
+
+
 		revalidate();
 		System.out.println("ADDED BATTLE SCREEN");
 	}

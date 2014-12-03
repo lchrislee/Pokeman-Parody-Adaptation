@@ -1032,6 +1032,10 @@ public class LoginScreen extends JPanel {
 		return this.player;
 	}
 	
+	public void setNameFocus() {
+		inputNameTextField.requestFocus();
+	}
+	
 	public static void main(String[] args) {
 	LoginScreen ls = new LoginScreen();
 	JFrame testWindow = new JFrame();
