@@ -33,10 +33,11 @@ public class Server implements Runnable{
 	private ServerSocket ssComm;
 	private ArrayList<NetworkPlayer> players;
 	private static HashMap<String, ArrayList<Pokemon>> pokemonMap;
-	int battleOneP1 = 1;
-	int battleOneP2 = -1;
-	int battleTwoP1 = -1;
-	int battleTwoP2 = -1;
+	private int numPlayers = 1;
+	private int battleOneP1 = 1;
+	private int battleOneP2 = -1;
+	private int battleTwoP1 = -1;
+	private int battleTwoP2 = -1;
 	private DataBaseAccess dba = null;
 	
 	public Server(){
@@ -51,9 +52,6 @@ public class Server implements Runnable{
 		try {
 //			ssChat = new ServerSocket(CHATPORT);TODO
 			ssComm = new ServerSocket(COMMUNICATIONPORT);
-
-			int numPlayers = 4;
-
 			
 			ServerSocketAccepter comm = new ServerSocketAccepter(ssComm, numPlayers);
 //			ServerSocketAccepter chat = new ServerSocketAccepter(ssChat, numPlayers);TODO
@@ -90,7 +88,6 @@ public class Server implements Runnable{
 			}
 			pokemonMap = dba.getMap();
 			System.out.println("WAITING TO ACCEPT PLAYERS");
-			getPlayers();
 			/*
 			ServerSocket ssObject = new ServerSocket(OBJECTPORT);
 			for(int j=0;j<numPlayers;++j){
@@ -122,9 +119,8 @@ public class Server implements Runnable{
 			}
 			ssObject.close();*/
 			System.out.println("giving moves");
-			giveMoves();
+			getPlayersAndGiveMovesAndSendPokemonForSwitch();
 			System.out.println("sending pokemon");
-			sendPokemon();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -167,22 +163,10 @@ public class Server implements Runnable{
 		signalFinalResults(b3winner, b3loser, b4winner, b4loser);
 	}
 	
-	private void getPlayers(){
-		for (NetworkPlayer n : players){
-//			n.readPlayer();
-			n.readPlayer(pokemonMap);
-
-		}
-	}
-	
-	private void giveMoves(){
+	private void getPlayersAndGiveMovesAndSendPokemonForSwitch(){
 		ArrayList<MoveSender> senders = new ArrayList<MoveSender>();
 		for (NetworkPlayer p : players){
-			System.out.println("START PRINTING STUFF HERE");
-			for (Pokemon poke : p.getPokemonList()){
-				System.out.println(poke);
-			}
-			senders.add(new MoveSender(p.getPw(), p.getPokemonList().get(0).getMoveList()));
+			senders.add(new MoveSender(p, p.getPw(), p.getPokemonList().get(0).getMoveList(), pokemonMap));
 			System.out.println("giving move to player: " + p.getCommSocket().getInetAddress());
 //			String input = null;
 			
@@ -206,26 +190,12 @@ public class Server implements Runnable{
 			
 			//System.out.println(p.getPokemonList().get(0).getName());
 		}
-		ForkJoinPool pool = new ForkJoinPool(4);
-		for (int i = 0; i < 4; ++i){
+		ForkJoinPool pool = new ForkJoinPool(numPlayers);
+		for (int i = 0; i < numPlayers; ++i){
 			pool.execute(senders.get(i));
 		}
-		for (int i = 0; i < 4; ++i)
+		for (int i = 0; i < numPlayers; ++i)
 			senders.get(i).join();
-	}
-	
-	private void sendPokemon(){
-		for (NetworkPlayer p : players){
-			String output = "";
-			int counter = 1;
-			for (Pokemon pokes : p.getPokemonList()){
-				output += pokes.getName() + "=" + pokes.getLevel() + "+" + pokes.getHealth() + "_" + pokes.getMaxHealth();
-				if (counter++ < 3)
-					output += ":";
-			}
-			p.getPw().println(output);
-			p.getPw().flush();
-		}
 	}
 	
 	private void createBattles(){
