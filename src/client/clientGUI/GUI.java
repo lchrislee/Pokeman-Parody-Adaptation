@@ -79,6 +79,7 @@ System.out.println("IN GUI CREATEGUI");
 //l = null;
 l = null;
 remove(waiting);
+System.err.println("GUI CREATEGUI AFTER REMOVING WAITING");
 try {
 System.out.println(bf.readLine());
 } catch (IOException e1) {

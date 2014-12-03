@@ -68,6 +68,7 @@ public class Client{
 			System.out.println(message + " WORK DAMMIT ");
 			pw.println(message);
 			pw.flush();
+			System.err.println("AFTER FLUSHING STATEMENT");
 			
 			//br.readLine();
 
