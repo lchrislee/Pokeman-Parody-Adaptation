@@ -13,6 +13,8 @@ import java.util.concurrent.ForkJoinPool;
 import javax.swing.JOptionPane;
 
 import server.chatSystem.ChatServer;
+import server.helper.MoveSender;
+import server.helper.ServerSocketAccepter;
 import Battle.Battle;
 import dataStore.MongoDB;
 import dataStore.Move;
@@ -53,18 +55,18 @@ public class Server implements Runnable{
 			int numPlayers = 4;
 
 			
-			for (int i = 0; i < numPlayers; ++i){
-				Socket communicationSocketInput = ssComm.accept();	
-				System.out.println(communicationSocketInput.toString() + " CONNECTED TO SERVER");
-				communicationSockets.add(communicationSocketInput);
-			}
+			ServerSocketAccepter comm = new ServerSocketAccepter(ssComm, numPlayers);
+			ServerSocketAccepter chat = new ServerSocketAccepter(ssChat, numPlayers);
 			
-			for (int i = 0; i < numPlayers; ++i){
-				Socket chatSocketInput = ssChat.accept();
-				System.out.println(chatSocketInput.toString() + " CONNECTED TO CHAT");
-				chatSockets.add(chatSocketInput);
+			ForkJoinPool pool = new ForkJoinPool(2);
+			pool.execute(comm);
+			pool.execute(chat);
+			
+			communicationSockets = comm.join();
+			chatSockets = chat.join();
+			
+			for (int i = 0; i < numPlayers; ++i)
 				players.add(new NetworkPlayer());
-			}
 			System.out.println("AM I DONE WITH ACCEPTING ");
 			
 			chatSockets.sort(new SocketSort());
@@ -173,10 +175,16 @@ public class Server implements Runnable{
 	}
 	
 	private void giveMoves(){
+		ArrayList<MoveSender> senders = new ArrayList<MoveSender>();
 		for (NetworkPlayer p : players){
+			System.out.println("START PRINTING STUFF HERE");
+			for (Pokemon poke : p.getPokemonList()){
+				System.out.println(poke);
+			}
+			senders.add(new MoveSender(p.getPw(), p.getPokemonList().get(0).getMoveList()));
 			System.out.println("giving move to player: " + p.getCommSocket().getInetAddress());
 //			String input = null;
-			String output = "";
+			
 //			try {
 //				input = p.getBr().readLine(); //read MOVES # from attackselection of client
 //			System.out.println("inputserver.java " + input);
@@ -189,29 +197,20 @@ public class Server implements Runnable{
 //			}
 //			if (input.contains("MOVES")){
 //				int position = Integer.parseInt(input.substring(input.length() - 1));
-			int i = 0;
+			
 			//System.out.println(p.getPokemonList().get(0).getMoveList().size() + "EMPTY MOVES?");
 //			System.out.println(p.getPokemonList().get(0).getName());
 //			System.out.println(p.getPokemonList().get(1).getName());
 //			System.out.println(p.getPokemonList().get(2).getName());
-			System.out.println("START PRINTING STUFF HERE");
-			for (Pokemon poke : p.getPokemonList()){
-				System.out.println(poke);
-			}
+			
 			//System.out.println(p.getPokemonList().get(0).getName());
-
-			for (Move m : p.getPokemonList().get(0/*position*/).getMoveList()){
-				output += m.toString();
-//				System.out.println(m.toString() + " MOVE TO STRING ");
-				if (i != 3)
-					output += "=";
-				++i;
-			}
-//			}
-			System.out.println(output);
-			p.getPw().println(output);
-			p.getPw().flush();
 		}
+		ForkJoinPool pool = new ForkJoinPool(4);
+		for (int i = 0; i < 4; ++i){
+			pool.execute(senders.get(i));
+		}
+		for (int i = 0; i < 4; ++i)
+			senders.get(i).join();
 	}
 	
 	private void sendPokemon(){
