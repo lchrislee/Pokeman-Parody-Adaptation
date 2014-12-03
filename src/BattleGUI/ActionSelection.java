@@ -87,9 +87,9 @@ public class ActionSelection extends JPanel {
 						e1.printStackTrace();
 					}
 					
-					if(input.contains("1"))
+					if(input.equals("1"))
 						input = "Player 2 wins!";
-					else
+					else if(input.equals("2"))
 						input = "Player 1 wins!";
 					
 					ActionSelection.this.central.text.setText(input);
