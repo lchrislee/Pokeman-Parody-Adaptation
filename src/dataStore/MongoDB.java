@@ -141,6 +141,9 @@ public class MongoDB {
 		for(int i = 0; i < list.size(); i++){
 			BasicDBObject b = (BasicDBObject) list.get(i);
 			String na = b.getString("name");
+			if (na.contains("?")){
+				na = na.substring(0, na.indexOf("?")) + " " + na.substring(na.indexOf("?") + 1);
+			}
 			int da = b.getInt("damage");
 			
 			Move m = new Move();
