@@ -26,7 +26,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 public class OpeningPanel extends JPanel implements ActionListener {
 	
-	Timer timer = new Timer(30, this);
+	Timer timer = new Timer(40, this);
 	
 	/* initial position and moving speed of each sprites */
 	int millerX = 0, millerXSpeed = 6, millerY = 170, millerYSpeed;
@@ -326,7 +326,7 @@ public class OpeningPanel extends JPanel implements ActionListener {
 			gameLogoYSpeed = 0;
 		}
 		
-		if (timerCount >= 300) {
+		if (timerCount >= 350) {
 			System.out.println("opening done!");
 			done = true;
 			timer.stop();
