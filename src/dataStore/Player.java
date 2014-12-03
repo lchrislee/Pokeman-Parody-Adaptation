@@ -225,7 +225,7 @@ public class Player implements Serializable{
 				p2.setName(secondPName);
 				pokemonList.add(p2);
 				Pokemon p3 = new Pokemon();
-				String thirdPName = information.substring(information.lastIndexOf("|") +1, information.length() - 1);
+				String thirdPName = information.substring(information.lastIndexOf("|") +1, information.length());
 				p3.setName(thirdPName);
 				pokemonList.add(p3);
 				currentPokemonIndex = 0;
