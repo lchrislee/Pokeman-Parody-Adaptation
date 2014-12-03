@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.BufferedReader;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -32,12 +34,14 @@ public class SwitchSelection extends JPanel{ //make this panel 300 wide by 150 t
 	private BufferedReader br;
 	private CommandCenterGUI central;
 	private ArrayList<Pokemon> pokemon;
+	private String playerName;
 	
-	public SwitchSelection(CardLayout s, CommandCenterGUI c) {
+	public SwitchSelection(CardLayout s, CommandCenterGUI c, String name) {
 		setLayout(new GridLayout(1,3));
 		setPreferredSize(new Dimension(500,150));
 		selecter = s;
 		central = c;
+		this.playerName = name;
 		createGUI();
 	}
 	
@@ -119,7 +123,15 @@ public class SwitchSelection extends JPanel{ //make this panel 300 wide by 150 t
 			if (pokemon == null){
 				pokemonButton = new JButton(new ImageIcon("res/Pokemon_sprites/dadizard_left_tr.png"));
 			}else{
-				pokemonButton = new JButton(new ImageIcon(p.getFileNameArray()[0]));
+				String pokemonImageName = p.getName();
+				Image pokemonImage = null;
+				try {
+					pokemonImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/" + pokemonImageName + "_left_tr.png"));
+				} catch(IOException ioe) {
+					System.out.println("Fail reading pokemon image in Switchselection");
+				}
+				ImageIcon pokemonImageIcon = new ImageIcon(pokemonImage);
+				pokemonButton = new JButton(pokemonImageIcon);
 			}
 			if (pokemon == null)
 				pokemonButton.setName(dummyName);
@@ -176,13 +188,24 @@ public class SwitchSelection extends JPanel{ //make this panel 300 wide by 150 t
 	            @Override
 	            public void mouseClicked(MouseEvent me) {
 	            	((JButton)me.getSource()).setBackground(Color.RED);
-	            	System.out.println("Pokemon name: " + ((JButton)me.getSource()).getName());
-					SwitchSelection.this.central.text.setText("You switched to " + ((JButton)me.getSource()).getName() + "!");
+	            	String selectedPokemonName = ((JButton)me.getSource()).getName();
+	            	System.out.println("Pokemon name: " + selectedPokemonName);
+					SwitchSelection.this.central.text.setText("You switched to " + selectedPokemonName + "!");
+					Pokemon chosenPokemon = null;
 					if (pw != null){
-						pw.println("Sw_" + ((JButton)me.getSource()).getName());
+						
+						for (int i = 0; i < pokemon.size(); i++) {
+							if ( (pokemon.get(i).getName()).equals(selectedPokemonName) )  {
+								chosenPokemon = pokemon.get(i);
+							}
+						}
+						String switchString = "swap_"+playerName+"?"+chosenPokemon.getName()+
+								"|"+chosenPokemon.getLevel()+"!"+chosenPokemon.getHealth()+":"+chosenPokemon.getMaxHealth();
+						pw.println(switchString);
 						pw.flush();
 					}
 					
+					/* what is this? 
 					String input = "";
 					try {
 						input = br.readLine();
@@ -190,6 +213,8 @@ public class SwitchSelection extends JPanel{ //make this panel 300 wide by 150 t
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
+					*/
+					String input = "You changed to " + chosenPokemon.getName();
 					SwitchSelection.this.central.text.setText(input);
 					SwitchSelection.this.selecter.show(central, central.TEXT);
 					System.out.println("DONE WITH SWITCH SELECTION switchselection.java");

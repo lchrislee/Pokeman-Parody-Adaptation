@@ -30,15 +30,17 @@ public class CommandCenterGUI extends JPanel {
 	private PrintWriter pw = null;
 	private BufferedReader br = null;
 	private GUI holder;
+	private String playerName;
 	
 	public CommandCenterGUI(){
 		createGUI();
 	}
 
-	public CommandCenterGUI(GUI h, PrintWriter p, BufferedReader bf){
+	public CommandCenterGUI(GUI h, PrintWriter p, BufferedReader bf, String name){
 		holder = h;
 		pw = p;
 		br = bf;
+		this.playerName = name;
 		createGUI();
 		try {
 			UIManager.setLookAndFeel(UIManager
@@ -64,7 +66,7 @@ public class CommandCenterGUI extends JPanel {
 		add(text, TEXT);
 		selection = (pw == null ? new ActionSelection(switcher, this) : new ActionSelection(switcher, this, pw, br));
 		add(selection, ACTION);
-		switchPokemon = (pw == null ? new SwitchSelection(switcher, this) : new SwitchSelection(switcher, this, pw, br));
+		switchPokemon = (pw == null ? new SwitchSelection(switcher, this, playerName) : new SwitchSelection(switcher, this, pw, br));
 		add(switchPokemon, SWITCH);
 		switcher.show(this, ACTION);
 	}

@@ -92,7 +92,7 @@ public class GUI extends JFrame {
 		// }
 		JPanel leftContainer = new JPanel(new BorderLayout());
 		
-		leftContainer.add(new CommandCenterGUI(this, pw, bf),
+		leftContainer.add(new CommandCenterGUI(this, pw, bf, playerName),
 				BorderLayout.SOUTH);
 //		repaint();
 //		revalidate();
