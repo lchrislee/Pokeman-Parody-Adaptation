@@ -21,8 +21,8 @@ public class BattleScreen extends JPanel {
 	
 	JPanel enemyInfoPanel, enemyPokemonPanel, yourPokemonPanel, yourInfoPanel;
 	JLabel enemyPokemonHealth, yourPokemonHealth;
-	Pokemon enemyPokemon = null;
-	Pokemon yourPokemon = null;
+	Pokemon enemyPokemon = new Pokemon();
+	Pokemon yourPokemon = new Pokemon();
 	private String yourName;
 	private PrintWriter pw;
 	private BufferedReader br;
@@ -173,6 +173,7 @@ public class BattleScreen extends JPanel {
 			String enemyPokemonString = enemyPokemon.getName();
 			Image pokemonImage = null;
 			try {
+				System.out.println(enemyPokemonString + "BrEAKS");
 				pokemonImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/" + enemyPokemonString + "_left_tr.png"));
 			} catch(IOException ioe) {
 				System.out.println("fail image reading in battle screen");
@@ -203,6 +204,7 @@ public class BattleScreen extends JPanel {
 			String yourPokemonString = yourPokemon.getName();
 			Image pokemonImage = null;
 			try {
+				System.out.println("YOUR POKEMON" + yourPokemonString);
 				pokemonImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/" + yourPokemonString + "_right_tr.png"));
 			} catch(IOException ioe) {
 				System.out.println("fail image reading in battle screen");
