@@ -3,7 +3,6 @@ package server.helper;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Vector;
 import java.util.concurrent.RecursiveTask;
 
 import dataStore.Move;
@@ -15,13 +14,11 @@ public class MoveSender extends RecursiveTask<Void> {
 
 	private NetworkPlayer n;
 	private PrintWriter pw;
-	private Vector<Move> moves;
 	private HashMap<String, ArrayList<Pokemon>> pokemonMap;
 	
 	public MoveSender(NetworkPlayer np, HashMap<String, ArrayList<Pokemon>> map){
 		n = np;
 		pw = n.getPw();
-		moves = n.getPokemonList().get(0).getMoveList();
 		pokemonMap = map;
 	}
 	
@@ -38,7 +35,7 @@ public class MoveSender extends RecursiveTask<Void> {
 		System.out.println("giving moves");
 		String output = "";
 		int i = 0;
-		for (Move m : moves){
+		for (Move m : n.getCurrentPokemon().getMoveList()){
 			output += m.toString();
 //			System.out.println(m.toString() + " MOVE TO STRING ");
 			if (i != 3)
