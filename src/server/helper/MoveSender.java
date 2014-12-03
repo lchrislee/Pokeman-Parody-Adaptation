@@ -45,7 +45,7 @@ public class MoveSender extends RecursiveTask<Void> {
 				output += "=";
 			++i;
 		}
-//		System.out.println("MOVES IN MOVESENDER" + output);
+		System.out.println("MOVES IN MOVESENDER" + output);
 		pw.println(output); //OUTPUT MOVE OF FIRST POKEMON
 		pw.flush();
 		
