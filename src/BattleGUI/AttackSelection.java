@@ -137,7 +137,7 @@ public class AttackSelection extends JPanel {
 					System.out.println(move.getName());
 					if (AttackSelection.this.pw != null){
 						String output = "At_" + ((JButton)e.getSource()).getText() + "|";
-						System.out.println(output);
+						System.out.println("AtSlction to Battle println:" + output);
 						AttackSelection.this.pw.println(output/* + ((JButton)e.getSource()).getName()*/);
 						AttackSelection.this.pw.flush();
 					}
@@ -146,11 +146,11 @@ public class AttackSelection extends JPanel {
 					AttackSelection.this.selecter.show(central, central.TEXT);
 					central.revalidate();
 					central.repaint();
-					System.out.println("switched");
+					System.out.println("ATTACKEEEEED");
 					String input = null;
 					try {
 						input = br.readLine();
-						System.out.println("read in: " + input);
+						System.out.println("battle to Atslection read in: " + input);
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}
