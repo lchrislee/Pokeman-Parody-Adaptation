@@ -41,15 +41,26 @@ public class SwitchSelection extends JPanel{ //make this panel 300 wide by 150 t
 		createGUI();
 	}
 	
-	public SwitchSelection(CardLayout s, CommandCenterGUI c, PrintWriter p, BufferedReader b, ArrayList<Pokemon> pokes) {
+	public SwitchSelection(CardLayout s, CommandCenterGUI c, PrintWriter p, BufferedReader b) {
 		setLayout(new GridLayout(1,3));
 		setPreferredSize(new Dimension(500,150));
 		selecter = s;
 		pw = p;
 		br = b;
 		central = c;
-		pokemon = pokes;
+		
+		try {
+			pokemon = parse(br.readLine());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		createGUI();
+	}
+	
+	private ArrayList<Pokemon> parse(String s){
+		ArrayList<Pokemon> p = new ArrayList<Pokemon>();
+		
+		return p;
 	}
 	
 	private void createGUI() {
