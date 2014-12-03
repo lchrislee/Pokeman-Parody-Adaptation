@@ -10,7 +10,7 @@ public class SideBarMenuAdapter extends JPanel {
 	private static final long serialVersionUID = -2460067380322702091L;
 	public final String MENUNAME = "MENU";
 	public final String ITEMNAME = "ITEMLIST";
-	public final String STATUSNAME = "POKEMONSTATUS";
+//	public final String STATUSNAME = "POKEMONSTATUS";
 //	public final String USERINFO = "USERINFORMATION";
 
 	public SideBarMenuAdapter(){
@@ -23,7 +23,7 @@ public class SideBarMenuAdapter extends JPanel {
 		setLayout(switcher);
 		add(new MenuUI(switcher, this), MENUNAME);
 //		add(new ItemListUI(switcher, this), ITEMNAME);
-		add(new PokemonStatusUI(switcher, this), STATUSNAME);
+//		add(new PokemonStatusUI(switcher, this), STATUSNAME);
 //		add(new UserInformationGUI(switcher, this), USERINFO);
 	}
 }
