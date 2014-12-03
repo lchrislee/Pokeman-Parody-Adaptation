@@ -49,7 +49,9 @@ public class Server implements Runnable{
 		try {
 			ssChat = new ServerSocket(CHATPORT);
 			ssComm = new ServerSocket(COMMUNICATIONPORT);
+
 			int numPlayers = 4;
+
 			
 			for (int i = 0; i < numPlayers; ++i){
 				Socket communicationSocketInput = ssComm.accept();	

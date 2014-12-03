@@ -77,7 +77,7 @@ public class GUI extends JFrame {
 		// remove(l);
 		// l = null;
 		
-		remove(waiting);
+		//remove(waiting);
 		System.err.println("GUI CREATEGUI AFTER REMOVING WAITING");
 		// try {
 		// System.out.println(bf.readLine());

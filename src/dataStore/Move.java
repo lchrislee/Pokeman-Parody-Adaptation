@@ -25,8 +25,6 @@ public class Move implements Serializable {
 		name = "";
 	}
 	
-	
-	
 	public void setDamage(int i){
 		damage = i;
 	}
@@ -38,7 +36,6 @@ public class Move implements Serializable {
 //	public int getId(){
 //		return this.id;
 //	}
-	
 
 	public int getDamage(){
 		return this.damage;
