@@ -6,7 +6,7 @@ import java.util.Vector;
 import javax.swing.ImageIcon;
 
 public class Pokemon implements Serializable{
-
+	private static final long serialVersionUID = 1340972644597654868L;
 	private Boolean conscious = true; //default
 	private Integer attack;
 	private Integer defense;

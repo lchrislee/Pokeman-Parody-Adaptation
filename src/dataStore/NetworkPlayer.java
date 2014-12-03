@@ -2,12 +2,10 @@
 package dataStore;
 
 import java.io.BufferedReader;
-import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OptionalDataException;
+//import java.io.ObjectInputStream;
+//import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -18,8 +16,8 @@ public class NetworkPlayer extends Player {
 	private Socket chatSocket;
 	private Socket commSocket;
 	
-	private ObjectInputStream ois;
-	private ObjectOutputStream oos;
+//	private ObjectInputStream ois;
+//	private ObjectOutputStream oos;
 	//testing stuff
 	
 	
@@ -56,35 +54,35 @@ public class NetworkPlayer extends Player {
 
 	//trying to get objectinputstream;
 	
-	public ObjectInputStream getOIS(){
-		return ois;
-	}
+//	public ObjectInputStream getOIS(){
+//		return ois;
+//	}
 	
 	public BufferedReader getBr() {
 		return br;
 	}
 
-	//testing
-	public void setOIS(){
-		System.out.println("STARTING TO MAKE OIS");
-		try {
-			this.ois = new ObjectInputStream(commSocket.getInputStream());
-			if(ois==null){
-				System.out.println("ois IS NULL");
-			}
-		} catch (IOException e) {
-			System.out.println("BAD OIS");
-			System.exit(0);
-			e.printStackTrace();
-		}
-		System.out.println("DONE SETTING OIS");
-	}
-	
-	//testing
-	public void setOIS(ObjectInputStream ois){
-		this.ois = ois;
-	}
-	
+//	//testing
+//	public void setOIS(){
+//		System.out.println("STARTING TO MAKE OIS");
+//		try {
+//			this.ois = new ObjectInputStream(commSocket.getInputStream());
+//			if(ois==null){
+//				System.out.println("ois IS NULL");
+//			}
+//		} catch (IOException e) {
+//			System.out.println("BAD OIS");
+//			System.exit(0);
+//			e.printStackTrace();
+//		}
+//		System.out.println("DONE SETTING OIS");
+//	}
+//	
+//	//testing
+//	public void setOIS(ObjectInputStream ois){
+//		this.ois = ois;
+//	}
+//	
 	public void setBr() {
 		try {
 			this.br = new BufferedReader(new InputStreamReader(commSocket.getInputStream()));
@@ -118,28 +116,28 @@ public class NetworkPlayer extends Player {
 		this.pw = pw;
 	}	
 
-	public ObjectOutputStream getOOS(){
-		return oos;
-	}
-	
-	public void setOOS(){
-		try {
-			this.oos = new ObjectOutputStream(commSocket.getOutputStream());
-			this.oos.flush();
-			if(this.oos==null){
-				System.out.println("oos IS NULL");
-			}
-		} catch (IOException e) {
-			System.out.println("BAD OOS");
-			System.exit(0);
-			e.printStackTrace();
-		}
-		System.out.println("DONE SETTING OOS");
-	}
-	
-	public void setOOS(ObjectOutputStream oos){
-		this.oos = oos;
-	}
+//	public ObjectOutputStream getOOS(){
+//		return oos;
+//	}
+//	
+//	public void setOOS(){
+//		try {
+//			this.oos = new ObjectOutputStream(commSocket.getOutputStream());
+//			this.oos.flush();
+//			if(this.oos==null){
+//				System.out.println("oos IS NULL");
+//			}
+//		} catch (IOException e) {
+//			System.out.println("BAD OOS");
+//			System.exit(0);
+//			e.printStackTrace();
+//		}
+//		System.out.println("DONE SETTING OOS");
+//	}
+//	
+//	public void setOOS(ObjectOutputStream oos){
+//		this.oos = oos;
+//	}
 	
 	public void readPlayer(HashMap<String, ArrayList<Pokemon>> mapping){
 		System.out.println("NETWORK PLAYER IS READING ");
@@ -183,14 +181,14 @@ public class NetworkPlayer extends Player {
 		
 //		System.out.println("PLAYER IS " + p);
 		super.setPlayer(mapping);
-		System.out.println("AFTER MAPPING PRINT");
-		for (Pokemon poke : getPokemonList()){
-			for (Move m : poke.getMoveList()){
-				System.out.println(poke.getName());
-				System.out.println(m);
-			}
-		}
-		System.out.println("DONE PRINTING AFTER MAPPING");
+//		System.out.println("AFTER MAPPING PRINT");
+//		for (Pokemon poke : getPokemonList()){
+//			for (Move m : poke.getMoveList()){
+//				System.out.println(poke.getName());
+//				System.out.println(m);
+//			}
+//		}
+//		System.out.println("DONE PRINTING AFTER MAPPING");
 	}
 
 }

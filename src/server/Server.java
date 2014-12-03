@@ -49,7 +49,9 @@ public class Server implements Runnable{
 		try {
 			ssChat = new ServerSocket(CHATPORT);
 			ssComm = new ServerSocket(COMMUNICATIONPORT);
-			int numPlayers = 2;
+
+			int numPlayers = 4;
+
 			
 			for (int i = 0; i < numPlayers; ++i){
 				Socket communicationSocketInput = ssComm.accept();	
@@ -200,7 +202,7 @@ public class Server implements Runnable{
 
 			for (Move m : p.getPokemonList().get(0/*position*/).getMoveList()){
 				output += m.toString();
-				System.out.println(m.toString() + " MOVE TO STRING ");
+//				System.out.println(m.toString() + " MOVE TO STRING ");
 				if (i != 3)
 					output += "=";
 				++i;
