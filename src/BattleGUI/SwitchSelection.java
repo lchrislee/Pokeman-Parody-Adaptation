@@ -192,6 +192,7 @@ public class SwitchSelection extends JPanel{ //make this panel 300 wide by 150 t
 					}
 					SwitchSelection.this.central.text.setText(input);
 					SwitchSelection.this.selecter.show(central, central.TEXT);
+					System.out.println("DONE WITH SWITCH SELECTION switchselection.java");
 	            }
 	        });
 			selectionAreaPanel.add(pokemonButton);

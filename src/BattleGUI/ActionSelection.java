@@ -79,6 +79,7 @@ public class ActionSelection extends JPanel {
 					String input = "";
 					try {
 						input = br.readLine();
+						System.out.println(input + " SURRENDER INPUT ACTIONSELECTION.java");
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}
@@ -86,6 +87,7 @@ public class ActionSelection extends JPanel {
 					ActionSelection.this.central.text.setText(input);
 					ActionSelection.this.selecter.show(central, central.TEXT);
 //					ActionSelection.this.central.text.setText("You tried to run away!");
+					System.out.println("ACTION SELECTION COMPLETE ACTIONSELECTION.JAVA");
 			}
 		}
 	}

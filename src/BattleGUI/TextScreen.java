@@ -71,6 +71,7 @@ public class TextScreen extends JPanel {
 							pw.println("PROGRESS");
 							pw.flush();
 						}
+						System.out.println(input + " TEXT SCREEN INPUT TEXTSCREEN.JAVA");
 					}while (!(input = br.readLine()).equals("DONE"));
 				} catch (IOException e) {
 					e.printStackTrace();
