@@ -36,6 +36,7 @@ public class Battle extends RecursiveTask<Boolean> {
 	}
 	
 	public Battle(NetworkPlayer p1, NetworkPlayer p2){
+		System.out.println("INSIDE BATTLE CONSTRUCTOR");
 		this.p1 = p1;
 		this.p2 = p2;
 		System.out.println(this.p1);

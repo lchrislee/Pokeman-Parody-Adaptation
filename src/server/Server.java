@@ -129,11 +129,13 @@ public class Server implements Runnable{
 	
 	@Override
 	public void run(){
+		System.out.println("at the beginning of run");
 		generateBattlePairs();
 		createBattles();
 		boolean result1 = first.join();
 		boolean result2 = second.join();
-		
+		System.out.println("after joins");
+
 		int b1winner = (result1 ? battleOneP1 : battleOneP2);
 		int b1loser = (result1 ? battleOneP2 : battleOneP1);
 		int b2winner = (result2 ? battleTwoP1 : battleTwoP2);

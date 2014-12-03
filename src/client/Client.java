@@ -60,7 +60,6 @@ public class Client{
 //			oos.flush();
 			
 		
-			
 			String pokeNameOne = p.getPokemonList().get(0).getName();
 			String pokeNameTwo = p.getPokemonList().get(1).getName();
 			String pokeNameThree = p.getPokemonList().get(2).getName();
