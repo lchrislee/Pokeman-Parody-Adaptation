@@ -75,14 +75,12 @@ public class ChatThread implements Runnable {
 		} catch (EOFException ie) {
 			//
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			// try {
 			try {
 				server.removeConnection(socket);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

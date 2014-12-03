@@ -99,7 +99,6 @@ public class GUI extends JFrame {
 			String action = bf.readLine();
 			System.out.println(action + " THIS ACTION!!!! ");
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		remove(waiting);

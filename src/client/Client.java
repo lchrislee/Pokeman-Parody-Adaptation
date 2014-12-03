@@ -3,7 +3,7 @@ package client;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.ObjectOutputStream;
+//import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 import server.Server;
 import client.clientGUI.GUI;
 import dataStore.Player;
-import dataStore.Pokemon;
+//import dataStore.Pokemon;
 
 public class Client{
 	
@@ -24,7 +24,7 @@ public class Client{
 	private String hostAddress;
 	private String playerName;
 	
-	private ObjectOutputStream oos;
+//	private ObjectOutputStream oos;
 	
 	//method to store players
 	
@@ -51,8 +51,8 @@ public class Client{
 		System.out.println("CLIENT MAKING GUI");
 		Player p = clientGUI.getPlayer();
 		this.playerName = p.getName();
-		//clientGUI.createChat(hostAddress);TODO
-		//System.out.println("DONE MAKING CHAT");TODO
+		clientGUI.createChat(hostAddress);
+		System.out.println("DONE MAKING CHAT");
 //		try {
 			//Socket s = new Socket(hostAddress, Server.OBJECTPORT);
 			//System.out.println("Trying to make outputstream");
