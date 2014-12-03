@@ -186,6 +186,7 @@ public class SwitchSelection extends JPanel{ //make this panel 300 wide by 150 t
 					String input = "";
 					try {
 						input = br.readLine();
+						System.out.println(input + " INPUT SWITCHSELECTION.JAVA");
 					} catch (IOException e) {
 						e.printStackTrace();
 					}

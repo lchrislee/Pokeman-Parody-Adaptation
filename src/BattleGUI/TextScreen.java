@@ -46,7 +46,7 @@ public class TextScreen extends JPanel {
 		message.addMouseListener(new MouseListener(){
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				ActionSelection.lock.unlock();
+				
 				System.out.println("LET's go back");
 
 				String input = "";

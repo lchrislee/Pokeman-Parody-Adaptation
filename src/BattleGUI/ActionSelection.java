@@ -22,7 +22,7 @@ public class ActionSelection extends JPanel {
 	private PrintWriter pw;
 	private BufferedReader br;
 	
-	public static Lock lock = new ReentrantLock();
+	//private Lock lock = new ReentrantLock();
 	
 	public ActionSelection(CardLayout s, CommandCenterGUI c){
 		createGUI();
@@ -50,25 +50,26 @@ public class ActionSelection extends JPanel {
 		}
 	}
 	
-	private class ActionButtonListener implements ActionListener{
-		@Override
+	private class ActionButtonListener implements ActionListener{//storing reference to actionselection
+		
+		
+		
 		public void actionPerformed(ActionEvent e) {
 			switch(((JButton)e.getSource()).getText()){
 				case "Attack":
-					ActionSelection.lock.lock();
+					
 					System.out.println("ATTACKED");
 					ActionSelection.this.selecter.show(central, central.ATTACKSELECT);
 					break;
 				case "Switch":
-//					//AttackSelection.this.central.text.getLock().lock();
-					ActionSelection.lock.lock();
-					lock.lock();
+//				
+					
 					System.out.println("SWITCHED");
 					ActionSelection.this.selecter.show(central, central.SWITCH);
 					
 					break;
 				case "Surrender":
-					ActionSelection.lock.lock();
+					
 					System.out.println("SURRENDERED");
 					if (ActionSelection.this.pw != null){
 						ActionSelection.this.pw.println("Su");
