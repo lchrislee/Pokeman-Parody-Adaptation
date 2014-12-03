@@ -8,6 +8,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ForkJoinPool;
 
 import javax.swing.JOptionPane;
@@ -63,6 +64,8 @@ public class Server implements Runnable{
 			pool.shutdown();
 			while(!pool.isTerminated())
 				Thread.yield();
+			
+			communicationSockets = comm.get();
 			
 			for (int i = 0; i < numPlayers; ++i)
 				players.add(new NetworkPlayer());
@@ -124,6 +127,10 @@ public class Server implements Runnable{
 			System.out.println("sending pokemon");
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		} catch (ExecutionException e1) {
+			e1.printStackTrace();
 		}
 		
 		System.out.println("Done getting input from other players");
