@@ -75,8 +75,8 @@ public class LoginScreen extends JPanel {
 			geonxImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/Geonx_left_tr_small.png"));
 			weepintoiseImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/Weepintoise_left_tr_small.png"));
 			pikayuImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/Pikayu_left_tr_small.png"));
-			sexypodImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/sexypod_left_tr_small.png"));
-			feelgletImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/feelglet_left_tr_small.png"));
+			sexypodImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/Sexy-apod_left_tr_small.png"));
+			feelgletImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/Derplett_left_tr_small.png"));
 		}
 		catch(IOException ioe) {
 			System.out.println("fail reading login images");

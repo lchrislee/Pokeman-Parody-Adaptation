@@ -124,7 +124,7 @@ public class OpeningPanel extends JPanel implements ActionListener {
 			beetwo_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/Bee-two_left_tr.png"));
 			dadizard_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/dadizard_left_tr.png"));
 			exegynx_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/Exegynx_left_tr.png")); 
-			feelglet_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/feelglet_left_tr.png"));
+			feelglet_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/Derplett_left_tr.png"));
 			
 			gengynx_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/Gengynx_left_tr.png")); 
 			geonx_left = ImageIO.read(getClass().getResource("/Pokemon_sprites/Geonx_left_tr.png")); 
@@ -142,10 +142,10 @@ public class OpeningPanel extends JPanel implements ActionListener {
 			marozard_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/Marozard_left_tr.png"));
 			meonx_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/Meonx_left_tr.png"));
 			pikayu_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/Pikayu_left_tr.png"));
-			rhyfetch_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/sexypod_right_tr.png"));
-			scydra_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/sexypod_left_tr.png"));
+			rhyfetch_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/Sexy-apod_right_tr.png"));
+			scydra_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/Sexy-apod_left_tr.png"));
 			seanasaur_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/Seanasaur_left_tr.png"));
-			sexypod_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/sexypod_left_tr.png")); 
+			sexypod_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/Sexy-apod_left_tr.png")); 
 			weepintoise_right = ImageIO.read(getClass().getResource("/Pokemon_sprites/Weepintoise_left_tr.png"));
 		} catch(IOException ioe) {
 			System.out.println("Fail reading images openingpanel");
