@@ -1,184 +1,149 @@
 package client.clientGUI;
-
-
-
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
-
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-
 import BattleGUI.BattleScreen;
 import BattleGUI.CommandCenterGUI;
 import client.clientGUI.LoginScreen.LoginScreen;
+import client.clientGUI.Opening.OpeningPanel;
 import client.clientGUI.Waiting.WaitingPanel;
+import client.clientGUI.sidebarGUI.ChatGUI;
 import client.clientGUI.sidebarGUI.SideBar;
+import client.clientGUI.sidebarGUI.SideBarMenuAdapter;
 import dataStore.Player;
-
 public class GUI extends JFrame{
-	public static  PrintWriter pw;
-	public static  BufferedReader bf;
-	
-	private static ObjectOutputStream oos;
-	private static ObjectInputStream ois;
-	
-	private LoginScreen l;
-	private String playerName;
-	private BattleScreen bs =null;
-	private WaitingPanel waiting;
-	private JPanel leftContainer;
-	private CardLayout switcher;	
-	
-	public GUI(PrintWriter p, BufferedReader b){
-		//opening
-//		setLayout(new BorderLayout());
-		pw = p;
-		bf = b;
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(800, 600);
-		setResizable(false);
-		setLocation(100,100);
-//		OpeningPanel op = new OpeningPanel();
-////		op.run();
-//		add(op);
-//		
-//		System.out.println("OPENING ADDED");
-		setVisible(true);
-//		
-//		while(!op.done)
-//			Thread.yield();//System.out.println("WAITING");
-//		op.stop();
-//		System.out.println("OPENING COMPLETE");
-//		
-//		remove(op);
-//		op = null;
-		l = new LoginScreen();
-		add(l);
-		revalidate();
-		repaint();
-		System.out.println("BEFORE L.DONE WHILE");
-
-		while(!l.done)
-			Thread.yield();
-		l.stop();
-		//remove(l);
-		System.out.println("L IS FINISHED");
-		
-		System.out.println("BEFORE WAITING");
-		remove(l);
-		
-		JPanel container = new JPanel(new BorderLayout());
-		
-		container.add(new CommandCenterGUI(this, pw, bf), BorderLayout.SOUTH);
-		leftContainer = new JPanel();
-		switcher = new CardLayout();
-		leftContainer.setLayout(switcher);
-		waiting = new WaitingPanel();
-		leftContainer.add(waiting, "WAIT");
-		container.add(leftContainer);
-		switcher.show(leftContainer, "WAIT");
-		add(container);
-//		add(waiting);
-		revalidate();
-		repaint();
-		System.out.println("BEFORE BATTLE SCREEn");
-
-		/*
-		while(!waiting.done)
-			Thread.yield();
-		waiting.done();*/
-	}
-	
-	public void createGUI(String address){
-		
-		System.out.println("IN GUI CREATEGUI");
-		//remove(l);
-		//l = null;
-		l = null;
-		switchToBattleScreen();
-		System.out.println("waiting to read");
-
-		validate();
-		repaint();
-		try {
-			UIManager.setLookAndFeel(UIManager
-					.getCrossPlatformLookAndFeelClassName());
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (UnsupportedLookAndFeelException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void createChat(String address){
-		add(new SideBar(address, playerName), BorderLayout.EAST);
-	}
-	
-	public Player getPlayer(){
-		Player p = l.getPlayer();
-		playerName = p.getName();
-		return p;
-	}
-		
-	public static void main(String[] args) {
-		/*JFrame j = new JFrame();
-		j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		j.setSize(800, 600);
-//		*/
-//		GUI g = new GUI();
-//		System.out.println("CREATE ME");
-//		//j.add(g);
-//		//g.createGUI("192.168.0.106",oos,ois);
-//		g.createGUI("192.168.0.106", pw, bf); //pass in printerwriter to everything in command cneter
-//		g.setVisible(true);
-//		//j.setVisible(true);
-//		//setvisible is before opening
-	}
-
-	public void send(String m) {//work on this when u get back
-		if(m.contains("END")){
-			
-		 switchToWaitingScreen();
-			
-		 
-		
-		
-		}
-		
-		//for a specfici message->send the message to the gui (through the ccg) at gui...parse message
-		//if its end message->change the battle screen (entire GUI) to something
-	//else keep whatever's there
-		
-		//battleScreen.update(m);
-	}
-	
-	public void switchToBattleScreen(){
-//		remove(waiting);
-		
-		if(bs == null){
-			bs = new BattleScreen(pw,bf,playerName);
-			leftContainer.add(bs, "BATTLE");
-		}
-		
-//		add(bs);
-		switcher.show(leftContainer, "BATTLE");
-		revalidate();
-	}
-	
-	private void switchToWaitingScreen(){
-//		remove(bs);
-//		add(waiting);
-		switcher.show(leftContainer, "WAIT");
-		revalidate();
-	}
+public static PrintWriter pw;
+public static BufferedReader bf;
+private static ObjectOutputStream oos;
+private static ObjectInputStream ois;
+private LoginScreen l;
+private String playerName;
+private BattleScreen bs =null;
+private WaitingPanel waiting;
+public GUI(PrintWriter p, BufferedReader b){
+//opening
+// setLayout(new BorderLayout());
+pw = p;
+bf = b;
+setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+setSize(800, 600);
+setResizable(false);
+setLocation(100,100);
+// OpeningPanel op = new OpeningPanel();
+//// op.run();
+// add(op);
+//
+// System.out.println("OPENING ADDED");
+setVisible(true);
+//
+// while(!op.done)
+// Thread.yield();//System.out.println("WAITING");
+// op.stop();
+// System.out.println("OPENING COMPLETE");
+//
+// remove(op);
+// op = null;
+l = new LoginScreen();
+add(l);
+revalidate();
+repaint();
+System.out.println("BEFORE L.DONE WHILE");
+while(!l.done)
+Thread.yield();
+l.stop();
+//remove(l);
+System.out.println("L IS FINISHED");
+System.out.println("BEFORE WAITING");
+remove(l);
+waiting = new WaitingPanel();
+add(waiting);
+revalidate();
+repaint();
+System.out.println("BEFORE BATTLE SCREEn");
+/*
+while(!waiting.done)
+Thread.yield();
+waiting.done();*/
+}
+public void createGUI(String address){
+System.out.println("IN GUI CREATEGUI");
+//remove(l);
+//l = null;
+l = null;
+remove(waiting);
+try {
+System.out.println(bf.readLine());
+} catch (IOException e1) {
+e1.printStackTrace();
+}
+JPanel leftContainer = new JPanel(new BorderLayout());
+add(leftContainer, BorderLayout.CENTER);
+leftContainer.add(new CommandCenterGUI(this, pw, bf), BorderLayout.SOUTH);
+System.out.println("waiting to read");
+validate();
+repaint();
+try {
+UIManager.setLookAndFeel(UIManager
+.getCrossPlatformLookAndFeelClassName());
+} catch (ClassNotFoundException e) {
+e.printStackTrace();
+} catch (InstantiationException e) {
+e.printStackTrace();
+} catch (IllegalAccessException e) {
+e.printStackTrace();
+} catch (UnsupportedLookAndFeelException e) {
+e.printStackTrace();
+}
+}
+public void createChat(String address){
+add(new SideBar(address, playerName), BorderLayout.EAST);
+}
+public Player getPlayer(){
+Player p = l.getPlayer();
+playerName = p.getName();
+return p;
+}
+public static void main(String[] args) {
+/*JFrame j = new JFrame();
+j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+j.setSize(800, 600);
+// */
+// GUI g = new GUI();
+// System.out.println("CREATE ME");
+// //j.add(g);
+// //g.createGUI("192.168.0.106",oos,ois);
+// g.createGUI("192.168.0.106", pw, bf); //pass in printerwriter to everything in command cneter
+// g.setVisible(true);
+// //j.setVisible(true);
+// //setvisible is before opening
+}
+public void send(String m) {//work on this when u get back
+if(m.contains("END")){
+switchToWaitingScreen();
+}
+//for a specfici message->send the message to the gui (through the ccg) at gui...parse message
+//if its end message->change the battle screen (entire GUI) to something
+//else keep whatever's there
+//battleScreen.update(m);
+}
+public void switchToBattleScreen(){
+remove(waiting);
+if(bs == null)
+bs = new BattleScreen(pw,bf,playerName);
+add(bs);
+revalidate();
+}
+private void switchToWaitingScreen(){
+remove(bs);
+add(waiting);
+revalidate();
+}
 }
