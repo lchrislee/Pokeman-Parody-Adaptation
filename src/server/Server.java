@@ -25,11 +25,12 @@ public class Server implements Runnable{
 	public static final int COMMUNICATIONPORT = 5555;
 	public static final int CHATPORT = 4444;
 //	public static final int OBJECTPORT = 3456;
-	private ChatServer chatServer;
+	
+//	private ChatServer chatServer;TODO
 	private Battle first;
 	private Battle second;
 	
-	private ServerSocket ssChat;
+//	private ServerSocket ssChat;TODO
 	private ServerSocket ssComm;
 	private ArrayList<NetworkPlayer> players;
 	private static HashMap<String, ArrayList<Pokemon>> pokemonMap;
@@ -44,44 +45,44 @@ public class Server implements Runnable{
 		dba = new DataBaseAccess();
 		System.out.println("TEST");
 		dba.start();
-		chatServer = new ChatServer(CHATPORT);
+//		chatServer = new ChatServer(CHATPORT);TODO
 		players = new ArrayList<NetworkPlayer>();
-		ArrayList<Socket> chatSockets = new ArrayList<Socket>();
+//		ArrayList<Socket> chatSockets = new ArrayList<Socket>();TODO
 		ArrayList<Socket> communicationSockets = new ArrayList<Socket>();
 		System.out.println("Waiting for clients...");
 		try {
-			ssChat = new ServerSocket(CHATPORT);
+//			ssChat = new ServerSocket(CHATPORT);TODO
 			ssComm = new ServerSocket(COMMUNICATIONPORT);
 			
 			ServerSocketAccepter comm = new ServerSocketAccepter(ssComm, numPlayers);
-			ServerSocketAccepter chat = new ServerSocketAccepter(ssChat, numPlayers);
+//			ServerSocketAccepter chat = new ServerSocketAccepter(ssChat, numPlayers);TODO
 			
 			ForkJoinPool pool = new ForkJoinPool(2);
 			pool.execute(comm);
-			pool.execute(chat);
+//			pool.execute(chat);TODO
 			
 			pool.shutdown();
 			while(!pool.isTerminated())
 				Thread.yield();
 			
 			communicationSockets = comm.get();
-			chatSockets = chat.get();
+//			chatSockets = chat.get();TODO
 			
 			for (int i = 0; i < numPlayers; ++i)
 				players.add(new NetworkPlayer());
 			System.out.println("AM I DONE WITH ACCEPTING ");
 			
-			chatSockets.sort(new SocketSort());
+//			chatSockets.sort(new SocketSort());TODO
 			communicationSockets.sort(new SocketSort());
 			System.out.println("DONE SORTING");
 			for (int i = 0; i < numPlayers; ++i){
 				NetworkPlayer p = players.get(i);
-				p.setChatSocket(chatSockets.get(i));
+//				p.setChatSocket(chatSockets.get(i));TODO
 				p.setCommSocket(communicationSockets.get(i));
 				p.setBr();
 				p.setPw();
 				System.out.println("HERE?");
-				chatServer.listen(p.getChatSocket());
+//				chatServer.listen(p.getChatSocket());TODo
 				System.out.println("FINISHED LISTENING");
 			}
 			
