@@ -54,12 +54,12 @@ public class Server implements Runnable{
 			int numPlayers = 4;
 			
 			for (int i = 0; i < numPlayers; ++i){
-				Socket communicationSocketInput = ssComm.accept();
-				
-				
+				Socket communicationSocketInput = ssComm.accept();	
 				System.out.println(communicationSocketInput.toString() + " CONNECTED TO SERVER");
 				communicationSockets.add(communicationSocketInput);
-
+			}
+			
+			for (int i = 0; i < numPlayers; ++i){
 				Socket chatSocketInput = ssChat.accept();
 				System.out.println(chatSocketInput.toString() + " CONNECTED TO CHAT");
 				chatSockets.add(chatSocketInput);
