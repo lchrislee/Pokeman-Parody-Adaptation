@@ -172,11 +172,12 @@ public class Player implements Serializable{
 			
 			for (Pokemon poke : pokemonList){
 				//if (poke.getMoveList() == null){
-					System.err.println(poke.getName());
+					System.out.println(poke.getName() + "\t\tNAME");
 					ArrayList<Pokemon> possible = map.get(poke.getName());
+					System.out.println(possible.size());
 					int position = (int)(Math.random() * possible.size());
 					poke = new Pokemon(possible.get(position));
-					System.err.println(poke.getMoveList().get(1).getName());
+					System.out.println(poke.getMoveList().get(1).getName() + "\t\tMOVE");
 				//}
 			}
 //			spriteList = new Vector<ImageIcon> (p.spriteList);			

@@ -194,10 +194,7 @@ public class Server implements Runnable{
 //			System.err.println(p.getPokemonList().get(2).getName());
 			System.out.println("START PRINTING STUFF HERE");
 			for (Pokemon poke : p.getPokemonList()){
-				for (Move m : poke.getMoveList()){
-					System.out.println(p.getName());
-					System.err.println(m);
-				}
+				System.out.println(poke);
 			}
 			//System.err.println(p.getPokemonList().get(0).getName());
 
