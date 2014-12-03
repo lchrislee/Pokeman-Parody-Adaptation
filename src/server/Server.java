@@ -208,7 +208,7 @@ public class Server implements Runnable{
 //			}
 			System.out.println(output);
 			p.getPw().println(output);
-
+			p.getPw().flush();
 		}
 	}
 	
