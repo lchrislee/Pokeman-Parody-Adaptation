@@ -91,7 +91,6 @@ public class Server implements Runnable{
 				e.printStackTrace();
 			}
 			pokemonMap = dba.getMap();
-			System.out.println("WAITING TO ACCEPT PLAYERS");
 			/*
 			ServerSocket ssObject = new ServerSocket(OBJECTPORT);
 			for(int j=0;j<numPlayers;++j){
@@ -122,9 +121,8 @@ public class Server implements Runnable{
 					System.out.println("OOS IS NULL");
 			}
 			ssObject.close();*/
-			System.out.println("giving moves");
+			
 			getPlayersAndGiveMovesAndSendPokemonForSwitch();
-			System.out.println("sending pokemon");
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e1) {

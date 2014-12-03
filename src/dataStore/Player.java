@@ -185,10 +185,10 @@ public class Player implements Serializable{
 				//}
 			}
 			setPokemonList(v);
-			System.out.println("HARD COPIED NEW LIST PRINT OUT");
-			for (Pokemon poke : getPokemonList()){
-				System.out.println(poke);
-			}
+//			System.out.println("HARD COPIED NEW LIST PRINT OUT");
+//			for (Pokemon poke : getPokemonList()){
+//				System.out.println(poke);
+//			}
 //			spriteList = new Vector<ImageIcon> (p.spriteList);			
 //			statsMap = new HashMap<String,Integer>(p.statsMap);
 		}

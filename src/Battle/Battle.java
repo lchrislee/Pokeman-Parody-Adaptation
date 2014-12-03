@@ -43,7 +43,9 @@ public class Battle extends RecursiveTask<Boolean> {
 		winnerDetermined = false;
 		setTurnVariables();
 		p1.getPw().println("GO");
+		p1.getPw().flush();
 		p2.getPw().println("GO");
+		p2.getPw().flush();
 	}
 	
 	public static void main(String[] args) {
