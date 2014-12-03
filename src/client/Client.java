@@ -51,8 +51,8 @@ public class Client{
 		System.out.println("CLIENT MAKING GUI");
 		Player p = clientGUI.getPlayer();
 		this.playerName = p.getName();
-		clientGUI.createChat(hostAddress);
-		System.out.println("DONE MAKING CHAT");
+		//clientGUI.createChat(hostAddress);TODO
+		//System.out.println("DONE MAKING CHAT");TODO
 //		try {
 			//Socket s = new Socket(hostAddress, Server.OBJECTPORT);
 			//System.out.println("Trying to make outputstream");
