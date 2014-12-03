@@ -88,6 +88,12 @@ public class SwitchSelection extends JPanel{ //make this panel 300 wide by 150 t
 			System.out.println(name + " NAME " + level + " LEVEL " + hp + " HP " + max + " MAX ");
 			Pokemon poke = new Pokemon();
 			poke.setName(name);
+			String[] f = new String[4];
+			f[0] = "/Pokemon_sprites/" + poke.getName() + "_left_tr_small.png";
+			f[1] = "/Pokemon_sprites/" + poke.getName() + "_left_tr.png";
+			f[2] = "/Pokemon_sprites/" + poke.getName() + "_right_tr_small.png";
+			f[3] = "/Pokemon_sprites/" + poke.getName() + "_right_tr.png";
+			poke.setFileNameArray(f);
 			poke.setLevel(Integer.parseInt(level));
 			poke.setHealth(Integer.parseInt(hp));
 			poke.setMaxHealth(Integer.parseInt(max));
