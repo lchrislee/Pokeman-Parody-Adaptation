@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import client.clientGUI.GUI;
 import dataStore.Move;
@@ -38,6 +40,18 @@ public class CommandCenterGUI extends JPanel {
 		pw = p;
 		br = bf;
 		createGUI();
+		try {
+			UIManager.setLookAndFeel(UIManager
+					.getCrossPlatformLookAndFeelClassName());
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void createGUI(){
