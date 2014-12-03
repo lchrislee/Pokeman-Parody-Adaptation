@@ -161,7 +161,7 @@ public class Player implements Serializable{
 			Image playerImage = null;
 			try {
 				System.out.println("Player/setPlayer - characterImageName: " + characterImageName);
-				playerImage = ImageIO.read(getClass().getResource(characterImageName));
+				playerImage = ImageIO.read(getClass().getResource("/Character_sprites/" + characterImageName));
 			} catch (IOException ioe) {
 				System.out.println("fail reading playerimage in Player.java");
 			}
