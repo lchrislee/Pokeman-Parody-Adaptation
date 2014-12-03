@@ -43,6 +43,10 @@ public class Player implements Serializable{
 			v.add(new Move(90,/* 2, */"Psychic"));
 			v.add(new Move(100,/* 3, */"Hyper Beam"));
 			v.add(new Move(10,/* 4, */"Jump"));
+			String[] ss = {"Aerodon_left_tr.png", "Lickister_left_tr.png",
+					"Bee-two_left_tr.png", "Marozard_left_tr", "Meonx_left_tr.png",
+					"Geonx_left_tr.png", "Weepintoise_left_tr.png",
+					"Pikayu_left_tr.png", "sexypod_left_tr.png", "feelglet_left_tr.png"};
 			String[] s = {"Bee-two_left_tr.png"};
 			Pokemon p = new Pokemon("Bee-Two", s, 40, 50, 55, 100, 2, 17, v);
 			Pokemon p1 = new Pokemon("Bee-Two", s, 40, 50, 55, 100, 2, 17, v);
@@ -128,6 +132,7 @@ public class Player implements Serializable{
 			characterImageName = p.characterImageName;
 			Image playerImage = null;
 			try {
+				System.out.println("Player/setPlayer - characterImageName: " + characterImageName);
 				playerImage = ImageIO.read(getClass().getResource(characterImageName));
 			} catch (IOException ioe) {
 				System.out.println("fail reading playerimage in Player.java");
