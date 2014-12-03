@@ -2,9 +2,9 @@ package Battle;
 
 import java.io.IOException;
 import java.util.Random;
-import java.util.Vector;
 import java.util.concurrent.RecursiveTask;
 
+import dataStore.Move;
 import dataStore.NetworkPlayer;
 import dataStore.Player;
 //import dataStore.Player;
@@ -309,7 +309,6 @@ public class Battle extends RecursiveTask<Boolean> {
 		try {
 			Thread.sleep(90);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -349,10 +348,17 @@ public class Battle extends RecursiveTask<Boolean> {
 		if(p.equals(p1)){
 			int moveNameStartIndex = p1Input.indexOf("_") + 1;
 			int moveNameEndIndex = p1Input.indexOf("|");
-			int powerStartIndex = p1Input.indexOf("|") + 1;
-			int powerEndIndex = p1Input.length();
+//			int powerStartIndex = p1Input.indexOf("|") + 1;
+//			int powerEndIndex = p1Input.length();
 			String moveName = p1Input.substring(moveNameStartIndex, moveNameEndIndex);
-			int power = Integer.parseInt(p1Input.substring(powerStartIndex, powerEndIndex));
+//			int power = Integer.parseInt(p1Input.substring(powerStartIndex, powerEndIndex));
+			int power = 0;
+			for (Move m : p.getCurrentPokemon().getMoveList()){
+				if (m.getName().equalsIgnoreCase(moveName)){
+					power = m.getDamage();
+					break;
+				}
+			}
 			int damage = calculateDamage(power);
 			int remain = p2.getCurrentPokemon().getHealth() - damage;
 			if(remain < 0)
