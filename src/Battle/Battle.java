@@ -66,6 +66,22 @@ public class Battle extends RecursiveTask<Boolean> {
 
 	@Override
 	protected Boolean compute() {
+		//each pla
+		Pokemon mePoke = p1.getCurrentPokemon();
+		Pokemon enemyPoke = p2.getCurrentPokemon();
+		
+		String me = "swap"+p1.getName()+"?"+mePoke.getName()+"|"+mePoke.getLevel()+"!"+mePoke.getHealth()+":"+mePoke.getMaxHealth();
+		String enemy = "swap"+p2.getName()+"?"+enemyPoke.getName()+"|"+enemyPoke.getLevel()+"!"+enemyPoke.getHealth()+":"+enemyPoke.getMaxHealth();
+		
+		p1.getPw().println(me);
+		p1.getPw().println(enemy);
+		p1.getPw().flush();
+		
+		p2.getPw().println(enemy);
+		p2.getPw().println(me);
+		p2.getPw().flush();
+		
+		
 		Boolean output = null;
 		while (!winnerDetermined){
 
