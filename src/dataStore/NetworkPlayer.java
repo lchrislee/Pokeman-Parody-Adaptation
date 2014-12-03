@@ -183,11 +183,11 @@ public class NetworkPlayer extends Player {
 		
 //		System.out.println("PLAYER IS " + p);
 		super.setPlayer(mapping);
-		System.err.println("AFTER MAPPING PRINT");
+		System.out.println("AFTER MAPPING PRINT");
 		for (Pokemon poke : getPokemonList()){
 			for (Move m : poke.getMoveList()){
 				System.out.println(poke.getName());
-				System.err.println(m);
+				System.out.println(m);
 			}
 		}
 		System.out.println("DONE PRINTING AFTER MAPPING");

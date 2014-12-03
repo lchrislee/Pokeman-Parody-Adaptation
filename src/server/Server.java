@@ -188,19 +188,19 @@ public class Server implements Runnable{
 //			if (input.contains("MOVES")){
 //				int position = Integer.parseInt(input.substring(input.length() - 1));
 			int i = 0;
-			//System.err.println(p.getPokemonList().get(0).getMoveList().size() + "EMPTY MOVES?");
-//			System.err.println(p.getPokemonList().get(0).getName());
-//			System.err.println(p.getPokemonList().get(1).getName());
-//			System.err.println(p.getPokemonList().get(2).getName());
+			//System.out.println(p.getPokemonList().get(0).getMoveList().size() + "EMPTY MOVES?");
+//			System.out.println(p.getPokemonList().get(0).getName());
+//			System.out.println(p.getPokemonList().get(1).getName());
+//			System.out.println(p.getPokemonList().get(2).getName());
 			System.out.println("START PRINTING STUFF HERE");
 			for (Pokemon poke : p.getPokemonList()){
 				System.out.println(poke);
 			}
-			//System.err.println(p.getPokemonList().get(0).getName());
+			//System.out.println(p.getPokemonList().get(0).getName());
 
 			for (Move m : p.getPokemonList().get(0/*position*/).getMoveList()){
 				output += m.toString();
-				System.err.println(m.toString() + " MOVE TO STRING ");
+				System.out.println(m.toString() + " MOVE TO STRING ");
 				if (i != 3)
 					output += "?";
 				++i;
@@ -255,7 +255,7 @@ public class Server implements Runnable{
 			e.printStackTrace();
 		}
 		if (ipAddress == "")
-			System.out.println("YOU HAVE AN ERROR!");
+			System.out.println("YOU HAVE AN outOR!");
 		
 		JOptionPane.showMessageDialog(null, "Please tell your clients the following IP address: \n" + ipAddress, "Your IP Address", JOptionPane.INFORMATION_MESSAGE, null);
 		

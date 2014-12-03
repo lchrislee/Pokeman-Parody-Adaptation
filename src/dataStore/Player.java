@@ -170,15 +170,24 @@ public class Player implements Serializable{
 			if (map == null)
 				return;
 			
+			Vector<Pokemon> v = new Vector<Pokemon>();
+			
 			for (Pokemon poke : pokemonList){
 				//if (poke.getMoveList() == null){
 					System.out.println(poke.getName() + "\t\tNAME");
 					ArrayList<Pokemon> possible = map.get(poke.getName());
 					System.out.println(possible.size());
 					int position = (int)(Math.random() * possible.size());
-					poke = new Pokemon(possible.get(position));
-					System.out.println(poke.getMoveList().get(1).getName() + "\t\tMOVE");
+					Pokemon REPLACEME = new Pokemon(possible.get(position));
+					v.add(REPLACEME);
+					System.out.println("POKEMON COPY FOR PLAYER: " + poke);
+//					System.out.println(poke.getMoveList().get(1).getName() + "\t\tMOVE");
 				//}
+			}
+			setPokemonList(v);
+			System.out.println("HARD COPIED NEW LIST PRINT OUT");
+			for (Pokemon poke : getPokemonList()){
+				System.out.println(poke);
 			}
 //			spriteList = new Vector<ImageIcon> (p.spriteList);			
 //			statsMap = new HashMap<String,Integer>(p.statsMap);
