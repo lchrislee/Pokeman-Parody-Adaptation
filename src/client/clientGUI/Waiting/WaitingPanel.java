@@ -22,7 +22,7 @@ public class WaitingPanel extends JPanel {
 	Image sexypodImage = null;
 	public WaitingPanel() {
 		try {
-			sexypodImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/sexypod_left_tr.png"));
+			sexypodImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/Sexy-apod_left_tr.png"));
 		} catch(IOException ioe) {
 			System.out.println("fail reading sexypod in waiting");
 		}
