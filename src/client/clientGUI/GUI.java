@@ -76,7 +76,7 @@ public class GUI extends JFrame {
 		System.out.println("IN GUI CREATEGUI");
 		// remove(l);
 		// l = null;
-		l = null;
+		
 		remove(waiting);
 		System.err.println("GUI CREATEGUI AFTER REMOVING WAITING");
 		// try {
@@ -91,6 +91,7 @@ public class GUI extends JFrame {
 		System.out.println("waiting to read");
 		validate();
 		repaint();
+		l = null;
 		try {
 			UIManager.setLookAndFeel(UIManager
 					.getCrossPlatformLookAndFeelClassName());

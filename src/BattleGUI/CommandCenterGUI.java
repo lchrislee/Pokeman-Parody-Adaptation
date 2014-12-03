@@ -64,7 +64,7 @@ public class CommandCenterGUI extends JPanel {
 		add(text, TEXT);
 		selection = (pw == null ? new ActionSelection(switcher, this) : new ActionSelection(switcher, this, pw, br));
 		add(selection, ACTION);
-		switchPokemon = (pw == null ? new SwitchSelection(switcher, this) : null/*new SwitchSelection(switcher, this, pw, br, pokes)*/);
+		switchPokemon = (pw == null ? new SwitchSelection(switcher, this) : new SwitchSelection(switcher, this, pw, br));
 		add(switchPokemon, SWITCH);
 		switcher.show(this, ACTION);
 	}
