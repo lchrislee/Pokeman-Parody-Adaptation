@@ -281,7 +281,8 @@ public class Pokemon implements Serializable{
 	
 	public String toString(){
 		String output = "";
-		output += "Name: " + name + "\n\tlevel: " + level + "\n\tRarity: " + rarity + "\n\tMax HP: " + maxHealth + "\n\tConcious: " + conscious;
+		output += "Name: " + name + "\n\tlevel: " + level + "\n\tRarity: " + rarity + "\n\tCurrent HP: " + health + "\n\tMax HP: " + maxHealth + "\n\tConcious: " + conscious;
+		output += "\n\tAttack: " + attack + "\n\tDefense: " + defense + "\n\tSpeed" + speed;
 		for (Move m : moveList){
 			output += "\n\t\t" + m.toString();
 		}

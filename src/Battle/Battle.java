@@ -361,7 +361,10 @@ public class Battle extends RecursiveTask<Boolean> {
 					break;
 				}
 			}
-			int damage = calculateDamage(power);
+			
+			System.out.println("POWER OF ATTACK: " + power);
+			
+			int damage = calculateDamage(power, p1.getCurrentPokemon(), p2.getCurrentPokemon());
 			int remain = p2.getCurrentPokemon().getHealth() - damage;
 			if(remain < 0)
 				remain = 0;
@@ -369,12 +372,12 @@ public class Battle extends RecursiveTask<Boolean> {
 			p2.getCurrentPokemon().setHealth(remain);
 			
 			String initialMessage = "hit_" + PLAYERTWO + "_" + remain;
+			System.out.println(initialMessage);
 			p1.getPw().write(initialMessage);
 			p2.getPw().write(initialMessage);
 			p1.getPw().flush();
 			p2.getPw().flush();
 			//checkForFaint(PLAYERTWO);
-			System.out.println(initialMessage);
 
 			
 			String out = "%s attacked with %s and did %d damage"; //moved this statement chunk from the if statement below
@@ -418,7 +421,10 @@ public class Battle extends RecursiveTask<Boolean> {
 					break;
 				}
 			}
-			int damage = calculateDamage(power);
+			
+			System.out.println("POWER OF ATTACK: " + power);
+			
+			int damage = calculateDamage(power, p2.getCurrentPokemon(), p1.getCurrentPokemon());
 			int remain = p1.getCurrentPokemon().getHealth() - damage;
 			if(remain < 0)
 				remain = 0;
@@ -427,11 +433,11 @@ public class Battle extends RecursiveTask<Boolean> {
 			
 			String initialMessage = "hit_" + PLAYERONE + "_" + remain;
 			
+			System.out.println(initialMessage);
 			p1.getPw().write(initialMessage);
 			p2.getPw().write(initialMessage);
 			p1.getPw().flush();
 			p2.getPw().flush();
-			System.out.println(initialMessage);
 
 			
 			String out = "%s attacked with %s and did %d damage";
@@ -459,8 +465,11 @@ public class Battle extends RecursiveTask<Boolean> {
 
 	}
 
-	private int calculateDamage(int power){
-		return (2 * 10 + 10)/150 * (39/28) * power + 2;
+	private int calculateDamage(int power, Pokemon attacker, Pokemon defender){
+		System.err.println("ATTACKER: " + attacker);
+		System.err.println("DEFENDER: " + defender);
+		int damage = (int) (Math.floor((2.0 * attacker.getLevel() + 10)/150.0 * ((1.0 * attacker.getAttack())/defender.getDefense()) * power) + 2);
+		return damage;
 	}
 	
 	private void interpretSurrender(){
