@@ -597,6 +597,7 @@ public class Battle extends RecursiveTask<Boolean> {
 		
 		String fromP1;
 		String fromP2;
+		
 		if(p1message.equals("Sw") && p2message.equals("Sw")){
 			if(turnOrder() == 1){
 				firstPlayerToSwitch = 1;
