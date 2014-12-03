@@ -60,6 +60,40 @@ public class SwitchSelection extends JPanel{ //make this panel 300 wide by 150 t
 	private ArrayList<Pokemon> parse(String s){
 		ArrayList<Pokemon> p = new ArrayList<Pokemon>();
 		
+		//pokemonName=levelNumber+currentHP_maxHP:pokemonName=levelNumber+currentHP_maxHP:pokemonName=levelNumber+currentHP_maxHP
+		//create pokemon and put in p
+		//name of pokemon, level, max hp, current hp, 
+		int numPokes = 3;
+		for(int i=0;i<numPokes;++i){
+			String name;
+			String level;
+			String hp;
+			String max;
+			System.out.println(s +  "  SWITCH STRING ");
+			if(s.contains(":")){
+				name = s.substring(0,s.indexOf("="));
+				level = s.substring(s.indexOf("=")+1,s.indexOf("+"));
+				hp = s.substring(s.indexOf("+")+1,s.indexOf("_"));
+				max = s.substring(s.indexOf("_")+1,s.indexOf(":"));
+				s = s.substring(s.indexOf(":")+1,s.length());
+			}
+			
+			else{
+				name = s.substring(0,s.indexOf("="));
+				level = s.substring(s.indexOf("=")+1,s.indexOf("+"));
+				hp = s.substring(s.indexOf("+")+1,s.indexOf("_"));
+				max = s.substring(s.indexOf("_")+1,s.length());				
+			}		
+			
+			System.out.println(name + " NAME " + level + " LEVEL " + hp + " HP " + max + " MAX ");
+			Pokemon poke = new Pokemon();
+			poke.setName(name);
+			poke.setLevel(Integer.parseInt(level));
+			poke.setHealth(Integer.parseInt(hp));
+			poke.setMaxHealth(Integer.parseInt(max));
+			p.add(poke);
+			
+		}
 		return p;
 	}
 	

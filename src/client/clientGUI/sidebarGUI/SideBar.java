@@ -13,7 +13,7 @@ public class SideBar extends JPanel {
 	
 	private void createGUI(String address, String name){
 		setLayout(new BorderLayout());
-		add(new SideBarMenuAdapter());
-		add(new ChatGUI(address, name), BorderLayout.SOUTH);
+//		add(new SideBarMenuAdapter());
+		add(new ChatGUI(address, name)/*, BorderLayout.SOUTH*/);
 	}
 }

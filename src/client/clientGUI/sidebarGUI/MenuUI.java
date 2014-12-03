@@ -19,14 +19,14 @@ import javax.swing.BoxLayout;
 //import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import dataStore.Pokemon;
+//import dataStore.Pokemon;
 
 public class MenuUI extends JPanel {
 	private static final long serialVersionUID = 7397593496707020802L;
 	
 	private ArrayList<PokemonDisplay> listPokemon;
-	private CardLayout switcher;
-	private SideBarMenuAdapter parent;
+//	private CardLayout switcher;
+//	private SideBarMenuAdapter parent;
 //	private JButton items;
 //	private JButton trainer;
 	//instance of player
@@ -39,8 +39,8 @@ public class MenuUI extends JPanel {
 	}
 	
 	public MenuUI(CardLayout c, SideBarMenuAdapter p){
-		parent = p;
-		switcher = c;
+//		parent = p;
+//		switcher = c;
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 //		setBackground(Color.cyan);
 		listPokemon = new ArrayList<PokemonDisplay>();
@@ -128,7 +128,7 @@ public class MenuUI extends JPanel {
 				
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					switcher.show(parent, parent.STATUSNAME);
+//					switcher.show(parent, parent.STATUSNAME);
 				}
 			});
 //			d.addMouseMotionListener(new MouseMotionListener() {
