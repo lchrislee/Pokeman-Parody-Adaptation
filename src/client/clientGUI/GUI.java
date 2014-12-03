@@ -14,6 +14,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import BattleGUI.BattleScreen;
 import BattleGUI.CommandCenterGUI;
 import client.clientGUI.LoginScreen.LoginScreen;
+import client.clientGUI.Opening.OpeningPanel;
 import client.clientGUI.Waiting.WaitingPanel;
 import client.clientGUI.sidebarGUI.SideBar;
 import dataStore.Player;
@@ -36,20 +37,20 @@ public class GUI extends JFrame {
 		setSize(800, 600);
 		setResizable(false);
 		setLocation(100, 100);
-		// OpeningPanel op = new OpeningPanel();
-		// // op.run();
-		// add(op);
+		 OpeningPanel op = new OpeningPanel();
+		  //op.run();
+		 add(op);
 		//
 		// System.out.println("OPENING ADDED");
 		setVisible(true);
 		//
-		// while(!op.done)
-		// Thread.yield();//System.out.println("WAITING");
-		// op.stop();
+		 while(!op.done)
+		 Thread.yield();//System.out.println("WAITING");
+		 op.stop();
 		// System.out.println("OPENING COMPLETE");
 		//
-		// remove(op);
-		// op = null;
+		 remove(op);
+		 op = null;
 		l = new LoginScreen();
 		add(l);
 		l.setNameFocus();
