@@ -65,6 +65,7 @@ public class Server implements Runnable{
 				Thread.yield();
 			
 			communicationSockets = comm.get();
+			chatSockets = chat.get();
 			
 			for (int i = 0; i < numPlayers; ++i)
 				players.add(new NetworkPlayer());
