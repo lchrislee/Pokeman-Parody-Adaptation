@@ -308,11 +308,11 @@ public class Battle extends RecursiveTask<Boolean> {
 	}
 	
 	private void interpretAttack(){
-		try {
-			Thread.sleep(90);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			Thread.sleep(90);
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
 		
 		String p1message = p1Input.substring(0, 2);
 		String p2message = p2Input.substring(0, 2);
@@ -371,11 +371,11 @@ public class Battle extends RecursiveTask<Boolean> {
 			
 			p2.getCurrentPokemon().setHealth(remain);
 			
-			String initialMessage = "hit_" + PLAYERTWO + "_" + remain;
+			String initialMessage = "hit_" + p2.getName() + "_" + remain;
 			System.out.println(initialMessage);
 			p1.getPw().write(initialMessage);
-			p2.getPw().write(initialMessage);
 			p1.getPw().flush();
+			p2.getPw().write(initialMessage);
 			p2.getPw().flush();
 			//checkForFaint(PLAYERTWO);
 
@@ -431,7 +431,7 @@ public class Battle extends RecursiveTask<Boolean> {
 			
 			p1.getCurrentPokemon().setHealth(remain);
 			
-			String initialMessage = "hit_" + PLAYERONE + "_" + remain;
+			String initialMessage = "hit_" + p1.getName() + "_" + remain;
 			
 			System.out.println(initialMessage);
 			p1.getPw().write(initialMessage);
