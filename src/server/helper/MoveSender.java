@@ -18,10 +18,10 @@ public class MoveSender extends RecursiveTask<Void> {
 	private Vector<Move> moves;
 	private HashMap<String, ArrayList<Pokemon>> pokemonMap;
 	
-	public MoveSender(NetworkPlayer np, PrintWriter p, Vector<Move> m, HashMap<String, ArrayList<Pokemon>> map){
-		pw = p;
-		moves = m;
+	public MoveSender(NetworkPlayer np, HashMap<String, ArrayList<Pokemon>> map){
 		n = np;
+		pw = n.getPw();
+		moves = n.getPokemonList().get(0).getMoveList();
 		pokemonMap = map;
 	}
 	

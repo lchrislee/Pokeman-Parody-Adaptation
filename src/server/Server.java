@@ -33,7 +33,7 @@ public class Server implements Runnable{
 	private ServerSocket ssComm;
 	private ArrayList<NetworkPlayer> players;
 	private static HashMap<String, ArrayList<Pokemon>> pokemonMap;
-	private int numPlayers = 1;
+	private int numPlayers = 4;
 	private int battleOneP1 = 1;
 	private int battleOneP2 = -1;
 	private int battleTwoP1 = -1;
@@ -60,8 +60,9 @@ public class Server implements Runnable{
 			pool.execute(comm);
 //			pool.execute(chat);TODO
 			
-			communicationSockets = comm.join();
-			//chatSockets = chat.join();TODO
+			pool.shutdown();
+			while(!pool.isTerminated())
+				Thread.yield();
 			
 			for (int i = 0; i < numPlayers; ++i)
 				players.add(new NetworkPlayer());
@@ -166,7 +167,7 @@ public class Server implements Runnable{
 	private void getPlayersAndGiveMovesAndSendPokemonForSwitch(){
 		ArrayList<MoveSender> senders = new ArrayList<MoveSender>();
 		for (NetworkPlayer p : players){
-			senders.add(new MoveSender(p, p.getPw(), p.getPokemonList().get(0).getMoveList(), pokemonMap));
+			senders.add(new MoveSender(p, pokemonMap));
 			System.out.println("giving move to player: " + p.getCommSocket().getInetAddress());
 //			String input = null;
 			
@@ -194,8 +195,9 @@ public class Server implements Runnable{
 		for (int i = 0; i < numPlayers; ++i){
 			pool.execute(senders.get(i));
 		}
-		for (int i = 0; i < numPlayers; ++i)
-			senders.get(i).join();
+		pool.shutdown();
+		while(!pool.isTerminated())
+			Thread.yield();
 	}
 	
 	private void createBattles(){
