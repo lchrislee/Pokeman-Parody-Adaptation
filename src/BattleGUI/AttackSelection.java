@@ -72,21 +72,49 @@ public class AttackSelection extends JPanel {
 		return parse(movesList);
 	}
 	
+	//name+damage=name+damage=name+damage=name+damage
+	
 	private Vector<Move> parse(String input){
 		Vector<Move> v = new Vector<Move>();
-		int moveStartIndex = 0;
-		int moveEndIndex = input.indexOf("?");
-		int space = input.indexOf(" ");
+		//int moveStartIndex = 0;
+		//int moveEndIndex = input.indexOf("?");
+		//int space = input.indexOf(" ");
 		
-		int i = 0;
-		do{
+		
+		
+		//String message = input;
+		int numMoves = 4;
+		
+		for(int i=0;i<numMoves;++i){
+			int plusIndex;
+			String name;
+			String damage;
+			if(input.contains("=")){
+				plusIndex = input.indexOf("+");
+				name = input.substring(0,plusIndex);
+				damage = input.substring(plusIndex+1,input.indexOf("="));
+				System.out.println(name + " NAME ! " + damage + " DAMAGE ");
+				input = input.substring(input.indexOf("=")+1,input.length());
+			}
+			else{
+				name = input.substring(0,input.indexOf("+"));
+				damage = input.substring(input.indexOf("+")+1,input.length());
+				System.out.println(name + " NAME LAST  ! " + damage + " DAMAGE Last ");
+			}
+			v.add(new Move(Integer.parseInt(damage),name));
+		}
+		/*do{
 			v.add(new Move(Integer.parseInt(input.substring(space + 1, moveEndIndex)), input.substring(moveStartIndex, space)));
 			moveStartIndex = moveEndIndex + 1;
 			moveEndIndex = input.indexOf("?", moveStartIndex);
 			space = input.indexOf(" ", moveStartIndex);
 			++i;
 		}while (i < 4);
-		
+		*/
+		for(int i=0;i<v.size();++i){
+			Move move = v.get(i);
+			System.out.println(move.getDamage() + " DAMAGE " + move.getName() + " NAME ");
+		}
 		return v;
 	}
 	
