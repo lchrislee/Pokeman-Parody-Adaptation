@@ -45,7 +45,7 @@ public class ChatGUI extends JPanel {
 		setListeners();
 		//connect to server
 		serverAddress = address;
-		Connect(/*address*/);
+		//Connect(/*address*/);TODO
 	}
 	
 //	@SuppressWarnings({"rawtypes", "unchecked"})
