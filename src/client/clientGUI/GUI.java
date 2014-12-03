@@ -123,6 +123,8 @@ public class GUI extends JFrame {
 		} catch (UnsupportedLookAndFeelException e) {
 			e.printStackTrace();
 		}
+		repaint();
+		revalidate();
 	}
 	public void createChat(String address) {
 		add(new SideBar(address, playerName), BorderLayout.EAST);
@@ -166,10 +168,6 @@ public class GUI extends JFrame {
 
 		leftContainer.add(bs,BorderLayout.CENTER);
 	
-		repaint();
-
-
-		revalidate();
 		System.out.println("ADDED BATTLE SCREEN");
 	}
 	
