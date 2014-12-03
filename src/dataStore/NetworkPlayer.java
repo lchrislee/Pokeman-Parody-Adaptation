@@ -33,7 +33,7 @@ public class NetworkPlayer extends Player {
 	}
 	
 	public NetworkPlayer(Player p){
-		super(p, null);
+		super(p);
 		chatSocket = null;
 		commSocket = null;
 	}
@@ -143,11 +143,10 @@ public class NetworkPlayer extends Player {
 	
 	public void readPlayer(HashMap<String, ArrayList<Pokemon>> mapping){
 		System.out.println("NETWORK PLAYER IS READING ");
-		Player p = new Player();
 		if(br == null){
 			System.out.println("NETWORKPLAYER.JAVA  br is null");
 		}
-		p.readObject(br);
+		readObject(br);
 	/*	try {
 			String playerInfo = this.br.readLine();
 			System.out.println(playerInfo + " PLAYER INFO ");
@@ -182,10 +181,16 @@ public class NetworkPlayer extends Player {
 //		if(p.getCurrentSprite()==null)
 //			System.out.println("CURRENT SPRITE IS NULL");
 		
-		System.out.println("PLAYER IS " + p);
-		super.setPlayer(p, mapping);
-		
-		
+//		System.out.println("PLAYER IS " + p);
+		super.setPlayer(mapping);
+		System.err.println("AFTER MAPPING PRINT");
+		for (Pokemon poke : getPokemonList()){
+			for (Move m : poke.getMoveList()){
+				System.out.println(poke.getName());
+				System.err.println(m);
+			}
+		}
+		System.out.println("DONE PRINTING AFTER MAPPING");
 	}
 
 }
