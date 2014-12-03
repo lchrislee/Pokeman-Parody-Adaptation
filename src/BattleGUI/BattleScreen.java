@@ -159,6 +159,10 @@ public class BattleScreen extends JPanel {
 								 String.valueOf(enemyPokemon.getMaxHealth());
 			enemyPokemonHealth = new JLabel(enemyHealth);
 			enemyPokemonHealth.setFont(new Font("Arial",Font.PLAIN, 25));
+			
+			enemyPokemonLabel.setForeground(Color.BLUE);
+			enemyPokemonLevel.setForeground(Color.BLACK);
+			enemyPokemonHealth.setForeground(Color.RED);
 			enemyInfoPanel.add(enemyPokemonLabel);
 			enemyInfoPanel.add(enemyPokemonLevel);
 			enemyInfoPanel.add(enemyPokemonHealth);
@@ -217,6 +221,9 @@ public class BattleScreen extends JPanel {
 					 String.valueOf(yourPokemon.getMaxHealth());
 			yourPokemonHealth = new JLabel(yourHealth);
 			yourPokemonHealth.setFont(new Font("Arial",Font.PLAIN, 25));
+			yourPokemonLabel.setForeground(Color.BLUE);
+			yourPokemonLevel.setForeground(Color.BLACK);
+			yourPokemonHealth.setForeground(Color.RED);
 			yourInfoPanel.add(yourPokemonLabel);
 			yourInfoPanel.add(yourPokemonLevel);
 			yourInfoPanel.add(yourPokemonHealth);
@@ -280,6 +287,7 @@ public class BattleScreen extends JPanel {
 		
 		
 		/* string parsing for pokemon swap and hits */
+		/*
 		String tempName = "jiwoo";
 		
 		String hitTest = "hit_jiwoo_69";
@@ -320,6 +328,7 @@ public class BattleScreen extends JPanel {
 			int maxHealth = Integer.parseInt(maxHealthCheck);
 			System.out.println("Max health checking in swap: " + maxHealth);
 		}
+		*/
 		/*
 		w.ChangeEnemyPokemon(new Pokemon());
 		w.ChangeYourPokemon(new Pokemon());

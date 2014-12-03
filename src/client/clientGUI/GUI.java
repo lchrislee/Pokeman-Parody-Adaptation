@@ -33,6 +33,7 @@ public class GUI extends JFrame {
 		// setLayout(new BorderLayout());
 		pw = p;
 		bf = b;
+		setTitle("Pokeman!");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(800, 600);
 		setResizable(false);
