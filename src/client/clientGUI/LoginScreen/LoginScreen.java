@@ -22,7 +22,11 @@ import java.util.Queue;
 import java.util.Vector;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -46,6 +50,8 @@ public class LoginScreen extends JPanel {
 	private String chosenCharacterName;
 	private ImageIcon chosenPokemon = new ImageIcon();
 	
+	AudioInputStream inputStream;
+	
 	private Image aerodonImage = null, lickisterImage = null, beetwoImage = null,
 			marozardImage = null, meonxImage = null, geonxImage = null,
 			weepintoiseImage = null, pikayuImage = null, sexypodImage = null, feelgletImage = null;
@@ -63,14 +69,14 @@ public class LoginScreen extends JPanel {
 		try {
 			aerodonImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/Aerodon_left_tr_small.png"));
 			lickisterImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/Lickister_left_tr_small.png"));
-			beetwoImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/Bee-Two_left_tr_small.png"));
+			beetwoImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/Bee-two_left_tr_small.png"));
 			marozardImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/Marozard_left_tr_small.png"));
 			meonxImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/Meonx_left_tr_small.png"));
 			geonxImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/Geonx_left_tr_small.png"));
 			weepintoiseImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/Weepintoise_left_tr_small.png"));
 			pikayuImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/Pikayu_left_tr_small.png"));
-			sexypodImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/Sexypod_left_tr_small.png"));
-			feelgletImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/Feelglet_left_tr_small.png"));
+			sexypodImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/sexypod_left_tr_small.png"));
+			feelgletImage = ImageIO.read(getClass().getResource("/Pokemon_sprites/feelglet_left_tr_small.png"));
 		}
 		catch(IOException ioe) {
 			System.out.println("fail reading login images");
@@ -78,7 +84,21 @@ public class LoginScreen extends JPanel {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		createLoginGUI();
 		if (clip == null)
-			clip = MusicPlayer.run("res/Menu.wav");
+			//clip = MusicPlayer.run("res/Menu.wav");
+//clip = MusicPlayer.run("res/Epic_sax_guy.wav");
+			
+			try {
+				inputStream = AudioSystem.getAudioInputStream(getClass().getResource("/Menu.wav"));
+				clip = AudioSystem.getClip();
+				clip.open(inputStream);
+				clip.start();
+			} catch(LineUnavailableException lue) {
+				System.out.println("fail reading music");
+			} catch(IOException ioe) {
+				System.out.println("fail reading music 2");
+			} catch(UnsupportedAudioFileException uafe) {
+				System.out.println("fail reading music 3");
+			}
 	}
 	
 	public void stop(){
@@ -939,12 +959,12 @@ public class LoginScreen extends JPanel {
 		characterSpriteListPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		characterSpriteListPanel.setPreferredSize(new Dimension(800,120));
 		
-		String[] imageLocations = {"/Character_sprites/miller_small.png",
+		String[] imageLocations = {"/Character_sprites/Miller_small.png",
 								   "/Character_sprites/Crowley_small.png",
-								   "/Character_sprites/dolan_small.png",
-								   "/Character_sprites/gooby_small.png",
-								   "/Character_sprites/misty_small.png",
-								   "/Character_sprites/jungIll_small.png"
+								   "/Character_sprites/Dolan_small.png",
+								   "/Character_sprites/Gooby_small.png",
+								   "/Character_sprites/Misty_small.png",
+								   "/Character_sprites/JungIll_small.png"
 								  };
 		String[] characterNames = {"Miller", "Crowley", "Dolan", "Gooby", "Misty", "JungIll"};
 		ArrayList<JButton> characterButtons = new ArrayList<JButton>();

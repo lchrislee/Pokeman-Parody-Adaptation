@@ -1,11 +1,13 @@
 package dataStore;
 
+import java.awt.Image;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Vector;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 //player needs to know the index of the current pokemon that's out
@@ -124,7 +126,13 @@ public class Player implements Serializable{
 			System.out.println("PLAYER.JAVA CURRENT POKEMON INDEX " + currentPokemonIndex);
 			name = p.getName();
 			characterImageName = p.characterImageName;
-			currentSprite = new ImageIcon("res/" + characterImageName);
+			Image playerImage = null;
+			try {
+				playerImage = ImageIO.read(getClass().getResource(characterImageName));
+			} catch (IOException ioe) {
+				System.out.println("fail reading playerimage in Player.java");
+			}
+			currentSprite = new ImageIcon(playerImage);
 			pokemonList = new Vector<Pokemon>(p.pokemonList);
 			if (map == null)
 				return;
