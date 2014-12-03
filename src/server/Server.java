@@ -182,9 +182,9 @@ public class Server implements Runnable{
 //				return;
 //			}
 //			if (input.contains("MOVES")){
-				int position = Integer.parseInt(input.substring(input.length() - 1));
+//				int position = Integer.parseInt(input.substring(input.length() - 1));
 				int i = 0;
-				for (Move m : p.getPokemonList().get(position).getMoveList()){
+				for (Move m : p.getPokemonList().get(0/*position*/).getMoveList()){
 					output += m.toString();
 					if (i != 3)
 						output += "?";

@@ -93,16 +93,16 @@ public class GUI extends JFrame{
 		//l = null;
 		l = null;
 		remove(waiting);
-		
+		try {
+			System.out.println(bf.readLine());
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 		JPanel leftContainer = new JPanel(new BorderLayout());
 		add(leftContainer, BorderLayout.CENTER);
 		leftContainer.add(new CommandCenterGUI(this, pw, bf), BorderLayout.SOUTH);
 		System.out.println("waiting to read");
-		try {
-			System.out.println(bf.readLine());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+
 		validate();
 		repaint();
 	}
